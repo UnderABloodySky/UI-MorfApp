@@ -10,7 +10,7 @@ import Menu
 
 data class Order(private val code : Int, private val user : User,
                  private val restaurant : Restaurant, private var payment : PaymentMethod,
-                 private val menus : MutableList<Menu>){
+                 private val menus : MutableCollection<Menu>){
 
     private var state : StateOrder = PENDING
     private var date : Date? = null
