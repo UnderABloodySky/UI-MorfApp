@@ -4,21 +4,20 @@ class Menu {
     var name        = String;
     var description = String;
     var price       = Double;
-    var products    = ArrayList<Product>();
-    var cost        = Double.Companion;
+    var products    = mutableListOf<Product>();
+    var cost        = Double;
     var discount    = Discount();
     var enabled     = Boolean;
 
 
-    fun costAutocalculation(): Unit {
-        var totalPrice = totalPrice();
-        cost = totalPrice - (totalPrice * discount.value / 100);
-
+    fun costAutocalculation() {
+        var tp: Double = totalPrice();
     }
 
-    fun totalPrice(): Double {
-        var total = 0.0;
-        products.forEach { total = total + it.price };
-        return total;
+    fun totalPrice(): Double = products.sumByDouble { it.price as Double };
+    fun percentage(total: Double): Double = total.times(discount.value as Double).div(100);
+
+
+
     }
 }
