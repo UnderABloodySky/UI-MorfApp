@@ -1,4 +1,4 @@
 package order
 
-class TestOrder {
+private class TestOrder {
 }

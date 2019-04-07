@@ -1,4 +1,4 @@
 package discount
 
-class TestPercentageDiscount {
+private class TestPercentageDiscount {
 }

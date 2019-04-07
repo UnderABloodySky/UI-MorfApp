@@ -1,4 +1,4 @@
 package user
 
-class TestUser {
+private class TestUser {
 }
