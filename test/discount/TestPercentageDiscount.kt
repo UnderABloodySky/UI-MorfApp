@@ -1,0 +1,4 @@
+package discount
+
+class TestPercentageDiscount {
+}

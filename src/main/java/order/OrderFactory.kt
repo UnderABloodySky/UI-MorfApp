@@ -14,4 +14,6 @@ class OrderFactory {
         //_user.addOrder(newOrder) Esto iria aca?
         return newOrder
     }
+
+    fun code() : Int = code
 }
