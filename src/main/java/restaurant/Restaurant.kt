@@ -1,0 +1,4 @@
+package restaurant
+
+class Restaurant {
+}
