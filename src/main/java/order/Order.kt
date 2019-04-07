@@ -6,7 +6,7 @@ import paymentMethod.*
 import java.util.*
 import user.User
 import restaurant.Restaurant
-import Menu
+import productAndMenu.Menu
 
 data class Order(private val code : Int, private val user : User,
                  private val restaurant : Restaurant, private var payment : PaymentMethod,

@@ -1,3 +1,5 @@
+package productAndMenu
+
 class Product {
 
     var code        = Int;

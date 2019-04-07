@@ -1,7 +1,7 @@
 package order
 import user.User
 import restaurant.Restaurant
-import Menu
+import productAndMenu.Menu
 import paymentMethod.PaymentMethod
 
 class OrderFactory {
