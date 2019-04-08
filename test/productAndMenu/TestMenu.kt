@@ -35,5 +35,6 @@ class TestMenu {
         menu.addProductToMenu(hotDog);
         AssertEquals(menu.totalPrice(), 200.0)
     }
-    //Faltan Tests de descuentos.
+    //Faltan Tests de descuentos.  PRUEBA
+
 }
