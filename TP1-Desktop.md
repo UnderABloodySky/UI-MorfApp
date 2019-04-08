@@ -1,4 +1,4 @@
-## TP1 >> Backend Desktop
+﻿## TP1 >> Backend Desktop
 
 Se requiere armar una aplicación de escritorio para poder administrar restaurantes. La aplicación deberá conocer con qué restaurantes cuenta y quienes son los usuarios registrados que podrán hacer pedidos por la plataforma.
 Además, cada restaurant necesita conocer sus productos y sus menús.
@@ -201,5 +201,6 @@ _OPCIONAL: Posibilidad de agregar nuevos productos desde la ventana de Menú_
 
 Ventana para poder modificar la información de un menú. Se deberá respetar
 la misma funcionalidad planteada en la ventana de agregar.
+.
 
 ![Modificar Menú](img/7.EditMenu.png)
