@@ -1,12 +1,9 @@
 package productAndMenu
 
-class Product {
-
-    var code        = Int;
-    var name        = String;
-    var description = String;
-    var price       = Double;
-    var category    = String;
-
+class Product(val code: Int,
+              var name: String,
+              var description: String,
+              var price: Double,
+              var category: Category) {
 
 }

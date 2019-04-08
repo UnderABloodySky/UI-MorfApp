@@ -2,23 +2,20 @@ package productAndMenu
 
 import discount.Discount
 
-class Menu {
+class Menu(val code: Int,
+           var name: String,
+           var description: String,
+           var products: MutableList<Product>,
+           var discount: Discount?,
+           var enabled: Boolean) {
 
-    var code                    = Int;
-    var name                    = String;
-    var description             = String;
-    var price                   = Double;
-    var products                = mutableListOf<Product>();
-    var cost                    = Double;
-    var discount: Discount?     = null;
-    var enabled:Boolean         = false;
-
+    fun addProductToMenu(product: Product): Unit { this.products.add(product); }
 
     fun costAutocalculation() = discount?.processDiscount(totalPrice());
-    fun totalPrice(): Double  = products.sumByDouble { it.price as Double };
-    fun addProductToMenu(product: Product): Unit {
 
-        this.products.add(product);
-    }
-    fun enabled():Boolean {return enabled}
+    fun enabled():Boolean { return enabled }
+
+    fun removeProductFromMenu(product: Product): Unit { this.products.remove(product);}
+
+    fun totalPrice(): Double  = products.sumByDouble { it.price as Double };
 }
