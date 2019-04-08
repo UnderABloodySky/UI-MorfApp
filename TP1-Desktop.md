@@ -201,6 +201,5 @@ _OPCIONAL: Posibilidad de agregar nuevos productos desde la ventana de Menú_
 
 Ventana para poder modificar la información de un menú. Se deberá respetar
 la misma funcionalidad planteada en la ventana de agregar.
-.
 
 ![Modificar Menú](img/7.EditMenu.png)
