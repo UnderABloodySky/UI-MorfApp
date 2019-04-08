@@ -11,7 +11,7 @@ class Menu {
     var products                = mutableListOf<Product>();
     var cost                    = Double;
     var discount: Discount?     = null;
-    var enabled                 = Boolean;
+    var enabled:Boolean         = false;
 
 
     fun costAutocalculation() = discount?.processDiscount(totalPrice());
@@ -20,4 +20,5 @@ class Menu {
 
         this.products.add(product);
     }
+    fun enabled():Boolean {return enabled}
 }
