@@ -1,9 +1,11 @@
 package discount
 
-abstract class Discount {
+abstract class Discount (protected val name : String, protected val value : Double ){
 
-    var name     = String;
-    var value    = Double;
+    /*
+    *   Falta excepcion que value > 0
+    *   Name esta de mas.
+    * */
 
     abstract fun processDiscount(price: Double): Double;
 

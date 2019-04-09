@@ -7,7 +7,7 @@ import productAndMenu.*
 
 class ApplicationModel {
 
-    private var order_Factory : OrderFactory = OrderFactory
+    private val order_Factory : OrderFactory = OrderFactory
 
 
     fun createOrder(client:Client, restaurant:Restaurant , paymentMethod:PaymentMethod, menus:MutableList<Menu> ):Order{
