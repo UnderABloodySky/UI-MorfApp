@@ -4,7 +4,7 @@ import restaurant.Restaurant
 import productAndMenu.Menu
 import paymentMethod.PaymentMethod
 
-class OrderFactory {
+object OrderFactory {
 
     private var code : Int = 0
 
