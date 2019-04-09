@@ -7,12 +7,11 @@ abstract class Discount (protected val name : String, protected val value : Doub
     *   Name esta de mas.
     * */
 
-    abstract fun processDiscount(price: Double): Double;
+    //Templated
+    fun processDiscount(price: Double): Double = price - discount(price);
 
-    //Podriamos hacer un templated y darle cuerpo a este mensaje
-    // processDiscount(price: Double) : Double = price - this.discount()
-
-    //abstract fun discount(price: Double) : Double
+    //Hook
+    abstract fun discount(price: Double) : Double
     //Nos ahorramos de restar dos veces.
 
 }
