@@ -12,6 +12,7 @@ class Menu(val code: Int,
     fun addProductToMenu(product: Product): Unit { this.products.add(product); }
 
     fun costAutocalculation(): Double {
+        //Esto se podria borrar
         if (this.discount == null){
             return this.totalPrice();
         }else{
