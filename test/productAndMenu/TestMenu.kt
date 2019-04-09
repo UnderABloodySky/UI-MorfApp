@@ -5,8 +5,8 @@ import org.junit.Assert
 
 class TestMenu {
 
-    var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.DRINK);
-    var hotDog = Product(2, "HotDog", "Original Deustch Sausage", 120.0, Category.MAINDISH);
+    private var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.DRINK);
+    private var hotDog = Product(2, "HotDog", "Original Deustch Sausage", 120.0, Category.MAINDISH);
 
     @Test fun addANewProductToAnEmptyListAndCheckIfSizeIsAsEspected() {
         var menu = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),null,true);
