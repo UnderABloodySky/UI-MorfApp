@@ -8,7 +8,7 @@ import java.awt.SystemColor.menu
 import java.beans.beancontext.BeanContextServiceAvailableEvent
 
 class Restaurant(var code:Int, var name: String, var description: String,
-                 var direcction:String, var geoLocation:Geo,var availablePaymentMethods: MutableList<PaymentMethod> = mutableListOf<PaymentMethod>(),
+                 var direcction:String, var geoLocation:Geo,var availablePaymentMethods: MutableCollection<PaymentMethod> = mutableListOf<PaymentMethod>(),
                  var products: MutableSet<Product> = mutableSetOf<Product>(),var menus: MutableSet<Menu> = mutableSetOf<Menu>()) {
 
 
