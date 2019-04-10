@@ -36,10 +36,18 @@ object ClientFactory {
                      password: String,
                      applicationModel: ApplicationModel): User {
 
-        var newClient = Client(address, registrationDate, geoLocation, code, password, applicationModel);
+        var newClient = Client(code, address, registrationDate, geoLocation,  password, applicationModel);
         code++;
-
         return newClient;
+    }
+
+    fun createSupervisor(restaurant: Restaurant,
+                         password: String,
+                         applicationModel: ApplicationModel): User{
+
+        var newSupervisor = Supervisor(code,restaurant,password, applicationModel);
+        return newSupervisor;
+        code++;
     }
 }
 
@@ -48,7 +56,6 @@ object RestaurantFactory {
 
     fun createRestaurant(name: String,
                          description: String,
-                         supervisor: Supervisor,
                          direction: String,
                          geoLocation: Geo,
                          availablePaymentMethods: MutableList<PaymentMethod>,
@@ -58,7 +65,6 @@ object RestaurantFactory {
         var newRestaurant = Restaurant(code,
                                        name,
                                        description,
-                                       supervisor,
                                        direction,
                                        geoLocation,
                                        availablePaymentMethods,

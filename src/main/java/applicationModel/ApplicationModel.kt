@@ -53,7 +53,7 @@ object ApplicationModel {
     }
 
     fun createOrder(client:Client, restaurant:Restaurant , paymentMethod:PaymentMethod, menus:MutableList<Menu> ):Order{
-        return orderFactory.createOrder(client , restaurant , paymentMethod , menus );
+        return orderFactory.createOrder(client , restaurant , paymentMethod , menus);
     }
 
     fun changeSupervisorInRestaurant(restaurant: Restaurant,supervisor: Supervisor){

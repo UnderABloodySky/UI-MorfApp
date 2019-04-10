@@ -9,10 +9,10 @@ import paymentMethod.*
 import scala.Tuple2
 import java.util.*
 
-class Client (var address: String, var registrationDate: Date,
-              var geoLocation: Geo, id: String, password:String,applicationModel: ApplicationModel )
+class Client ( id: Int,var address: String, var registrationDate: Date,
+              var geoLocation: Geo,  password:String, applicationModel: ApplicationModel )
                 :User(id,password,applicationModel) {
-    var applicationModel= ApplicationModel()
+
     var ordersMade: MutableList<Order> = mutableListOf<Order>();
     var currentMenu: Menu? = null;
 
@@ -20,7 +20,7 @@ class Client (var address: String, var registrationDate: Date,
 
         val newOrder: Order= applicationModel.createOrder(this, restaurant , paymentMethod, menus );
         ordersMade.add(newOrder);
-       // applicationModel.registerNewOrder(newOrder); creo que no hace falta
+
 
     }
 

@@ -1,4 +1,5 @@
 package user
 import applicationModel.*
-abstract class User( var id: String, var password: String, applicationModel: ApplicationModel)  {
+abstract class User( val id: Int, var password: String,var applicationModel: ApplicationModel)  {
+
 }
