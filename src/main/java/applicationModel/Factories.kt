@@ -56,6 +56,7 @@ object RestaurantFactory {
 
     fun createRestaurant(name: String,
                          description: String,
+                         supervisor : Supervisor,
                          direction: String,
                          geoLocation: Geo,
                          availablePaymentMethods: MutableList<PaymentMethod>,

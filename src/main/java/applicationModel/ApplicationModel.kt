@@ -18,7 +18,7 @@ object ApplicationModel {
                                                                          PayPal());
     private val orderFactory : OrderFactory = OrderFactory;
     private val clientFactory : ClientFactory = ClientFactory;
-
+    private val restaurantFactory : RestaurantFactory  = RestaurantFactory;
 
     fun createClient(address: String,
                      registrationDate: Date,
@@ -41,7 +41,7 @@ object ApplicationModel {
                          products: MutableSet<Product>,
                          menus: MutableSet<Menu>) {
 
-        var newRestaurant: Restaurant = RestaurantFactory.createRestaurant(name,
+        var newRestaurant: Restaurant = restaurantFactory.createRestaurant(name,
                                                                            description,
                                                                            supervisor,
                                                                            direction,

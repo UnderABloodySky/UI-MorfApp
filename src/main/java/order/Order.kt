@@ -19,9 +19,15 @@ data class Order(private val code : Int, private val user : User,
         menus.add(_new_menu)
     }
 
+    fun removeMenu(_menu : Menu) : Unit{
+        menus.remove(_menu)
+    }
+
     private fun setState(_state : StateOrder) : Unit{
         state = _state
     }
+
+    fun getState() : StateOrder = state
 
     fun delivered() : Unit{
         setState(DELIVERED)

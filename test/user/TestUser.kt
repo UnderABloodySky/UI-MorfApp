@@ -3,10 +3,11 @@ import geoclaseui.Geo
 import user.*
 import paymentMethod.*
 import productAndMenu.*
+import restaurant.Restaurant
+import org.junit.Assert
+import org.junit.Test
 
-
-
-private class TestUser {
+class TestUser {
 
     private var geoLocation1: Geo = Geo(1.2,2.2);
 
