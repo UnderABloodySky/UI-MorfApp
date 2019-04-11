@@ -46,7 +46,7 @@ class TestOrder {
     private var applicationModel : ApplicationModel = ApplicationModel ;
     private var date : Date = Date()
     private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation);
-    private  var client: Client = Client(1,"Roque saenz peña", date, geoLocation, "1212", applicationModel)
+    private  var client: Client = Client(1,"Pepe","Roque saenz peña", date, geoLocation, "1212", applicationModel)
 
     private var order : Order = Order(2, client, restaurant, cash, menus)
 

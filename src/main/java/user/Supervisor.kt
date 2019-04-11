@@ -4,8 +4,8 @@ import productAndMenu.*
 import applicationModel.*
 import java.util.*
 
-class Supervisor( id: Int, val restaurant: Restaurant, password: String, applicationModel: ApplicationModel):
-        User ( id, password, applicationModel){
+class Supervisor( code : Int, id : String , val restaurant: Restaurant, password: String, applicationModel: ApplicationModel):
+        User (code, id, password, applicationModel){
 
 
     fun addProductToRestaurantStock(newProduct:Product){

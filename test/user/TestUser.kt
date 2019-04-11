@@ -15,24 +15,50 @@ class TestUser {
     private var restaurantSinArticulos: Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1);
     private var applicationModel : ApplicationModel = ApplicationModel ;
     private var date = Date()
-    private var supervisor : Supervisor = Supervisor(1, restaurantSinArticulos, "123454", applicationModel)
+    private var supervisor : Supervisor = Supervisor(1, "JulioCesar", restaurantSinArticulos, "123454", applicationModel)
     private var menu = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),null,true);
-    private  var client: Client = Client(1,"Roque saenz peña", date,geoLocation1, "1212", applicationModel)
+    private  var client: Client = Client(2, "Pepe","Roque saenz peña", date,geoLocation1, "1212", applicationModel)
 
 
     //test crear un cliente,
     @Test
-    fun  newClient(){
+    fun  newClientDirection(){
          Assert.assertEquals("Roque saenz peña", client.address);
-         Assert.assertEquals(1,client.id)
+    }
+
+    @Test
+    fun  newClientId(){
+        Assert.assertEquals("Pepe",client.id)
+    }
+
+    @Test
+    fun  newClientCode(){
+        Assert.assertEquals(2,client.code)
+    }
+
+    @Test
+    fun  newClientDate(){
+        Assert.assertEquals(date,client.registrationDate)
+    }
+
+    @Test
+    fun  newClientPassword(){
+        Assert.assertEquals("1212",client.password)
+    }
+
+    @Test
+    fun  newClientGeoLocation(){
+        Assert.assertEquals(geoLocation1,client.geoLocation)
+    }
+
+    @Test
+    fun  newClientApplicationModel(){
+        Assert.assertEquals(applicationModel,client.applicationModel)
     }
 
     //un cliente puede generar una orden y se agrega a la ordenes realizadas
     @Test
     fun  clientCanCreateOrdersAndSaveThem(){
-        client.makeNewOrder(restaurantSinArticulos, mutableListOf(), Cash())
-        Assert.assertEquals("Roque saenz peña", client.address);
-        Assert.assertEquals(1,client.id)
     }
 
 //crear un supervisor

@@ -30,22 +30,31 @@ object ClientFactory {
     private var code: Int = 0;
 
 
-    fun createClient(address: String,
+//    class Client (code :Int,  id: String, var address: String, var registrationDate: Date,
+//                  var geoLocation: Geo,  password : String, applicationModel: ApplicationModel )
+//        : User(code, id,password,applicationModel) {
+
+
+        fun createClient(address: String,
                      registrationDate: Date,
                      geoLocation: Geo,
+                     id : String,
                      password: String,
                      applicationModel: ApplicationModel): User {
 
-        var newClient = Client(code, address, registrationDate, geoLocation,  password, applicationModel);
+        var newClient = Client(code, id, address, registrationDate, geoLocation,  password, applicationModel);
         code++;
         return newClient;
     }
 
+
+
     fun createSupervisor(restaurant: Restaurant,
+                         id : String,
                          password: String,
                          applicationModel: ApplicationModel): User{
 
-        var newSupervisor = Supervisor(code,restaurant,password, applicationModel);
+        var newSupervisor = Supervisor(code, id , restaurant,password, applicationModel);
         return newSupervisor;
         code++;
     }

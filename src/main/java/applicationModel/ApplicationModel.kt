@@ -20,19 +20,22 @@ object ApplicationModel {
     private val clientFactory : ClientFactory = ClientFactory;
     private val restaurantFactory : RestaurantFactory  = RestaurantFactory;
 
-    fun createClient(address: String,
+        fun createClient(address: String,
                      registrationDate: Date,
                      geoLocation: Geo,
+                     id : String,
                      password: String): Unit {
 
-        var newClient: User = clientFactory.createClient(address,
+                var newClient: User = clientFactory.createClient(address,
                                                registrationDate,
                                                geoLocation,
+                                               id,
                                                password,
-                                               this);
+                                               this)
         this.registeredUsers.add(newClient);
     }
-    fun createRestaurant(name: String,
+
+        fun createRestaurant(name: String,
                          description: String,
                          supervisor: Supervisor,
                          direction: String,
