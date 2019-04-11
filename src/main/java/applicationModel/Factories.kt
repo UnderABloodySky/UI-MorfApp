@@ -67,10 +67,7 @@ object RestaurantFactory {
                                        name,
                                        description,
                                        direction,
-                                       geoLocation,
-                                       availablePaymentMethods,
-                                       products,
-                                       menus);
+                                       geoLocation);
         code++;
 
         return newRestaurant;

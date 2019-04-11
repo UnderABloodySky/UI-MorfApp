@@ -12,7 +12,7 @@ import java.util.*
 class TestUser {
 
     private var geoLocation1: Geo = Geo(1.2,2.2);
-    private var restaurantSinArticulos: Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1, mutableListOf<PaymentMethod>(), mutableSetOf<Product>());
+    private var restaurantSinArticulos: Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1);
     private var applicationModel : ApplicationModel = ApplicationModel ;
     private var date = Date()
     private var supervisor : Supervisor = Supervisor(1, restaurantSinArticulos, "123454", applicationModel)
