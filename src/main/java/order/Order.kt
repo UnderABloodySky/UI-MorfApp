@@ -27,6 +27,9 @@ data class Order(private val code : Int, private val user : User,
         state = _state
     }
 
+    fun menus() : MutableCollection<Menu> = menus
+
+
     fun getState() : StateOrder = state
 
     fun delivered() : Unit{
