@@ -23,7 +23,9 @@ data class Order(private val code : Int, private val user : User,
         menus.remove(_menu)
     }
 
-    private fun setState(_state : StateOrder) : Unit{
+    fun price() : Double = menus.map{ menu -> menu.totalPrice() }.sum()
+
+    fun setState(_state : StateOrder) : Unit{
         state = _state
     }
 
@@ -48,4 +50,19 @@ data class Order(private val code : Int, private val user : User,
         setState(CANCELLED)
     }
 
+    fun getPaymentMethod(): PaymentMethod = payment
+
+    fun setPaymentMethod(_payment: PaymentMethod) : Unit {
+        if (canChange()) {
+            payment = _payment
+        }
+    }
+
+    fun canChange(): Boolean = state.canChange()
+
+    fun getUser() : User = user
+
+    fun getRestaurant() : Restaurant = restaurant
+
+    fun getMenu() : MutableCollection<Menu> = menus
 }

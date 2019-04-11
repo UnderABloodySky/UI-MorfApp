@@ -1,8 +1,10 @@
 package statesOrder
 
-enum class StateOrder(val the_name: String) {
+enum class StateOrder(private val the_name: String, private var canChange : Boolean = false) {
     DELIVERED("Delivered"),
-    PENDING("Pending"),
+    PENDING("Pending", true),
     ONMYWAY("OnMyWay"),
-    CANCELLED("Cancelled")
+    CANCELLED("Cancelled");
+
+    fun canChange (): Boolean = canChange
 }
