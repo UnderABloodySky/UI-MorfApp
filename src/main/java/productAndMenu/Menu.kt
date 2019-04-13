@@ -6,23 +6,16 @@ class Menu(val code: Int,
            var name: String,
            var description: String,
            var products: MutableCollection<Product>,
-           var discount: Discount?,
+           var discount: Discount,
            var enabled: Boolean) {
 
     fun addProductToMenu(product: Product): Unit { this.products.add(product); }
 
-    fun costAutocalculation(): Double {
-        //Esto se podria borrar
-        if (this.discount == null){
-            return this.totalPrice();
-        }else{
-            return discount?.processDiscount(totalPrice()) as Double;
-        }
-    }
+    fun costAutocalculation(): Double { return this.discount.processDiscount(totalPrice()); }
 
-    fun enabled():Boolean { return enabled }
+    fun enabled():Boolean { return this.enabled; }
 
-    fun removeProductFromMenu(product: Product): Unit { this.products.remove(product);}
+    fun removeProductFromMenu(product: Product): Unit { this.products.remove(product); }
 
-    fun totalPrice(): Double  = products.sumByDouble { it.price };
+    fun totalPrice(): Double  = this.products.sumByDouble { it.price };
 }

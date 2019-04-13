@@ -10,6 +10,7 @@ import java.util.*
 object ApplicationModel {
 
     var restaurants: MutableCollection<Restaurant> = mutableListOf();
+    var mapRestaurants: MutableMap<Int, Restaurant> = mutableMapOf();
     var registeredUsers: MutableCollection<User> = mutableListOf();
     var paymentMethods: MutableCollection<PaymentMethod> = mutableListOf(Cash(),
                                                                          CreditCard(),
@@ -62,4 +63,12 @@ object ApplicationModel {
     fun changeSupervisorInRestaurant(restaurant: Restaurant,supervisor: Supervisor){
         restaurant.changeSupervisor(supervisor);
     }
+
+    fun findRestaurantById(id: Int): Restaurant?{
+        try{
+            return this.mapRestaurants.get(id);
+        }catch (e : NoRestaurantFoundException("The selected code doesn't match to an existing restaurant"))
+    }
+
+
 }
