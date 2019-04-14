@@ -1,6 +1,7 @@
 package productAndMenu
 
 import discount.Discount
+import discount.NoDiscount
 
 class Menu(val code: Int,
            var name: String,
@@ -8,6 +9,7 @@ class Menu(val code: Int,
            var products: MutableCollection<Product>,
            var discount: Discount,
            var enabled: Boolean) {
+
 
     fun addProductToMenu(product: Product): Unit { this.products.add(product); }
 

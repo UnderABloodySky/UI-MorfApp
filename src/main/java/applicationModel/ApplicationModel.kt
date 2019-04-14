@@ -1,4 +1,6 @@
 package applicationModel
+
+import exception.NoRestaurantFoundException
 import geoclaseui.Geo
 import user.*
 import order.*
@@ -6,11 +8,11 @@ import paymentMethod.*
 import restaurant.*
 import productAndMenu.*
 import java.util.*
+import kotlin.NoSuchElementException
 
 object ApplicationModel {
 
-    var restaurants: MutableCollection<Restaurant> = mutableListOf();
-    var mapRestaurants: MutableMap<Int, Restaurant> = mutableMapOf();
+    var restaurants: MutableMap<Int, Restaurant> = mutableMapOf();
     var registeredUsers: MutableCollection<User> = mutableListOf();
     var paymentMethods: MutableCollection<PaymentMethod> = mutableListOf(Cash(),
                                                                          CreditCard(),
@@ -32,6 +34,7 @@ object ApplicationModel {
                                                geoLocation,
                                                id,
                                                password,
+
                                                this)
         this.registeredUsers.add(newClient);
     }
@@ -53,7 +56,8 @@ object ApplicationModel {
                                                                            availablePaymentMethods,
                                                                            products,
                                                                            menus)
-        this.restaurants.add(newRestaurant);
+        this.restaurants.put(newRestaurant.code, newRestaurant);
+
     }
 
     fun createOrder(client:Client, restaurant:Restaurant , paymentMethod:PaymentMethod, menus:MutableList<Menu> ):Order{
@@ -64,11 +68,20 @@ object ApplicationModel {
         restaurant.changeSupervisor(supervisor);
     }
 
-    fun findRestaurantById(id: Int): Restaurant?{
-        try{
-            return this.mapRestaurants.get(id);
-        }catch (e : NoRestaurantFoundException("The selected code doesn't match to an existing restaurant"))
+    fun findRestaurantById(id: Int): Restaurant {
+
+        return this.restaurants.getValue(id);
     }
 
-
+    fun findRestaurantByName(name: String): Restaurant {
+        var foundResto: Restaurant? = null;
+        this.restaurants.forEach {
+            if (it.value.name.contains(name))
+                foundResto = it.value;
+        }
+        if (foundResto == null)
+            throw NoRestaurantFoundException("No restaurant was found that matches that search");
+        else
+            return foundResto as Restaurant;
+    }
 }

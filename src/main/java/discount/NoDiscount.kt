@@ -1,9 +1,9 @@
 package discount
 
-class NoDiscount(name: String, value : Double ): Discount(name, value){
+class NoDiscount(): Discount("NoDiscount", 0.0){
 
     override fun discount(price: Double): Double {
 
-        return 0.0;
+        return this.value;
     }
 }

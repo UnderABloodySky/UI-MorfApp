@@ -1,6 +1,7 @@
 package order
 
 import applicationModel.ApplicationModel
+import discount.NoDiscount
 import geoclaseui.Geo
 import org.junit.Assert
 import org.junit.Test
@@ -30,14 +31,14 @@ class TestOrder {
     private var iceCream = Product(1, "Soda", "Made with milk from happy cows", 20.0, Category.DISSERT);
     private var pizza = Product(2, "HotDog", "Really italian pepperoni pizza", 40.0, Category.MAINDISH);
 
-    private var menu0 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),null,true);
-    private var menu1 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),null,true);
-    private var menu2 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),null,true);
-    private var menu3 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),null,true);
+    private var menu0 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),NoDiscount(),true);
+    private var menu1 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),NoDiscount(),true);
+    private var menu2 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),NoDiscount(),true);
+    private var menu3 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),NoDiscount(),true);
 
-    private var menu4 = Menu(2, "SweetMenu", "Muuuuuuu", mutableListOf<Product>(iceCream), null, true)
-    private var menu5 = Menu(2, "SaltyMenu", "Pizza Time", mutableListOf<Product>(pizza), null, true)
-    private var menu6 = Menu(2, "FullyMenu", "Good friends, good FOOD, good times", mutableListOf<Product>(iceCream, pizza), null, true)
+    private var menu4 = Menu(2, "SweetMenu", "Muuuuuuu", mutableListOf<Product>(iceCream), NoDiscount(), true)
+    private var menu5 = Menu(2, "SaltyMenu", "Pizza Time", mutableListOf<Product>(pizza), NoDiscount(), true)
+    private var menu6 = Menu(2, "FullyMenu", "Good friends, good FOOD, good times", mutableListOf<Product>(iceCream, pizza), NoDiscount(), true)
 
     private val menus : MutableCollection<Menu> = mutableListOf<Menu>()
     //private val orderMock : Order = Order(2,dummyUser ,dummyRestaurant, cash, menus)

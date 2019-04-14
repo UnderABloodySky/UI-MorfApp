@@ -1,6 +1,7 @@
 package restaurant
 
 import applicationModel.ApplicationModel
+import discount.NoDiscount
 import geoclaseui.Geo
 import org.junit.Assert
 import org.junit.Test
@@ -16,9 +17,7 @@ private class TestRestaurant {
     private var date = Date()
     var newTestRestaurant: Restaurant = Restaurant(1,"El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1);
     private var supervisor : Supervisor = Supervisor(1, "CarloMagno",newTestRestaurant, "123454", applicationModel)
-    private var menu = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),null,true);
-
-
+    private var menu = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(), NoDiscount(),true);
 
     @Test
     fun newRestaurantIsCreated(){

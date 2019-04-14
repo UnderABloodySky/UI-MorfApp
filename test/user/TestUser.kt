@@ -1,5 +1,6 @@
 package user
 import applicationModel.ApplicationModel
+import discount.NoDiscount
 import geoclaseui.Geo
 import user.*
 import paymentMethod.*
@@ -16,7 +17,7 @@ class TestUser {
     private var applicationModel : ApplicationModel = ApplicationModel ;
     private var date = Date()
     private var supervisor : Supervisor = Supervisor(1, "JulioCesar", restaurantSinArticulos, "123454", applicationModel)
-    private var menu = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),null,true);
+    private var menu = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(), NoDiscount(),true);
     private  var client: Client = Client(2, "Pepe","Roque saenz peña", date,geoLocation1, "1212", applicationModel)
 
 
