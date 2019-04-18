@@ -1,14 +1,14 @@
 package applicationModel
 
-import exception.NoRestaurantFoundException
 import geoclaseui.Geo
 import user.*
 import order.*
 import paymentMethod.*
 import restaurant.*
 import productAndMenu.*
+import searcher.Criteria
+import searcher.Searcher
 import java.util.*
-import kotlin.NoSuchElementException
 
 object ApplicationModel {
 
@@ -22,6 +22,7 @@ object ApplicationModel {
     private val orderFactory : OrderFactory = OrderFactory;
     private val clientFactory : ClientFactory = ClientFactory;
     private val restaurantFactory : RestaurantFactory  = RestaurantFactory;
+    private val searcher : Searcher<Restaurant> = Searcher();
 
         fun createClient(address: String,
                      registrationDate: Date,
@@ -68,20 +69,11 @@ object ApplicationModel {
         restaurant.changeSupervisor(supervisor);
     }
 
-    fun findRestaurantById(id: Int): Restaurant {
+    fun findRestaurant(criteria: Criteria<Restaurant>, toSearch: MutableMap<Int, Restaurant>): Restaurant? {
 
-        return this.restaurants.getValue(id);
+            return this.searcher
+                       .searchBy(criteria, toSearch)
+                       .elementAt(0);
     }
 
-    fun findRestaurantByName(name: String): Restaurant {
-        var foundResto: Restaurant? = null;
-        this.restaurants.forEach {
-            if (it.value.name.contains(name))
-                foundResto = it.value;
-        }
-        if (foundResto == null)
-            throw NoRestaurantFoundException("No restaurant was found that matches that search");
-        else
-            return foundResto as Restaurant;
-    }
 }
