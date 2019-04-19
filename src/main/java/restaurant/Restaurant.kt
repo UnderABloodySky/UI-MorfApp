@@ -29,9 +29,14 @@ class Restaurant(var code:Int, var name: String, var description: String,
         products.add(newProduct);
     }
 
-    fun removeProductToStock(productToRemove: Product){
+    fun removeProductFromStock(productToRemove: Product){
         products.remove(productToRemove);
     }
+
+    fun productIsContainedInTheStock(product: Product):Boolean{
+        return products.contains(product);
+    }
+
     fun addPaymentMethod(newPaymentMethod: PaymentMethod){
         availablePaymentMethods.add(newPaymentMethod);
     }
@@ -42,6 +47,9 @@ class Restaurant(var code:Int, var name: String, var description: String,
         menus.add(newMenu);
     }
 
+    fun menuIsRegistered(menu: Menu):Boolean{
+        return menus.contains(menu);
+    }
     //ver esto que onda, ver si es necesario ver si exite antes de borrar o lo hace la fucion remove.
     fun removeMenu(menuToRemove:Menu){
         menus.remove(menuToRemove);

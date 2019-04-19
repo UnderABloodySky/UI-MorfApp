@@ -22,6 +22,12 @@ class TestUser {
 
 
     //test crear un cliente,
+
+    @Test
+    fun  newClient(){
+        Assert.assertEquals("Roque saenz peña", client.address);
+        Assert.assertEquals(1,client.id)
+    }
     @Test
     fun  newClientDirection(){
          Assert.assertEquals("Roque saenz peña", client.address);
@@ -60,6 +66,9 @@ class TestUser {
     //un cliente puede generar una orden y se agrega a la ordenes realizadas
     @Test
     fun  clientCanCreateOrdersAndSaveThem(){
+        client.makeNewOrder(restaurantSinArticulos, mutableListOf(), Cash())
+        Assert.assertEquals("Roque saenz peña", client.address);
+        Assert.assertEquals("Pepe",client.id)
     }
 
 //crear un supervisor
