@@ -20,38 +20,31 @@ import user.User
 import java.util.*
 
 class TestOrder {
-    //private val dummyUser = Mockito.mock(User::class.java)
-    //private val dummyMenu0 = Mockito.mock(Menu::class.java)
-    //private val dummyMenu1 = Mockito.mock(Menu::class.java)
-    //private val dummyMenu2 = Mockito.mock(Menu::class.java)
-    //private val dummyMenu3 = Mockito.mock(Menu::class.java)
-    //private val dummyRestaurant = Mockito.mock(Restaurant::class.java)
     private val cash : PaymentMethod = Cash()
+    private var geoLocation: Geo = Geo(1.2,2.2);
 
     private var iceCream = Product(1, "Soda", "Made with milk from happy cows", 20.0, Category.DISSERT);
     private var pizza = Product(2, "HotDog", "Really italian pepperoni pizza", 40.0, Category.MAINDISH);
 
-    private var menu0 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),NoDiscount(),true);
-    private var menu1 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),NoDiscount(),true);
-    private var menu2 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),NoDiscount(),true);
-    private var menu3 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),NoDiscount(),true);
+    private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation);
 
-    private var menu4 = Menu(2, "SweetMenu", "Muuuuuuu", mutableListOf<Product>(iceCream), NoDiscount(), true)
-    private var menu5 = Menu(2, "SaltyMenu", "Pizza Time", mutableListOf<Product>(pizza), NoDiscount(), true)
-    private var menu6 = Menu(2, "FullyMenu", "Good friends, good FOOD, good times", mutableListOf<Product>(iceCream, pizza), NoDiscount(), true)
+    private var menu0 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),restaurant);
+    private var menu1 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),restaurant);
+    private var menu2 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),restaurant);
 
+    private var menu3 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),restaurant);
+    private var menu4 = Menu(2, "SweetMenu", "Muuuuuuu", mutableListOf<Product>(iceCream), restaurant)
+    private var menu5 = Menu(2, "SaltyMenu", "Pizza Time", mutableListOf<Product>(pizza), restaurant)
+
+    private var menu6 = Menu(2, "FullyMenu", "Good friends, good FOOD, good times", mutableListOf<Product>(iceCream, pizza), restaurant)
     private val menus : MutableCollection<Menu> = mutableListOf<Menu>()
-    //private val orderMock : Order = Order(2,dummyUser ,dummyRestaurant, cash, menus)
 
-    private var geoLocation: Geo = Geo(1.2,2.2);
     private var applicationModel : ApplicationModel = ApplicationModel ;
     private var date : Date = Date()
-    private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation);
     private  var client: Client = Client(1,"Pepe","Roque saenz peña", date, geoLocation, "1212", applicationModel)
 
     private var order : Order = Order(2, client, restaurant, cash, menus)
 
-    //Initialize
     @Test
     fun test01_theCustomerWhoMadeTheOrderIsTheOneIndicated(){
         Assert.assertEquals(client, order.getUser())

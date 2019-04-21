@@ -17,6 +17,9 @@ data class Order(private val code : Int, private val user : Client,
     private var date : Date? = null
 
     fun addMenu(_new_menu : Menu): Unit {
+        //if(! canProcessOrder(_new_menu)){
+        //
+        //}
         menus.add(_new_menu)
     }
 
@@ -66,4 +69,6 @@ data class Order(private val code : Int, private val user : Client,
     fun getRestaurant() : Restaurant = restaurant
 
     fun getMenu() : MutableCollection<Menu> = menus
+
+    private fun canProcessOrder(_menu : Menu) : Boolean = user.canDoOrder(_menu.restaurant)
 }
