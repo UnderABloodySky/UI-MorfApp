@@ -65,15 +65,10 @@ object ApplicationModel {
         return orderFactory.createOrder(client , restaurant , paymentMethod , menus);
     }
 
-    fun changeSupervisorInRestaurant(restaurant: Restaurant,supervisor: Supervisor){
-        restaurant.changeSupervisor(supervisor);
-    }
-
-    fun findRestaurant(criteria: Criteria<Restaurant>, toSearch: MutableMap<Int, Restaurant>): Restaurant? {
+    fun findRestaurant(criteria: Criteria<Restaurant>): MutableList<Restaurant?> {
 
             return this.searcher
-                       .searchBy(criteria, toSearch)
-                       .elementAt(0);
+                       .searchBy(criteria, this.restaurants);
     }
 
 }
