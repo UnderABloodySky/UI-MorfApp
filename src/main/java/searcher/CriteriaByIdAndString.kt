@@ -10,9 +10,10 @@ class CriteriaByIdAndString<T>(private var algo : Any,
         var idList      = this.idCriteria.search(toSearch);
         var stringList  = this.stringCriteria.search(toSearch);
 
-
-
+        if (!stringList.contains(idList.first())){
+            stringList.add(idList.first());
+        }
+        return stringList;
     }
-
 
 }

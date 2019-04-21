@@ -27,7 +27,7 @@ class Supervisor( code : Int, id : String , val restaurant: Restaurant, password
     }
 
     fun removeMenuFromRestaurant(menuToRemove: Menu) {
-        if (restaurant.menus.contains(menuToRemove)) {
+        if (restaurant.menus.containsValue(menuToRemove)) {
             restaurant.removeMenu(menuToRemove);
         }
     }

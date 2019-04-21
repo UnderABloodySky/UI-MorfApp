@@ -83,4 +83,6 @@ object ApplicationModel {
         }
         return actualUser
     }
+
+    //TODO PREGUNTAR BUSQUEDA MIXTA DE DOS TIPOS DISTINTOS.
 }
