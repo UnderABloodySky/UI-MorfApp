@@ -1,5 +1,6 @@
 package applicationModel
 
+import exception.NoUserFoundException
 import geoclaseui.Geo
 import user.*
 import order.*
@@ -38,7 +39,7 @@ object ApplicationModel {
                                                password,
 
                                                this)
-        this.registeredUsers.put(newClient.id,newClient);
+        this.registeredUsers.put(newClient.name,newClient);
     }
 
         fun createRestaurant(name: String,
@@ -72,8 +73,11 @@ object ApplicationModel {
                        .searchBy(criteria, this.restaurants);
     }
 
-    fun findUser(name1:String):User?{
+    fun findUser(name:String):User?{
 
-        return registeredUsers.get { user -> user.id == name1}
+         if ( registeredUsers.contains(name)){
+                return registeredUsers.get(name)
+                 }
+             throw NoUserFoundException("No se encuentra registrado el usuario en el sistema")
     }
 }

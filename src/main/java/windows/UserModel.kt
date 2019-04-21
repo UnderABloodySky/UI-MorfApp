@@ -13,10 +13,16 @@ class UserModel {
     fun autenticate(){
 
         try {
-            var applicationModel: ApplicationModel
+            var applicationModel: ApplicationModel = ApplicationModel
 
-            applicationModel.
-        } catch (e: Exception) {
+            var user:User? = applicationModel.findUser(name)
+            if (user.isCorrectPassword(password)){
+
+                //aca tendria que levantar la vista para armar ordenes
+            }
+        } catch (e: UserCreationException) {
+
+
         }
     }
 
