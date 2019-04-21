@@ -7,8 +7,9 @@ import java.util.*
 import user.User
 import restaurant.Restaurant
 import productAndMenu.Menu
+import user.Client
 
-data class Order(private val code : Int, private val user : User,
+data class Order(private val code : Int, private val user : Client,
                  private val restaurant : Restaurant, private var payment : PaymentMethod,
                  private val menus : MutableCollection<Menu>){
 
@@ -31,10 +32,10 @@ data class Order(private val code : Int, private val user : User,
 
     fun menus() : MutableCollection<Menu> = menus
 
-
     fun getState() : StateOrder = state
 
     fun delivered() : Unit{
+        user.addOrder(this);
         setState(DELIVERED)
     }
 

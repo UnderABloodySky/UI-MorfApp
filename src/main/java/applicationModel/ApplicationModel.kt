@@ -38,7 +38,7 @@ object ApplicationModel {
                                                password,
 
                                                this)
-        this.registeredUsers.put(newClient.id,newClient);
+        this.registeredUsers.put(newClient.name,newClient);
     }
 
         fun createRestaurant(name: String,
