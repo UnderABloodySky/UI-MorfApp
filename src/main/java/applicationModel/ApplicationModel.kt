@@ -13,7 +13,7 @@ import java.util.*
 object ApplicationModel {
 
     var restaurants: MutableMap<Int, Restaurant> = mutableMapOf();
-    var registeredUsers: MutableCollection<User> = mutableListOf();
+    var registeredUsers: MutableMap<String,User> = mutableMapOf();
     var paymentMethods: MutableCollection<PaymentMethod> = mutableListOf(Cash(),
                                                                          CreditCard(),
                                                                          Debit(),
@@ -23,6 +23,7 @@ object ApplicationModel {
     private val clientFactory : ClientFactory = ClientFactory;
     private val restaurantFactory : RestaurantFactory  = RestaurantFactory;
     private val searcher : Searcher<Restaurant> = Searcher();
+    var distance: Double = 20.00;
 
         fun createClient(address: String,
                      registrationDate: Date,
@@ -37,7 +38,7 @@ object ApplicationModel {
                                                password,
 
                                                this)
-        this.registeredUsers.add(newClient);
+        this.registeredUsers.put(newClient.id,newClient);
     }
 
         fun createRestaurant(name: String,
@@ -71,4 +72,8 @@ object ApplicationModel {
                        .searchBy(criteria, this.restaurants);
     }
 
+    fun findUser(name1:String):User?{
+
+        return registeredUsers.get { user -> user.id == name1}
+    }
 }
