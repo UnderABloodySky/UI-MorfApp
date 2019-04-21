@@ -1,11 +1,11 @@
 package applicationModel
 
 import exception.NoUserFoundException
-import geoclaseui.Geo
+import geoclaseui.*
 import user.*
 import order.*
 import paymentMethod.*
-import restaurant.*
+import restaurant.Restaurant
 import productAndMenu.*
 import searcher.Criteria
 import searcher.Searcher
@@ -13,7 +13,7 @@ import java.util.*
 
 object ApplicationModel {
 
-    var restaurants: MutableMap<Int, Restaurant> = mutableMapOf();
+    var restaurants: MutableMap<Int,Restaurant> = mutableMapOf();
     var registeredUsers: MutableMap<String,User> = mutableMapOf();
     var paymentMethods: MutableCollection<PaymentMethod> = mutableListOf(Cash(),
                                                                          CreditCard(),
@@ -73,11 +73,14 @@ object ApplicationModel {
                        .searchBy(criteria, this.restaurants);
     }
 
-    fun findUser(name:String):User?{
-
-         if ( registeredUsers.contains(name)){
-                return registeredUsers.get(name)
-                 }
-             throw NoUserFoundException("No se encuentra registrado el usuario en el sistema")
+    fun findUser(name:String):User? {
+        var actualUser: User?
+        if (registeredUsers.contains(name)) {
+            actualUser = registeredUsers.get(name)
+        }
+        else {
+            throw NoUserFoundException("No se encuentra registrado el usuario en el sistema")
+        }
+        return actualUser
     }
 }
