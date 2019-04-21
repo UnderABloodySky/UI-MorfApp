@@ -2,13 +2,15 @@ package productAndMenu
 
 import discount.Discount
 import discount.NoDiscount
+import restaurant.Restaurant
 
 class Menu(val code: Int,
            var name: String,
            var description: String,
            var products: MutableCollection<Product>,
-           var discount: Discount,
-           var enabled: Boolean) {
+           var restaurant : Restaurant,
+           var discount: Discount = NoDiscount(),
+           var enabled: Boolean = true) {
 
 
     fun addProductToMenu(product: Product): Unit { this.products.add(product); }

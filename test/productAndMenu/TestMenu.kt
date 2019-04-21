@@ -1,18 +1,22 @@
 package productAndMenu
 
 import discount.NoDiscount
+import geoclaseui.Geo
 import org.junit.Test
 import org.junit.Assert
+import restaurant.Restaurant
 import kotlin.test.assertTrue
 
 class TestMenu {
 
     private var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.DRINK);
     private var hotDog = Product(2, "HotDog", "Original Deustch Sausage", 120.0, Category.MAINDISH);
+    private var geoLocation = Geo(2.0,2.0)
+    private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation);
 
     @Test
     fun addANewProductToAnEmptyListAndCheckIfSizeIsAsEspected() {
-        var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), NoDiscount(), true);
+        var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), restaurant, NoDiscount(), true);
         Assert.assertEquals(menu.products.size, 0);
         menu.addProductToMenu(this.soda);
         Assert.assertEquals(menu.products.size, 1);
@@ -20,7 +24,7 @@ class TestMenu {
 
     @Test
     fun removeAProductOfAMenuThatHasOnlyOneAndCheckIfSizeIsAsEspected() {
-        var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), NoDiscount(), true);
+        var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), restaurant);
         menu.addProductToMenu(this.soda);
         Assert.assertEquals(menu.products.size, 1);
         menu.removeProductFromMenu(this.soda);
@@ -29,7 +33,7 @@ class TestMenu {
 
     @Test
     fun CheckThatIfIHaveTwoOfTheSameProductsAndIRemoveOneOfThemTheSizeIsOne() {
-        var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), NoDiscount(), true);
+        var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), restaurant);
         menu.addProductToMenu(this.soda);
         menu.addProductToMenu(this.soda);
         menu.removeProductFromMenu(this.soda);
@@ -38,7 +42,7 @@ class TestMenu {
 
     @Test
     fun AddTwoProductsWithDifferentPricesToAMenuAndCheckIfTheTotalValueOfMenuIsAsEspected() {
-        var menu = Menu(1, "HotSoda", "Hot soda dog", mutableListOf<Product>(), NoDiscount(), true);
+        var menu = Menu(1, "HotSoda", "Hot soda dog", mutableListOf<Product>(), restaurant);
         menu.addProductToMenu(this.soda);
         menu.addProductToMenu(this.hotDog);
         Assert.assertEquals(menu.totalPrice(), 200.0, 0.0);
@@ -46,7 +50,7 @@ class TestMenu {
 
     @Test
     fun checkThatIfThereIsNoDiscountAppliedToTheMenuItStillReturnsTheTotalValueWhenAskedForCostAutocalculation() {
-        var menu = Menu(1, "HotSoda", "Hot soda dog", mutableListOf<Product>(), NoDiscount(), true);
+        var menu = Menu(1, "HotSoda", "Hot soda dog", mutableListOf<Product>(), restaurant);
         menu.products.add(this.soda);
         Assert.assertEquals(menu.costAutocalculation(), 80.0, 0.0);
     }

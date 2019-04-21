@@ -26,7 +26,7 @@ class TestUser {
     @Test
     fun  newClient(){
         Assert.assertEquals("Roque saenz peña", client.address);
-        Assert.assertEquals(1,client.id)
+        Assert.assertEquals(1,client.name)
     }
     @Test
     fun  newClientDirection(){
@@ -35,7 +35,7 @@ class TestUser {
 
     @Test
     fun  newClientId(){
-        Assert.assertEquals("Pepe",client.id)
+        Assert.assertEquals("Pepe",client.name)
     }
 
     @Test
@@ -68,10 +68,20 @@ class TestUser {
     fun  clientCanCreateOrdersAndSaveThem(){
         client.makeNewOrder(restaurantSinArticulos, mutableListOf(), Cash())
         Assert.assertEquals("Roque saenz peña", client.address);
-        Assert.assertEquals("Pepe",client.id)
+        Assert.assertEquals("Pepe",client.name)
     }
 
 //crear un supervisor
+
+    @Test
+    fun  thePasswordIsCorrect(){
+        Assert.assertTrue(client.isCorrectPassword("1212"))
+    }
+
+    @Test
+    fun  thePasswordIsNotCorrect(){
+        Assert.assertFalse(client.isCorrectPassword("Mustafa"))
+    }
 
 
 
