@@ -30,5 +30,10 @@ class Client (code :Int,  id: String, var address: String, var registrationDate:
 
     fun  currentMenu():Menu? = currentMenu;
 
+    fun addOrder(newOrder : Order) : Unit {
+        ordersMade.add(newOrder)
+    }
+
+    fun canDoOrder(_restaurant : Restaurant) : Boolean = GeoCalculator.distance(geoLocation, _restaurant.geoLocation) <= applicationModel.distance
 
 }
