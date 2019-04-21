@@ -14,7 +14,7 @@ import java.util.*
 object OrderFactory {
     private var code: Int = 0
 
-    fun createOrder(user: User,
+    fun createOrder(user: Client,
                     restaurant: Restaurant,
                     payment: PaymentMethod,
                     menus: MutableCollection<Menu>): Order {
