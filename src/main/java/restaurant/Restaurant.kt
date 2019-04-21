@@ -52,7 +52,7 @@ class Restaurant(var code:Int, var name: String, var description: String,
     fun menuIsRegistered(menu: Menu):Boolean{
         return menus.containsValue(menu);
     }
-    //ver esto que onda, ver si es necesario ver si exite antes de borrar o lo hace la fucion remove.
+
     fun removeMenu(menuToRemove:Menu){
         menus.remove(menuToRemove.code);
     }
@@ -66,6 +66,10 @@ class Restaurant(var code:Int, var name: String, var description: String,
         criteria.search(this.menus)
                 .forEach { pairList.add(Pair(it, this)) };
         return pairList;
+    }
+
+    fun findMenu(criteria : Criteria<Menu>) : MutableList<Menu?>{
+        return criteria.search(this.menus);
     }
 
 }

@@ -80,4 +80,6 @@ object ApplicationModel {
                  }
              throw NoUserFoundException("No se encuentra registrado el usuario en el sistema")
     }
+
+    //TODO PREGUNTAR BUSQUEDA MIXTA DE DOS TIPOS DISTINTOS.
 }
