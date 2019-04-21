@@ -8,9 +8,9 @@ import applicationModel.*
 import paymentMethod.*
 import scala.Tuple2
 import java.util.*
-class Client (code :Int,  id: String, var address: String, var registrationDate: Date,
+class Client (code :Int,  name: String, var address: String, var registrationDate: Date,
               var geoLocation: Geo,  password : String, applicationModel: ApplicationModel )
-                : User(code, id,password,applicationModel) {
+                : User(code, name,password,applicationModel) {
 
     var ordersMade: MutableList<Order> = mutableListOf<Order>();
 
