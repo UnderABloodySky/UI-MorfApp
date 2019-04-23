@@ -13,13 +13,24 @@ class Client (code :Int,  name: String, var address: String, var registrationDat
                 : User(code, name,password,applicationModel) {
 
     var ordersMade: MutableList<Order> = mutableListOf<Order>();
-
+    var currentOrder : Order? = null;
+    //Por que agregamos esto?
     var currentMenu: Menu? = null;
 
-    fun makeNewOrder( restaurant: Restaurant,menus:MutableList<Menu>,paymentMethod: PaymentMethod){
-
-        val newOrder: Order= applicationModel.createOrder(this, restaurant , paymentMethod, menus );
+    //No tendriamos que agregarlo ahi. Las OrdersMade serian ordenes ya entregadas.
+    fun makeNewOrder(restaurant : Restaurant, menus : MutableList<Menu>, paymentMethod : PaymentMethod){
+        val newOrder: Order= applicationModel.createOrder(this, restaurant, paymentMethod, menus);
         ordersMade.add(newOrder);
+
+        //currentOrder = applicationModel.createOrder(this, restaurant , paymentMethod, menus )
+    }
+
+    fun restartCurrentOrder() : Unit{
+        currentOrder = null;
+    }
+
+    fun addNewMenu(menu : Menu) : Unit{
+        currentOrder?.addMenu(menu)
     }
 
     fun updateCurrentMenu( newMenu: Menu){
