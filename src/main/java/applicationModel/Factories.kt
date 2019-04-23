@@ -11,29 +11,28 @@ import user.Client
 import user.Supervisor
 import java.util.*
 
-object OrderFactory {
-    private var code: Int = 0
+abstract class GeneralFactory{
+    protected var code : Int = 0
 
-    fun createOrder(user: Client,
+    protected fun addOne() : Unit {
+        code++;
+    }
+}
+
+object OrderFactory : GeneralFactory(){
+
+     fun createOrder(user: Client,
                     restaurant: Restaurant,
                     payment: PaymentMethod,
                     menus: MutableCollection<Menu>): Order {
 
         var newOrder = Order(code, user, restaurant, payment, menus);
-        code++;
-
+        addOne();
         return newOrder;
     }
 }
 
-object ClientFactory {
-    private var code: Int = 0;
-
-
-//    class Client (code :Int,  id: String, var address: String, var registrationDate: Date,
-//                  var geoLocation: Geo,  password : String, applicationModel: ApplicationModel )
-//        : User(code, id,password,applicationModel) {
-
+object ClientFactory : GeneralFactory() {
 
         fun createClient(address: String,
                      registrationDate: Date,
@@ -43,11 +42,9 @@ object ClientFactory {
                      applicationModel: ApplicationModel): User {
 
         var newClient = Client(code, id, address, registrationDate, geoLocation,  password, applicationModel);
-        code++;
+        addOne();
         return newClient;
     }
-
-
 
     fun createSupervisor(restaurant: Restaurant,
                          id : String,
@@ -55,13 +52,12 @@ object ClientFactory {
                          applicationModel: ApplicationModel): User{
 
         var newSupervisor = Supervisor(code, id , restaurant,password, applicationModel);
+        addOne();
         return newSupervisor;
-        code++;
     }
 }
 
-object RestaurantFactory {
-    private var code: Int = 0;
+object RestaurantFactory : GeneralFactory(){
 
     fun createRestaurant(name: String,
                          description: String,
@@ -77,8 +73,7 @@ object RestaurantFactory {
                                        description,
                                        direction,
                                        geoLocation);
-        code++;
-
+        addOne();
         return newRestaurant;
     }
 }
