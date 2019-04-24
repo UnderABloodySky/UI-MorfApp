@@ -13,7 +13,7 @@ class Restaurant(var code:Int, var name: String, var description: String,
     var availablePaymentMethods: MutableCollection<PaymentMethod> = mutableListOf<PaymentMethod>()
     var products: MutableMap<Int, Product> = mutableMapOf<Int, Product>()
     var menus: MutableMap<Int, Menu> = mutableMapOf<Int, Menu>();
-    var supervisor: Supervisor = aplicationModel.clientFactory.createSupervisor(this,"Root$name", "123456", aplicationModel )
+    var supervisor: Supervisor = aplicationModel.clientFactory.createSupervisor(this,"Root$name", "123456", aplicationModel)
     var searcher: Searcher<Menu> = Searcher();
 
     fun menus():MutableMap<Int, Menu>{

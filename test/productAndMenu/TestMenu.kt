@@ -1,5 +1,6 @@
 package productAndMenu
 
+import applicationModel.ApplicationModel
 import discount.NoDiscount
 import geoclaseui.Geo
 import org.junit.Test
@@ -9,14 +10,15 @@ import kotlin.test.assertTrue
 
 class TestMenu {
 
+    private var applicationModel : ApplicationModel = ApplicationModel;
     private var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.DRINK);
     private var hotDog = Product(2, "HotDog", "Original Deustch Sausage", 120.0, Category.MAINDISH);
     private var geoLocation = Geo(2.0,2.0)
-    private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation);
+    private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation, applicationModel);
 
     @Test
     fun addANewProductToAnEmptyListAndCheckIfSizeIsAsEspected() {
-        var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), restaurant, NoDiscount(), true);
+        var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), restaurant);
         Assert.assertEquals(menu.products.size, 0);
         menu.addProductToMenu(this.soda);
         Assert.assertEquals(menu.products.size, 1);
@@ -53,10 +55,5 @@ class TestMenu {
         var menu = Menu(1, "HotSoda", "Hot soda dog", mutableListOf<Product>(), restaurant);
         menu.products.add(this.soda);
         Assert.assertEquals(menu.costAutocalculation(), 80.0, 0.0);
-    }
-
-    @Test
-    fun check() {
-        assertTrue("Hola".toRegex().containsMatchIn("la"));
     }
 }
