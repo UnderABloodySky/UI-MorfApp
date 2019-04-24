@@ -16,7 +16,7 @@ class UserModel {
             var applicationModel: ApplicationModel = ApplicationModel
 
             var user:User? = applicationModel.findUser(name)
-            if (user.isCorrectPassword(password)){
+            if (user != null && user.isCorrectPassword(password)){
 
                 //aca tendria que levantar la vista para armar ordenes
 

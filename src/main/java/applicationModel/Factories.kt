@@ -39,7 +39,7 @@ object ClientFactory : GeneralFactory() {
                      geoLocation: Geo,
                      id : String,
                      password: String,
-                     applicationModel: ApplicationModel): User {
+                     applicationModel: ApplicationModel): Client {
 
         var newClient = Client(code, id, address, registrationDate, geoLocation,  password, applicationModel);
         addOne();
@@ -49,7 +49,7 @@ object ClientFactory : GeneralFactory() {
     fun createSupervisor(restaurant: Restaurant,
                          id : String,
                          password: String,
-                         applicationModel: ApplicationModel): User{
+                         applicationModel: ApplicationModel): Supervisor{
 
         var newSupervisor = Supervisor(code, id , restaurant,password, applicationModel);
         addOne();
@@ -66,13 +66,15 @@ object RestaurantFactory : GeneralFactory(){
                          geoLocation: Geo,
                          availablePaymentMethods: MutableList<PaymentMethod>,
                          products: MutableSet<Product>,
-                         menus: MutableSet<Menu>): Restaurant {
+                         menus: MutableSet<Menu>,
+                         applicationModel: ApplicationModel): Restaurant {
 
         var newRestaurant = Restaurant(code,
                                        name,
                                        description,
                                        direction,
-                                       geoLocation);
+                                       geoLocation,
+                                       applicationModel);
         addOne();
         return newRestaurant;
     }

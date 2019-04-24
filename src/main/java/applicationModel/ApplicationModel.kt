@@ -20,10 +20,10 @@ object ApplicationModel {
                                                                          Debit(),
                                                                          MercadoPago(),
                                                                          PayPal());
-    private val orderFactory : OrderFactory = OrderFactory;
-    private val clientFactory : ClientFactory = ClientFactory;
-    private val restaurantFactory : RestaurantFactory  = RestaurantFactory;
-    private val searcher : Searcher<Restaurant> = Searcher();
+    private var orderFactory : OrderFactory = OrderFactory;
+    var clientFactory : ClientFactory = ClientFactory;
+    private var restaurantFactory : RestaurantFactory  = RestaurantFactory;
+    private var searcher : Searcher<Restaurant> = Searcher();
     var distance: Double = 20.00;
 
         fun createClient(address: String,
@@ -58,7 +58,7 @@ object ApplicationModel {
                                                                            geoLocation,
                                                                            availablePaymentMethods,
                                                                            products,
-                                                                           menus)
+                                                                           menus, this)
         this.restaurants.put(newRestaurant.code, newRestaurant);
 
     }

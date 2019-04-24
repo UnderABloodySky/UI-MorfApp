@@ -1,4 +1,5 @@
 package restaurant
+import applicationModel.ApplicationModel
 import geoclaseui.Geo
 import user.*
 import paymentMethod.*
@@ -8,11 +9,11 @@ import searcher.*
 import java.beans.beancontext.BeanContextServiceAvailableEvent
 
 class Restaurant(var code:Int, var name: String, var description: String,
-                 var direcction:String, var geoLocation:Geo ) {
+                 var direcction:String, var geoLocation:Geo, aplicationModel : ApplicationModel) {
     var availablePaymentMethods: MutableCollection<PaymentMethod> = mutableListOf<PaymentMethod>()
     var products: MutableMap<Int, Product> = mutableMapOf<Int, Product>()
     var menus: MutableMap<Int, Menu> = mutableMapOf<Int, Menu>();
-    var supervisor: Supervisor? = null
+    var supervisor: Supervisor = aplicationModel.clientFactory.createSupervisor(this,"Root$name", "123456", aplicationModel )
     var searcher: Searcher<Menu> = Searcher();
 
     fun menus():MutableMap<Int, Menu>{
