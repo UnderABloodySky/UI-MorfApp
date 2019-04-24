@@ -1,5 +1,3 @@
 package windows
 
-import geoclaseui.ProductModel
-
-    fun main() = NewProductWindow(ProductModel()).startApplication();
+fun main() = NewProductWindow(ProductModel()).startApplication();
