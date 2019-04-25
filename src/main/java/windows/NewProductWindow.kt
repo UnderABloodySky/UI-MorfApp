@@ -3,13 +3,18 @@ package windows
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.*
 import org.uqbar.arena.windows.MainWindow
+import org.uqbar.arena.windows.SimpleWindow
+import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.lacar.ui.model.ControlBuilder
 import productAndMenu.Category
 
 
-class NewProductWindow(model: ProductModel) : MainWindow<ProductModel>(model) {
+class NewProductWindow(owner: WindowOwner, model: ProductModel) : SimpleWindow<ProductModel>(owner, model) {
+    override fun addActions(p0: Panel?) : Unit{
 
-    override fun createContents(panel: Panel) {
+    }
+
+    override fun createFormPanel(panel: Panel) {
         title = "Restaurant :: New Product";
 
         Label(panel)
@@ -56,9 +61,10 @@ class NewProductWindow(model: ProductModel) : MainWindow<ProductModel>(model) {
                 .bindValueToProperty<String, ControlBuilder>("price");
 
         Label(fourColumnPanel)
-                .setText("Category")
-        val categorySelector = Selector<String>(fourColumnPanel)
+                .setText("Category");
+        val categorySelector = Selector<Category>(fourColumnPanel);
         categorySelector.bindValueToProperty<Category, ControlBuilder>("category");
+        categorySelector.bindItemsToProperty("categories");
 
     }
     private fun save() { modelObject.save(); }

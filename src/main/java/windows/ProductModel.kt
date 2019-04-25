@@ -11,6 +11,7 @@ class ProductModel {
     var description: String = "";
     var price: Double = 0.0;
     var category: Category = Category.NONE;
+    var categories : MutableList<Category> = Category.values().toMutableList();
 
     fun save() {
 

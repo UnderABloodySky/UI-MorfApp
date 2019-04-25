@@ -1,3 +1,4 @@
 package windows
 
-fun main() = NewProductWindow(ProductModel()).startApplication();
+fun main() = ApplicationWindow(ApplicationModel()).startApplication();
+//fun main() = NewProductWindow(ProductModel()).startApplication();
