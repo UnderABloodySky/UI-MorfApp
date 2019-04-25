@@ -2,7 +2,6 @@ package windows
 
 import org.uqbar.commons.model.annotations.Observable
 import productAndMenu.Category
-import productAndMenu.Product
 
 @Observable
 class ProductModel {

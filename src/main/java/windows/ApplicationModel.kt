@@ -8,8 +8,8 @@ class ApplicationModel {
     var productFilter: Any? = null;
     var menuFilter: Any? = null;
     var products = mutableListOf<ProductModel>();
-    var menus = mutableListOf<ProductModel>(); //MenuModel
+    var menus = mutableListOf<MenuModel>();
     var selectedProduct: ProductModel? = null;
-    var selectedMenu: ProductModel? = null; //MenuModel
+    var selectedMenu: MenuModel? = null;
 
 }

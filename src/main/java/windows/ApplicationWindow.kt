@@ -2,10 +2,8 @@ package windows
 
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
-import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.*
 import org.uqbar.arena.widgets.tables.Column
-import org.uqbar.arena.widgets.tables.ColumnLayoutBuilder
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.MainWindow
 import org.uqbar.lacar.ui.model.ControlBuilder
@@ -17,8 +15,7 @@ class ApplicationWindow(model: ApplicationModel) : MainWindow<ApplicationModel>(
 
         panel.setLayout(HorizontalLayout());
 
-        val productPanel = Panel(panel.setLayout(VerticalLayout()));
-        productPanel.container;
+        val productPanel = Panel(panel);
 
         Label(productPanel)
                 .setText("Product Administration")
@@ -41,15 +38,39 @@ class ApplicationWindow(model: ApplicationModel) : MainWindow<ApplicationModel>(
                 .setFixedSize(250)
                 .bindContentsToProperty("price");
 
-        Button(productPanel)
+        var buttonMainPanel = Panel(productPanel);
+        buttonMainPanel
+                .setLayout(ColumnLayout(2));
+
+        var buttonLeftPanel = Panel(buttonMainPanel);
+        Button(buttonLeftPanel)
+                .setCaption("Modify Product")
+                .onClick {
+                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    newProductWindow.open();
+                }
+        Button(buttonLeftPanel)
                 .setCaption("Add Product")
                 .onClick {
                     val newProductWindow = NewProductWindow(this, ProductModel());
                     newProductWindow.open();
                 }
 
-        val menuPanel = Panel(panel.setLayout(VerticalLayout()));
-        menuPanel.container;
+        var buttonRightPanel = Panel(buttonMainPanel);
+        Button(buttonRightPanel)
+                .setCaption("View Menu")
+                .onClick {
+                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    newProductWindow.open();
+                }
+        Button(buttonRightPanel)
+                .setCaption("Delete Product")
+                .onClick {
+                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    newProductWindow.open();
+                }
+
+        val menuPanel = Panel(panel);
 
         Label(menuPanel)
                 .setText("Menu Administration")

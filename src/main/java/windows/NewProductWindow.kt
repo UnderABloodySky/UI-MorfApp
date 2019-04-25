@@ -10,7 +10,7 @@ import org.uqbar.lacar.ui.model.ControlBuilder
 import productAndMenu.Category
 
 
-class NewProductWindow(owner: WindowOwner, model: ProductModel) : Dialog<ProductModel>(owner, model) {
+class NewProductWindow(owner: WindowOwner, model: ProductModel) : SimpleWindow<ProductModel>(owner, model) {
     override fun addActions(p0: Panel?) : Unit {}
 
     override fun createFormPanel(panel: Panel) {
