@@ -10,9 +10,7 @@ import productAndMenu.Category
 
 
 class NewProductWindow(owner: WindowOwner, model: ProductModel) : SimpleWindow<ProductModel>(owner, model) {
-    override fun addActions(p0: Panel?) : Unit{
-
-    }
+    override fun addActions(p0: Panel?) : Unit {}
 
     override fun createFormPanel(panel: Panel) {
         title = "Restaurant :: New Product";
@@ -26,10 +24,11 @@ class NewProductWindow(owner: WindowOwner, model: ProductModel) : SimpleWindow<P
         this.setFourColumnPanel(panel);
 
         Button(panel)
-            .setCaption("Cancel");
+                .setCaption("Accept")
+                .onClick { this.save() };
         Button(panel)
-            .setCaption("Accept")
-            .onClick { this.save() };
+                .setCaption("Cancel")
+                .onClick { this.close() };
 
     }
 
@@ -37,9 +36,10 @@ class NewProductWindow(owner: WindowOwner, model: ProductModel) : SimpleWindow<P
 
         var columnPanel = Panel(panel).setLayout(ColumnLayout(2)).setWidth(100);
         Label(columnPanel).setText("Code");
-        TextBox(columnPanel)
-                .setWidth(150)
-                .bindValueToProperty<Int, ControlBuilder>("code");
+        val codeTextBox = TextBox(columnPanel);
+        codeTextBox.setWidth(150)
+        codeTextBox.bindValueToProperty<Int, ControlBuilder>("code");
+        codeTextBox.withFilter { event -> event.potentialTextResult.matches(Regex("[0-9]*")) }
 
         Label(columnPanel).setText("Name");
         TextBox(columnPanel)
@@ -50,7 +50,6 @@ class NewProductWindow(owner: WindowOwner, model: ProductModel) : SimpleWindow<P
         TextBox(columnPanel)
                 .setWidth(150)
                 .bindValueToProperty<String, ControlBuilder>("description");
-
     }
     private fun setFourColumnPanel(panel: Panel) {
 

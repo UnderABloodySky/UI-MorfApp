@@ -2,6 +2,7 @@ package windows
 
 import org.uqbar.commons.model.annotations.Observable
 import productAndMenu.Category
+import productAndMenu.Product
 
 @Observable
 class ProductModel {
@@ -13,9 +14,7 @@ class ProductModel {
     var category: Category = Category.NONE;
     var categories : MutableList<Category> = Category.values().toMutableList();
 
-    fun save() {
-
-    }
+    fun save() {}
 
 
 }
