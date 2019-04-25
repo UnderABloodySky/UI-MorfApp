@@ -7,15 +7,15 @@ import applicationModel.ApplicationModel
 @Observable
 class UserModel {
 
-    var name:String = "..."
+    var user:String = "..."
     var password:String = "..."
+
 
     fun autenticate(){
 
-
             var applicationModel: ApplicationModel = ApplicationModel
 
-            var user:User? = applicationModel.findUser(name)
+            var user:User? = applicationModel.findUser(user)
             if (user != null && user.isCorrectPassword(password)){
 
                 //aca tendria que levantar la vista para armar ordenes
