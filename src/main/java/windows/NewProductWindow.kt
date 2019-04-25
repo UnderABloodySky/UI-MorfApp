@@ -2,6 +2,7 @@ package windows
 
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.*
+import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.MainWindow
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
@@ -9,7 +10,7 @@ import org.uqbar.lacar.ui.model.ControlBuilder
 import productAndMenu.Category
 
 
-class NewProductWindow(owner: WindowOwner, model: ProductModel) : SimpleWindow<ProductModel>(owner, model) {
+class NewProductWindow(owner: WindowOwner, model: ProductModel) : Dialog<ProductModel>(owner, model) {
     override fun addActions(p0: Panel?) : Unit {}
 
     override fun createFormPanel(panel: Panel) {
@@ -20,7 +21,7 @@ class NewProductWindow(owner: WindowOwner, model: ProductModel) : SimpleWindow<P
                 .setFontSize(30)
                 .alignCenter();
 
-        this.setTextboxPanel(panel);
+        this.setTextBoxPanel(panel);
         this.setFourColumnPanel(panel);
 
         Button(panel)
@@ -32,7 +33,7 @@ class NewProductWindow(owner: WindowOwner, model: ProductModel) : SimpleWindow<P
 
     }
 
-    private fun setTextboxPanel(panel : Panel){
+    private fun setTextBoxPanel(panel : Panel){
 
         var columnPanel = Panel(panel).setLayout(ColumnLayout(2)).setWidth(100);
         Label(columnPanel).setText("Code");
