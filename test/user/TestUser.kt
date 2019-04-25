@@ -1,8 +1,6 @@
 package user
-import applicationModel.ApplicationModel
-import discount.NoDiscount
+import applicationModel.MorfApp
 import geoclaseui.Geo
-import user.*
 import paymentMethod.*
 import productAndMenu.*
 import restaurant.Restaurant
@@ -12,7 +10,7 @@ import java.util.*
 
 class TestUser {
 
-    private var applicationModel : ApplicationModel = ApplicationModel ;
+    private var applicationModel : MorfApp = MorfApp ;
     private var geoLocation1: Geo = Geo(1.2,2.2);
     private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1, applicationModel);
     private var date = Date()

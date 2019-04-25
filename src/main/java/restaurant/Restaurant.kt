@@ -1,15 +1,13 @@
 package restaurant
-import applicationModel.ApplicationModel
+import applicationModel.MorfApp
 import geoclaseui.Geo
 import user.*
 import paymentMethod.*
 import productAndMenu.*
-import scala.Tuple2
 import searcher.*
-import java.beans.beancontext.BeanContextServiceAvailableEvent
 
 class Restaurant(var code:Int, var name: String, var description: String,
-                 var direcction:String, var geoLocation:Geo, aplicationModel : ApplicationModel) {
+                 var direcction:String, var geoLocation:Geo, aplicationModel : MorfApp) {
     var availablePaymentMethods: MutableCollection<PaymentMethod> = mutableListOf<PaymentMethod>()
     var products: MutableMap<Int, Product> = mutableMapOf<Int, Product>()
     var menus: MutableMap<Int, Menu> = mutableMapOf<Int, Menu>();

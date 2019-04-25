@@ -11,7 +11,7 @@ import searcher.Criteria
 import searcher.Searcher
 import java.util.*
 
-object ApplicationModel {
+object MorfApp {
 
     var restaurants: MutableMap<Int,Restaurant> = mutableMapOf();
     var registeredUsers: MutableMap<String,User> = mutableMapOf();

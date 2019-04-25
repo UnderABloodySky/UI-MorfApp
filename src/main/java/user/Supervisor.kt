@@ -3,9 +3,8 @@ import restaurant.*
 import productAndMenu.*
 import applicationModel.*
 import paymentMethod.PaymentMethod
-import java.util.*
 
-class Supervisor( code : Int, id : String , val restaurant: Restaurant, password: String, applicationModel: ApplicationModel):
+class Supervisor( code : Int, id : String , val restaurant: Restaurant, password: String, applicationModel: MorfApp):
         User (code, id, password, applicationModel) {
 
 

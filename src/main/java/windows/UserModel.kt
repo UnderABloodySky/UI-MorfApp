@@ -2,7 +2,7 @@ package windows
 
 import org.uqbar.commons.model.annotations.Observable
 import user.User
-import applicationModel.ApplicationModel
+import applicationModel.MorfApp
 
 @Observable
 class UserModel {
@@ -13,7 +13,7 @@ class UserModel {
 
     fun autenticate(){
 
-            var applicationModel: ApplicationModel = ApplicationModel
+            var applicationModel: MorfApp = MorfApp
 
             var user:User? = applicationModel.findUser(user)
             if (user != null && user.isCorrectPassword(password)){

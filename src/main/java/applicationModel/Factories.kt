@@ -2,7 +2,6 @@ package applicationModel
 
 import geoclaseui.Geo
 import order.Order
-import user.User
 import restaurant.Restaurant
 import productAndMenu.Menu
 import paymentMethod.PaymentMethod
@@ -39,7 +38,7 @@ object ClientFactory : GeneralFactory() {
                      geoLocation: Geo,
                      id : String,
                      password: String,
-                     applicationModel: ApplicationModel): Client {
+                     applicationModel: MorfApp): Client {
 
         var newClient = Client(code, id, address, registrationDate, geoLocation,  password, applicationModel);
         addOne();
@@ -49,7 +48,7 @@ object ClientFactory : GeneralFactory() {
     fun createSupervisor(restaurant: Restaurant,
                          id : String,
                          password: String,
-                         applicationModel: ApplicationModel): Supervisor{
+                         applicationModel: MorfApp): Supervisor{
 
         var newSupervisor = Supervisor(code, id , restaurant,password, applicationModel);
         addOne();
@@ -67,7 +66,7 @@ object RestaurantFactory : GeneralFactory(){
                          availablePaymentMethods: MutableList<PaymentMethod>,
                          products: MutableSet<Product>,
                          menus: MutableSet<Menu>,
-                         applicationModel: ApplicationModel): Restaurant {
+                         applicationModel: MorfApp): Restaurant {
 
         var newRestaurant = Restaurant(code,
                                        name,

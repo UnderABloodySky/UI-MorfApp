@@ -1,11 +1,9 @@
 package order
 
-import applicationModel.ApplicationModel
-import discount.NoDiscount
+import applicationModel.MorfApp
 import geoclaseui.Geo
 import org.junit.Assert
 import org.junit.Test
-import org.mockito.Mockito
 import paymentMethod.Cash
 import paymentMethod.MercadoPago
 import paymentMethod.PaymentMethod
@@ -15,13 +13,11 @@ import productAndMenu.Product
 import restaurant.Restaurant
 import statesOrder.StateOrder
 import user.Client
-import user.Supervisor
-import user.User
 import java.util.*
 
 class TestOrder {
 
-    private var applicationModel : ApplicationModel = ApplicationModel ;
+    private var applicationModel : MorfApp = MorfApp ;
     private val cash : PaymentMethod = Cash()
     private var geoLocation: Geo = Geo(1.2,2.2);
     private var iceCream = Product(1, "Soda", "Made with milk from happy cows", 20.0, Category.DISSERT);

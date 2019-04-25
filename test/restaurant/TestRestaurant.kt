@@ -1,7 +1,6 @@
 package restaurant
 
-import applicationModel.ApplicationModel
-import discount.NoDiscount
+import applicationModel.MorfApp
 import geoclaseui.Geo
 import org.junit.Assert
 import org.junit.Test
@@ -16,7 +15,7 @@ import java.util.*
 private class TestRestaurant {
 
     private var geoLocation1: Geo = Geo(1.2,2.2);
-    private var applicationModel : ApplicationModel = ApplicationModel ;
+    private var applicationModel : MorfApp = MorfApp ;
     private var date = Date()
     private var newRestaurant: Restaurant = Restaurant(1,"El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1, applicationModel);
     private var newSupervisor : Supervisor = Supervisor(1,"SuperPepe", newRestaurant, "123454", applicationModel)

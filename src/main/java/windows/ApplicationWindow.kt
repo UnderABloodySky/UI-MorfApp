@@ -38,32 +38,32 @@ class ApplicationWindow(model: ApplicationModel) : MainWindow<ApplicationModel>(
                 .setFixedSize(250)
                 .bindContentsToProperty("price");
 
-        var buttonMainPanel = Panel(productPanel);
-        buttonMainPanel
+        var buttonProductPanel = Panel(productPanel);
+        buttonProductPanel
                 .setLayout(ColumnLayout(2));
 
-        var buttonLeftPanel = Panel(buttonMainPanel);
-        Button(buttonLeftPanel)
+        var buttonProductLeftPanel = Panel(buttonProductPanel);
+        Button(buttonProductLeftPanel)
                 .setCaption("Modify Product")
                 .onClick {
                     val newProductWindow = NewProductWindow(this, ProductModel());
                     newProductWindow.open();
                 }
-        Button(buttonLeftPanel)
+        Button(buttonProductLeftPanel)
                 .setCaption("Add Product")
                 .onClick {
                     val newProductWindow = NewProductWindow(this, ProductModel());
                     newProductWindow.open();
                 }
 
-        var buttonRightPanel = Panel(buttonMainPanel);
-        Button(buttonRightPanel)
+        var buttonProductRightPanel = Panel(buttonProductPanel);
+        Button(buttonProductRightPanel)
                 .setCaption("View Menu")
                 .onClick {
                     val newProductWindow = NewProductWindow(this, ProductModel());
                     newProductWindow.open();
                 }
-        Button(buttonRightPanel)
+        Button(buttonProductRightPanel)
                 .setCaption("Delete Product")
                 .onClick {
                     val newProductWindow = NewProductWindow(this, ProductModel());
@@ -98,5 +98,33 @@ class ApplicationWindow(model: ApplicationModel) : MainWindow<ApplicationModel>(
                 .setFixedSize(250)
                 .bindContentsToProperty("enabled");
 
+        var buttonMenuPanel = Panel(menuPanel);
+        buttonMenuPanel.setLayout(HorizontalLayout());
+
+        Button(buttonMenuPanel)
+                .setCaption("View Menu")
+                .onClick {
+                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    newProductWindow.open();
+                }
+        Button(buttonMenuPanel)
+                .setCaption("Add Menu")
+                .onClick {
+                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    newProductWindow.open();
+                }
+
+        Button(buttonMenuPanel)
+                .setCaption("Edit Menu")
+                .onClick {
+                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    newProductWindow.open();
+                }
+        Button(buttonMenuPanel)
+                .setCaption("Delete Menu")
+                .onClick {
+                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    newProductWindow.open();
+                }
     }
 }

@@ -1,16 +1,14 @@
 package productAndMenu
 
-import applicationModel.ApplicationModel
-import discount.NoDiscount
+import applicationModel.MorfApp
 import geoclaseui.Geo
 import org.junit.Test
 import org.junit.Assert
 import restaurant.Restaurant
-import kotlin.test.assertTrue
 
 class TestMenu {
 
-    private var applicationModel : ApplicationModel = ApplicationModel;
+    private var applicationModel : MorfApp = MorfApp;
     private var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.DRINK);
     private var hotDog = Product(2, "HotDog", "Original Deustch Sausage", 120.0, Category.MAINDISH);
     private var geoLocation = Geo(2.0,2.0)
