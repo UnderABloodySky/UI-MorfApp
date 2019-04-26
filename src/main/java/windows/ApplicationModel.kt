@@ -1,15 +1,13 @@
 package windows
 
-import applicationModel.MorfApp
 import org.uqbar.commons.model.annotations.Observable
 
-
 @Observable
-class ApplicationModel() {
-    var applicationModel = MorfApp;
+class ApplicationModel(userModel: UserModel) {
+
     var productFilter: Any? = null;
     var menuFilter: Any? = null;
-    var products = mutableListOf<ProductModel>();
+    var products  =  userModel.restaurant.products;
     var menus = mutableListOf<MenuModel>();
     var selectedProduct: ProductModel? = null;
     var selectedMenu: MenuModel? = null;

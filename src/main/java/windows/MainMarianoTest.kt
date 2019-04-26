@@ -1,7 +1,8 @@
 package windows
 
 fun main() {
-    var apMod = ApplicationModel();
+
+    var apMod = ApplicationModel(UserModel());
     var ham = ProductModel();
     ham.name = "Hamburguesa";
     ham.price = 100.0;
@@ -15,8 +16,8 @@ fun main() {
 
 
 
-    apMod.products.add(ham);
-    apMod.products.add(coca);
+    //apMod.products.add(ham);
+    //apMod.products.add(coca);
     apMod.menus.add(menu1);
     ApplicationWindow(apMod).startApplication();
 }
