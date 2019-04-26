@@ -1,1 +1,7 @@
-.idea
+# IntelliJ
+.idea/
+out/
+
+# Maven
+target/
+
