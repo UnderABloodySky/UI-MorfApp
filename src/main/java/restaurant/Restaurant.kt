@@ -10,7 +10,7 @@ import productAndMenu.*
 import searcher.*
 
 class Restaurant(var code:Int, var name: String, var description: String,
-                 var direcction:String, var geoLocation:Geo, aplicationModel : MorfApp) {
+                 var direcction:String, var geoLocation:Geo) {
 
     var availablePaymentMethods: MutableCollection<PaymentMethod> = mutableListOf<PaymentMethod>()
     var products: MutableMap<Int, Product> = mutableMapOf()
