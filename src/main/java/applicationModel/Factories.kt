@@ -1,5 +1,6 @@
 package applicationModel
 
+import discount.Discount
 import geoclaseui.Geo
 import order.Order
 import restaurant.Restaurant
@@ -40,6 +41,14 @@ class ProductFactory : GeneralFactory(){
         addOne()
         return newProduct
     }
+}
+
+class MenuFactory : GeneralFactory(){
+        fun createMenu(name : String, description : String, products : MutableCollection<Product>, restaurant : Restaurant, discount : Discount, enabled : Boolean) : Menu{
+            var newMenu = Menu(code, name, description, products, restaurant, discount, enabled)
+            addOne()
+            return newMenu
+        }
 }
 
 object ClientFactory : GeneralFactory() {
