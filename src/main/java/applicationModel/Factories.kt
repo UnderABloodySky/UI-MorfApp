@@ -5,7 +5,9 @@ import order.Order
 import restaurant.Restaurant
 import productAndMenu.Menu
 import paymentMethod.PaymentMethod
+import productAndMenu.Category
 import productAndMenu.Product
+import sun.java2d.loops.FillRect
 import user.Client
 import user.Supervisor
 import java.util.*
@@ -28,6 +30,15 @@ object OrderFactory : GeneralFactory(){
         var newOrder = Order(code, user, restaurant, payment, menus);
         addOne();
         return newOrder;
+    }
+}
+
+class ProductFactory : GeneralFactory(){
+
+    fun createProduct(name : String, description : String, price : Double, category : Category) : Product{
+        var newProduct = Product(code, name, description, price, category)
+        addOne()
+        return newProduct
     }
 }
 
@@ -63,8 +74,6 @@ object RestaurantFactory : GeneralFactory(){
                          direction: String,
                          geoLocation: Geo,
                          availablePaymentMethods: MutableList<PaymentMethod>,
-                         products: MutableSet<Product>,
-                         menus: MutableSet<Menu>,
                          applicationModel: MorfApp): Restaurant {
 
         var newRestaurant = Restaurant(code,

@@ -12,14 +12,11 @@ fun main() {
     var products = mutableSetOf<Product>();
     var menus = mutableSetOf<Menu>();
     var morfap = MorfApp;
-
-    morfap.createRestaurant("La Conga",
+    var laConga = morfap.createRestaurant("La Conga",
             "Cocina Peruana",
             "Calle Falsa 123",
             Geo(1.5, 1.5),
-            mutableListOf(Cash()),
-            products,
-            menus);
+            mutableListOf(Cash()));
 
     var apMod = ApplicationModel(UserModel());
     var ham = Product(1, "Hamburguesa", "al vapor", 100.0, Category.NONE);
@@ -38,4 +35,8 @@ fun main() {
 
     LoginWindow(UserModel()).startApplication();
 //    ApplicationWindow(apMod).startApplication();
+
+    var unaHamburguesaSalvaje : Product = laConga.createProduct("Hamburguesa", "Al vapor", 100.0, Category.NONE)
+    var unaCocaSalvaje : Product = laConga.createProduct("Coca Cola", "Azucar 200%", 60.0, Category.DRINK)
+
 }

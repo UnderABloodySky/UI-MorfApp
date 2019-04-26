@@ -3,7 +3,7 @@ package discount
 import org.junit.Assert
 import org.junit.Test
 
-class TestPercentageDiscount {
+class  TestPercentageDiscount {
 
     private var percentageDiscount0 : PercentageDiscount = PercentageDiscount("ejemploA", 0.0)
     private var percentageDiscount1 : PercentageDiscount = PercentageDiscount("ejemploB", 1.0)

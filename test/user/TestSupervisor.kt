@@ -1,4 +1,4 @@
-package restaurant
+package user
 
 import applicationModel.MorfApp
 import geoclaseui.Geo
@@ -9,29 +9,18 @@ import paymentMethod.PaymentMethod
 import productAndMenu.Category
 import productAndMenu.Menu
 import productAndMenu.Product
-import user.Supervisor
-import java.util.*
+import restaurant.Restaurant
 
-class TestRestaurant {
-    private var geoLocation1: Geo = Geo(1.2,2.2)
+class TestSupervisor {
+
+    private var geoLocation: Geo = Geo(48.84,84.48)
     private var applicationModel : MorfApp = MorfApp ;
-    private var newRestaurant: Restaurant = Restaurant(1,"El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1, applicationModel)
+    private var newRestaurant: Restaurant = applicationModel.createRestaurant("El Tano", "Una descripcion bien chingona", "Por Quilmes Oeste", geoLocation, mutableListOf<PaymentMethod>())
+
     private var newSupervisor : Supervisor = Supervisor(1,"SuperPepe", newRestaurant, "123454", applicationModel)
     private var menu = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(), newRestaurant)
-    private var emptyProductList: MutableSet<Product> = mutableSetOf<Product>()
     private var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.DRINK)
 
-    @Test
-    fun newRestaurantIsCreated(){
-        var newTestRestaurant: Restaurant = Restaurant(1,"El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1, applicationModel)
-        Assert.assertTrue(newTestRestaurant.menus.isEmpty())
-        Assert.assertEquals(newTestRestaurant.code,1)
-        Assert.assertEquals(newTestRestaurant.name,"El Tano")
-        Assert.assertEquals(newTestRestaurant.description,"inserte descripcion")
-        Assert.assertEquals(newTestRestaurant.direcction,"por quilmes oeste")
-        Assert.assertEquals(newTestRestaurant.geoLocation,geoLocation1)
-        Assert.assertEquals("RootElTano1",newTestRestaurant.supervisor.name)
-    }
 
     @Test
     fun testPrueba(){
@@ -93,4 +82,5 @@ class TestRestaurant {
         var emptyPaymentsMethods : MutableCollection<PaymentMethod> = mutableListOf<PaymentMethod>()
         Assert.assertEquals(newRestaurant.availablePaymentMethods,emptyPaymentsMethods)
     }
+
 }
