@@ -43,24 +43,22 @@ object MorfApp {
     }
 
         fun createRestaurant(name: String,
-                         description: String,
-                         supervisor: Supervisor,
-                         direction: String,
-                         geoLocation: Geo,
-                         availablePaymentMethods: MutableList<PaymentMethod>,
-                         products: MutableSet<Product>,
-                         menus: MutableSet<Menu>) {
+                             description: String,
+                             direction: String,
+                             geoLocation: Geo,
+                             availablePaymentMethods: MutableList<PaymentMethod>,
+                             products: MutableSet<Product>,
+                             menus: MutableSet<Menu>) {
 
         var newRestaurant: Restaurant = restaurantFactory.createRestaurant(name,
                                                                            description,
-                                                                           supervisor,
                                                                            direction,
                                                                            geoLocation,
                                                                            availablePaymentMethods,
                                                                            products,
                                                                            menus, this)
         this.restaurants.put(newRestaurant.code, newRestaurant);
-
+        this.registeredUsers.put(newRestaurant.supervisor.name, newRestaurant.supervisor)
     }
 
     fun createOrder(client:Client, restaurant:Restaurant , paymentMethod:PaymentMethod, menus:MutableList<Menu> ):Order{
