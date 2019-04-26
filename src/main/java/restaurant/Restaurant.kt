@@ -9,10 +9,11 @@ import searcher.*
 
 class Restaurant(var code:Int, var name: String, var description: String,
                  var direcction:String, var geoLocation:Geo, aplicationModel : MorfApp) {
+
     var availablePaymentMethods: MutableCollection<PaymentMethod> = mutableListOf<PaymentMethod>()
     var products: MutableMap<Int, Product> = mutableMapOf()
     var menus: MutableMap<Int, Menu> = mutableMapOf()
-    var supervisor: Supervisor = aplicationModel.clientFactory.createSupervisor(this, "Root" + name.replace(" ", "") + code.toString(), "123456", aplicationModel)
+    lateinit var supervisor :Supervisor
     var searcher: Searcher<Menu> = Searcher()
     var productFactory : ProductFactory = ProductFactory()
 
@@ -24,9 +25,6 @@ class Restaurant(var code:Int, var name: String, var description: String,
         supervisor= newSupervisor;
     }
 
-    fun changeSupervisor(newSupervidor:Supervisor){
-        supervisor = newSupervidor;
-    }
 
     fun createProduct(name : String, description : String, price : Double, category : Category) : Product {
         var newProduct : Product = productFactory.createProduct(name, description, price, category)

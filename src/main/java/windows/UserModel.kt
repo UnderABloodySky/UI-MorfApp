@@ -20,16 +20,16 @@ class UserModel {
         var morfApp:MorfApp = MorfApp;
 
         var foundUser: User? = morfApp.findUser(this.user)
-        print(foundUser?.name);
-        if (foundUser != null && foundUser.isCorrectPassword(this.password)) {
+            print(foundUser?.name);
+             if (foundUser != null && foundUser.isCorrectPassword(this.password)) {
 
-            foundUser as Supervisor;
-            this.restaurant = foundUser.restaurant;
-            ApplicationWindow(ApplicationModel(this)).open();
+                 foundUser as Supervisor;
+                 this.restaurant = foundUser.restaurant;
+                 ApplicationWindow(ApplicationModel(this)).open();
+             }
 
-        } else {
-            NoUserFoundException ("No es correcto el usuario / contraseña")
-        }
+             else {throw NoUserFoundException ("No es correcto el usuario / contraseña")}
+
     }
 }
 

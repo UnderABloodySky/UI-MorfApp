@@ -1,6 +1,7 @@
 package applicationModel
 
 import exception.NoUserFoundException
+import exception.UserAlreadyRegisteredException
 import geoclaseui.*
 import user.*
 import order.*
@@ -26,23 +27,28 @@ object MorfApp {
     private var searcher : Searcher<Restaurant> = Searcher();
     var distance: Double = 20.00;
 
-        fun createClient(address: String,
-                     registrationDate: Date,
-                     geoLocation: Geo,
-                     id : String,
-                     password: String): Unit {
+    //var supervisor: Supervisor = aplicationModel.clientFactory.createSupervisor(this, "Root" + name.replace(" ", "") + code.toString(), "123456", aplicationModel)
 
-                var newClient: User = clientFactory.createClient(address,
-                                               registrationDate,
-                                               geoLocation,
-                                               id,
-                                               password,
+    fun createSupervisor(restaurant: Restaurant, name: String, password: String): Supervisor {
 
+        if(!registeredUsers.containsKey(name)){
+
+
+                var newSupervisor: Supervisor = clientFactory.createSupervisor( restaurant,
+                                                  name,
+                                                 password,
                                                this)
-        this.registeredUsers.put(newClient.name,newClient)
+
+                this.registeredUsers.put(newSupervisor.name,newSupervisor)
+                return newSupervisor
+            }
+        else {throw UserAlreadyRegisteredException("Ya se encuentra registrado el usuario")
+
+        }
+
     }
 
-        fun createRestaurant(name: String,
+    fun createRestaurant(name: String,
                              description: String,
                              direction: String,
                              geoLocation: Geo,
@@ -55,7 +61,6 @@ object MorfApp {
                                                                            availablePaymentMethods,
                                                                           this)
         this.restaurants.put(newRestaurant.code, newRestaurant);
-        this.registeredUsers.put(newRestaurant.supervisor.name, newRestaurant.supervisor)
         return newRestaurant
     }
 

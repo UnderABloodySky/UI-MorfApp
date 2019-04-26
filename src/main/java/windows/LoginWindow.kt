@@ -6,9 +6,10 @@ import org.uqbar.arena.widgets.*
 import org.uqbar.arena.windows.MainWindow
 import org.uqbar.lacar.ui.model.ControlBuilder
 
-class LoginWindow(model: UserModel): MainWindow<UserModel>(UserModel()) {
+class LoginWindow(model: UserModel): MainWindow<UserModel>(model) {
 
     override fun createContents(panel: Panel) {
+
         panel.setLayout(VerticalLayout());
 
         this.title = "Login MorfApp"
