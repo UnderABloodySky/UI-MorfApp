@@ -16,7 +16,4 @@ class ApplicationModel(restaurantModel: RestaurantModel) {
     var selectedProduct: ProductModel? = null;
     var selectedMenu: MenuModel? = null;
 
-    //transformToProductModel(userModel.restaurant)
-
-
 }

@@ -1,5 +1,6 @@
 package windows
 
+import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.*
@@ -29,6 +30,9 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         TextBox(productPanel)
                 .bindValueToProperty<Any, ControlBuilder>("productFilter");
 
+
+        var elementSelected = NotNullObservable("selectedProduct");
+
         var productTable = Table<ProductModel>(productPanel, ProductModel::class.java);
         productTable.bindItemsToProperty("products")
         productTable.bindValueToProperty<ProductModel, ControlBuilder>("selectedProduct")
@@ -48,21 +52,21 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
 
         var buttonProductLeftPanel = Panel(buttonProductPanel);
         Button(buttonProductLeftPanel)
-                .setCaption("Modify Product")
+                .setCaption("New Product")
                 .onClick {
                     val newProductWindow = NewProductWindow(this, ProductModel());
                     newProductWindow.open();
                 }
         Button(buttonProductLeftPanel)
-                .setCaption("Add Product")
+                .setCaption("Edit Product")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    val newProductWindow = EditProductWindow(this, modelObject.selectedProduct);
                     newProductWindow.open();
                 }
 
         var buttonProductRightPanel = Panel(buttonProductPanel);
         Button(buttonProductRightPanel)
-                .setCaption("View Product")
+                .setCaption("View Menu")
                 .onClick {
                     val newProductWindow = NewProductWindow(this, ProductModel());
                     newProductWindow.open();
