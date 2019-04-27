@@ -5,10 +5,10 @@ import org.junit.Test
 
 class  TestPercentageDiscount {
 
-    private var percentageDiscount0 : PercentageDiscount = PercentageDiscount("ejemploA", 0.0)
-    private var percentageDiscount1 : PercentageDiscount = PercentageDiscount("ejemploB", 1.0)
-    private var percentageDiscount48 : PercentageDiscount = PercentageDiscount("ejemploC", 48.0)
-    private var percentageDiscount100 : PercentageDiscount = PercentageDiscount("ejemploD", 100.0)
+    private var percentageDiscount0 : PercentageDiscount = PercentageDiscount(0.0)
+    private var percentageDiscount1 : PercentageDiscount = PercentageDiscount(1.0)
+    private var percentageDiscount48 : PercentageDiscount = PercentageDiscount(48.0)
+    private var percentageDiscount100 : PercentageDiscount = PercentageDiscount(100.0)
 
 
     @Test

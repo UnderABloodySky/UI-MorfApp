@@ -2,7 +2,7 @@ package discount
 
 import exception.IncorrectDiscountValueException
 
-class FixedDiscount(name: String, value : Double ): Discount(name, value) {
+class FixedDiscount(value : Double ): Discount("FixedDiscount", value) {
 
     override fun discount(price: Double): Double {
         if ((price - this.value) <= 0)

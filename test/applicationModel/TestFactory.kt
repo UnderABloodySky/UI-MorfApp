@@ -1,5 +1,6 @@
 package applicationModel
 
+import discount.FixedDiscount
 import geoclaseui.Geo
 import order.Order
 import org.junit.Assert
@@ -19,8 +20,8 @@ class TestFactory{
     private var orderFactory : OrderFactory = OrderFactory()
     private var clientFactory : ClientFactory = ClientFactory()
     private var restaurantFactory : RestaurantFactory = RestaurantFactory()
-    private var ProductFactory : ProductFactory = ProductFactory()
-    private var MenuFactory : MenuFactory = MenuFactory()
+    private var productFactory : ProductFactory = ProductFactory()
+    private var menuFactory : MenuFactory = MenuFactory()
 
     private var applicationModel : MorfApp = MorfApp ;
     private val cash : PaymentMethod = Cash()
@@ -39,7 +40,7 @@ class TestFactory{
     private val menus : MutableCollection<Menu> = mutableListOf<Menu>(menu0,menu1,menu2,menu3,menu4,menu5,menu6)
     private var date : Date = Date()
     private  var client: Client = Client(1,"Pepe","Roque saenz peña", date, geoLocation, "1212", applicationModel)
-    private var order : Order = Order(2, client, restaurant, cash, menus)
+    private var products : MutableCollection<Product> = mutableListOf(iceCream, pizza)
 
     //OrderFactory
     @Test
@@ -138,4 +139,53 @@ class TestFactory{
         Assert.assertEquals("ATR", newRestaurant.description)
         Assert.assertEquals(mutableListOf(cash), newRestaurant.availablePaymentMethods)
     }
+
+    //ProductFactory
+    @Test
+    fun testProductFactoryHasIniciallyTheCounterInZero(){
+        Assert.assertEquals(0,productFactory.code())
+    }
+
+    @Test
+    fun theProductFactoryIncreasesItsCodeByOneWhenItCreatesAProduct(){
+        productFactory.createProduct("Asd", "A crazy description", 0.0, Category.DRINK)
+        Assert.assertEquals(1,productFactory.code())
+        productFactory.createProduct("Capitan del Espacio", "A crazy description", 30.0, Category.DRINK)
+        Assert.assertEquals(2,productFactory.code())
+    }
+
+    @Test
+    fun testProductFactoryReturnsAConsistentProduct(){
+        var newProduct : Product = productFactory.createProduct("Capitan del Espacio", "A crazy description", 30.0, Category.DISSERT)
+        Assert.assertTrue(30.0 == newProduct.price)
+        Assert.assertEquals(Category.DISSERT, newProduct.category)
+        Assert.assertEquals("Capitan del Espacio", newProduct.name)
+        Assert.assertEquals("A crazy description", newProduct.description)
+    }
+
+    //MenuFactory
+    @Test
+    fun testMenuFactoryHasIniciallyTheCounterInZero(){
+        Assert.assertEquals(0,menuFactory.code())
+    }
+
+    @Test
+    fun theMenuFactoryIncreasesItsCodeByOneWhenItCreatesAMenu(){
+        menuFactory.createMenu("AsdMenu", "A crazy description", products, restaurant, FixedDiscount(40.0), false)
+        Assert.assertEquals(1,menuFactory.code())
+        menuFactory.createMenu("AsdMenu", "A crazy description", products, restaurant, FixedDiscount(40.0), false)
+        Assert.assertEquals(2,menuFactory.code())
+    }
+
+    @Test
+    fun testMenuFactoryReturnsAConsistentMenu(){
+        var discount : FixedDiscount = FixedDiscount(40.0)
+        var newMenu : Menu =  menuFactory.createMenu("AsdMenu", "A crazy description", products, restaurant, discount, false)
+        Assert.assertFalse(newMenu.enabled)
+        Assert.assertEquals("A crazy description", newMenu.description)
+        Assert.assertEquals(restaurant, newMenu.restaurant)
+        Assert.assertEquals(discount, newMenu.discount)
+        Assert.assertEquals("AsdMenu", newMenu.name)
+    }
+
 }
