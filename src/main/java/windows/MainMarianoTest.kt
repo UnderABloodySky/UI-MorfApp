@@ -17,6 +17,7 @@ fun main() {
             "Calle Falsa 123",
             Geo(1.5, 1.5),
             mutableListOf(Cash()));
+    morfap.createSupervisor(laConga, "Juan", "1234");
 
     var apMod = ApplicationModel(UserModel());
     var ham = Product(1, "Hamburguesa", "al vapor", 100.0, Category.NONE);
@@ -29,12 +30,14 @@ fun main() {
                       NoDiscount(),
                       true);
 
+
+
     morfap.restaurants.getValue(0).products.put(ham.code, ham);
     morfap.restaurants.getValue(0).products.put(coca.code, coca);
     morfap.restaurants.getValue(0).menus.put(menu1.code, menu1);
 
     LoginWindow(UserModel()).startApplication();
-//    ApplicationWindow(apMod).startApplication();
+//  ApplicationWindow(apMod).startApplication();
 
     var unaHamburguesaSalvaje : Product = laConga.createProduct("Hamburguesa", "Al vapor", 100.0, Category.NONE)
     var unaCocaSalvaje : Product = laConga.createProduct("Coca Cola", "Azucar 200%", 60.0, Category.DRINK)

@@ -40,6 +40,7 @@ object MorfApp {
                                                this)
 
                 this.registeredUsers.put(newSupervisor.name,newSupervisor)
+                restaurant.addSupervisor(newSupervisor);
                 return newSupervisor
             }
         else {throw UserAlreadyRegisteredException("Ya se encuentra registrado el usuario")

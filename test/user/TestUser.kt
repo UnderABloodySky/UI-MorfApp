@@ -12,7 +12,7 @@ class TestUser {
 
     private var applicationModel : MorfApp = MorfApp ;
     private var geoLocation1: Geo = Geo(1.2,2.2);
-    private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1, applicationModel);
+    private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1);
     private var date = Date()
     private var supervisor : Supervisor = Supervisor(1, "JulioCesar", restaurant, "123454", applicationModel)
     private var menu = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(), restaurant);

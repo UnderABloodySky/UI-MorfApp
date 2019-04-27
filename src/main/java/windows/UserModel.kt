@@ -4,6 +4,7 @@ import org.uqbar.commons.model.annotations.Observable
 import user.User
 import applicationModel.MorfApp
 import exception.NoUserFoundException
+import org.uqbar.arena.windows.WindowOwner
 import restaurant.Restaurant
 import user.Supervisor
 
@@ -15,7 +16,7 @@ class UserModel {
     var restaurant: Restaurant? = null;
 
     //el fin user tiene uqe buscar por nombre de usuario .
-    fun autenticate() {
+    fun autenticate(owner: WindowOwner) {
 
         var morfApp:MorfApp = MorfApp;
 
@@ -25,9 +26,8 @@ class UserModel {
 
                  foundUser as Supervisor;
                  this.restaurant = foundUser.restaurant;
-                 ApplicationWindow(ApplicationModel(this)).open();
+                 ApplicationWindow(owner, ApplicationModel(this)).open();
              }
-
              else {throw NoUserFoundException ("No es correcto el usuario / contraseña")}
 
     }

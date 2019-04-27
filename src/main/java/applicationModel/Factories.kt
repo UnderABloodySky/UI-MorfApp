@@ -89,8 +89,7 @@ object RestaurantFactory : GeneralFactory(){
                                        name,
                                        description,
                                        direction,
-                                       geoLocation,
-                                       applicationModel);
+                                       geoLocation);
         addOne();
         return newRestaurant;
     }

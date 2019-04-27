@@ -5,12 +5,16 @@ import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.*
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
-import org.uqbar.arena.windows.MainWindow
+import org.uqbar.arena.windows.SimpleWindow
+import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.lacar.ui.model.ControlBuilder
 
-class ApplicationWindow(model: ApplicationModel) : MainWindow<ApplicationModel>(model) {
 
-    override fun createContents(panel: Panel) {
+class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWindow<ApplicationModel>(owner, model) {
+
+    override fun addActions(p0: Panel?) {}
+
+    override fun createFormPanel(panel: Panel) {
         title = "Morfapp :: Restaurant";
 
         panel.setLayout(HorizontalLayout());

@@ -12,7 +12,7 @@ class TestMenu {
     private var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.DRINK);
     private var hotDog = Product(2, "HotDog", "Original Deustch Sausage", 120.0, Category.MAINDISH);
     private var geoLocation = Geo(2.0,2.0)
-    private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation, applicationModel);
+    private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation);
 
     @Test
     fun addANewProductToAnEmptyListAndCheckIfSizeIsAsEspected() {
