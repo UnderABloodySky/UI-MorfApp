@@ -14,11 +14,12 @@ import user.Supervisor
 import java.util.*
 
 abstract class GeneralFactory{
-    protected var code : Int = 0
+    var code : Int = 0
 
     protected fun addOne() : Unit {
         code++;
     }
+
 }
 
 object OrderFactory : GeneralFactory(){
@@ -82,14 +83,14 @@ object RestaurantFactory : GeneralFactory(){
                          description: String,
                          direction: String,
                          geoLocation: Geo,
-                         availablePaymentMethods: MutableList<PaymentMethod>,
-                         applicationModel: MorfApp): Restaurant {
+                         availablePaymentMethods: MutableCollection<PaymentMethod>): Restaurant {
 
         var newRestaurant = Restaurant(code,
                                        name,
                                        description,
                                        direction,
-                                       geoLocation);
+                                       geoLocation,
+                                       availablePaymentMethods);
         addOne();
         return newRestaurant;
     }

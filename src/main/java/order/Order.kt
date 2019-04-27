@@ -1,5 +1,7 @@
 package order
 
+import exception.EmptyOrderException
+import exception.NoValidateOrderException
 import statesOrder.StateOrder
 import statesOrder.StateOrder.*
 import paymentMethod.*
@@ -9,17 +11,24 @@ import restaurant.Restaurant
 import productAndMenu.Menu
 import user.Client
 
-data class Order(private val code : Int, private val user : Client,
+data class Order(val code : Int, private val user : Client,
                  private val restaurant : Restaurant, private var payment : PaymentMethod,
                  private val menus : MutableCollection<Menu>){
 
     private var state : StateOrder = PENDING
     private var date : Date? = null
 
+    fun processOrder() : Unit {
+        if (menus.isEmpty()) {
+            throw EmptyOrderException("")
+        }
+        restaurant.addOrder(this)
+    }
+
     fun addMenu(_new_menu : Menu): Unit {
-        //if(! canProcessOrder(_new_menu)){
-        //
-        //}
+        if(!canProcessOrder(_new_menu)) {
+            throw NoValidateOrderException("")
+        }
         menus.add(_new_menu)
     }
 

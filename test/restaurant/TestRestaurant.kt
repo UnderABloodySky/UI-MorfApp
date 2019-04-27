@@ -15,15 +15,16 @@ import java.util.*
 class TestRestaurant {
     private var geoLocation1: Geo = Geo(1.2,2.2)
     private var applicationModel : MorfApp = MorfApp ;
-    private var newRestaurant: Restaurant = Restaurant(1,"El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1)
+    private var cash : PaymentMethod = Cash()
+    private var listOfPaymentMethod : MutableCollection<PaymentMethod> = mutableListOf(cash)
+    private var newRestaurant: Restaurant = Restaurant(1,"El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1, listOfPaymentMethod)
     private var newSupervisor : Supervisor = Supervisor(1,"SuperPepe", newRestaurant, "123454",applicationModel)
     private var menu = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(), newRestaurant)
-    private var emptyProductList: MutableSet<Product> = mutableSetOf<Product>()
     private var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.DRINK)
 
     @Test
     fun newRestaurantIsCreated(){
-        var newTestRestaurant: Restaurant = Restaurant(1,"El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1)
+        var newTestRestaurant: Restaurant = Restaurant(1,"El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1,listOfPaymentMethod)
         Assert.assertTrue(newTestRestaurant.menus.isEmpty())
         Assert.assertEquals(newTestRestaurant.code,1)
         Assert.assertEquals(newTestRestaurant.name,"El Tano")

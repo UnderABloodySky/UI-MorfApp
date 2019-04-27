@@ -59,8 +59,7 @@ object MorfApp {
                                                                            description,
                                                                            direction,
                                                                            geoLocation,
-                                                                           availablePaymentMethods,
-                                                                          this)
+                                                                           availablePaymentMethods)
         this.restaurants.put(newRestaurant.code, newRestaurant);
         return newRestaurant
     }

@@ -1,21 +1,21 @@
 package restaurant
 import applicationModel.MenuFactory
-import applicationModel.MorfApp
 import applicationModel.ProductFactory
 import discount.Discount
 import geoclaseui.Geo
+import order.Order
 import user.*
 import paymentMethod.*
 import productAndMenu.*
 import searcher.*
 
 class Restaurant(var code:Int, var name: String, var description: String,
-                 var direcction:String, var geoLocation:Geo) {
+                 var direcction:String, var geoLocation:Geo, var availablePaymentMethods : MutableCollection<PaymentMethod>) {
 
-    var availablePaymentMethods: MutableCollection<PaymentMethod> = mutableListOf<PaymentMethod>()
     var products: MutableMap<Int, Product> = mutableMapOf()
     var menus: MutableMap<Int, Menu> = mutableMapOf()
-    lateinit var supervisor :Supervisor
+    lateinit var supervisor : Supervisor
+    var orders : MutableCollection<Order> = mutableListOf()
     var searcher: Searcher<Menu> = Searcher()
     private var productFactory : ProductFactory = ProductFactory()
     private var menuFactory : MenuFactory = MenuFactory()
@@ -39,7 +39,6 @@ class Restaurant(var code:Int, var name: String, var description: String,
         addMenu(newMenu)
         return newMenu
     }
-
 
     fun addProductToStock(newProduct:Product){
         products.put(newProduct.code, newProduct);
@@ -84,6 +83,10 @@ class Restaurant(var code:Int, var name: String, var description: String,
 
     fun findMenu(criteria : Criteria<Menu>) : MutableList<Menu?>{
         return criteria.search(this.menus);
+    }
+
+    fun addOrder(order: Order) : Unit {
+        orders.add(order)
     }
 
 }
