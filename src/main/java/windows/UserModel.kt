@@ -16,17 +16,14 @@ class UserModel {
     var restaurant: Restaurant? = null;
 
     //el fin user tiene uqe buscar por nombre de usuario .
-    fun autenticate(owner: WindowOwner) {
+    fun autenticate() : UserModel {
 
-        var morfApp:MorfApp = MorfApp;
-
-        var foundUser: User? = morfApp.findUser(this.user)
-            print(foundUser?.name);
+        var foundUser: User? = MorfApp.findUser(this.user)
              if (foundUser != null && foundUser.isCorrectPassword(this.password)) {
 
                  foundUser as Supervisor;
                  this.restaurant = foundUser.restaurant;
-                 ApplicationWindow(owner, ApplicationModel(this)).open();
+                 return this;
              }
              else {throw NoUserFoundException ("No es correcto el usuario / contraseña")}
 

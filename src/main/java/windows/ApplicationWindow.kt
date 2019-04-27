@@ -10,7 +10,7 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.lacar.ui.model.ControlBuilder
 
 
-class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWindow<ApplicationModel>(owner, model) {
+class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWindow<ApplicationModel>(owner, model){
 
     override fun addActions(p0: Panel?) {}
 
@@ -85,7 +85,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .bindValueToProperty<Any, ControlBuilder>("menuFilter");
 
         var menuTable = Table<MenuModel>(menuPanel, MenuModel::class.java);
-        menuTable.bindItemsToProperty("menus")
+        //menuTable.bindItemsToProperty("menus")
         menuTable.bindValueToProperty<MenuModel, ControlBuilder>("selectedMenu")
         Column<MenuModel>(menuTable)
                 .setTitle("Name")

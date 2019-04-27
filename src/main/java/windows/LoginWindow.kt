@@ -28,9 +28,10 @@ class LoginWindow(model: UserModel): MainWindow<UserModel>(model) {
 
         Button(panel)
                 .setCaption("Ingresar")
-                .onClick { modelObject.autenticate(this); }
+                .onClick {
+                    var loggedUserModel = ApplicationModel(modelObject.autenticate());
+                    var applicationWindow = ApplicationWindow(this, loggedUserModel);
+                    applicationWindow.open();
+                }
     }
-
-
-
 }
