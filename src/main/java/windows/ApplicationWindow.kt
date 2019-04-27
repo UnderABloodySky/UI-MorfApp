@@ -62,7 +62,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
 
         var buttonProductRightPanel = Panel(buttonProductPanel);
         Button(buttonProductRightPanel)
-                .setCaption("View Menu")
+                .setCaption("View Product")
                 .onClick {
                     val newProductWindow = NewProductWindow(this, ProductModel());
                     newProductWindow.open();
@@ -85,7 +85,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .bindValueToProperty<Any, ControlBuilder>("menuFilter");
 
         var menuTable = Table<MenuModel>(menuPanel, MenuModel::class.java);
-        //menuTable.bindItemsToProperty("menus")
+        menuTable.bindItemsToProperty("menus")
         menuTable.bindValueToProperty<MenuModel, ControlBuilder>("selectedMenu")
         Column<MenuModel>(menuTable)
                 .setTitle("Name")

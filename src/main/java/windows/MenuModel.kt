@@ -5,7 +5,7 @@ import org.uqbar.commons.model.annotations.Observable
 @Observable
 class MenuModel {
 
-    val code = 0;
+    var code = 0;
     var name = "";
     var description = "";
     var products = mutableListOf<ProductModel>();

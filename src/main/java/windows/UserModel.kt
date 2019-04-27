@@ -12,21 +12,31 @@ import user.Supervisor
 class UserModel {
     var user: String = "...";
     var password: String = "...";
-    var autenticated:Boolean = false;
-    var restaurant: Restaurant? = null;
+    lateinit var restaurant: Restaurant;
 
-    //el fin user tiene uqe buscar por nombre de usuario .
-    fun autenticate() : UserModel {
+    fun autenticate() : RestaurantModel {
 
         var foundUser: User? = MorfApp.findUser(this.user)
              if (foundUser != null && foundUser.isCorrectPassword(this.password)) {
 
                  foundUser as Supervisor;
                  this.restaurant = foundUser.restaurant;
-                 return this;
+                 return this.transformToRestaurantModel();
              }
              else {throw NoUserFoundException ("No es correcto el usuario / contraseña")}
 
     }
+
+    fun transformToRestaurantModel(): RestaurantModel{
+        var restaurantModel = RestaurantModel();
+
+                restaurantModel.restaurant = this.restaurant
+                restaurantModel.name = this.restaurant.name;
+                restaurantModel.products = this.restaurant.products;
+                restaurantModel.menus = this.restaurant.menus;
+
+        return restaurantModel;
+    }
+
 }
 
