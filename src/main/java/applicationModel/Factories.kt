@@ -14,15 +14,17 @@ import user.Supervisor
 import java.util.*
 
 abstract class GeneralFactory{
-    var code : Int = 0
+    protected var code : Int = 0
 
     protected fun addOne() : Unit {
         code++;
     }
 
+    fun code() : Int = code
+
 }
 
-object OrderFactory : GeneralFactory(){
+class OrderFactory : GeneralFactory(){
 
      fun createOrder(user: Client,
                     restaurant: Restaurant,
@@ -52,7 +54,7 @@ class MenuFactory : GeneralFactory(){
         }
 }
 
-object ClientFactory : GeneralFactory() {
+class ClientFactory : GeneralFactory() {
 
         fun createClient(address: String,
                      registrationDate: Date,
@@ -77,7 +79,7 @@ object ClientFactory : GeneralFactory() {
     }
 }
 
-object RestaurantFactory : GeneralFactory(){
+class RestaurantFactory : GeneralFactory(){
 
     fun createRestaurant(name: String,
                          description: String,

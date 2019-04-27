@@ -3,6 +3,7 @@ package user
 import applicationModel.MorfApp
 import geoclaseui.Geo
 import org.junit.Assert
+import org.junit.Before
 import org.junit.Test
 import paymentMethod.Cash
 import paymentMethod.PaymentMethod
@@ -21,14 +22,10 @@ class TestSupervisor {
     private var menu = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(), newRestaurant)
     private var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.DRINK)
 
-
-    @Test
-    fun testPrueba(){
-        var example : String =  "Esto Es Un Ejemplo"
-        Assert.assertEquals("EstoEsUnEjemplo",example.replace(" ", ""))
+    @Before
+    fun addSupervisor(){
+        newRestaurant.addSupervisor(newSupervisor)
     }
-
-
     @Test
     fun supervisorAddProductsInStock(){
         Assert.assertTrue(newRestaurant.products.isEmpty())

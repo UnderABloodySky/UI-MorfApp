@@ -21,9 +21,9 @@ object MorfApp {
                                                                          Debit(),
                                                                          MercadoPago(),
                                                                          PayPal());
-    private var orderFactory : OrderFactory = OrderFactory;
-    var clientFactory : ClientFactory = ClientFactory;
-    private var restaurantFactory : RestaurantFactory  = RestaurantFactory;
+    private var orderFactory : OrderFactory = OrderFactory();
+    var clientFactory : ClientFactory = ClientFactory();
+    private var restaurantFactory : RestaurantFactory  = RestaurantFactory();
     private var searcher : Searcher<Restaurant> = Searcher();
     var distance: Double = 20.00;
 
