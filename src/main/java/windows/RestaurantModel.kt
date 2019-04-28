@@ -15,7 +15,7 @@ class RestaurantModel() {
         var productsModel = mutableListOf<ProductModel>()
 
         this.restaurant?.products?.values?.forEach { product ->
-                                                                var tempProduct = ProductModel()
+                                                                var tempProduct = ProductModel(this);
                                                                 tempProduct.code = product.code;
                                                                 tempProduct.name = product.name;
                                                                 tempProduct.description = product.description;
@@ -38,6 +38,4 @@ class RestaurantModel() {
 
         return menusModel
     }
-
-
 }

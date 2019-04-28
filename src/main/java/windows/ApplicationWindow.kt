@@ -1,5 +1,6 @@
 package windows
 
+import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.*
@@ -15,7 +16,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
     override fun addActions(p0: Panel?) {}
 
     override fun createFormPanel(panel: Panel) {
-        title = "Morfapp :: Restaurant";
+        title = "Morfapp :: ${modelObject.restaurantModel.name}";
 
         panel.setLayout(HorizontalLayout());
 
@@ -48,30 +49,32 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
 
         var buttonProductLeftPanel = Panel(buttonProductPanel);
         Button(buttonProductLeftPanel)
-                .setCaption("Modify Product")
+                .setCaption("New Product")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    this.close();
+                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
                     newProductWindow.open();
                 }
         Button(buttonProductLeftPanel)
-                .setCaption("Add Product")
+                .setCaption("Edit Product")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    this.close();
+                    val newProductWindow = EditProductWindow(this, modelObject.selectedProduct);
                     newProductWindow.open();
                 }
 
         var buttonProductRightPanel = Panel(buttonProductPanel);
         Button(buttonProductRightPanel)
-                .setCaption("View Product")
+                .setCaption("View Menu")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel());
-                    newProductWindow.open();
+
                 }
         Button(buttonProductRightPanel)
                 .setCaption("Delete Product")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel());
-                    newProductWindow.open();
+                    this.close()
+                    val deleteProductDialog = DeleteProductDialog(this, modelObject.selectedProduct);
+                    deleteProductDialog.open();
                 }
 
         val menuPanel = Panel(panel);
@@ -108,26 +111,26 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         Button(buttonMenuPanel)
                 .setCaption("View Menu")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
                     newProductWindow.open();
                 }
         Button(buttonMenuPanel)
                 .setCaption("Add Menu")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
                     newProductWindow.open();
                 }
 
         Button(buttonMenuPanel)
                 .setCaption("Edit Menu")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
                     newProductWindow.open();
                 }
         Button(buttonMenuPanel)
                 .setCaption("Delete Menu")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
                     newProductWindow.open();
                 }
     }

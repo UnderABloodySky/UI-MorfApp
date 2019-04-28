@@ -9,14 +9,12 @@ import restaurant.Restaurant
 @Observable
 class ApplicationModel(restaurantModel: RestaurantModel) {
 
+    var restaurantModel = restaurantModel;
     var productFilter: Any? = null;
     var menuFilter: Any? = null;
     var products = restaurantModel.transformToProductModel();
     var menus    = restaurantModel.transformToMenuModel();
     var selectedProduct: ProductModel? = null;
     var selectedMenu: MenuModel? = null;
-
-    //transformToProductModel(userModel.restaurant)
-
 
 }
