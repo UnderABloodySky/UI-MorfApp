@@ -30,9 +30,6 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         TextBox(productPanel)
                 .bindValueToProperty<Any, ControlBuilder>("productFilter");
 
-
-        var elementSelected = NotNullObservable("selectedProduct");
-
         var productTable = Table<ProductModel>(productPanel, ProductModel::class.java);
         productTable.bindItemsToProperty("products")
         productTable.bindValueToProperty<ProductModel, ControlBuilder>("selectedProduct")
@@ -54,27 +51,30 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         Button(buttonProductLeftPanel)
                 .setCaption("New Product")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    this.close();
+                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
                     newProductWindow.open();
                 }
         Button(buttonProductLeftPanel)
                 .setCaption("Edit Product")
                 .onClick {
+                    this.close();
                     val newProductWindow = EditProductWindow(this, modelObject.selectedProduct);
                     newProductWindow.open();
                 }
+
 
         var buttonProductRightPanel = Panel(buttonProductPanel);
         Button(buttonProductRightPanel)
                 .setCaption("View Menu")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
                     newProductWindow.open();
                 }
         Button(buttonProductRightPanel)
                 .setCaption("Delete Product")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
                     newProductWindow.open();
                 }
 
@@ -112,26 +112,26 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         Button(buttonMenuPanel)
                 .setCaption("View Menu")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
                     newProductWindow.open();
                 }
         Button(buttonMenuPanel)
                 .setCaption("Add Menu")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
                     newProductWindow.open();
                 }
 
         Button(buttonMenuPanel)
                 .setCaption("Edit Menu")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
                     newProductWindow.open();
                 }
         Button(buttonMenuPanel)
                 .setCaption("Delete Menu")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel());
+                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
                     newProductWindow.open();
                 }
     }

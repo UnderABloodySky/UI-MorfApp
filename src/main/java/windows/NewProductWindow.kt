@@ -26,10 +26,15 @@ class NewProductWindow(owner: WindowOwner, model: ProductModel) : SimpleWindow<P
 
         Button(panel)
                 .setCaption("Accept")
-                .onClick { this.save() };
+                .onClick {  this.save();
+                            this.close()
+                            var applicationModel = ApplicationModel(modelObject.restaurantModel);
+                            ApplicationWindow(this, applicationModel).open()};
         Button(panel)
                 .setCaption("Cancel")
-                .onClick { this.close() };
+                .onClick {  this.close()
+                            var applicationModel = ApplicationModel(modelObject.restaurantModel);
+                            ApplicationWindow(this, applicationModel).open()};
 
     }
 

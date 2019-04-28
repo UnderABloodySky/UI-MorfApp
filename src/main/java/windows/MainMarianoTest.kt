@@ -19,25 +19,13 @@ fun main() {
             mutableListOf(Cash()));
     morfap.createSupervisor(laConga, "...", "...");
 
-    var ham = Product(1, "Hamburguesa", "al vapor", 100.0, Category.NONE);
-    var coca = Product(2, "Coca Cola", "Azucar 200%", 60.0, Category.DRINK);
-    var menu1 = Menu(1,
-                     "Menu1",
-                     "Coca + Hambur",
-                      mutableListOf(ham, coca),
-                      morfap.restaurants.getValue(0),
-                      NoDiscount(),
-                      true);
+    var unaHamburguesaSalvaje : Product = laConga.createProduct("Hamburguesa", "Al vapor", 100.0, Category.NONE)
+    var unaCocaSalvaje : Product = laConga.createProduct("Coca Cola", "Azucar 200%", 60.0, Category.DRINK)
+    var menu1: Menu = laConga.createMenu("Menu1",
+                                         "Coca + Hambur", laConga.products.values, laConga, NoDiscount(), true)
 
-
-
-    morfap.restaurants.getValue(0).products.put(ham.code, ham);
-    morfap.restaurants.getValue(0).products.put(coca.code, coca);
-    morfap.restaurants.getValue(0).menus.put(menu1.code, menu1);
 
     LoginWindow(UserModel()).startApplication();
 
-    //var unaHamburguesaSalvaje : Product = laConga.createProduct("Hamburguesa", "Al vapor", 100.0, Category.NONE)
-    //var unaCocaSalvaje : Product = laConga.createProduct("Coca Cola", "Azucar 200%", 60.0, Category.DRINK)
 
 }
