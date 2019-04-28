@@ -16,7 +16,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
     override fun addActions(p0: Panel?) {}
 
     override fun createFormPanel(panel: Panel) {
-        title = "Morfapp :: Restaurant";
+        title = "Morfapp :: ${modelObject.restaurantModel.name}";
 
         panel.setLayout(HorizontalLayout());
 
@@ -63,19 +63,18 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                     newProductWindow.open();
                 }
 
-
         var buttonProductRightPanel = Panel(buttonProductPanel);
         Button(buttonProductRightPanel)
                 .setCaption("View Menu")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
-                    newProductWindow.open();
+
                 }
         Button(buttonProductRightPanel)
                 .setCaption("Delete Product")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
-                    newProductWindow.open();
+                    this.close()
+                    val deleteProductDialog = DeleteProductDialog(this, modelObject.selectedProduct);
+                    deleteProductDialog.open();
                 }
 
         val menuPanel = Panel(panel);

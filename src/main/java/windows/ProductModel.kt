@@ -15,10 +15,15 @@ class ProductModel(restaurantModel: RestaurantModel) {
     var restaurantModel = restaurantModel;
 
     fun save() {
-
         this.restaurantModel.restaurant?.createProduct(this.name, this.description, this.price, this.category);
-
     }
 
+    fun edit() {
+        this.restaurantModel.restaurant?.editProduct(this.code, this.name, this.description, this.price, this.category);
+    }
+
+    fun delete() {
+        this.restaurantModel.restaurant?.deleteProduct(this.code);
+    }
 
 }

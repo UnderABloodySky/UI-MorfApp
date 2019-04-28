@@ -26,7 +26,7 @@ class EditProductWindow(owner: WindowOwner, model: ProductModel?) : SimpleWindow
 
         Button(panel)
                 .setCaption("Accept")
-                .onClick {  this.save();
+                .onClick {  this.edit();
                             this.close();
                             var applicationModel = ApplicationModel(modelObject.restaurantModel);
                             ApplicationWindow(this, applicationModel).open()};
@@ -41,6 +41,12 @@ class EditProductWindow(owner: WindowOwner, model: ProductModel?) : SimpleWindow
     private fun setTextBoxPanel(panel : Panel){
 
         var columnPanel = Panel(panel).setLayout(ColumnLayout(2)).setWidth(100);
+
+        Label(columnPanel).setText("Code");
+        val codeTextBox = TextBox(columnPanel);
+        codeTextBox.setWidth(150)
+        codeTextBox.bindValueToProperty<Int, ControlBuilder>("code");
+        codeTextBox.withFilter { event -> event.potentialTextResult.matches(Regex("[0-9]*")) }
 
         Label(columnPanel).setText("Name");
         TextBox(columnPanel)
@@ -67,5 +73,5 @@ class EditProductWindow(owner: WindowOwner, model: ProductModel?) : SimpleWindow
         categorySelector.bindItemsToProperty("categories");
 
     }
-    private fun save() { modelObject.save(); }
+    private fun edit() { modelObject.edit(); }
 }
