@@ -47,7 +47,7 @@ class ProductFactory : GeneralFactory(){
 }
 
 class MenuFactory : GeneralFactory(){
-        fun createMenu(name : String, description : String, products : MutableCollection<Product>, restaurant : Restaurant, discount : Discount, enabled : Boolean) : Menu{
+        fun createMenu(name : String, description : String, products : MutableList<Product>, restaurant : Restaurant, discount : Discount, enabled : Boolean) : Menu{
             var newMenu = Menu(code, name, description, products, restaurant, discount, enabled)
             addOne()
             return newMenu

@@ -43,7 +43,7 @@ class Restaurant(var code:Int, var name: String, var description: String,
         this.products.remove(code);
     }
 
-    fun createMenu(name : String, description : String, products : MutableCollection<Product>, restaurant : Restaurant, discount : Discount, enabled : Boolean) : Menu{
+    fun createMenu(name : String, description : String, products : MutableList<Product>, restaurant : Restaurant, discount : Discount, enabled : Boolean) : Menu{
         var newMenu : Menu = menuFactory.createMenu(name, description, products, restaurant, discount, enabled)
         addMenu(newMenu)
         return newMenu
