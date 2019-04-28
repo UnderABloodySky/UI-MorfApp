@@ -22,4 +22,10 @@ class Menu(val code: Int,
     fun removeProductFromMenu(product: Product): Unit { this.products.remove(product); }
 
     fun totalPrice(): Double  = this.products.sumByDouble { it.price };
+
+    fun containProductWith(code: Int?):Boolean{
+
+       return  products.any{product -> product.code==code  }
+
+    }
 }

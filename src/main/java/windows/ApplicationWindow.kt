@@ -65,8 +65,11 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
 
         var buttonProductRightPanel = Panel(buttonProductPanel);
         Button(buttonProductRightPanel)
-                .setCaption("View Menu")
+                .setCaption("View Product")
                 .onClick {
+                    this.close();
+                    val newProductInMenusWindow = ProductInMenusWindow(this,modelObject)
+                    newProductInMenusWindow.open();
 
                 }
         Button(buttonProductRightPanel)
@@ -111,8 +114,9 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         Button(buttonMenuPanel)
                 .setCaption("View Menu")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
-                    newProductWindow.open();
+
+                    val newMenuWithProductsWindow = MenuWithProductsWindow(this, modelObject.selectedMenu);
+                    newMenuWithProductsWindow.open();
                 }
         Button(buttonMenuPanel)
                 .setCaption("Add Menu")

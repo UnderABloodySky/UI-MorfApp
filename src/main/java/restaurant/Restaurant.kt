@@ -98,4 +98,15 @@ class Restaurant(var code:Int, var name: String, var description: String,
         orders.add(order)
     }
 
+    //ojo ver que si esta vacio tiene que levantar una excepcion
+    fun menusOfProduct(code:Int?):MutableList<Menu> {
+        var menusOfProduct = mutableListOf<Menu>();
+
+        for (menu in menus) {
+            if (menu.value.containProductWith(code)) {
+                menusOfProduct.add(menu.value);
+                }
+        }
+        return menusOfProduct;
+    }
 }

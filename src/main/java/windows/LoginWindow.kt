@@ -6,6 +6,7 @@ import org.uqbar.arena.widgets.*
 import org.uqbar.arena.windows.MainWindow
 import org.uqbar.lacar.ui.model.ControlBuilder
 import org.uqbar.arena.windows.ErrorsPanel
+import org.uqbar.ui.view.ErrorViewer
 
 //ver como implementar la interfaces de errorViewer
 
@@ -29,14 +30,9 @@ class LoginWindow(model: UserModel): MainWindow<UserModel>(model) {
                 .setWidth(250)
                 .bindValueToProperty<String,ControlBuilder>("password")
 
-
-        ErrorsPanel(panel, "Ready. \n Set. \n GO! \n",
-                4 /* optional, preferred number of lines */)
-
         Button(panel)
                 .setCaption("Ingresar")
                 .onClick {
-
                         var loggedUserModel = ApplicationModel(modelObject.autenticate());
                         var applicationWindow = ApplicationWindow(this, loggedUserModel);
                         applicationWindow.open();
