@@ -10,13 +10,18 @@ import productAndMenu.Product
 
 fun main() {
     var products = mutableListOf<Product>();
-    var menus = mutableSetOf<Menu>();
     var morfap = MorfApp;
     var laConga = morfap.createRestaurant("La Conga",
             "Cocina Peruana",
             "Calle Falsa 123",
             Geo(1.5, 1.5),
             mutableListOf(Cash()));
+    var clubMili = morfap.createRestaurant("El club de la milanesa",
+                                        "Mili de plastico",
+                                            "Rigoletto 245",
+                                            Geo(1.7, 1.8),
+                                            mutableListOf(Cash()));
+    morfap.createSupervisor(clubMili, "pepe", "1234");
     morfap.createSupervisor(laConga, "...", "...");
 
     var unaHamburguesaSalvaje : Product = laConga.createProduct("Hamburguesa", "Al vapor", 100.0, Category.NONE)
@@ -39,6 +44,5 @@ fun main() {
     laConga.supervisor.addMenuToRestaurant(menu1);
 
     LoginWindow(UserModel()).startApplication();
-
 
 }

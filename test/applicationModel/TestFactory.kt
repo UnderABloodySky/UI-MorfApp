@@ -40,7 +40,7 @@ class TestFactory{
     private val menus : MutableCollection<Menu> = mutableListOf<Menu>(menu0,menu1,menu2,menu3,menu4,menu5,menu6)
     private var date : Date = Date()
     private  var client: Client = Client(1,"Pepe","Roque saenz peña", date, geoLocation, "1212", applicationModel)
-    private var products : MutableCollection<Product> = mutableListOf(iceCream, pizza)
+    private var products = mutableListOf(iceCream, pizza)
 
     //OrderFactory
     @Test

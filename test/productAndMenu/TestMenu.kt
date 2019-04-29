@@ -20,18 +20,18 @@ class TestMenu {
     @Test
     fun addANewProductToAnEmptyListAndCheckIfSizeIsAsEspected() {
         var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), restaurant);
-        Assert.assertEquals(menu.products.size, 0);
+        Assert.assertEquals(menu.productsOfMenu.size, 0);
         menu.addProductToMenu(this.soda);
-        Assert.assertEquals(menu.products.size, 1);
+        Assert.assertEquals(menu.productsOfMenu.size, 1);
     }
 
     @Test
     fun removeAProductOfAMenuThatHasOnlyOneAndCheckIfSizeIsAsEspected() {
         var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), restaurant);
         menu.addProductToMenu(this.soda);
-        Assert.assertEquals(menu.products.size, 1);
+        Assert.assertEquals(menu.productsOfMenu.size, 1);
         menu.removeProductFromMenu(this.soda);
-        Assert.assertEquals(menu.products.size, 0);
+        Assert.assertEquals(menu.productsOfMenu.size, 0);
     }
 
     @Test
@@ -40,7 +40,7 @@ class TestMenu {
         menu.addProductToMenu(this.soda);
         menu.addProductToMenu(this.soda);
         menu.removeProductFromMenu(this.soda);
-        Assert.assertEquals(menu.products.size, 1);
+        Assert.assertEquals(menu.productsOfMenu.size, 1);
     }
 
     @Test
@@ -54,7 +54,7 @@ class TestMenu {
     @Test
     fun checkThatIfThereIsNoDiscountAppliedToTheMenuItStillReturnsTheTotalValueWhenAskedForCostAutocalculation() {
         var menu = Menu(1, "HotSoda", "Hot soda dog", mutableListOf<Product>(), restaurant);
-        menu.products.add(this.soda);
+        menu.productsOfMenu.add(this.soda);
         Assert.assertEquals(menu.costAutocalculation(), 80.0, 0.0);
     }
 }

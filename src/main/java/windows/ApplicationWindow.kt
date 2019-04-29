@@ -13,6 +13,8 @@ import org.uqbar.lacar.ui.model.ControlBuilder
 
 class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWindow<ApplicationModel>(owner, model){
 
+    val elementSelected = NotNullObservable("selectedProduct");
+
     override fun addActions(p0: Panel?) {}
 
     override fun createFormPanel(panel: Panel) {
@@ -28,7 +30,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .alignCenter();
 
         TextBox(productPanel)
-                .bindValueToProperty<Any, ControlBuilder>("productFilter");
+                .bindValueToProperty<Any, ControlBuilder>("productFilter")
 
         var productTable = Table<ProductModel>(productPanel, ProductModel::class.java);
         productTable.bindItemsToProperty("products")
@@ -60,7 +62,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .onClick {
                     this.close();
                     val newProductWindow = EditProductWindow(this, modelObject.selectedProduct);
-                    newProductWindow.open();
+                    newProductWindow.open()
                 }
 
         var buttonProductRightPanel = Panel(buttonProductPanel);
@@ -70,8 +72,8 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                     this.close();
                     val newProductInMenusWindow = ProductInMenusWindow(this,modelObject)
                     newProductInMenusWindow.open();
-
                 }
+
         Button(buttonProductRightPanel)
                 .setCaption("Delete Product")
                 .onClick {

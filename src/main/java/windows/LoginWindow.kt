@@ -37,7 +37,6 @@ class LoginWindow(model: UserModel): MainWindow<UserModel>(model) {
                         var applicationWindow = ApplicationWindow(this, loggedUserModel);
                         applicationWindow.open();
 
-
                  //   this.close();
 
                 }

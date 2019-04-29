@@ -18,8 +18,10 @@ class DeleteProductDialog: Dialog<ProductModel> {
 
     }
     override fun createFormPanel(mainPanel: Panel) {
-        mainPanel.setWidth(100);
+
         Label(mainPanel).setText(this.modelObject.name + " Deleted.")
+                        .setWidth(150)
+
     }
 
     fun delete(){
