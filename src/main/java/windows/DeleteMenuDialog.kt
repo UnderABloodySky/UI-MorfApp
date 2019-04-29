@@ -1,0 +1,4 @@
+package windows
+
+class DeleteMenuDialog {
+}

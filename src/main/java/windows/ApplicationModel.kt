@@ -14,7 +14,7 @@ class ApplicationModel(restaurantModel: RestaurantModel) {
     var menuFilter: Any? = null;
     var products = restaurantModel.transformToProductModel();
     var menus    = restaurantModel.transformToMenuModel();
-    @Observable var selectedProduct: ProductModel? = null;
+    var selectedProduct: ProductModel? = null;
     var selectedMenu: MenuModel? = null;
     var menusOfSelectedProduct= restaurantModel.menusOfProduct(selectedProduct?.code)
 
