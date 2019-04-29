@@ -1,6 +1,7 @@
 package windows
 
 import org.uqbar.arena.layout.ColumnLayout
+import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.*
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.MainWindow
@@ -23,6 +24,31 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
 
         this.setTextBoxPanel(panel);
         this.setFourColumnPanel(panel);
+
+        var labelsColumnPanel = Panel(panel).setLayout(ColumnLayout(2));
+        Label(labelsColumnPanel)
+                .setText("Available")
+                .setFontSize(20)
+                .alignLeft()
+        Label(labelsColumnPanel)
+                .setText("Selected")
+                .setFontSize(20)
+                .alignRight()
+
+        var listOfProductsColumnPanel = Panel(panel).setLayout(ColumnLayout(3));
+        val allProductsSelector = Selector<ProductModel>(listOfProductsColumnPanel);
+        allProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProduct");
+        allProductsSelector.bindItemsToProperty("availableProducts");
+
+        var addRemoveButtonPanel = Panel(listOfProductsColumnPanel).setLayout(VerticalLayout());
+        Button(addRemoveButtonPanel)
+                .setCaption(">>")
+        Button(addRemoveButtonPanel)
+                .setCaption("<<")
+
+        val filteredProductsSelector = Selector<ProductModel>(listOfProductsColumnPanel);
+        filteredProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProduct");
+        filteredProductsSelector.bindItemsToProperty("productsOfMenu");
 
         Button(panel)
                 .setCaption("Accept")
@@ -64,19 +90,13 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
 
     private fun setFourColumnPanel(panel: Panel) {
 
-        var fourColumnPanel = Panel(panel).setLayout(ColumnLayout(4));
+        var twoColumnPanel = Panel(panel).setLayout(ColumnLayout(2));
 
-        Label(fourColumnPanel)
+        Label(twoColumnPanel)
                 .setText("Disc. Type");
-        val categorySelector = Selector<Category>(fourColumnPanel);
+        val categorySelector = Selector<Category>(twoColumnPanel);
         categorySelector.bindValueToProperty<Category, ControlBuilder>("discount");
         categorySelector.bindItemsToProperty("discounts");
-
-        Label(fourColumnPanel)
-                .setText("Discount")
-        TextBox(fourColumnPanel)
-                .setWidth(150)
-                .bindValueToProperty<Category, ControlBuilder>("discount");
 
     }
 

@@ -12,10 +12,12 @@ class MenuModel(restaurantModel: RestaurantModel) {
     var description = "";
     var productsOfMenu = mutableListOf<ProductModel>();
     var price = 0.0;
-    var discount = NoDiscount();
+    var discount: Discount = NoDiscount();
     var discounts: MutableList<Discount> = mutableListOf(FixedDiscount(100.0), PercentageDiscount(20.0), NoDiscount());
     var enabled: Boolean = true;
+    var selectedProduct: ProductModel? = null;
     var restaurantModel = restaurantModel;
+    var availableProducts = restaurantModel.transformToProductModel();
     var currentTotal:Double= 0.00
 
     fun save() {

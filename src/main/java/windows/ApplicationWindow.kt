@@ -123,22 +123,22 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         Button(buttonMenuPanel)
                 .setCaption("Add Menu")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
-                    newProductWindow.open();
+                    val newMenuWindow = NewMenuWindow(this, MenuModel(modelObject.restaurantModel));
+                    newMenuWindow.open();
                 }
 
         Button(buttonMenuPanel)
                 .setCaption("Edit Menu")
                 .onClick {
-                    print(modelObject.selectedMenu?.name)
+                    this.close();
                     val newMenuWindow = EditMenuWindow(this, MenuModel(modelObject.restaurantModel));
                     newMenuWindow.open();
                 }
         Button(buttonMenuPanel)
                 .setCaption("Delete Menu")
                 .onClick {
-                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
-                    newProductWindow.open();
+                    val newMenuWindow = DeleteMenuDialog(this, MenuModel(modelObject.restaurantModel));
+                    newMenuWindow.open();
                 }
     }
 }
