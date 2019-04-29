@@ -10,10 +10,11 @@ import restaurant.Restaurant
 import productAndMenu.*
 import searcher.Criteria
 import searcher.Searcher
+import searcher.Searchable
+
 import java.util.*
 
 object MorfApp {
-
     var restaurants: MutableMap<Int,Restaurant> = mutableMapOf();
     var registeredUsers: MutableMap<String,User> = mutableMapOf();
     var paymentMethods: MutableCollection<PaymentMethod> = mutableListOf(Cash(),
@@ -24,7 +25,7 @@ object MorfApp {
     private var orderFactory : OrderFactory = OrderFactory();
     var clientFactory : ClientFactory = ClientFactory();
     private var restaurantFactory : RestaurantFactory  = RestaurantFactory();
-    private var searcher : Searcher<Restaurant> = Searcher();
+    private var searcher : Searcher = Searcher();
     var distance: Double = 20.00;
 
     //var supervisor: Supervisor = aplicationModel.clientFactory.createSupervisor(this, "Root" + name.replace(" ", "") + code.toString(), "123456", aplicationModel)
@@ -56,7 +57,7 @@ object MorfApp {
                              availablePaymentMethods: MutableList<PaymentMethod>) : Restaurant{
 
         var newRestaurant: Restaurant = restaurantFactory.createRestaurant(name,
-                                                                           description,
+                                                                         description,
                                                                            direction,
                                                                            geoLocation,
                                                                            availablePaymentMethods)
@@ -68,10 +69,12 @@ object MorfApp {
         return orderFactory.createOrder(client , restaurant , paymentMethod , menus);
     }
 
-    fun findRestaurant(criteria: Criteria<Restaurant>): MutableList<Restaurant?> {
+    fun findRestaurant(criteria: Criteria): MutableCollection<Searchable?>{
+
+            var searchableRestaurant = restaurants as MutableMap<Int, Searchable>
 
             return this.searcher
-                       .searchBy(criteria, this.restaurants);
+                       .searchBy(criteria, searchableRestaurant);
     }
 
     fun findUser(name:String):User? {
@@ -84,6 +87,4 @@ object MorfApp {
         }
         return actualUser
     }
-
-    //TODO PREGUNTAR BUSQUEDA MIXTA DE DOS TIPOS DISTINTOS.
-}
+ }

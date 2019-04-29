@@ -16,7 +16,7 @@ class Restaurant(var code:Int, var name: String, var description: String,
     var menus: MutableMap<Int, Menu> = mutableMapOf()
     lateinit var supervisor : Supervisor
     var orders : MutableCollection<Order> = mutableListOf()
-    var searcher: Searcher<Menu> = Searcher()
+    var searcher: Searcher = Searcher()
     private var productFactory : ProductFactory = ProductFactory()
     private var menuFactory : MenuFactory = MenuFactory()
 
@@ -82,17 +82,18 @@ class Restaurant(var code:Int, var name: String, var description: String,
     fun menusAvailable() : Map<Int, Menu>{
        return menus.filter {m -> m.value.enabled}
     }
+	
 
-    fun findMenuesPair(criteria: CriteriaByString<Menu>): MutableList<Pair<Menu?, Restaurant>>{
+    //fun findMenuesPair(criteria: CriteriaByString): MutableList<Pair<Menu?, Restaurant>>{
         var pairList = mutableListOf<Pair<Menu?, Restaurant>>();
-        criteria.search(this.menus)
-                .forEach { pairList.add(Pair(it, this)) };
-        return pairList;
-    }
+        //criteria.search(this.menus)
+        //        .forEach { pairList.add(Pair(it, this)) };
+        //return pairList;
+    //}
 
-    fun findMenu(criteria : Criteria<Menu>) : MutableList<Menu?>{
-        return criteria.search(this.menus);
-    }
+    //fun findMenu(criteria : Criteria) : MutableList<Menu?>{
+        //return criteria.search(this.menus);
+    //}
 
     fun addOrder(order: Order) : Unit {
         orders.add(order)
@@ -101,10 +102,10 @@ class Restaurant(var code:Int, var name: String, var description: String,
     //ojo ver que si esta vacio tiene que levantar una excepcion
     fun menusOfProduct(code:Int?):MutableList<Menu> {
         var menusOfProduct = mutableListOf<Menu>();
-        menus.forEach { menu->
-                            if (menu.value.containProductWith(code))
-                                menusOfProduct.add(menu.value);
-                    }
+        //menus.forEach { menu->
+        //                    if (menu.value.containProductWith(code))
+        //                        menusOfProduct.add(menu.value);
+        //            }
         return menusOfProduct;
     }
 }
