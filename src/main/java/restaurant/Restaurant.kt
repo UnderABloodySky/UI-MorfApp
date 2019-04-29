@@ -42,11 +42,33 @@ class Restaurant(var code:Int, var name: String, var description: String,
     fun deleteProduct(code: Int){
         this.products.remove(code);
     }
+    fun editMenu(code: Int,
+                 name: String,
+                 description: String,
+                 productList: MutableList<Product>,
+                 discount: Discount,
+                 enabled: Boolean){
 
-    fun createMenu(name : String, description : String, products : MutableList<Product>, restaurant : Restaurant, discount : Discount, enabled : Boolean) : Menu{
-        var newMenu : Menu = menuFactory.createMenu(name, description, products, restaurant, discount, enabled)
-        addMenu(newMenu)
-        return newMenu
+        this.menus.getValue(code).name = name;
+        this.menus.getValue(code).description = description;
+        this.menus.getValue(code).productsOfMenu = productList;
+        this.menus.getValue(code).discount = discount;
+        this.menus.getValue(code).enabled = enabled;
+    }
+    fun deleteMenu(code: Int){
+        this.menus.remove(code);
+    }
+
+    fun createMenu(name: String,
+                   description: String,
+                   products: MutableList<Product>,
+                   restaurant: Restaurant,
+                   discount: Discount,
+                   enabled: Boolean): Menu{
+
+        var newMenu: Menu = menuFactory.createMenu(name, description, products, restaurant, discount, enabled)
+        addMenu(newMenu);
+        return newMenu;
     }
 
     fun addProductToStock(newProduct:Product){

@@ -130,6 +130,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         Button(buttonMenuPanel)
                 .setCaption("Edit Menu")
                 .onClick {
+                    print(modelObject.selectedMenu?.name)
                     val newMenuWindow = EditMenuWindow(this, MenuModel(modelObject.restaurantModel));
                     newMenuWindow.open();
                 }
