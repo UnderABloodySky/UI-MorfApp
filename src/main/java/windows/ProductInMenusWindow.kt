@@ -3,6 +3,7 @@ package windows
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
@@ -19,19 +20,19 @@ class ProductInMenusWindow( owner: WindowOwner, model: ApplicationModel) : Simpl
 
         title = "Menus Of Product"
         Label(panel)
-                .setText("Menus That Contain the product")
+                .setText("Product contained in:")
                 .setFontSize(20)
                 .alignCenter();
+
         panel.setLayout(VerticalLayout())
+                .setWidth(2000)
 
-        val table = Table<MenuModel>(panel, MenuModel::class.java)
-        table.bindValueToProperty<ApplicationModel, ControlBuilder>("selectedProduct")
-        table.bindItemsToProperty("menusOfSelectedProduct")
+        var listOfMenusWithTheProduct = List<MenuModel>(panel)
+        listOfMenusWithTheProduct.bindItemsToProperty("menusOfSelectedProduct")
+                                 .adaptWith(MenuModel::class.java,"name")
 
-        Column<MenuModel>(table)
-                .setTitle("Menus")
-                .setFixedSize(250)
-                .bindContentsToProperty("name");
+
+
         Button(panel)
                 .setCaption("Accept")
                 .onClick {

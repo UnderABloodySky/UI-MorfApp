@@ -14,18 +14,19 @@ class RestaurantModel() {
     lateinit var name: String;
     var products: MutableMap<Int, Product> = mutableMapOf();
     var menus: MutableMap<Int, Menu> = mutableMapOf();
-    var menusOfProduct: MutableList<Menu>? = null;
+    var menusOfProduct: MutableList<MenuModel>? = null;
 
     //busca por codigo de producto
-    fun menusOfProduct(code: Int?):MutableList<Menu>?{
-        menusOfProduct = restaurant?.menusOfProduct(code)
-
-        return menusOfProduct
+    fun menusOfProduct(code: Int?):MutableList<MenuModel>?{
+        var  menuModelList = mutableListOf<MenuModel>();
+        var menuList:MutableList<Menu>?= restaurant?.menusOfProduct(code);
+        this.transformListOfMenusToMenuModels(menuList);
+        return menuModelList;
 
     }
     fun transformToProductModel(): MutableList<ProductModel>{
         var products = mutableListOf<Product>()
-        this.restaurant?.products?.forEach { product-> products.add(product.value) }
+        this.restaurant?.products?.forEach { product-> products.add(product.value)}
         return this.transformListOfProductsToModel(products)
 
     }
@@ -48,18 +49,27 @@ class RestaurantModel() {
     }
 
 
-    fun transformToMenuModel(): MutableList<MenuModel>{
-        var menusModel = mutableListOf<MenuModel>()
+    fun transformListOfMenusToMenuModels(menuList: MutableList<Menu>?):MutableList<MenuModel>?{
+        var menusModel = mutableListOf<MenuModel>();
+        if (!menuList.isNullOrEmpty()) {
+            menuList.forEach { menu ->
+                var tempMenu = MenuModel(this)
+                tempMenu.code = menu.code;
+                tempMenu.name = menu.name;
+                tempMenu.description = menu.description;
+                tempMenu.productsOfMenu = this.transformListOfProductsToModel(menu.productsOfMenu);
+                tempMenu.currentTotal = menu.currenTotal()
+                menusModel.add(tempMenu)
+            }
+        }
+            return menusModel
 
-        this.restaurant?.menus?.values?.forEach { menu ->
-                                                                var tempMenu = MenuModel(this)
-                                                                tempMenu.code = menu.code;
-                                                                tempMenu.name = menu.name;
-                                                                tempMenu.description = menu.description;
-                                                                tempMenu.productsOfMenu = this.transformListOfProductsToModel(menu.productsOfMenu);
-                                                                tempMenu.currentTotal = menu.currenTotal()
-                                                                menusModel.add(tempMenu) }
+     }
 
-        return menusModel
+
+    fun transformToMenuModel(): MutableList<MenuModel>?{
+        var menusInRestaurant1 = mutableListOf<Menu>()
+        this.restaurant?.menus?.forEach { menu-> menusInRestaurant1.add(menu.value) }
+        return  this.transformListOfMenusToMenuModels(menusInRestaurant1)
     }
 }

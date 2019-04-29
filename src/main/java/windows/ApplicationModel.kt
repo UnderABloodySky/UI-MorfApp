@@ -17,7 +17,7 @@ class ApplicationModel(restaurantModel: RestaurantModel) {
     var selectedProduct: ProductModel? = null;
     var selectedMenu: MenuModel? = null;
     var menusOfSelectedProduct= restaurantModel.menusOfProduct(selectedProduct?.code)
-    var productsInMenu = selectedMenu?.productsOfMenu
+
 
 
 
