@@ -7,7 +7,7 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 
 class DeleteMenuDialog: Dialog<MenuModel> {
-    constructor(owner: WindowOwner, model: ProductModel?) : super(owner, model)
+    constructor(owner: WindowOwner, model: MenuModel?) : super(owner, model)
     override fun addActions(actions: Panel) {
         Button(actions)
                 .setCaption("Accept")

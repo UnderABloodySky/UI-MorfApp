@@ -1,5 +1,6 @@
 package windows
 
+import applicationModel.MorfApp
 import org.uqbar.commons.model.annotations.Observable
 import productAndMenu.Menu
 import productAndMenu.Product
@@ -48,7 +49,6 @@ class RestaurantModel() {
 
     }
 
-
     fun transformListOfMenusToMenuModels(menuList: MutableList<Menu>?):MutableList<MenuModel>?{
         var menusModel = mutableListOf<MenuModel>();
         if (!menuList.isNullOrEmpty()) {
@@ -65,11 +65,16 @@ class RestaurantModel() {
             return menusModel
 
      }
-
-
     fun transformToMenuModel(): MutableList<MenuModel>?{
         var menusInRestaurant1 = mutableListOf<Menu>()
         this.restaurant?.menus?.forEach { menu-> menusInRestaurant1.add(menu.value) }
         return  this.transformListOfMenusToMenuModels(menusInRestaurant1)
+    }
+
+    fun transformListOfProductModelToProduct(productModelList: MutableList<ProductModel>): MutableList<Product>{
+        var tempProductList = mutableListOf<Product>();
+        productModelList.forEach { tempProductList.add( this.restaurant?.products!!.getValue(it.code)) }
+
+        return tempProductList;
     }
 }

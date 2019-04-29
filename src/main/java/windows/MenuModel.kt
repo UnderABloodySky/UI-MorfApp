@@ -21,18 +21,18 @@ class MenuModel(restaurantModel: RestaurantModel) {
     fun save() {
         this.restaurantModel.restaurant?.createMenu(this.name,
                                                     this.description,
-                                                    mutableListOf<>(),
+                                                    this.restaurantModel
+                                                            .transformListOfProductModelToProduct(this.productsOfMenu),
                                                     this.restaurantModel.restaurant as Restaurant,
                                                     this.discount,
                                                     this.enabled);
     }
 
     fun edit() {
-        this.productsOfMenu
         this.restaurantModel.restaurant?.editMenu(this.code,
                 this.name,
                 this.description,
-                this.restaurantModel.,
+                this.restaurantModel.transformListOfProductModelToProduct(this.productsOfMenu),
                 this.discount,
                 this.enabled);
     }
