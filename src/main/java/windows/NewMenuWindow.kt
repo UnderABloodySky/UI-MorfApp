@@ -35,6 +35,9 @@ class NewMenuWindow(owner: WindowOwner, model: MenuModel) : SimpleWindow<MenuMod
 
         var listOfProductsColumnPanel = Panel(panel).setLayout(ColumnLayout(3));
         val allProductsSelector = Selector<ProductModel>(listOfProductsColumnPanel);
+
+        allProductsSelector.bindItemsToProperty("availableProducts")
+                .adaptWith(ProductModel::class.java,"nameAndPrice")
         allProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProduct");
         allProductsSelector.bindItemsToProperty("availableProducts");
 

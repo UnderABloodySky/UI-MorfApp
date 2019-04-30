@@ -27,7 +27,7 @@ class DeleteMenuDialog: Dialog<MenuModel> {
     }
     override fun createFormPanel(mainPanel: Panel) {
 
-        Label(mainPanel).setText(this.modelObject.name + " Deleted.")
+        Label(mainPanel).setText("Menu " + this.modelObject.name + " deleted.")
                 .setWidth(150)
 
     }
