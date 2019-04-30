@@ -1,5 +1,6 @@
 package windows
 
+import discount.Discount
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.*
@@ -36,8 +37,10 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
                 .alignRight()
 
         var listOfProductsColumnPanel = Panel(panel).setLayout(ColumnLayout(3));
-        val allProductsSelector = Selector<ProductModel>(listOfProductsColumnPanel);
-        allProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProduct");
+        val allProductsSelector = List<ProductModel>(listOfProductsColumnPanel);
+        allProductsSelector.bindItemsToProperty("availableProducts")
+                .adaptWith(ProductModel::class.java,"nameAndPrice")
+        allProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProduct")
         allProductsSelector.bindItemsToProperty("availableProducts");
 
         var addRemoveButtonPanel = Panel(listOfProductsColumnPanel).setLayout(VerticalLayout());
@@ -46,9 +49,11 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
         Button(addRemoveButtonPanel)
                 .setCaption("<<")
 
-        val filteredProductsSelector = Selector<ProductModel>(listOfProductsColumnPanel);
+        val filteredProductsSelector = List<ProductModel>(listOfProductsColumnPanel);
+        filteredProductsSelector.bindItemsToProperty("productsOfMenu")
+                .adaptWith(ProductModel::class.java,"nameAndPrice")
         filteredProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProduct");
-        filteredProductsSelector.bindItemsToProperty("productsOfMenu");
+        filteredProductsSelector.bindItemsToProperty("productsOfMenu")
 
         Button(panel)
                 .setCaption("Accept")
@@ -89,8 +94,8 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
 
         Label(twoColumnPanel)
                 .setText("Disc. Type");
-        val categorySelector = Selector<Category>(twoColumnPanel);
-        categorySelector.bindValueToProperty<Category, ControlBuilder>("discount");
+        val categorySelector = Selector<Discount>(twoColumnPanel);
+        categorySelector.bindValueToProperty<Discount, ControlBuilder>("discount")
         categorySelector.bindItemsToProperty("discounts");
 
     }
