@@ -8,28 +8,27 @@ import org.uqbar.arena.windows.WindowOwner
 
 class DeleteMenuDialog: Dialog<MenuModel> {
     constructor(owner: WindowOwner, model: MenuModel?) : super(owner, model)
-    override fun addActions(actions: Panel) {
-        Button(actions)
+    override fun addActions(actions: Panel) {}
+
+    override fun createFormPanel(mainPanel: Panel) {
+
+        Label(mainPanel).setText("Menu " + this.modelObject.name + " deleted.")
+                .setFontSize(20)
+                .setWidth(400)
+
+        Button(mainPanel)
                 .setCaption("Accept")
                 .onClick {  this.close();
                     this.delete();
                     var applicationModel = ApplicationModel(modelObject.restaurantModel);
                     ApplicationWindow(this, applicationModel).open()};
 
-        Button(actions)
+        Button(mainPanel)
                 .setCaption(" Cancel ")
                 .onClick {  this.close();
                     this.delete();
                     var applicationModel = ApplicationModel(modelObject.restaurantModel);
                     ApplicationWindow(this, applicationModel).open()};
-
-
-    }
-    override fun createFormPanel(mainPanel: Panel) {
-
-        Label(mainPanel).setText("Menu " + this.modelObject.name + " deleted.")
-                .setWidth(150)
-
     }
 
     fun delete(){

@@ -9,8 +9,6 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.lacar.ui.model.ControlBuilder
-
-
 class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWindow<ApplicationModel>(owner, model){
 
     val elementSelected = NotNullObservable("selectedProduct");
@@ -138,8 +136,10 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .setCaption("Delete Menu")
                 .onClick {
                     this.close();
-                    val newMenuWindow = DeleteMenuDialog(this, MenuModel(modelObject.restaurantModel));
+                    val newMenuWindow = DeleteMenuDialog(this, modelObject.selectedMenu);
                     newMenuWindow.open();
                 }
     }
 }
+
+
