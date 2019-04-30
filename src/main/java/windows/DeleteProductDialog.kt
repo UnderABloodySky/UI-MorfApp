@@ -16,10 +16,17 @@ class DeleteProductDialog: Dialog<ProductModel> {
                             var applicationModel = ApplicationModel(modelObject.restaurantModel);
                             ApplicationWindow(this, applicationModel).open()};
 
+        Button(actions)
+                .setCaption(" Cancel ")
+                .onClick {  this.close()
+                    var applicationModel = ApplicationModel(modelObject.restaurantModel)
+                    ApplicationWindow(this, applicationModel).open()}
+
     }
+
     override fun createFormPanel(mainPanel: Panel) {
 
-        Label(mainPanel).setText("Menu $this.modelObject.name Deleted.")
+        Label(mainPanel).setText("Product: " + modelObject.name +"Deleted.")
                         .setWidth(150)
 
     }

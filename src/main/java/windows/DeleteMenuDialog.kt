@@ -16,6 +16,14 @@ class DeleteMenuDialog: Dialog<MenuModel> {
                     var applicationModel = ApplicationModel(modelObject.restaurantModel);
                     ApplicationWindow(this, applicationModel).open()};
 
+        Button(actions)
+                .setCaption(" Cancel ")
+                .onClick {  this.close();
+                    this.delete();
+                    var applicationModel = ApplicationModel(modelObject.restaurantModel);
+                    ApplicationWindow(this, applicationModel).open()};
+
+
     }
     override fun createFormPanel(mainPanel: Panel) {
 
