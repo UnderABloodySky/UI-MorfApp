@@ -7,11 +7,11 @@ import restaurant.Restaurant
 @Observable
 class MenuModel(restaurantModel: RestaurantModel) {
 
-    var code = 0;
-    var name = "";
-    var description = "";
-    var productsOfMenu = mutableListOf<ProductModel>();
-    var price = 0.0;
+    var code: Int = 0;
+    var name: String = "";
+    var description: String = "";
+    var productsOfMenu: MutableList<ProductModel> = mutableListOf<ProductModel>();
+    var price: Double = 0.0;
     var discount: Discount = NoDiscount();
     var discounts: MutableList<Discount> = mutableListOf(FixedDiscount(100.0), PercentageDiscount(20.0), NoDiscount());
     var enabled: Boolean = true;

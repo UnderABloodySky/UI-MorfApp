@@ -131,12 +131,13 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .setCaption("Edit Menu")
                 .onClick {
                     this.close();
-                    val newMenuWindow = EditMenuWindow(this, MenuModel(modelObject.restaurantModel));
+                    val newMenuWindow = EditMenuWindow(this, modelObject.selectedMenu);
                     newMenuWindow.open();
                 }
         Button(buttonMenuPanel)
                 .setCaption("Delete Menu")
                 .onClick {
+                    this.close();
                     val newMenuWindow = DeleteMenuDialog(this, MenuModel(modelObject.restaurantModel));
                     newMenuWindow.open();
                 }
