@@ -1,9 +1,11 @@
 package productAndMenu
 
-class Product(val code: Int,
-              var name: String,
-              var description: String,
+import searcher.Searchable
+
+class Product(code: Int,
+              name: String,
+              description: String,
               var price: Double,
-              var category: Category) {
+              var category: Category) : Searchable(code, name, description){
 
 }

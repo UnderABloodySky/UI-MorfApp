@@ -18,9 +18,10 @@ class TestSearcher {
 
     private var applicationModel: MorfApp = MorfApp
     private var geoLocation: Geo = Geo(2.0, 1.0)
-    private var cash : PaymentMethod = Cash()
+
+    private var cash : PaymentMethod  = Cash()
     private var debit : PaymentMethod = Debit()
-    private var paymentMethods = mutableListOf<PaymentMethod>(cash, debit)
+    private var paymentMethods : MutableCollection<PaymentMethod> = mutableListOf(cash, debit)
     private var restaurant0: Restaurant = Restaurant(0, "El Tano", "LLenadero magico de tripas", "Por Quilmes Oeste", geoLocation, paymentMethods)
     private var restaurant1: Restaurant = Restaurant(1, "Guerrin", "The best pizza of Bs. As.", "Corrientes 4321", geoLocation, paymentMethods)
     private var restaurant2: Restaurant = Restaurant(2, "Los Maizales", "inserte descripcion", "Calle Falsa 1234", geoLocation, paymentMethods)
@@ -40,9 +41,9 @@ class TestSearcher {
     private var mapMenus: MutableMap<Int, Searchable> = mutableMapOf()
     private var mapProducts: MutableMap<Int, Searchable> = mutableMapOf()
 
-    private var restaurants : MutableCollection<Restaurant> = mutableListOf(restaurant0, restaurant1, restaurant2, restaurant3)
-    private var menus : MutableCollection<Menu> = mutableListOf(menu0, menu1, menu2, menu3)
-    private var products : MutableCollection<Product> = mutableListOf(product0, product1, product2, product3)
+    private var restaurants : MutableCollection<Searchable> = mutableListOf(restaurant0, restaurant1, restaurant2, restaurant3)
+    private var menus : MutableCollection<Searchable> = mutableListOf(menu0, menu1, menu2, menu3)
+    private var products : MutableCollection<Searchable> = mutableListOf(product0, product1, product2, product3)
 
     private fun addElements(map : MutableMap<Int, Searchable>, list : MutableCollection<Searchable>) : Unit {
         list.forEach { element -> map.put(element.code, element) }

@@ -3,14 +3,15 @@ package productAndMenu
 import discount.Discount
 import discount.NoDiscount
 import restaurant.Restaurant
+import searcher.Searchable
 
-class Menu(val code: Int,
-           var name: String,
-           var description: String,
+class Menu(code: Int,
+           name: String,
+           description: String,
            var productsOfMenu: MutableList<Product>,
            var restaurant : Restaurant,
            var discount: Discount = NoDiscount(),
-           var enabled: Boolean = true) {
+           var enabled: Boolean = true) : Searchable(code, name, description){
 
 
     fun addProductToMenu(product: Product): Unit { this.productsOfMenu.add(product); }
