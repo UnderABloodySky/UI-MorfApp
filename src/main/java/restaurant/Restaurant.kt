@@ -122,7 +122,12 @@ class Restaurant(code : Int, name : String, description : String,
     }
 
     fun findMenu(criteria : Criteria) : MutableCollection<Menu?>{
-        return criteria.search(asSearchable()) as MutableCollection<Menu?>
+        var result = this.menus as MutableMap<Int, Searchable>
+        return criteria.search(result) as MutableCollection<Menu?>
+    }
+    fun findProduct(criteria : Criteria) : MutableCollection<Product?>{
+        var result = this.products as MutableMap<Int, Searchable>
+        return criteria.search(result) as MutableCollection<Product?>
     }
 
     fun addOrder(order: Order) : Unit {

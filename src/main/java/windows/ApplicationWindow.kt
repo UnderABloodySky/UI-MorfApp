@@ -30,8 +30,13 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .setFontSize(25)
                 .alignCenter();
 
-        TextBox(productPanel)
+        val searchProductPanel = Panel(productPanel)
+        searchProductPanel.setLayout(HorizontalLayout());
+        TextBox(searchProductPanel)
                 .bindValueToProperty<Any, ControlBuilder>("productFilter")
+        Button(searchProductPanel)
+                .setCaption("Search")
+                .onClick { modelObject.updateProductList(); }
 
         var productTable = Table<ProductModel>(productPanel, ProductModel::class.java);
         productTable.bindItemsToProperty("products")
@@ -93,8 +98,13 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .setFontSize(25)
                 .alignCenter();
 
-        TextBox(menuPanel)
-                .bindValueToProperty<Any, ControlBuilder>("menuFilter");
+        val searchMenuPanel = Panel(menuPanel)
+        searchMenuPanel.setLayout(HorizontalLayout());
+        TextBox(searchMenuPanel)
+                .bindValueToProperty<Any, ControlBuilder>("menuFilter")
+        Button(searchMenuPanel)
+                .setCaption("Search")
+                .onClick { modelObject.updateMenuList(); }
 
         var menuTable = Table<MenuModel>(menuPanel, MenuModel::class.java);
         menuTable.bindItemsToProperty("menus")
