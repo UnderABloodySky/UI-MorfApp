@@ -2,7 +2,7 @@ package restaurant
 import applicationModel.MenuFactory
 import applicationModel.ProductFactory
 import discount.Discount
-import exception.AnyMenuContainsThisProductException
+//import exception.AnyMenuContainsThisProductException
 import geoclaseui.Geo
 import order.Order
 import org.uqbar.commons.model.Search
