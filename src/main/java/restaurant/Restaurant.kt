@@ -2,15 +2,17 @@ package restaurant
 import applicationModel.MenuFactory
 import applicationModel.ProductFactory
 import discount.Discount
+import exception.AnyMenuContainsThisProductException
 import geoclaseui.Geo
 import order.Order
+import org.uqbar.commons.model.Search
 import user.*
 import paymentMethod.*
 import productAndMenu.*
 import searcher.*
 
-class Restaurant(var code:Int, var name: String, var description: String,
-                 var direcction:String, var geoLocation:Geo, var availablePaymentMethods : MutableCollection<PaymentMethod>) {
+class Restaurant(code : Int, name : String, description : String,
+                 var direcction : String, var geoLocation : Geo, var availablePaymentMethods : MutableCollection<PaymentMethod>) : Searchable(code, name, description){
 
     var products: MutableMap<Int, Product> = mutableMapOf()
     var menus: MutableMap<Int, Menu> = mutableMapOf()
@@ -33,15 +35,18 @@ class Restaurant(var code:Int, var name: String, var description: String,
         addProductToStock(newProduct)
         return newProduct
     }
+
     fun editProduct(code: Int, name : String, description : String, price : Double, category : Category) {
         this.products.getValue(code).name = name;
         this.products.getValue(code).description = description;
         this.products.getValue(code).price = price;
         this.products.getValue(code).category = category;
     }
+
     fun deleteProduct(code: Int){
         this.products.remove(code);
     }
+
     fun editMenu(code: Int,
                  name: String,
                  description: String,
@@ -55,6 +60,7 @@ class Restaurant(var code:Int, var name: String, var description: String,
         this.menus.getValue(code).discount = discount;
         this.menus.getValue(code).enabled = enabled;
     }
+
     fun deleteMenu(code: Int){
         this.menus.remove(code);
     }
@@ -102,20 +108,22 @@ class Restaurant(var code:Int, var name: String, var description: String,
     }
 
     fun menusAvailable() : Map<Int, Menu>{
-       return menus.filter {m -> m.value.enabled}
+       return menus.filter {m -> m.value.enabled} as Map<Int, Menu>
     }
+
+    private fun asSearchable() : MutableMap<Int, Searchable> = this.menus as MutableMap<Int, Searchable>
 	
 
-    //fun findMenuesPair(criteria: CriteriaByString): MutableList<Pair<Menu?, Restaurant>>{
-        var pairList = mutableListOf<Pair<Menu?, Restaurant>>();
-        //criteria.search(this.menus)
-        //        .forEach { pairList.add(Pair(it, this)) };
-        //return pairList;
-    //}
+    fun findMenuesPair(criteria: CriteriaByString): Pair<MutableCollection<Menu?>, Restaurant>{
+        var pairList = mutableListOf<Menu?>();
+        criteria.search(asSearchable())
+                .forEach { pairList.add(it as Menu) };
+        return Pair(pairList, this)
+    }
 
-    //fun findMenu(criteria : Criteria) : MutableList<Menu?>{
-        //return criteria.search(this.menus);
-    //}
+    fun findMenu(criteria : Criteria) : MutableCollection<Menu?>{
+        return criteria.search(asSearchable()) as MutableCollection<Menu?>
+    }
 
     fun addOrder(order: Order) : Unit {
         orders.add(order)
@@ -124,10 +132,16 @@ class Restaurant(var code:Int, var name: String, var description: String,
     //ojo ver que si esta vacio tiene que levantar una excepcion
     fun menusOfProduct(code:Int?):MutableList<Menu> {
         var menusOfProduct = mutableListOf<Menu>();
-        //menus.forEach { menu->
-        //                    if (menu.value.containProductWith(code))
-        //                        menusOfProduct.add(menu.value);
-        //            }
+        menus.forEach { menu->
+                            if (menu.value.containProductWith(code))
+                                menusOfProduct.add(menu.value);
+                    }
+        //
+        //Agrege esta excepcion y rompe el login. Tira la exepcion desde el minuto 1
+        //
+        //if(menusOfProduct.isEmpty()){
+        //    throw AnyMenuContainsThisProductException("No menu contains this product")
+        //}
         return menusOfProduct;
     }
 }
