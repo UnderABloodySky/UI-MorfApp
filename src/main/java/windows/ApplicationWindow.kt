@@ -9,9 +9,12 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.lacar.ui.model.ControlBuilder
+import org.uqbar.lacar.ui.model.bindings.Observable
+
 class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWindow<ApplicationModel>(owner, model){
 
-    val elementSelected = NotNullObservable("selectedProduct");
+    val elementProduct: Observable<Any> = NotNullObservable("selectedProduct");
+    val elementMenu: Observable<Any> = NotNullObservable("selectedMenu");
 
     override fun addActions(p0: Panel?) {}
 
@@ -55,7 +58,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                     val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
                     newProductWindow.open();
                 }
-        Button(buttonProductLeftPanel)
+        var editButton = Button(buttonProductLeftPanel)
                 .setCaption("Edit Product")
                 .onClick {
                     this.close();
@@ -64,21 +67,24 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 }
 
         var buttonProductRightPanel = Panel(buttonProductPanel);
-        Button(buttonProductRightPanel)
+        var viewButton = Button(buttonProductRightPanel)
                 .setCaption("View Product")
                 .onClick {
                     this.close();
-                    val newProductInMenusWindow = ProductInMenusWindow(this,modelObject)
+                    val newProductInMenusWindow = ProductInMenusWindow(this, ProductInMenusModel(modelObject))
                     newProductInMenusWindow.open();
                 }
 
-        Button(buttonProductRightPanel)
+        var deleteButton = Button(buttonProductRightPanel)
                 .setCaption("Delete Product")
                 .onClick {
                     this.close()
                     val deleteProductDialog = DeleteProductDialog(this, modelObject.selectedProduct);
                     deleteProductDialog.open();
                 }
+        editButton.bindEnabled<Any, ControlBuilder>(elementProduct);
+        viewButton.bindEnabled<Any, ControlBuilder>(elementProduct);
+        deleteButton.bindEnabled<Any, ControlBuilder>(elementProduct);
 
         val menuPanel = Panel(panel);
 
@@ -112,33 +118,38 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         buttonMenuPanel.setLayout(HorizontalLayout());
 
         Button(buttonMenuPanel)
-                .setCaption("View Menu")
-                .onClick {
-                    val newMenuWithProductsWindow = MenuWithProductsWindow(this, modelObject.selectedMenu);
-                    newMenuWithProductsWindow.open();
-                }
-
-        Button(buttonMenuPanel)
                 .setCaption("Add Menu")
                 .onClick {
                     val newMenuWindow = NewMenuWindow(this, MenuModel(modelObject.restaurantModel));
                     newMenuWindow.open();
                 }
 
-        Button(buttonMenuPanel)
+        var viewMenuButton = Button(buttonMenuPanel)
+                .setCaption("View Menu")
+                .onClick {
+                    this.close();
+                    val newMenuWithProductsWindow = MenuWithProductsWindow(this, modelObject.selectedMenu);
+                    newMenuWithProductsWindow.open();
+                }
+
+        var editMenuButton = Button(buttonMenuPanel)
                 .setCaption("Edit Menu")
                 .onClick {
                     this.close();
                     val newMenuWindow = EditMenuWindow(this, modelObject.selectedMenu);
                     newMenuWindow.open();
                 }
-        Button(buttonMenuPanel)
+        var deleteMenuButton = Button(buttonMenuPanel)
                 .setCaption("Delete Menu")
                 .onClick {
                     this.close();
                     val newMenuWindow = DeleteMenuDialog(this, modelObject.selectedMenu);
                     newMenuWindow.open();
                 }
+        editMenuButton.bindEnabled<Any, ControlBuilder>(elementMenu);
+        viewMenuButton.bindEnabled<Any, ControlBuilder>(elementMenu);
+        deleteMenuButton.bindEnabled<Any, ControlBuilder>(elementMenu);
+
     }
 }
 

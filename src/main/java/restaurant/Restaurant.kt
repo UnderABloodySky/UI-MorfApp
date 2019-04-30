@@ -135,8 +135,8 @@ class Restaurant(code : Int, name : String, description : String,
                             if (menu.value.containProductWith(code))
                                 menusOfProduct.add(menu.value);
                     }
-
         return menusOfProduct;
+
     }
     fun removeProductsFromMenus(code: Int){
         this.menus.forEach{

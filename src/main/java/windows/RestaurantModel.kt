@@ -17,12 +17,13 @@ class RestaurantModel() {
     var menus: MutableMap<Int, Menu> = mutableMapOf();
     var menusOfProduct: MutableList<MenuModel>? = null;
 
+
     //busca por codigo de producto
     fun menusOfProduct(code: Int?):MutableList<MenuModel>?{
-        var  menuModelList = mutableListOf<MenuModel>();
+        //var  menuModelList = mutableListOf<MenuModel>();
         var menuList:MutableList<Menu>?= restaurant?.menusOfProduct(code);
-        this.transformListOfMenusToMenuModels(menuList);
-        return menuModelList;
+        return transformListOfMenusToMenuModels(menuList);
+
 
     }
     fun transformToProductModel(): MutableList<ProductModel>{

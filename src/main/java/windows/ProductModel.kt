@@ -19,10 +19,12 @@ class ProductModel(restaurantModel: RestaurantModel) {
     }
 
     fun edit() {
+        this.restaurantModel.restaurant?.removeProductsFromMenus(this.code)
         this.restaurantModel.restaurant?.editProduct(this.code, this.name, this.description, this.price, this.category);
     }
 
     fun delete() {
+        this.restaurantModel.restaurant?.removeProductsFromMenus(this.code)
         this.restaurantModel.restaurant?.deleteProduct(this.code);
     }
 

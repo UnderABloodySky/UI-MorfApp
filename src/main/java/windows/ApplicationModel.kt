@@ -16,9 +16,4 @@ class ApplicationModel(restaurantModel: RestaurantModel) {
     var menus    = restaurantModel.transformToMenuModel();
     var selectedProduct: ProductModel? = null;
     var selectedMenu: MenuModel? = null;
-    var menusOfSelectedProduct= restaurantModel.menusOfProduct(selectedProduct?.code)
-
-
-
-
 }

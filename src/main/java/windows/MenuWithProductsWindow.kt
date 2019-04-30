@@ -40,6 +40,8 @@ class MenuWithProductsWindow(owner: WindowOwner, model: MenuModel?) : SimpleWind
                 .setCaption("Accept")
                 .onClick {
                     this.close();
+                    var applicationModel = ApplicationModel(modelObject.restaurantModel);
+                    ApplicationWindow(this, applicationModel).open()
                    }
     }
 }

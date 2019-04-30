@@ -31,7 +31,7 @@ class MenuModel(restaurantModel: RestaurantModel) {
     }
 
     fun edit() {
-        this.restaurantModel.restaurant?.removeProductsFromMenus(this.code)
+
         this.restaurantModel.restaurant?.editMenu(this.code,
                 this.name,
                 this.description,
@@ -41,7 +41,6 @@ class MenuModel(restaurantModel: RestaurantModel) {
     }
 
     fun delete() {
-        this.restaurantModel.restaurant?.removeProductsFromMenus(this.code)
         this.restaurantModel.restaurant?.deleteMenu(this.code);
     }
 

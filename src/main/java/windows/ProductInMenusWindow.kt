@@ -12,7 +12,7 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.lacar.ui.model.ControlBuilder
 
 
-class ProductInMenusWindow( owner: WindowOwner, model: ApplicationModel) : SimpleWindow<ApplicationModel>(owner, model) {
+class ProductInMenusWindow( owner: WindowOwner, model: ProductInMenusModel) : SimpleWindow<ProductInMenusModel>(owner, model) {
 
     override fun addActions(p0: Panel?) : Unit {}
 
@@ -31,13 +31,11 @@ class ProductInMenusWindow( owner: WindowOwner, model: ApplicationModel) : Simpl
         listOfMenusWithTheProduct.bindItemsToProperty("menusOfSelectedProduct")
                                  .adaptWith(MenuModel::class.java,"name")
 
-
-
         Button(panel)
                 .setCaption("Accept")
                 .onClick {
                     this.close();
-                    var applicationModel = ApplicationModel(modelObject.restaurantModel);
+                    var applicationModel = ApplicationModel(modelObject.applicationModel.restaurantModel);
                     ApplicationWindow(this, applicationModel).open()};
     }
 }

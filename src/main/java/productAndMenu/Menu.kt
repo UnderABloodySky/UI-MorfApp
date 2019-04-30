@@ -33,8 +33,9 @@ class Menu(code: Int,
     fun totalPrice(): Double  = this.productsOfMenu.sumByDouble { it.price };
 
     fun containProductWith(code: Int?):Boolean{
+       return productsOfMenu.any{product ->
 
-       return  productsOfMenu.any{product -> product.code==code  }
+           product.code==code  }
 
     }
     fun currenTotal():Double{
