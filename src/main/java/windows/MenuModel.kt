@@ -40,6 +40,7 @@ class MenuModel(restaurantModel: RestaurantModel) {
     }
 
     fun delete() {
+        this.restaurantModel.restaurant?.removeProductsFromMenus(this.code)
         this.restaurantModel.restaurant?.deleteMenu(this.code);
     }
 

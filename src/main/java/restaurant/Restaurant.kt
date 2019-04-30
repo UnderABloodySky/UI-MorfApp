@@ -129,19 +129,18 @@ class Restaurant(code : Int, name : String, description : String,
         orders.add(order)
     }
 
-    //ojo ver que si esta vacio tiene que levantar una excepcion
     fun menusOfProduct(code:Int?):MutableList<Menu> {
         var menusOfProduct = mutableListOf<Menu>();
         menus.forEach { menu->
                             if (menu.value.containProductWith(code))
                                 menusOfProduct.add(menu.value);
                     }
-        //
-        //Agrege esta excepcion y rompe el login. Tira la exepcion desde el minuto 1
-        //
-        //if(menusOfProduct.isEmpty()){
-        //    throw AnyMenuContainsThisProductException("No menu contains this product")
-        //}
+
         return menusOfProduct;
+    }
+    fun removeProductsFromMenus(code: Int){
+        this.menus.forEach{
+            it.component2().removeProductFromMenu(code);
+        }
     }
 }

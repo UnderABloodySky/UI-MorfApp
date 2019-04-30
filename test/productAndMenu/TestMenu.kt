@@ -30,7 +30,7 @@ class TestMenu {
         var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), restaurant);
         menu.addProductToMenu(this.soda);
         Assert.assertEquals(menu.productsOfMenu.size, 1);
-        menu.removeProductFromMenu(this.soda);
+        menu.removeProductFromMenu(this.soda.code);
         Assert.assertEquals(menu.productsOfMenu.size, 0);
     }
 
@@ -39,7 +39,7 @@ class TestMenu {
         var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), restaurant);
         menu.addProductToMenu(this.soda);
         menu.addProductToMenu(this.soda);
-        menu.removeProductFromMenu(this.soda);
+        menu.removeProductFromMenu(this.soda.code);
         Assert.assertEquals(menu.productsOfMenu.size, 1);
     }
 

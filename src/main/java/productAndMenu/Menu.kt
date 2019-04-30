@@ -20,7 +20,15 @@ class Menu(code: Int,
 
     fun enabled():Boolean { return this.enabled; }
 
-    fun removeProductFromMenu(product: Product): Unit { this.productsOfMenu.remove(product); }
+    fun removeProductFromMenu(code: Int): Unit {
+        var tempProductList = mutableListOf<Product>();
+        this.productsOfMenu.forEach {
+                    if (!(it.code == code)){
+                        tempProductList.add(it);
+                    }
+        }
+        this.productsOfMenu = tempProductList;
+    }
 
     fun totalPrice(): Double  = this.productsOfMenu.sumByDouble { it.price };
 
