@@ -72,11 +72,6 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
 
         var columnPanel = Panel(panel).setLayout(ColumnLayout(2));
 
-        Label(columnPanel).setText("Code");
-        val codeTextBox = TextBox(columnPanel);
-        codeTextBox.setWidth(150)
-        codeTextBox.bindValueToProperty<Int, ControlBuilder>("code");
-
         Label(columnPanel).setText("Name");
         TextBox(columnPanel)
                 .setWidth(150)
