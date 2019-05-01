@@ -107,6 +107,7 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
                 .setText("Disc. Type");
         val categorySelector = Selector<Discount>(twoColumnPanel);
         categorySelector.bindValueToProperty<Discount, ControlBuilder>("discount")
+                .adaptWith(MenuModel::class.java,"")
         categorySelector.bindItemsToProperty("discounts");
 
     }

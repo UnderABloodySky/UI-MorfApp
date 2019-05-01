@@ -26,7 +26,6 @@ class DeleteMenuDialog: Dialog<MenuModel> {
         Button(mainPanel)
                 .setCaption(" Cancel ")
                 .onClick {  this.close();
-                    this.delete();
                     var applicationModel = ApplicationModel(modelObject.restaurantModel);
                     ApplicationWindow(this, applicationModel).open()};
     }
