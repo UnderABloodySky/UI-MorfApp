@@ -1,5 +1,6 @@
 package windows
 
+import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.*
 import org.uqbar.arena.windows.Dialog
@@ -7,6 +8,7 @@ import org.uqbar.arena.windows.MainWindow
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.lacar.ui.model.ControlBuilder
+import org.uqbar.lacar.ui.model.bindings.Observable
 import productAndMenu.Category
 
 
@@ -39,6 +41,7 @@ class EditProductWindow(owner: WindowOwner, model: ProductModel?) : SimpleWindow
     }
 
     private fun setTextBoxPanel(panel : Panel){
+        val elementCode: Observable<Any> = NotNullObservable("observableNull");
 
         var columnPanel = Panel(panel).setLayout(ColumnLayout(2)).setWidth(100);
 
@@ -46,7 +49,7 @@ class EditProductWindow(owner: WindowOwner, model: ProductModel?) : SimpleWindow
         val codeTextBox = TextBox(columnPanel);
         codeTextBox.setWidth(150)
         codeTextBox.bindValueToProperty<Int, ControlBuilder>("code");
-        codeTextBox.withFilter { event -> event.potentialTextResult.matches(Regex("[0-9]*")) }
+        codeTextBox.bindEnabled<Any, ControlBuilder>(elementCode);
 
         Label(columnPanel).setText("Name");
         TextBox(columnPanel)

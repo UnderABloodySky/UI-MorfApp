@@ -15,10 +15,12 @@ class MenuModel(restaurantModel: RestaurantModel) {
     var discount: Discount = NoDiscount();
     var discounts: MutableList<Discount> = mutableListOf(FixedDiscount(100.0), PercentageDiscount(20.0), NoDiscount());
     var enabled: Boolean = true;
-    var selectedProduct: ProductModel? = null;
+    var selectedProductToAdd: ProductModel? = null;
+    var selectedProductToRemove: ProductModel? = null;
     var restaurantModel = restaurantModel;
     var availableProducts = restaurantModel.transformToProductModel();
     var currentTotal:Double= 0.00
+    var observableNull = null;
 
     fun save() {
         this.restaurantModel.restaurant?.createMenu(this.name,
@@ -42,6 +44,14 @@ class MenuModel(restaurantModel: RestaurantModel) {
 
     fun delete() {
         this.restaurantModel.restaurant?.deleteMenu(this.code);
+    }
+
+    fun addToListOfProducts(){
+        this.productsOfMenu.add(this.selectedProductToAdd!!);
+    }
+    fun deleteFromListOfProducts(){
+        this.productsOfMenu.remove(selectedProductToRemove);
+
     }
 
 }

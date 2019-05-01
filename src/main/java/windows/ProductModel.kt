@@ -13,6 +13,7 @@ class ProductModel(restaurantModel: RestaurantModel) {
     var category: Category = Category.NONE;
     var categories : MutableList<Category> = Category.values().toMutableList();
     var restaurantModel = restaurantModel;
+    var observableNull = null;
 
     fun save() {
         this.restaurantModel.restaurant?.createProduct(this.name, this.description, this.price, this.category);

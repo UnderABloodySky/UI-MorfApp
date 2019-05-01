@@ -1,6 +1,9 @@
 package windows
 
 import discount.Discount
+import org.uqbar.arena.bindings.NotNullObservable
+import org.uqbar.arena.bindings.ObservableProperty
+import org.uqbar.arena.bindings.ObservableValue
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.*
@@ -9,6 +12,7 @@ import org.uqbar.arena.windows.MainWindow
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.lacar.ui.model.ControlBuilder
+import org.uqbar.lacar.ui.model.bindings.Observable
 import productAndMenu.Category
 
 
@@ -40,20 +44,20 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
         val allProductsSelector = List<ProductModel>(listOfProductsColumnPanel);
         allProductsSelector.bindItemsToProperty("availableProducts")
                 .adaptWith(ProductModel::class.java,"nameAndPrice")
-        allProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProduct")
-        allProductsSelector.bindItemsToProperty("availableProducts");
+        allProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProductToAdd")
 
         var addRemoveButtonPanel = Panel(listOfProductsColumnPanel).setLayout(VerticalLayout());
         Button(addRemoveButtonPanel)
                 .setCaption(">>")
+                .onClick { this.addToListOfProducts() }
         Button(addRemoveButtonPanel)
                 .setCaption("<<")
+                .onClick { this.removeFromListOfProducts() }
 
         val filteredProductsSelector = List<ProductModel>(listOfProductsColumnPanel);
         filteredProductsSelector.bindItemsToProperty("productsOfMenu")
                 .adaptWith(ProductModel::class.java,"nameAndPrice")
-        filteredProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProduct");
-        filteredProductsSelector.bindItemsToProperty("productsOfMenu")
+        filteredProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProductToRemove");
 
         Button(panel)
                 .setCaption("Accept")
@@ -74,8 +78,15 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
     }
 
     private fun setTextBoxPanel(panel: Panel) {
+        val elementCode: Observable<Any> = NotNullObservable("observableNull");
 
         var columnPanel = Panel(panel).setLayout(ColumnLayout(2));
+
+        Label(columnPanel).setText("Code");
+        val codeTextBox = TextBox(columnPanel);
+        codeTextBox.setWidth(150)
+        codeTextBox.bindValueToProperty<Int, ControlBuilder>("code");
+        codeTextBox.bindEnabled<Any, ControlBuilder>(elementCode);
 
         Label(columnPanel).setText("Name");
         TextBox(columnPanel)
@@ -101,5 +112,13 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
     }
 
     private fun edit() {modelObject.edit();}
+
+    private fun removeFromListOfProducts() {
+        modelObject.deleteFromListOfProducts();
+    }
+
+    private fun addToListOfProducts() {
+        modelObject.addToListOfProducts();
+    }
 
 }
