@@ -45,7 +45,7 @@ class NewProductWindow(owner: WindowOwner, model: ProductModel) : SimpleWindow<P
         Label(columnPanel).setText("Name");
         TextBox(columnPanel)
                 .setWidth(150)
-                .bindValueToProperty<String, ControlBuilder>("name");
+                .bindValueToProperty<String, ControlBuilder>("name")
 
         Label(columnPanel).setText("Description");
         TextBox(columnPanel)

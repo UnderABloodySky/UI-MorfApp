@@ -23,7 +23,9 @@ class UserModel {
                  this.restaurant = foundUser.restaurant;
                  return this.transformToRestaurantModel();
              }
-             else {throw NoUserFoundException ("No es correcto el usuario / contraseña")}
+             else {
+                 throw NoUserFoundException ("No es correcta la contraseña")
+                }
 
     }
 

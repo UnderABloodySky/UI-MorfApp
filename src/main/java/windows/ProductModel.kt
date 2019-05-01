@@ -1,6 +1,8 @@
 package windows
 
+import exception.EmptyFieldsException
 import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.exceptions.UserException
 import productAndMenu.Category
 
 @Observable
@@ -15,13 +17,40 @@ class ProductModel(restaurantModel: RestaurantModel) {
     var restaurantModel = restaurantModel;
     var observableNull = null;
 
-    fun save() {
-        this.restaurantModel.restaurant?.createProduct(this.name, this.description, this.price, this.category);
+    fun anyOfThisIsEmpty(productName:String,produtDescription:String,price:Double):Boolean{
+
+        return  productName== "" || produtDescription==""|| price == null
     }
 
+
+    fun save() {
+        if (this.anyOfThisIsEmpty(this.name, this.description,this.price)) {
+                throw EmptyFieldsException("Fields cant be empty")
+            }
+
+        else {
+                this.restaurantModel.restaurant?.createProduct(this.name, this.description, this.price, this.category);
+        }
+    }
+
+    fun validatePositiveNumber(price:Double):Boolean{
+        return price <0
+
+    }
     fun edit() {
-        this.restaurantModel.restaurant?.removeProductsFromMenus(this.code)
-        this.restaurantModel.restaurant?.editProduct(this.code, this.name, this.description, this.price, this.category);
+        if (this.anyOfThisIsEmpty(this.name, this.description,this.price)) {
+            throw EmptyFieldsException("Fields cant be empty")
+            }
+
+        else {
+           if(this.validatePositiveNumber(this.price))  {
+               throw UserException("The price must be a positive number")}
+
+           else {
+                 this.restaurantModel.restaurant?.removeProductsFromMenus(this.code)
+                 this.restaurantModel.restaurant?.editProduct(this.code, this.name, this.description, this.price, this.category);
+            }
+        }
     }
 
     fun delete() {

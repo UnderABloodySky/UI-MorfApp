@@ -9,7 +9,6 @@ import productAndMenu.Menu
 import productAndMenu.Product
 
 fun main() {
-    var products = mutableListOf<Product>();
     var morfap = MorfApp;
     var laConga = morfap.createRestaurant("La Conga",
             "Cocina Peruana",
@@ -24,25 +23,23 @@ fun main() {
     morfap.createSupervisor(clubMili, "pepe", "1234");
     morfap.createSupervisor(laConga, "...", "...");
 
-    var unaHamburguesaSalvaje : Product = laConga.createProduct("Hamburguesa", "Al vapor", 100.0, Category.NONE)
-    var unaCocaSalvaje : Product = laConga.createProduct("Coca Cola", "Azucar 200%", 60.0, Category.DRINK)
+    var unaHamburguesaSalvaje : Product = laConga.createProduct("Hamburguesa", "Al vapor", 100.00, Category.NONE)
+    var unaCocaSalvaje : Product = laConga.createProduct("Coca Cola", "Azucar 200%", 60.00, Category.DRINK)
     var menu1: Menu = laConga.createMenu("Menu1",
-                                         "Coca + Hambur", products, laConga, NoDiscount(), false)
+                                         "Coca + Hambur",  mutableListOf<Product>(), laConga, NoDiscount(), false)
     menu1.addProductToMenu(unaHamburguesaSalvaje)
     menu1.addProductToMenu(unaCocaSalvaje)
 
-    var porcionDePapas : Product = laConga.createProduct("Papas fritas", "papas", 80.0, Category.ADITIONAL)
-    var rabas : Product = laConga.createProduct("Rabas", "rabas fritas", 160.0, Category.STARTER)
+    var porcionDePapas : Product = laConga.createProduct("Papas fritas", "papas", 80.00, Category.ADITIONAL)
+    var rabas : Product = laConga.createProduct("Rabas", "rabas fritas", 160.00, Category.STARTER)
 
     var menu2: Menu = laConga.createMenu("Menu2",
-            "Coca + Hambur", products, laConga, NoDiscount(), true)
+            "Coca + Hambur",  mutableListOf<Product>(), laConga, NoDiscount(), true)
 
     menu2.addProductToMenu(rabas)
     menu2.addProductToMenu(porcionDePapas)
-
-    laConga.supervisor.addMenuToRestaurant(menu2)
-    laConga.supervisor.addMenuToRestaurant(menu1);
-
+    menu2.addProductToMenu(unaHamburguesaSalvaje)
+    //print(menu2.productsOfMenu)
     WelcomeWindow(UserModel()).startApplication();
 
 }

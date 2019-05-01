@@ -1,6 +1,7 @@
 package windows
 
 import discount.*
+import exception.EmptyFieldsException
 import org.uqbar.commons.model.annotations.Observable
 import restaurant.Restaurant
 
@@ -22,24 +23,40 @@ class MenuModel(restaurantModel: RestaurantModel) {
     var currentTotal:Double= 0.00
     var observableNull = null;
 
+    fun anyOfThisIsEmpty(menuName:String,menuDescription:String):Boolean{
+
+        return  menuName== "" || menuDescription==""
+    }
+
     fun save() {
-        this.restaurantModel.restaurant?.createMenu(this.name,
-                                                    this.description,
-                                                    this.restaurantModel
-                                                            .transformListOfProductModelToProduct(this.productsOfMenu),
-                                                    this.restaurantModel.restaurant as Restaurant,
-                                                    this.discount,
-                                                    this.enabled);
+        if (this.anyOfThisIsEmpty(this.name, this.description)) {
+            throw EmptyFieldsException("Fields cant be empty")
+        }
+
+        else {
+            this.restaurantModel.restaurant?.createMenu(this.name,
+                    this.description,
+                    this.restaurantModel
+                            .transformListOfProductModelToProduct(this.productsOfMenu),
+                    this.restaurantModel.restaurant as Restaurant,
+                    this.discount,
+                    this.enabled);
+        }
     }
 
     fun edit() {
+        if (this.anyOfThisIsEmpty(this.name, this.description)) {
+             throw EmptyFieldsException("Fields cant be empty")
+        }
 
-        this.restaurantModel.restaurant?.editMenu(this.code,
-                this.name,
-                this.description,
-                this.restaurantModel.transformListOfProductModelToProduct(this.productsOfMenu),
-                this.discount,
-                this.enabled);
+        else {
+            this.restaurantModel.restaurant?.editMenu(this.code,
+                      this.name,
+                    this.description,
+                    this.restaurantModel.transformListOfProductModelToProduct(this.productsOfMenu),
+                    this.discount,
+                    this.enabled);
+        }
     }
 
     fun delete() {
