@@ -38,7 +38,7 @@ class NewMenuWindow(owner: WindowOwner, model: MenuModel) : SimpleWindow<MenuMod
 
         allProductsSelector.bindItemsToProperty("availableProducts")
                 .adaptWith(ProductModel::class.java,"nameAndPrice")
-        allProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProduct");
+        allProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProductToAdd");
         allProductsSelector.bindItemsToProperty("availableProducts");
 
         var addRemoveButtonPanel = Panel(listOfProductsColumnPanel).setLayout(VerticalLayout());
@@ -48,7 +48,7 @@ class NewMenuWindow(owner: WindowOwner, model: MenuModel) : SimpleWindow<MenuMod
                 .setCaption("<<")
 
         val filteredProductsSelector = Selector<ProductModel>(listOfProductsColumnPanel);
-        filteredProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProduct");
+        filteredProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProductToRemove");
         filteredProductsSelector.bindItemsToProperty("productsOfMenu");
 
         Button(panel)
