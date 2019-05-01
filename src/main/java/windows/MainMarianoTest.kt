@@ -43,6 +43,6 @@ fun main() {
     laConga.supervisor.addMenuToRestaurant(menu2)
     laConga.supervisor.addMenuToRestaurant(menu1);
 
-    LoginWindow(UserModel()).startApplication();
+    WelcomeWindow(UserModel()).startApplication();
 
 }

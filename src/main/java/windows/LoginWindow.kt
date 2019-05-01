@@ -6,13 +6,17 @@ import org.uqbar.arena.widgets.*
 import org.uqbar.arena.windows.MainWindow
 import org.uqbar.lacar.ui.model.ControlBuilder
 import org.uqbar.arena.windows.ErrorsPanel
+import org.uqbar.arena.windows.SimpleWindow
+import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.ui.view.ErrorViewer
 
 //ver como implementar la interfaces de errorViewer
 
-class LoginWindow(model: UserModel): MainWindow<UserModel>(model) {
+class LoginWindow(owner: WindowOwner, model: UserModel): SimpleWindow <UserModel>(owner,model) {
 
-    override fun createContents(panel: Panel) {
+    override fun addActions(p0: Panel?) : Unit {}
+
+    override fun createFormPanel(panel: Panel) {
 
         panel.setLayout(VerticalLayout());
 
