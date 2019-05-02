@@ -6,7 +6,7 @@ class CriteriaByString(private var name : String) : Criteria() {
        var listResult : MutableCollection<Searchable?> = mutableListOf<Searchable?>()
 
        toSearch.forEach {(code, searcheable) ->
-            if (searcheable.name.contains(name)){
+            if (searcheable.name.toUpperCase().contains(name.toUpperCase())){
                 listResult.add(searcheable)
             }
        }
