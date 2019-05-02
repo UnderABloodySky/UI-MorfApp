@@ -50,9 +50,14 @@ class ApplicationModel(restaurantModel: RestaurantModel) {
 
 
     fun updateMenuIdList() {
-        var tempFoundMenus =  this.restaurantModel
-                .restaurant?.findMenu(CriteriaById(menuIdFilter)) as MutableList<Menu>;
+        try {
+            var tempFoundMenus = this.restaurantModel
+                    .restaurant?.findMenu(CriteriaById(menuIdFilter)) as MutableList<Menu>;
 
-        this.menus = this.restaurantModel.transformListOfMenusToMenuModels(tempFoundMenus);
+            this.menus = this.restaurantModel.transformListOfMenusToMenuModels(tempFoundMenus);
+        }
+        catch(e : NullPointerException){
+            throw UserException("Incorrect ID")
+        }
     }
 }
