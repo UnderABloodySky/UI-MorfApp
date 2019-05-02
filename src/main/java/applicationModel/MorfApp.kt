@@ -5,6 +5,7 @@ import exception.UserAlreadyRegisteredException
 import geoclaseui.*
 import user.*
 import order.*
+import org.uqbar.commons.model.exceptions.UserException
 import paymentMethod.*
 import restaurant.Restaurant
 import productAndMenu.*
@@ -77,13 +78,15 @@ object MorfApp {
                        .searchBy(criteria, searchableRestaurant);
     }
 
-    fun findUser(name:String):User? {
+    fun findUser(name:String?):User? {
+
         var actualUser: User?
-        if (registeredUsers.contains(name)) {
+
+        if (name!=null && registeredUsers.contains(name)) {
             actualUser = registeredUsers.get(name)
         }
         else {
-            throw NoUserFoundException("No se encuentra registrado el usuario en el sistema")
+            throw UserException("Incorrect user")
         }
         return actualUser
     }

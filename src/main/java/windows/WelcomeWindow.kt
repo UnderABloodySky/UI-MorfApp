@@ -12,7 +12,7 @@ class WelcomeWindow(model: UserModel): MainWindow<UserModel>(model) {
     override fun createContents(panel: Panel) {
 
         panel.setLayout(VerticalLayout());
-        this.title = "MorfApp"
+        this.title = "MorfApp :: "
         Label(panel)
                 .setText("Welcome to MoffApp")
                 .setFontSize(20)

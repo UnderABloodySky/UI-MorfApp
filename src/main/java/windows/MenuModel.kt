@@ -21,6 +21,7 @@ class MenuModel(restaurantModel: RestaurantModel) {
                                                                         PercentageDiscount(20.0),
                                                                         NoDiscount()));
     var discount: DiscountModel = DiscountModel(menu!!.discount);
+    var discountName : String = discount.name;
     var enabled: ObservableBoolean = Enabled();
     var enabledName: Boolean = enabled.getValue;
     var selectedProductToAdd: ProductModel? = null;

@@ -5,6 +5,7 @@ import user.User
 import applicationModel.MorfApp
 import exception.NoUserFoundException
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.commons.model.exceptions.UserException
 import restaurant.Restaurant
 import user.Supervisor
 
@@ -24,7 +25,7 @@ class UserModel {
                  return this.transformToRestaurantModel();
              }
              else {
-                 throw NoUserFoundException ("No es correcta la contraseña")
+                 throw UserException ("Password incorrect")
                 }
 
     }

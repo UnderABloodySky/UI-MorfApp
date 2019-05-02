@@ -130,7 +130,7 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
         Label(fourColumnPanel)
                 .setText("Discount")
         //print(modelObject.discount.name)
-        Label(fourColumnPanel).bindValueToProperty<DiscountModel, ControlBuilder>("discount")
+        Label(fourColumnPanel).bindValueToProperty<DiscountModel, ControlBuilder>("discountName")
 
 
     }

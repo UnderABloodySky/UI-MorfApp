@@ -20,14 +20,14 @@ class LoginWindow(owner: WindowOwner, model: UserModel): SimpleWindow <UserModel
 
         panel.setLayout(VerticalLayout());
 
-        this.title = "Login MorfApp"
+        this.title = "MorfApp :: Login "
 
-        Label(panel).setText("Ingrese el usuario")
+        Label(panel).setText("User")
         TextBox(panel)
                 .setWidth(250)
                 .bindValueToProperty<String,ControlBuilder>("user")
 
-        Label(panel).setText("Ingrese la contraseña")
+        Label(panel).setText("Password")
 
 
         PasswordField(panel)
@@ -35,13 +35,19 @@ class LoginWindow(owner: WindowOwner, model: UserModel): SimpleWindow <UserModel
                 .bindValueToProperty<String,ControlBuilder>("password")
 
         Button(panel)
-                .setCaption("Ingresar")
+                .setCaption("Login")
                 .onClick {
-                        this.close();
+
                         var loggedUserModel = ApplicationModel(modelObject.autenticate());
                         var applicationWindow = ApplicationWindow(this, loggedUserModel);
                         applicationWindow.open();
+                        this.close();
 
+                }
+        Button(panel)
+                .setCaption("Exit")
+                .onClick {
+                        this.close()
                 }
     }
 
