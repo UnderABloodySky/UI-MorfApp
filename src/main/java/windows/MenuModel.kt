@@ -46,7 +46,7 @@ class MenuModel(restaurantModel: RestaurantModel) {
                             .transformListOfProductModelToProduct(this.productsOfMenu),
                     this.restaurantModel.restaurant as Restaurant,
                     this.discount!!.discount,
-                    this.enabledName);
+                    this.enabled.getValue);
         }
     }
 
@@ -61,7 +61,7 @@ class MenuModel(restaurantModel: RestaurantModel) {
                     this.description,
                     this.restaurantModel.transformListOfProductModelToProduct(this.productsOfMenu),
                     this.discount!!.discount,
-                    this.enabledName);
+                    this.enabled.getValue);
         }
     }
 

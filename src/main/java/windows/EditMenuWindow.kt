@@ -105,6 +105,14 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
         TextBox(columnPanel)
                 .setWidth(150)
                 .bindValueToProperty<String, ControlBuilder>("description");
+
+        Label(columnPanel)
+                .setText("Enabled");
+        val enabledSelector = RadioSelector<ObservableBoolean>(columnPanel)
+        enabledSelector.bindValueToProperty<Boolean,ControlBuilder>("enabled")
+
+        enabledSelector.bindItemsToProperty("observableBooleans")
+                .adaptWith(ObservableBoolean::class.java, "getValue")
     }
 
     private fun setFourColumnPanel(panel: Panel) {
