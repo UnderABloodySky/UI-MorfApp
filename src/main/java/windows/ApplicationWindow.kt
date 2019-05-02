@@ -43,8 +43,14 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         TextBox(searchProductPanel)
                 .bindValueToProperty<Any, ControlBuilder>("productFilter")
         Button(searchProductPanel)
-                .setCaption("Search")
+                .setCaption("Search Name")
                 .onClick { modelObject.updateProductList(); }
+
+        NumericField(searchProductPanel)
+                .bindValueToProperty<Int?, ControlBuilder>("productIdFilter")
+        Button(searchProductPanel)
+                .setCaption("Search by Id")
+                .onClick { modelObject.updateProductListId(); }
 
         var productTable = Table<ProductModel>(productPanel, ProductModel::class.java);
         productTable.bindItemsToProperty("products")
@@ -111,8 +117,15 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         TextBox(searchMenuPanel)
                 .bindValueToProperty<Any, ControlBuilder>("menuFilter")
         Button(searchMenuPanel)
-                .setCaption("Search")
+                .setCaption("Search Name")
                 .onClick { modelObject.updateMenuList(); }
+
+        NumericField(searchMenuPanel)
+                .bindValueToProperty<Int?, ControlBuilder>("menuIdFilter")
+        Button(searchMenuPanel)
+                .setCaption("Search ID")
+                .onClick { modelObject.updateMenuIdList() }
+
 
         var menuTable = Table<MenuModel>(menuPanel, MenuModel::class.java);
         menuTable.bindItemsToProperty("menus")

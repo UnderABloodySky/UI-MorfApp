@@ -1,7 +1,6 @@
 package windows
 
 import applicationModel.MorfApp
-import com.sun.prism.impl.PrismSettings
 import discount.Discount
 import org.uqbar.commons.model.annotations.Observable
 import productAndMenu.Menu
