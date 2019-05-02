@@ -101,14 +101,19 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
 
     private fun setFourColumnPanel(panel: Panel) {
 
-        var twoColumnPanel = Panel(panel).setLayout(ColumnLayout(2));
+        var fourColumnPanel = Panel(panel).setLayout(ColumnLayout(4));
 
-        Label(twoColumnPanel)
+        Label(fourColumnPanel)
                 .setText("Disc. Type");
-        val categorySelector = Selector<Discount>(twoColumnPanel);
-        categorySelector.bindValueToProperty<Discount, ControlBuilder>("discount")
-                .adaptWith(MenuModel::class.java,"")
-        categorySelector.bindItemsToProperty("discounts");
+        val discountSelector = Selector<DiscountModel>(fourColumnPanel);
+        discountSelector.bindItemsToProperty("discounts")
+                .adaptWith(DiscountModel::class.java,"nameAndValue")
+        discountSelector.bindValueToProperty<DiscountModel, ControlBuilder>("discount")
+
+        Label(fourColumnPanel)
+                .setText("Discount")
+        TextBox(fourColumnPanel).bindValueToProperty<DiscountModel, ControlBuilder>("discount")
+                //.adaptWith(DiscountModel::class.java,"nameAndValue")
 
     }
 

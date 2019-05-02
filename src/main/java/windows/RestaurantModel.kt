@@ -1,6 +1,7 @@
 package windows
 
 import applicationModel.MorfApp
+import discount.Discount
 import org.uqbar.commons.model.annotations.Observable
 import productAndMenu.Menu
 import productAndMenu.Product
@@ -78,4 +79,5 @@ class RestaurantModel() {
 
         return tempProductList;
     }
+
 }
