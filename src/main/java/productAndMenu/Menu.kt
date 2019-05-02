@@ -11,7 +11,9 @@ class Menu(code: Int,
            var productsOfMenu: MutableList<Product>,
            var restaurant : Restaurant,
            var discount: Discount = NoDiscount(),
-           var enabled: Boolean = true) : Searchable(code, name, description){
+           var enabled: Boolean = true) : Searchable(code, name, description)
+
+{
 
 
     fun addProductToMenu(product: Product): Unit { this.productsOfMenu.add(product); }

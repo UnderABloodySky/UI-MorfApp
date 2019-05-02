@@ -12,8 +12,10 @@ class MenuModel(restaurantModel: RestaurantModel) {
     var name: String = "";
     var description: String = "";
     var productsOfMenu: MutableList<ProductModel> = mutableListOf();
-    var price: Double = 0.0;
+    var price: Double? = restaurantModel.getPriceOfMenuWithCode(code);
     var discount: DiscountModel? = DiscountModel();
+    var menu = restaurantModel.restaurant!!.menus[code]
+    var totalWithDicount: Double = this.menu!!.costAutocalculation()
     var discounts: MutableList<DiscountModel> = transformListOfDiscountToDiscountModel(mutableListOf(
                                                                         FixedDiscount(100.0),
                                                                         PercentageDiscount(20.0),
@@ -25,6 +27,7 @@ class MenuModel(restaurantModel: RestaurantModel) {
     var availableProducts = restaurantModel.transformToProductModel();
     var currentTotal:Double= 0.00
     var observableNull = null;
+
 
     fun anyOfThisIsEmpty(menuName:String,menuDescription:String):Boolean{
 

@@ -125,7 +125,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         Column<MenuModel>(menuTable)
                 .setTitle("Price")
                 .setFixedSize(250)
-                .bindContentsToProperty("price");
+                .bindContentsToProperty("totalWithDicount");
 
         Column<MenuModel>(menuTable)
                 .setTitle("Enabled")

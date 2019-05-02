@@ -24,9 +24,12 @@ class RestaurantModel() {
         //var  menuModelList = mutableListOf<MenuModel>();
         var menuList:MutableList<Menu>?= restaurant?.menusOfProduct(code);
         return transformListOfMenusToMenuModels(menuList);
-
-
     }
+
+    fun getPriceOfMenuWithCode(code:Int):Double?{
+       return  menus[code]?.totalPrice()
+    }
+
     fun transformToProductModel(): MutableList<ProductModel>{
         var products = mutableListOf<Product>()
         this.restaurant?.products?.forEach { product-> products.add(product.value)}

@@ -1,6 +1,7 @@
 package windows
 
 import applicationModel.MorfApp
+import discount.FixedDiscount
 import discount.NoDiscount
 import geoclaseui.Geo
 import paymentMethod.Cash
@@ -34,7 +35,7 @@ fun main() {
     var rabas : Product = laConga.createProduct("Rabas", "rabas fritas", 160.00, Category.STARTER)
 
     var menu2: Menu = laConga.createMenu("Menu2",
-            "Coca + Hambur",  mutableListOf<Product>(), laConga, NoDiscount(), true)
+            "Coca + Hambur",  mutableListOf<Product>(), laConga, FixedDiscount(20.00), true)
 
     menu2.addProductToMenu(rabas)
     menu2.addProductToMenu(porcionDePapas)
