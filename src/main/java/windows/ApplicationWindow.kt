@@ -21,6 +21,14 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
     override fun createFormPanel(panel: Panel) {
         title = "Morfapp :: ${modelObject.restaurantModel.name}";
 
+       var logOutButton = Button(panel)
+                logOutButton.setCaption("Log out")
+                logOutButton.alignLeft()
+                logOutButton.onClick {
+                                    this.close()
+                                    LoginWindow(this,UserModel()).open();
+                        }
+
         panel.setLayout(HorizontalLayout());
 
         val productPanel = Panel(panel);
