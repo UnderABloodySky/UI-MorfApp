@@ -53,10 +53,13 @@ class NewMenuWindow(owner: WindowOwner, model: MenuModel) : SimpleWindow<MenuMod
                 .setWidth(150)
                 .bindValueToProperty<String, ControlBuilder>("description");
 
-        Label(columnPanel).setText("Enabled");
-        RadioSelector<ObservableBoolean>(columnPanel)
-                .bindValueToProperty<ObservableBoolean,ControlBuilder>("enabled")
-                
+        Label(columnPanel)
+                .setText("Enabled");
+        val enabledSelector = RadioSelector<ObservableBoolean>(columnPanel)
+        enabledSelector.bindValueToProperty<Boolean,ControlBuilder>("enabled")
+
+        enabledSelector.bindItemsToProperty("observableBooleans")
+                .adaptWith(ObservableBoolean::class.java, "getValue")
     }
 
     private fun setFourColumnPanel(panel: Panel) {

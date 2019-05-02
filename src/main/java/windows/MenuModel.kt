@@ -21,15 +21,14 @@ class MenuModel(restaurantModel: RestaurantModel) {
                                                                         PercentageDiscount(20.0),
                                                                         NoDiscount()));
     var discount: DiscountModel = DiscountModel(menu!!.discount);
-    var enabled: Boolean = true;
+    var enabled: ObservableBoolean = Enabled();
+    var enabledName: Boolean = enabled.getValue;
     var selectedProductToAdd: ProductModel? = null;
     var selectedProductToRemove: ProductModel? = null;
     var restaurantModel = restaurantModel;
     var availableProducts = restaurantModel.transformToProductModel();
     var observableNull = null;
-    var observableBoolens = mutableListOf<ObservableBoolean>(Enabled(), Disabled())
-    var opt_enabled = observableBoolens[0]
-    var opt_disabled = observableBoolens[1]
+    var observableBooleans = mutableListOf<ObservableBoolean>(Enabled(), Disabled())
     fun anyOfThisIsEmpty(menuName:String,menuDescription:String):Boolean{
 
         return  menuName== "" || menuDescription==""
@@ -47,7 +46,7 @@ class MenuModel(restaurantModel: RestaurantModel) {
                             .transformListOfProductModelToProduct(this.productsOfMenu),
                     this.restaurantModel.restaurant as Restaurant,
                     this.discount!!.discount,
-                    this.enabled);
+                    this.enabledName);
         }
     }
 
@@ -62,7 +61,7 @@ class MenuModel(restaurantModel: RestaurantModel) {
                     this.description,
                     this.restaurantModel.transformListOfProductModelToProduct(this.productsOfMenu),
                     this.discount!!.discount,
-                    this.enabled);
+                    this.enabledName);
         }
     }
 

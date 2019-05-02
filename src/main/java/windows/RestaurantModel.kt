@@ -20,9 +20,7 @@ class RestaurantModel() {
     var menusOfProduct: MutableList<MenuModel>? = null;
 
 
-    //busca por codigo de producto
     fun menusOfProduct(code: Int?):MutableList<MenuModel>?{
-        //var  menuModelList = mutableListOf<MenuModel>();
         var menuList:MutableList<Menu>?= restaurant?.menusOfProduct(code);
         return transformListOfMenusToMenuModels(menuList);
     }
@@ -67,12 +65,20 @@ class RestaurantModel() {
                 tempMenu.totalWithDiscount = menu.costAutocalculation();
                 tempMenu.discount = this.transformToDiscountModel(menu.discount);
                 tempMenu.productsOfMenu = this.transformListOfProductsToModel(menu.productsOfMenu);
+                tempMenu.enabled = this.createObservableBoolean(menu.enabled);
                 menusModel.add(tempMenu)
             }
         }
             return menusModel
 
      }
+    private fun createObservableBoolean(bool: Boolean): ObservableBoolean{
+        var tempBool: ObservableBoolean = Disabled();
+        if(bool){
+            tempBool = Enabled();
+        }
+        return tempBool;
+    }
 
     private fun transformToDiscountModel(discount: Discount): DiscountModel {
 

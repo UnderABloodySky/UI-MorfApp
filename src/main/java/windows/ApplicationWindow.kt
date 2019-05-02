@@ -127,10 +127,11 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .setFixedSize(250)
                 .bindContentsToProperty("totalWithDiscount");
 
-        Column<MenuModel>(menuTable)
-                .setTitle("Enabled")
-                .setFixedSize(250)
-                .bindContentsToProperty("enabled");
+        var enabledColumn = Column<MenuModel>(menuTable)
+        enabledColumn.setTitle("Enabled")
+        enabledColumn.setFixedSize(250)
+        enabledColumn.bindContentsToProperty("enabledName");
+
 
         var buttonMenuPanel = Panel(menuPanel);
         buttonMenuPanel.setLayout(HorizontalLayout());
@@ -165,20 +166,6 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                     val newMenuWindow = DeleteMenuDialog(this, modelObject.selectedMenu);
                     newMenuWindow.open();
                 }
-
-        /*
-        var buttonConfigurationPanel = Panel(menuPanel);
-        buttonConfigurationPanel
-                .setLayout(HorizontalLayout())
-
-        Button(buttonConfigurationPanel)
-                .setCaption("Log Out")
-                .onClick {
-                    this.close()
-                    var newWelcomeWindow = WelcomeWindow(UserModel())
-                    newWelcomeWindow.open()
-                }
-         */
 
         editMenuButton.bindEnabled<Any, ControlBuilder>(elementMenu);
         viewMenuButton.bindEnabled<Any, ControlBuilder>(elementMenu);
