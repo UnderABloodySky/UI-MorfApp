@@ -156,6 +156,21 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                     val newMenuWindow = DeleteMenuDialog(this, modelObject.selectedMenu);
                     newMenuWindow.open();
                 }
+
+        /*
+        var buttonConfigurationPanel = Panel(menuPanel);
+        buttonConfigurationPanel
+                .setLayout(HorizontalLayout())
+
+        Button(buttonConfigurationPanel)
+                .setCaption("Log Out")
+                .onClick {
+                    this.close()
+                    var newWelcomeWindow = WelcomeWindow(UserModel())
+                    newWelcomeWindow.open()
+                }
+         */
+
         editMenuButton.bindEnabled<Any, ControlBuilder>(elementMenu);
         viewMenuButton.bindEnabled<Any, ControlBuilder>(elementMenu);
         deleteMenuButton.bindEnabled<Any, ControlBuilder>(elementMenu);

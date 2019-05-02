@@ -20,6 +20,7 @@ class WelcomeWindow(model: UserModel): MainWindow<UserModel>(model) {
         Button(panel)
                 .setCaption("Login")
                 .onClick {
+                    this.close()
                     LoginWindow(this,UserModel()).open();
                 }
         Button(panel)
