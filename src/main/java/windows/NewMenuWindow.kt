@@ -6,7 +6,6 @@ import org.uqbar.arena.widgets.*
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.lacar.ui.model.ControlBuilder
-import productAndMenu.Category
 
 class NewMenuWindow(owner: WindowOwner, model: MenuModel) : SimpleWindow<MenuModel>(owner, model) {
 
@@ -23,38 +22,10 @@ class NewMenuWindow(owner: WindowOwner, model: MenuModel) : SimpleWindow<MenuMod
         this.setTextBoxPanel(panel);
         this.setFourColumnPanel(panel);
 
-        var labelsColumnPanel = Panel(panel).setLayout(ColumnLayout(2));
-        Label(labelsColumnPanel)
-                .setText("Available")
-                .setFontSize(20)
-                .alignLeft()
-        Label(labelsColumnPanel)
-                .setText("Selected")
-                .setFontSize(20)
-                .alignRight()
-
-        var listOfProductsColumnPanel = Panel(panel).setLayout(ColumnLayout(3));
-        val allProductsSelector = Selector<ProductModel>(listOfProductsColumnPanel);
-
-        allProductsSelector.bindItemsToProperty("availableProducts")
-                .adaptWith(ProductModel::class.java,"nameAndPrice")
-        allProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProductToAdd");
-        allProductsSelector.bindItemsToProperty("availableProducts");
-
-        var addRemoveButtonPanel = Panel(listOfProductsColumnPanel).setLayout(VerticalLayout());
-        Button(addRemoveButtonPanel)
-                .setCaption(">>")
-        Button(addRemoveButtonPanel)
-                .setCaption("<<")
-
-        val filteredProductsSelector = Selector<ProductModel>(listOfProductsColumnPanel);
-        filteredProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProductToRemove");
-        filteredProductsSelector.bindItemsToProperty("productsOfMenu");
-
         Button(panel)
                 .setCaption("Accept")
                 .onClick {
-                    this.edit();
+                    this.save();
                     this.close();
                     var applicationModel = ApplicationModel(modelObject.restaurantModel);
                     ApplicationWindow(this, applicationModel).open()
@@ -81,6 +52,11 @@ class NewMenuWindow(owner: WindowOwner, model: MenuModel) : SimpleWindow<MenuMod
         TextBox(columnPanel)
                 .setWidth(150)
                 .bindValueToProperty<String, ControlBuilder>("description");
+
+        Label(columnPanel).setText("Enabled");
+        RadioSelector<ObservableBoolean>(columnPanel)
+                .bindValueToProperty<ObservableBoolean,ControlBuilder>("enabled")
+                
     }
 
     private fun setFourColumnPanel(panel: Panel) {
@@ -97,9 +73,13 @@ class NewMenuWindow(owner: WindowOwner, model: MenuModel) : SimpleWindow<MenuMod
         Label(fourColumnPanel)
                 .setText("Discount")
         TextBox(fourColumnPanel).bindValueToProperty<DiscountModel, ControlBuilder>("discount")
-        //.adaptWith(DiscountModel::class.java,"nameAndValue")
+
+
     }
 
-    private fun edit() {modelObject.edit();}
+    private fun save() {modelObject.save();}
+
+
+
 
 }

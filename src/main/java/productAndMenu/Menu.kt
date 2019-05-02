@@ -40,10 +40,5 @@ class Menu(code: Int,
            product.code==code  }
 
     }
-    fun currenTotal():Double{
-        var total=0.00
-        productsOfMenu.forEach { product -> total = total + product.price }
 
-        return total;
-    }
 }

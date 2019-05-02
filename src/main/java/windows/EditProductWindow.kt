@@ -61,7 +61,6 @@ class EditProductWindow(owner: WindowOwner, model: ProductModel?) : SimpleWindow
                 .setWidth(150)
                 .bindValueToProperty<String, ControlBuilder>("description");
     }
-    //ojo que hay que verificar que se cargue con , y no .
 
     private fun setFourColumnPanel(panel: Panel) {
 
@@ -70,7 +69,6 @@ class EditProductWindow(owner: WindowOwner, model: ProductModel?) : SimpleWindow
         var priceField = TextBox(fourColumnPanel)
                 priceField.bindValueToProperty<String, ControlBuilder>("price")
                 priceField.setWidth(80)
-              //  priceField.withFilter { event->event.potentialTextResult.matches(Regex("/^(0|[1-9]\\d*)(\\.\\d+)?\$/")) }
 
         Label(fourColumnPanel)
                 .setText("Category");

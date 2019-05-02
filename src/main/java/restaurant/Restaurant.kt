@@ -20,7 +20,7 @@ class Restaurant(code : Int, name : String, description : String,
     var orders : MutableCollection<Order> = mutableListOf()
     var searcher: Searcher = Searcher()
     private var productFactory : ProductFactory = ProductFactory()
-    private var menuFactory : MenuFactory = MenuFactory()
+    var menuFactory : MenuFactory = MenuFactory()
 
     fun menus():MutableMap<Int, Menu>{
         return menus;

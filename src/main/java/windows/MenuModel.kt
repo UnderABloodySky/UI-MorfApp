@@ -1,5 +1,6 @@
 package windows
 
+import applicationModel.MorfApp
 import discount.*
 import exception.EmptyFieldsException
 import org.uqbar.commons.model.annotations.Observable
@@ -13,22 +14,22 @@ class MenuModel(restaurantModel: RestaurantModel) {
     var description: String = "";
     var productsOfMenu: MutableList<ProductModel> = mutableListOf();
     var price: Double? = restaurantModel.getPriceOfMenuWithCode(code);
-    var discount: DiscountModel? = DiscountModel();
     var menu = restaurantModel.restaurant!!.menus[code]
-    var totalWithDicount: Double = this.menu!!.costAutocalculation()
+    var totalWithDiscount: Double = this.menu!!.costAutocalculation()
     var discounts: MutableList<DiscountModel> = transformListOfDiscountToDiscountModel(mutableListOf(
                                                                         FixedDiscount(100.0),
                                                                         PercentageDiscount(20.0),
                                                                         NoDiscount()));
+    var discount: DiscountModel = DiscountModel(menu!!.discount);
     var enabled: Boolean = true;
     var selectedProductToAdd: ProductModel? = null;
     var selectedProductToRemove: ProductModel? = null;
     var restaurantModel = restaurantModel;
     var availableProducts = restaurantModel.transformToProductModel();
-    var currentTotal:Double= 0.00
     var observableNull = null;
-
-
+    var observableBoolens = mutableListOf<ObservableBoolean>(Enabled(), Disabled())
+    var opt_enabled = observableBoolens[0]
+    var opt_disabled = observableBoolens[1]
     fun anyOfThisIsEmpty(menuName:String,menuDescription:String):Boolean{
 
         return  menuName== "" || menuDescription==""
@@ -79,18 +80,9 @@ class MenuModel(restaurantModel: RestaurantModel) {
 
     fun transformListOfDiscountToDiscountModel(discountList: MutableList<Discount>): MutableList<DiscountModel>{
         var tempDiscountList = mutableListOf<DiscountModel>();
-        discountList.forEach { var tempDiscount = DiscountModel();
-            tempDiscount.name = it.name;
-            tempDiscount.value = it.value;
-            tempDiscount.discount = it;
+        discountList.forEach { var tempDiscount = DiscountModel(it);
             tempDiscountList.add(tempDiscount);
         }
-        return tempDiscountList;
-    }
-
-    fun transformListOfDiscountModelToDiscount(): MutableList<Discount>{
-        var tempDiscountList = mutableListOf<Discount>();
-        this.discounts.forEach { tempDiscountList.add(it.discount);}
         return tempDiscountList;
     }
 

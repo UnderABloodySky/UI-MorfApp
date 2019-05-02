@@ -30,11 +30,14 @@ class MenuWithProductsWindow(owner: WindowOwner, model: MenuModel?) : SimpleWind
 
 
         var lastPanel = Panel(panel)
-        lastPanel.setLayout(HorizontalLayout())
-        Label(lastPanel).setText("TOTAL $").alignLeft()
-        var totalLabel = Label(lastPanel).setText("monto").alignLeft()
-        totalLabel.bindValueToProperty<Double,ControlBuilder>("currentTotal")
+        lastPanel.setLayout(VerticalLayout())
+        Label(lastPanel).setText("Sub total $ ").alignCenter()
+        var subTotalLabel = Label(lastPanel).setText("monto").alignCenter()
+        subTotalLabel.bindValueToProperty<Double,ControlBuilder>("price")
 
+        Label(lastPanel).setText("Total with discount $ ").alignCenter()
+        var totalLabel = Label(lastPanel).setText("monto").alignCenter()
+        totalLabel.bindValueToProperty<Double,ControlBuilder>("totalWithDiscount")
 
         Button(panel)
                 .setCaption("Accept")

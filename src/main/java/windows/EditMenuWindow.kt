@@ -49,10 +49,18 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
         var addRemoveButtonPanel = Panel(listOfProductsColumnPanel).setLayout(VerticalLayout());
         Button(addRemoveButtonPanel)
                 .setCaption(">>")
-                .onClick { this.addToListOfProducts() }
+                .onClick {
+                    this.close();
+                    this.addToListOfProducts();
+                    val newMenuWindow = EditMenuWindow(this, modelObject);
+                    newMenuWindow.open();}
         Button(addRemoveButtonPanel)
                 .setCaption("<<")
-                .onClick { this.removeFromListOfProducts() }
+                .onClick {
+                    this.close();
+                    this.removeFromListOfProducts();
+                    val newMenuWindow = EditMenuWindow(this, modelObject);
+                    newMenuWindow.open();}
 
         val filteredProductsSelector = List<ProductModel>(listOfProductsColumnPanel);
         filteredProductsSelector.bindItemsToProperty("productsOfMenu")
@@ -106,14 +114,16 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
         Label(fourColumnPanel)
                 .setText("Disc. Type");
         val discountSelector = Selector<DiscountModel>(fourColumnPanel);
+        discountSelector.bindValueToProperty<DiscountModel, ControlBuilder>("discount")
         discountSelector.bindItemsToProperty("discounts")
                 .adaptWith(DiscountModel::class.java,"nameAndValue")
-        discountSelector.bindValueToProperty<DiscountModel, ControlBuilder>("discount")
+
 
         Label(fourColumnPanel)
                 .setText("Discount")
-        TextBox(fourColumnPanel).bindValueToProperty<DiscountModel, ControlBuilder>("discount")
-                //.adaptWith(DiscountModel::class.java,"nameAndValue")
+        //print(modelObject.discount.name)
+        Label(fourColumnPanel).bindValueToProperty<DiscountModel, ControlBuilder>("discount")
+
 
     }
 

@@ -1,6 +1,7 @@
 package windows
 
 import applicationModel.MorfApp
+import com.sun.prism.impl.PrismSettings
 import discount.Discount
 import org.uqbar.commons.model.annotations.Observable
 import productAndMenu.Menu
@@ -62,18 +63,26 @@ class RestaurantModel() {
                 tempMenu.code = menu.code;
                 tempMenu.name = menu.name;
                 tempMenu.description = menu.description;
+                tempMenu.price = menu.totalPrice();
+                tempMenu.totalWithDiscount = menu.costAutocalculation();
+                tempMenu.discount = this.transformToDiscountModel(menu.discount);
                 tempMenu.productsOfMenu = this.transformListOfProductsToModel(menu.productsOfMenu);
-                tempMenu.currentTotal = menu.currenTotal()
                 menusModel.add(tempMenu)
             }
         }
             return menusModel
 
      }
+
+    private fun transformToDiscountModel(discount: Discount): DiscountModel {
+
+        return DiscountModel(discount);
+    }
+
     fun transformToMenuModel(): MutableList<MenuModel>?{
         var menusInRestaurant1 = mutableListOf<Menu>()
         this.restaurant?.menus?.forEach { menu-> menusInRestaurant1.add(menu.value) }
-        return  this.transformListOfMenusToMenuModels(menusInRestaurant1)
+        return this.transformListOfMenusToMenuModels(menusInRestaurant1)
     }
 
     fun transformListOfProductModelToProduct(productModelList: MutableList<ProductModel>): MutableList<Product>{

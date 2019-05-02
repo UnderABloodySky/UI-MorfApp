@@ -125,7 +125,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         Column<MenuModel>(menuTable)
                 .setTitle("Price")
                 .setFixedSize(250)
-                .bindContentsToProperty("totalWithDicount");
+                .bindContentsToProperty("totalWithDiscount");
 
         Column<MenuModel>(menuTable)
                 .setTitle("Enabled")
@@ -138,6 +138,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         Button(buttonMenuPanel)
                 .setCaption("Add Menu")
                 .onClick {
+                    this.close();
                     val newMenuWindow = NewMenuWindow(this, MenuModel(modelObject.restaurantModel));
                     newMenuWindow.open();
                 }

@@ -4,12 +4,15 @@ import discount.*
 import org.uqbar.commons.model.annotations.Observable
 
 @Observable
-class DiscountModel {
+class DiscountModel(discount: Discount) {
 
-    var name: String = "NoDiscount"
-    var value: Double = 0.0
-    var discount: Discount = NoDiscount();
+    var name: String = discount.name;
+    var value: Double = discount.value;
+    var discount: Discount = discount;
 
-    fun nameAndValue(): String = "$name amount $value"
+
+    fun nameAndValue(): String = "$name "
+
+    //fun nameAndValue(): String = "$name amount $value"
 
 }
