@@ -22,6 +22,11 @@ class WelcomeWindow(model: UserModel): MainWindow<UserModel>(model) {
                 .onClick {
                     LoginWindow(this,UserModel()).open();
                 }
+        Button(panel)
+                .setCaption("Close Application")
+                .onClick {
+                            this.close()
+                }
 
     }
 }
