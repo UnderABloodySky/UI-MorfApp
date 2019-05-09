@@ -2,11 +2,11 @@ package productAndMenu
 
 enum class Category {
 
-    STARTER,
-    MAINDISH,
-    DRINK,
-    DISSERT,
+    ENTRADA,
+    PLATOPRINCIPAL,
+    BEBIDA,
+    POSTRE,
     SUSHI,
-    ADITIONAL,
-    NONE;
+    ADICIONAL,
+    NINGUNO;
 }

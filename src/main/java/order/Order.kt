@@ -18,27 +18,27 @@ data class Order(val code : Int, private val user : Client,
     private var state : StateOrder = PENDING
     private var date : Date? = null
 
-    fun processOrder() : Unit {
+    fun processOrder() {
         if (menus.isEmpty()) {
             throw EmptyOrderException("")
         }
         restaurant.addOrder(this)
     }
 
-    fun addMenu(_new_menu : Menu): Unit {
+    fun addMenu(_new_menu : Menu) {
         if(!canProcessOrder(_new_menu)) {
             throw NoValidateOrderException("")
         }
         menus.add(_new_menu)
     }
 
-    fun removeMenu(_menu : Menu) : Unit{
+    fun removeMenu(_menu : Menu) {
         menus.remove(_menu)
     }
 
     fun price() : Double = menus.map{ menu -> menu.totalPrice() }.sum()
 
-    fun setState(_state : StateOrder) : Unit{
+    fun setState(_state : StateOrder) {
         state = _state
     }
 
@@ -46,26 +46,26 @@ data class Order(val code : Int, private val user : Client,
 
     fun getState() : StateOrder = state
 
-    fun delivered() : Unit{
-        user.addOrder(this);
+    fun delivered() {
+        user.addOrder(this)
         setState(DELIVERED)
     }
 
-    fun pending() : Unit{
+    fun pending() {
         setState(PENDING)
     }
 
-    fun onMyWay() : Unit{
+    fun onMyWay() {
         setState(ONMYWAY)
     }
 
-    fun cancelled() : Unit{
+    fun cancelled() {
         setState(CANCELLED)
     }
 
     fun getPaymentMethod(): PaymentMethod = payment
 
-    fun setPaymentMethod(_payment: PaymentMethod) : Unit {
+    fun setPaymentMethod(_payment: PaymentMethod) {
         if (canChange()) {
             payment = _payment
         }

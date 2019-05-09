@@ -14,31 +14,25 @@ class Menu(code: Int,
            var enabled: Boolean = true) : Searchable(code, name, description)
 
 {
+    fun addProductToMenu(product: Product) { this.productsOfMenu.add(product) }
 
+    fun costAutocalculation(): Double { return this.discount.processDiscount(totalPrice()) }
 
-    fun addProductToMenu(product: Product): Unit { this.productsOfMenu.add(product); }
+    fun enabled():Boolean { return this.enabled }
 
-    fun costAutocalculation(): Double { return this.discount.processDiscount(totalPrice()); }
-
-    fun enabled():Boolean { return this.enabled; }
-
-    fun removeProductFromMenu(code: Int): Unit {
-        var tempProductList = mutableListOf<Product>();
+    fun removeProductFromMenu(code: Int) {
+        var tempProductList = mutableListOf<Product>()
         this.productsOfMenu.forEach {
                     if (!(it.code == code)){
-                        tempProductList.add(it);
+                        tempProductList.add(it)
                     }
         }
-        this.productsOfMenu = tempProductList;
+        this.productsOfMenu = tempProductList
     }
 
-    fun totalPrice(): Double  = this.productsOfMenu.sumByDouble { it.price };
+    fun totalPrice(): Double  = this.productsOfMenu.sumByDouble { it.price }
 
     fun containProductWith(code: Int?):Boolean{
-       return productsOfMenu.any{product ->
-
-           product.code==code  }
-
+       return productsOfMenu.any{ product ->  product.code == code }
     }
-
 }

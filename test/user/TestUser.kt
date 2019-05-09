@@ -2,7 +2,6 @@ package user
 import applicationModel.MorfApp
 import geoclaseui.Geo
 import paymentMethod.*
-import productAndMenu.*
 import restaurant.Restaurant
 import org.junit.Assert
 import org.junit.Test
@@ -10,27 +9,22 @@ import java.util.*
 
 class TestUser {
 
-    private var applicationModel : MorfApp = MorfApp ;
-    private var geoLocation1: Geo = Geo(1.2,2.2);
+    private var applicationModel : MorfApp = MorfApp
+    private var geoLocation1: Geo = Geo(1.2,2.2)
     private var cash : PaymentMethod = Cash()
     private var listOfPaymentMethod : MutableCollection<PaymentMethod> = mutableListOf(cash)
-    private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1, listOfPaymentMethod);
+    private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1, listOfPaymentMethod)
     private var date = Date()
-    private var supervisor : Supervisor = Supervisor(1, "JulioCesar", restaurant, "123454", applicationModel)
-    private var menu = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(), restaurant);
     private  var client: Client = Client(2, "Pepe","Roque saenz peña", date,geoLocation1, "1212", applicationModel)
-
-
-    //test crear un cliente,
 
     @Test
     fun  newClient(){
-        Assert.assertEquals("Roque saenz peña", client.address);
+        Assert.assertEquals("Roque saenz peña", client.address)
         Assert.assertEquals("Pepe",client.name)
     }
     @Test
     fun  newClientDirection(){
-         Assert.assertEquals("Roque saenz peña", client.address);
+         Assert.assertEquals("Roque saenz peña", client.address)
     }
 
     @Test
@@ -63,15 +57,12 @@ class TestUser {
         Assert.assertEquals(applicationModel,client.applicationModel)
     }
 
-    //un cliente puede generar una orden y se agrega a la ordenes realizadas
     @Test
     fun  clientCanCreateOrdersAndSaveThem(){
         client.makeNewOrder(restaurant, mutableListOf(), Cash())
-        Assert.assertEquals("Roque saenz peña", client.address);
+        Assert.assertEquals("Roque saenz peña", client.address)
         Assert.assertEquals("Pepe",client.name)
     }
-
-//crear un supervisor
 
     @Test
     fun  thePasswordIsCorrect(){
@@ -82,10 +73,4 @@ class TestUser {
     fun  thePasswordIsNotCorrect(){
         Assert.assertFalse(client.isCorrectPassword("Mustafa"))
     }
-
-
-
-
-
-
 }

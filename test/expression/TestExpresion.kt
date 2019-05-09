@@ -27,7 +27,6 @@ class TestExpression {
         Assert.assertEquals("Test replace", onlyAlphaNumeric.replace(answer, ""))
     }
 
-    //Cualquier cosa
     @Test
     fun onlyPositiveDoubleNumberExpressionReturnTrueWhenTheWordContainsAlphanumericCharacters() {
         var answer = "-12.00"
@@ -40,14 +39,12 @@ class TestExpression {
         Assert.assertTrue(onlyPositiveDoubleNumber.containsMatchIn(answer))
     }
 
-    //Cualquier cosa
     @Test
     fun isANumberExpressionReturnFalseWhenTheWordDoesNotContainsANumber() {
         var answer = "1234"
         Assert.assertTrue(isANumber.containsMatchIn(answer))
     }
 
-    //Cualquier cosa
     @Test
     fun isANumberExpressionReturnFalseWhenTheWordContainsANumber() {
         var answer = "H"

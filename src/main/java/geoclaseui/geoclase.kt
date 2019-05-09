@@ -2,8 +2,6 @@ package geoclaseui
 
 import java.lang.Math.*
 
-
-
 // val propiedad inmutable
 // var propiedad mutable
 // data class -> toString(), equals(), hash(), copy()

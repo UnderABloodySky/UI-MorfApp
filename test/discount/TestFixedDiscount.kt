@@ -13,7 +13,7 @@ class TestFixedDiscount {
 
     @Test
     fun  fixedDiscountFoolSustractZero(){
-        Assert.assertEquals(n, fixedDiscountFool.processDiscount(n), 0.0);
+        Assert.assertEquals(n, fixedDiscountFool.processDiscount(n), 0.0)
     }
 
     @Test

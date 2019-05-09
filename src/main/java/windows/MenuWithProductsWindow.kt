@@ -13,13 +13,13 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.lacar.ui.model.ControlBuilder
 
 class MenuWithProductsWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuModel>(owner, model) {
-    override fun addActions(p0: Panel?) : Unit {}
+    override fun addActions(p0: Panel?){}
 
     override fun createFormPanel(panel: Panel) {
 
-        title = "Products In Menu"
+        title = "Productos en Menu"
         Label(panel)
-                .setText("Products")
+                .setText("Productos")
                 .setFontSize(20)
                 .alignCenter();
         panel.setLayout(VerticalLayout()).setWidth(2000)
@@ -28,22 +28,21 @@ class MenuWithProductsWindow(owner: WindowOwner, model: MenuModel?) : SimpleWind
         listOfProducts.bindItemsToProperty("productsOfMenu")
                       .adaptWith(ProductModel::class.java,"nameAndPrice")
 
-
         var lastPanel = Panel(panel)
         lastPanel.setLayout(VerticalLayout())
         Label(lastPanel).setText("Sub total $ ").alignCenter()
         var subTotalLabel = Label(lastPanel).setText("monto").alignCenter()
         subTotalLabel.bindValueToProperty<Double,ControlBuilder>("price")
 
-        Label(lastPanel).setText("Total with discount $ ").alignCenter()
+        Label(lastPanel).setText("Total con descuento $ ").alignCenter()
         var totalLabel = Label(lastPanel).setText("monto").alignCenter()
         totalLabel.bindValueToProperty<Double,ControlBuilder>("totalWithDiscount")
 
         Button(panel)
-                .setCaption("Accept")
+                .setCaption("Aceptar")
                 .onClick {
-                    this.close();
-                    var applicationModel = ApplicationModel(modelObject.restaurantModel);
+                    this.close()
+                    var applicationModel = ApplicationModel(modelObject.restaurantModel)
                     ApplicationWindow(this, applicationModel).open()
                    }
     }

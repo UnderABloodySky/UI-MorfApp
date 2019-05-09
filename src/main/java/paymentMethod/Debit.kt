@@ -1,3 +1,3 @@
 package paymentMethod
 
-class Debit : PaymentMethod("Debit")
+class Debit : PaymentMethod("Debito")

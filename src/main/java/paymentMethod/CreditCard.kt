@@ -1,3 +1,3 @@
 package paymentMethod
 
-class CreditCard : PaymentMethod("CreditCard")
+class CreditCard : PaymentMethod("TarjetaDeCredito")

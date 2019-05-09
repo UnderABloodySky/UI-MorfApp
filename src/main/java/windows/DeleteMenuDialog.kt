@@ -12,25 +12,25 @@ class DeleteMenuDialog: Dialog<MenuModel> {
 
     override fun createFormPanel(mainPanel: Panel) {
 
-        Label(mainPanel).setText("Menu " + this.modelObject.name + " deleted.")
+        Label(mainPanel).setText("Menu " + this.modelObject.name + " Borrado.")
                 .setFontSize(20)
                 .setWidth(400)
 
         Button(mainPanel)
-                .setCaption("Accept")
-                .onClick {  this.close();
-                    this.delete();
-                    var applicationModel = ApplicationModel(modelObject.restaurantModel);
-                    ApplicationWindow(this, applicationModel).open()};
+                .setCaption("Aceptar")
+                .onClick {  this.close()
+                    this.delete()
+                    var applicationModel = ApplicationModel(modelObject.restaurantModel)
+                    ApplicationWindow(this, applicationModel).open()}
 
         Button(mainPanel)
-                .setCaption(" Cancel ")
-                .onClick {  this.close();
-                    var applicationModel = ApplicationModel(modelObject.restaurantModel);
-                    ApplicationWindow(this, applicationModel).open()};
+                .setCaption("Cancelar")
+                .onClick {  this.close()
+                    var applicationModel = ApplicationModel(modelObject.restaurantModel)
+                    ApplicationWindow(this, applicationModel).open()}
     }
 
     fun delete(){
-        modelObject.delete();
+        modelObject.delete()
     }
 }

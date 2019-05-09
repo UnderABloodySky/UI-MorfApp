@@ -1,27 +1,25 @@
 package windows
 
-import applicationModel.MorfApp
 import discount.Discount
 import org.uqbar.commons.model.annotations.Observable
 import productAndMenu.Menu
 import productAndMenu.Product
 import restaurant.Restaurant
-import scala.Mutable
 
 
 @Observable
-class RestaurantModel() {
+class RestaurantModel {
 
-    var restaurant: Restaurant? = null;
-    lateinit var name: String;
-    var products: MutableMap<Int, Product> = mutableMapOf();
-    var menus: MutableMap<Int, Menu> = mutableMapOf();
-    var menusOfProduct: MutableList<MenuModel>? = null;
+    var restaurant: Restaurant? = null
+    lateinit var name: String
+    var products: MutableMap<Int, Product> = mutableMapOf()
+    var menus: MutableMap<Int, Menu> = mutableMapOf()
+    var menusOfProduct: MutableList<MenuModel>? = null
 
 
     fun menusOfProduct(code: Int?):MutableList<MenuModel>?{
-        var menuList:MutableList<Menu>?= restaurant?.menusOfProduct(code);
-        return transformListOfMenusToMenuModels(menuList);
+        var menuList:MutableList<Menu>?= restaurant?.menusOfProduct(code)
+        return transformListOfMenusToMenuModels(menuList)
     }
 
     fun getPriceOfMenuWithCode(code:Int):Double?{
@@ -37,35 +35,34 @@ class RestaurantModel() {
 
     fun transformListOfProductsToModel(listOfProducts:MutableList<Product>?):MutableList<ProductModel>{
 
-        var productsModel = mutableListOf<ProductModel>();
+        var productsModel = mutableListOf<ProductModel>()
 
         listOfProducts?.forEach { product ->
-            var tempProduct = ProductModel(this);
-            tempProduct.code = product.code;
-            tempProduct.name = product.name;
-            tempProduct.description = product.description;
-            tempProduct.price = product.price;
-            tempProduct.category = product.category;
+            var tempProduct = ProductModel(this)
+            tempProduct.code = product.code
+            tempProduct.name = product.name
+            tempProduct.description = product.description
+            tempProduct.price = product.price
+            tempProduct.category = product.category
             productsModel.add(tempProduct) }
 
         return productsModel
-
     }
 
     fun transformListOfMenusToMenuModels(menuList: MutableList<Menu>?):MutableList<MenuModel>?{
-        var menusModel = mutableListOf<MenuModel>();
+        var menusModel = mutableListOf<MenuModel>()
         if (!menuList.isNullOrEmpty()) {
             menuList.forEach { menu ->
                 var tempMenu = MenuModel(this)
-                tempMenu.code = menu.code;
-                tempMenu.name = menu.name;
-                tempMenu.description = menu.description;
-                tempMenu.price = menu.totalPrice();
-                tempMenu.totalWithDiscount = menu.costAutocalculation();
-                tempMenu.discount = this.transformToDiscountModel(menu.discount);
-                tempMenu.productsOfMenu = this.transformListOfProductsToModel(menu.productsOfMenu);
-                tempMenu.enabled = this.createObservableBoolean(menu.enabled);
-                tempMenu.enabledName = menu.enabled;
+                tempMenu.code = menu.code
+                tempMenu.name = menu.name
+                tempMenu.description = menu.description
+                tempMenu.price = menu.totalPrice()
+                tempMenu.totalWithDiscount = menu.costAutocalculation()
+                tempMenu.discount = this.transformToDiscountModel(menu.discount)
+                tempMenu.productsOfMenu = this.transformListOfProductsToModel(menu.productsOfMenu)
+                tempMenu.enabled = this.createObservableBoolean(menu.enabled)
+                tempMenu.enabledName = menu.enabled
                 menusModel.add(tempMenu)
             }
         }
@@ -73,16 +70,16 @@ class RestaurantModel() {
 
      }
     private fun createObservableBoolean(bool: Boolean): ObservableBoolean{
-        var tempBool: ObservableBoolean = Disabled();
+        var tempBool: ObservableBoolean = Disabled()
         if(bool){
-            tempBool = Enabled();
+            tempBool = Enabled()
         }
-        return tempBool;
+        return tempBool
     }
 
     private fun transformToDiscountModel(discount: Discount): DiscountModel {
 
-        return DiscountModel(discount);
+        return DiscountModel(discount)
     }
 
     fun transformToMenuModel(): MutableList<MenuModel>?{
@@ -92,10 +89,10 @@ class RestaurantModel() {
     }
 
     fun transformListOfProductModelToProduct(productModelList: MutableList<ProductModel>): MutableList<Product>{
-        var tempProductList = mutableListOf<Product>();
+        var tempProductList = mutableListOf<Product>()
         productModelList.forEach { tempProductList.add( this.restaurant?.products!!.getValue(it.code)) }
 
-        return tempProductList;
+        return tempProductList
     }
 
 }

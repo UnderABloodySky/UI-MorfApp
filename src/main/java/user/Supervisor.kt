@@ -7,18 +7,10 @@ import paymentMethod.PaymentMethod
 class Supervisor( code : Int, id : String , val restaurant: Restaurant, password: String, applicationModel: MorfApp):
         User (code, id, password, applicationModel) {
 
+    fun addProductToRestaurantStock(newProduct: Product) = restaurant.addProductToStock(newProduct)
 
-    fun addProductToRestaurantStock(newProduct: Product) {
-        restaurant.addProductToStock(newProduct);
+    fun addMenuToRestaurant(newMenu: Menu) = restaurant.addMenu(newMenu)
 
-    }
-
-    fun addMenuToRestaurant(newMenu: Menu) {
-        restaurant.addMenu(newMenu);
-    }
-
-
-    //aca ver como tirar la excepcion que no lo tnees en el stock.
     fun removeProductFromRestaurantStock(productToRemove: Product) {
         if (restaurant.productIsContainedInTheStock(productToRemove)) {
             restaurant.removeProductFromStock(productToRemove)
@@ -27,19 +19,17 @@ class Supervisor( code : Int, id : String , val restaurant: Restaurant, password
 
     fun removeMenuFromRestaurant(menuToRemove: Menu) {
         if (restaurant.menus.containsValue(menuToRemove)) {
-            restaurant.removeMenu(menuToRemove);
+            restaurant.removeMenu(menuToRemove)
         }
     }
 
-
     fun addPaymentMethod(newPaymentMethod: PaymentMethod) {
-        restaurant.addPaymentMethod(newPaymentMethod);
+        restaurant.addPaymentMethod(newPaymentMethod)
     }
 
     fun removePaymentMethodRestaurant(paymentMethod: PaymentMethod) {
         if (restaurant.availablePaymentMethods.contains(paymentMethod)) {
-            restaurant.removePaymentMethod(paymentMethod);
+            restaurant.removePaymentMethod(paymentMethod)
         }
-
     }
 }

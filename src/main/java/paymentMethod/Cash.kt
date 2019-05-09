@@ -1,3 +1,3 @@
 package paymentMethod
 
-class Cash : PaymentMethod("Cash")
+class Cash : PaymentMethod("Efectivo")

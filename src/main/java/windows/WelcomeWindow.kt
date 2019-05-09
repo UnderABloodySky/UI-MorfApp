@@ -11,23 +11,21 @@ class WelcomeWindow(model: UserModel): MainWindow<UserModel>(model) {
 
     override fun createContents(panel: Panel) {
 
-        panel.setLayout(VerticalLayout());
+        panel.setLayout(VerticalLayout())
         this.title = "MorfApp :: "
         Label(panel)
-                .setText("Welcome to MoffApp")
+                .setText("Bienvenido a MorfApp")
                 .setFontSize(20)
-                .alignCenter();
+                .alignCenter()
         Button(panel)
-                .setCaption("Login")
+                .setCaption("Loguearse")
                 .onClick {
                     this.close()
-                    LoginWindow(this,UserModel()).open();
+                    LoginWindow(this,UserModel()).open()
                 }
         Button(panel)
-                .setCaption("Close Application")
-                .onClick {
-                            this.close()
-                }
+                .setCaption("Cerrar aplicacion")
+                .onClick { this.close() }
 
     }
 }

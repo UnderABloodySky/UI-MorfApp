@@ -12,28 +12,28 @@ class DeleteProductDialog: Dialog<ProductModel> {
 
     override fun createFormPanel(mainPanel: Panel) {
 
-        Label(mainPanel).setText("Product: " + modelObject.name + " Deleted.")
+        Label(mainPanel).setText("Producto: " + modelObject.name + " Borrado.")
                         .setFontSize(20)
                         .setWidth(400)
 
         var acceptButton = Button(mainPanel)
-                .setCaption("Accept")
-                .onClick {  this.close();
-                    this.delete();
-                    var applicationModel = ApplicationModel(modelObject.restaurantModel);
-                    ApplicationWindow(this, applicationModel).open()};
-        acceptButton.alignCenter();
+                .setCaption("Aceptar")
+                .onClick {  this.close()
+                    this.delete()
+                    var applicationModel = ApplicationModel(modelObject.restaurantModel)
+                    ApplicationWindow(this, applicationModel).open()}
+        acceptButton.alignCenter()
 
         var cancelButton = Button(mainPanel)
-                .setCaption(" Cancel ")
+                .setCaption("Cancelar")
                 .onClick {  this.close()
                     var applicationModel = ApplicationModel(modelObject.restaurantModel)
-                    ApplicationWindow(this, applicationModel).open()};
-        cancelButton.alignCenter();
+                    ApplicationWindow(this, applicationModel).open()}
+        cancelButton.alignCenter()
 
     }
 
     fun delete(){
-        modelObject.delete();
+        modelObject.delete()
     }
 }

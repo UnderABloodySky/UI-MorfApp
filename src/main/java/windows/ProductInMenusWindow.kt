@@ -5,24 +5,21 @@ import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.widgets.tables.Column
-import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.lacar.ui.model.ControlBuilder
 
 
 class ProductInMenusWindow( owner: WindowOwner, model: ProductInMenusModel) : SimpleWindow<ProductInMenusModel>(owner, model) {
 
-    override fun addActions(p0: Panel?) : Unit {}
+    override fun addActions(p0: Panel?) {}
 
     override fun createFormPanel(panel: Panel) {
 
-        title = "Menus Of Product"
+        title = "Productos Del Menu"
         Label(panel)
-                .setText("Product contained in:")
+                .setText("Producto contenido en:")
                 .setFontSize(20)
-                .alignCenter();
+                .alignCenter()
 
         panel.setLayout(VerticalLayout())
                 .setWidth(2000)
@@ -32,10 +29,10 @@ class ProductInMenusWindow( owner: WindowOwner, model: ProductInMenusModel) : Si
                                  .adaptWith(MenuModel::class.java,"name")
 
         Button(panel)
-                .setCaption("Accept")
+                .setCaption("Aceptar")
                 .onClick {
-                    this.close();
-                    var applicationModel = ApplicationModel(modelObject.applicationModel.restaurantModel);
-                    ApplicationWindow(this, applicationModel).open()};
+                    this.close()
+                    var applicationModel = ApplicationModel(modelObject.applicationModel.restaurantModel)
+                    ApplicationWindow(this, applicationModel).open()}
     }
 }

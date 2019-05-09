@@ -3,8 +3,6 @@ package windows
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.*
-import org.uqbar.arena.windows.Dialog
-import org.uqbar.arena.windows.MainWindow
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.lacar.ui.model.ControlBuilder
@@ -13,69 +11,69 @@ import productAndMenu.Category
 
 
 class EditProductWindow(owner: WindowOwner, model: ProductModel?) : SimpleWindow<ProductModel>(owner, model) {
-    override fun addActions(p0: Panel?) : Unit {}
+    override fun addActions(p0: Panel?) {}
 
     override fun createFormPanel(panel: Panel) {
-        title = "Restaurant :: Edit Product";
+        title = "Restaurant :: Editar Producto"
 
         Label(panel)
-                .setText("Edit Product")
+                .setText("Editar Producto")
                 .setFontSize(30)
-                .alignCenter();
+                .alignCenter()
 
-        this.setTextBoxPanel(panel);
-        this.setFourColumnPanel(panel);
+        this.setTextBoxPanel(panel)
+        this.setFourColumnPanel(panel)
 
         Button(panel)
-                .setCaption("Accept")
-                .onClick {  this.edit();
-                            this.close();
-                            var applicationModel = ApplicationModel(modelObject.restaurantModel);
-                            ApplicationWindow(this, applicationModel).open()};
+                .setCaption("Aceptar")
+                .onClick {  this.edit()
+                            this.close()
+                            var applicationModel = ApplicationModel(modelObject.restaurantModel)
+                            ApplicationWindow(this, applicationModel).open()}
         Button(panel)
-                .setCaption("Cancel")
-                .onClick {  this.close();
-                            var applicationModel = ApplicationModel(modelObject.restaurantModel);
-                            ApplicationWindow(this, applicationModel).open()};
+                .setCaption("Cancelar")
+                .onClick {  this.close()
+                            var applicationModel = ApplicationModel(modelObject.restaurantModel)
+                            ApplicationWindow(this, applicationModel).open()}
 
     }
 
     private fun setTextBoxPanel(panel : Panel){
-        val elementCode: Observable<Any> = NotNullObservable("observableNull");
+        val elementCode: Observable<Any> = NotNullObservable("observableNull")
 
-        var columnPanel = Panel(panel).setLayout(ColumnLayout(2)).setWidth(100);
+        var columnPanel = Panel(panel).setLayout(ColumnLayout(2)).setWidth(100)
 
-        Label(columnPanel).setText("Code");
-        val codeTextBox = TextBox(columnPanel);
+        Label(columnPanel).setText("Codigo")
+        val codeTextBox = TextBox(columnPanel)
         codeTextBox.setWidth(150)
-        codeTextBox.bindValueToProperty<Int, ControlBuilder>("code");
-        codeTextBox.bindEnabled<Any, ControlBuilder>(elementCode);
+        codeTextBox.bindValueToProperty<Int, ControlBuilder>("code")
+        codeTextBox.bindEnabled<Any, ControlBuilder>(elementCode)
 
-        Label(columnPanel).setText("Name");
+        Label(columnPanel).setText("Nombre")
         TextBox(columnPanel)
                 .setWidth(150)
-                .bindValueToProperty<String, ControlBuilder>("name");
+                .bindValueToProperty<String, ControlBuilder>("name")
 
-        Label(columnPanel).setText("Description");
+        Label(columnPanel).setText("Descripcion")
         TextBox(columnPanel)
                 .setWidth(150)
-                .bindValueToProperty<String, ControlBuilder>("description");
+                .bindValueToProperty<String, ControlBuilder>("description")
     }
 
     private fun setFourColumnPanel(panel: Panel) {
 
-        var fourColumnPanel = Panel(panel).setLayout(ColumnLayout(4));
-        Label(fourColumnPanel).setText("Price");
+        var fourColumnPanel = Panel(panel).setLayout(ColumnLayout(4))
+        Label(fourColumnPanel).setText("Precio")
         var priceField = TextBox(fourColumnPanel)
                 priceField.bindValueToProperty<String, ControlBuilder>("price")
                 priceField.setWidth(80)
 
         Label(fourColumnPanel)
-                .setText("Category");
-        val categorySelector = Selector<Category>(fourColumnPanel);
-        categorySelector.bindValueToProperty<Category, ControlBuilder>("category");
-        categorySelector.bindItemsToProperty("categories");
+                .setText("Categoria")
+        val categorySelector = Selector<Category>(fourColumnPanel)
+        categorySelector.bindValueToProperty<Category, ControlBuilder>("category")
+        categorySelector.bindItemsToProperty("categories")
 
     }
-    private fun edit() { modelObject.edit(); }
+    private fun edit() = modelObject.edit()
 }

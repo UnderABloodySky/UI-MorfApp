@@ -10,9 +10,7 @@ class CriteriaById(private var id : Int?) : Criteria(){
             var entity = toSeach.get(id)
             res.add(entity)
         }
-        catch (e : NullPointerException){
-
-        }
+        catch (e : NullPointerException){}
 
         return res
     }

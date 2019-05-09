@@ -13,178 +13,165 @@ import org.uqbar.lacar.ui.model.bindings.Observable
 
 class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWindow<ApplicationModel>(owner, model){
 
-    val elementProduct: Observable<Any> = NotNullObservable("selectedProduct");
-    val elementMenu: Observable<Any> = NotNullObservable("selectedMenu");
+    val elementProduct: Observable<Any> = NotNullObservable("selectedProduct")
+    val elementMenu: Observable<Any> = NotNullObservable("selectedMenu")
 
     override fun addActions(p0: Panel?) {}
 
     override fun createFormPanel(panel: Panel) {
-        title = "Morfapp :: ${modelObject.restaurantModel.name}";
+        title = "Morfapp :: ${modelObject.restaurantModel.name}"
 
        val logoutPanel = Panel(panel)
        var logOutButton = Button(logoutPanel)
-                logOutButton.setCaption("Log out")
+                logOutButton.setCaption("Desloguearse")
                 logOutButton.alignLeft()
                 logOutButton.onClick {
                                     this.close()
-                                    LoginWindow(this,UserModel()).open();
+                                    LoginWindow(this,UserModel()).open()
                         }
 
         val contentsPanel = Panel(panel)
-        contentsPanel.setLayout(HorizontalLayout());
+        contentsPanel.setLayout(HorizontalLayout())
 
-        val productPanel = Panel(contentsPanel);
+        val productPanel = Panel(contentsPanel)
 
         Label(productPanel)
-                .setText("Product Administration")
+                .setText("Administracion De Productos")
                 .setFontSize(25)
-                .alignCenter();
+                .alignCenter()
 
         val searchProductPanel = Panel(productPanel)
-        searchProductPanel.setLayout(HorizontalLayout());
+        searchProductPanel.setLayout(HorizontalLayout())
         TextBox(searchProductPanel)
                 .bindValueToProperty<Any, ControlBuilder>("productFilter")
         Button(searchProductPanel)
-                .setCaption("Search Name")
-                .onClick { modelObject.updateProductList(); }
+                .setCaption("Buscar Por Nombre")
+                .onClick { modelObject.updateProductList() }
 
-        NumericField(searchProductPanel)
-                .bindValueToProperty<Int?, ControlBuilder>("productIdFilter")
-        Button(searchProductPanel)
-                .setCaption("Search by Id")
-                .onClick { modelObject.updateProductListId(); }
-
-        var productTable = Table<ProductModel>(productPanel, ProductModel::class.java);
+        var productTable = Table<ProductModel>(productPanel, ProductModel::class.java)
         productTable.bindItemsToProperty("products")
         productTable.bindValueToProperty<ProductModel, ControlBuilder>("selectedProduct")
         Column<ProductModel>(productTable)
-                .setTitle("Name")
+                .setTitle("Nombre")
                 .setFixedSize(250)
-                .bindContentsToProperty("name");
+                .bindContentsToProperty("name")
 
         Column<ProductModel>(productTable)
-                .setTitle("Price")
+                .setTitle("Precio")
                 .setFixedSize(250)
-                .bindContentsToProperty("price");
+                .bindContentsToProperty("price")
 
-        var buttonProductPanel = Panel(productPanel);
+        var buttonProductPanel = Panel(productPanel)
         buttonProductPanel
-                .setLayout(ColumnLayout(2));
+                .setLayout(ColumnLayout(2))
 
-        var buttonProductLeftPanel = Panel(buttonProductPanel);
+        var buttonProductLeftPanel = Panel(buttonProductPanel)
         Button(buttonProductLeftPanel)
-                .setCaption("New Product")
+                .setCaption("Nuevo Producto")
                 .onClick {
-                    this.close();
-                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel));
-                    newProductWindow.open();
+                    this.close()
+                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel))
+                    newProductWindow.open()
                 }
         var editButton = Button(buttonProductLeftPanel)
-                .setCaption("Edit Product")
+                .setCaption("Editar Producto")
                 .onClick {
-                    this.close();
-                    val newProductWindow = EditProductWindow(this, modelObject.selectedProduct);
+                    this.close()
+                    val newProductWindow = EditProductWindow(this, modelObject.selectedProduct)
                     newProductWindow.open()
                 }
 
-        var buttonProductRightPanel = Panel(buttonProductPanel);
+        var buttonProductRightPanel = Panel(buttonProductPanel)
         var viewButton = Button(buttonProductRightPanel)
-                .setCaption("View Product")
+                .setCaption("Ver Producto")
                 .onClick {
-                    this.close();
+                    this.close()
                     val newProductInMenusWindow = ProductInMenusWindow(this, ProductInMenusModel(modelObject))
-                    newProductInMenusWindow.open();
+                    newProductInMenusWindow.open()
                 }
 
         var deleteButton = Button(buttonProductRightPanel)
-                .setCaption("Delete Product")
+                .setCaption("Borrar Producto")
                 .onClick {
                     this.close()
-                    val deleteProductDialog = DeleteProductDialog(this, modelObject.selectedProduct);
-                    deleteProductDialog.open();
+                    val deleteProductDialog = DeleteProductDialog(this, modelObject.selectedProduct)
+                    deleteProductDialog.open()
                 }
-        editButton.bindEnabled<Any, ControlBuilder>(elementProduct);
-        viewButton.bindEnabled<Any, ControlBuilder>(elementProduct);
-        deleteButton.bindEnabled<Any, ControlBuilder>(elementProduct);
+        editButton.bindEnabled<Any, ControlBuilder>(elementProduct)
+        viewButton.bindEnabled<Any, ControlBuilder>(elementProduct)
+        deleteButton.bindEnabled<Any, ControlBuilder>(elementProduct)
 
-        val menuPanel = Panel(contentsPanel);
+        val menuPanel = Panel(contentsPanel)
 
         Label(menuPanel)
-                .setText("Menu Administration")
+                .setText("Administracion Del Menu")
                 .setFontSize(25)
-                .alignCenter();
+                .alignCenter()
 
         val searchMenuPanel = Panel(menuPanel)
-        searchMenuPanel.setLayout(HorizontalLayout());
+        searchMenuPanel.setLayout(HorizontalLayout())
         TextBox(searchMenuPanel)
                 .bindValueToProperty<Any, ControlBuilder>("menuFilter")
         Button(searchMenuPanel)
-                .setCaption("Search Name")
-                .onClick { modelObject.updateMenuList(); }
-
-        NumericField(searchMenuPanel)
-                .bindValueToProperty<Int?, ControlBuilder>("menuIdFilter")
-        Button(searchMenuPanel)
-                .setCaption("Search ID")
-                .onClick { modelObject.updateMenuIdList() }
+                .setCaption("Buscar Por Nombre")
+                .onClick { modelObject.updateMenuList() }
 
 
-        var menuTable = Table<MenuModel>(menuPanel, MenuModel::class.java);
+        var menuTable = Table<MenuModel>(menuPanel, MenuModel::class.java)
         menuTable.bindItemsToProperty("menus")
         menuTable.bindValueToProperty<MenuModel, ControlBuilder>("selectedMenu")
         Column<MenuModel>(menuTable)
-                .setTitle("Name")
+                .setTitle("Nombre")
                 .setFixedSize(250)
-                .bindContentsToProperty("name");
+                .bindContentsToProperty("name")
 
         Column<MenuModel>(menuTable)
-                .setTitle("Price")
+                .setTitle("Precio")
                 .setFixedSize(250)
-                .bindContentsToProperty("totalWithDiscount");
+                .bindContentsToProperty("totalWithDiscount")
 
         var enabledColumn = Column<MenuModel>(menuTable)
-        enabledColumn.setTitle("Enabled")
+        enabledColumn.setTitle("Habilitado")
         enabledColumn.setFixedSize(250)
         enabledColumn.bindContentsToProperty("enabledNameStr")
 
-
-        var buttonMenuPanel = Panel(menuPanel);
-        buttonMenuPanel.setLayout(HorizontalLayout());
+        var buttonMenuPanel = Panel(menuPanel)
+        buttonMenuPanel.setLayout(HorizontalLayout())
 
         Button(buttonMenuPanel)
-                .setCaption("Add Menu")
+                .setCaption("Agregar Menu")
                 .onClick {
-                    this.close();
-                    val newMenuWindow = NewMenuWindow(this, MenuModel(modelObject.restaurantModel));
-                    newMenuWindow.open();
+                    this.close()
+                    val newMenuWindow = NewMenuWindow(this, MenuModel(modelObject.restaurantModel))
+                    newMenuWindow.open()
                 }
 
         var viewMenuButton = Button(buttonMenuPanel)
-                .setCaption("View Menu")
+                .setCaption("Ver Menu")
                 .onClick {
-                    this.close();
-                    val newMenuWithProductsWindow = MenuWithProductsWindow(this, modelObject.selectedMenu);
-                    newMenuWithProductsWindow.open();
+                    this.close()
+                    val newMenuWithProductsWindow = MenuWithProductsWindow(this, modelObject.selectedMenu)
+                    newMenuWithProductsWindow.open()
                 }
 
         var editMenuButton = Button(buttonMenuPanel)
-                .setCaption("Edit Menu")
+                .setCaption("Editar Menu")
                 .onClick {
-                    this.close();
-                    val newMenuWindow = EditMenuWindow(this, modelObject.selectedMenu);
-                    newMenuWindow.open();
+                    this.close()
+                    val newMenuWindow = EditMenuWindow(this, modelObject.selectedMenu)
+                    newMenuWindow.open()
                 }
         var deleteMenuButton = Button(buttonMenuPanel)
-                .setCaption("Delete Menu")
+                .setCaption("Borrar Menu")
                 .onClick {
-                    this.close();
-                    val newMenuWindow = DeleteMenuDialog(this, modelObject.selectedMenu);
-                    newMenuWindow.open();
+                    this.close()
+                    val newMenuWindow = DeleteMenuDialog(this, modelObject.selectedMenu)
+                    newMenuWindow.open()
                 }
 
-        editMenuButton.bindEnabled<Any, ControlBuilder>(elementMenu);
-        viewMenuButton.bindEnabled<Any, ControlBuilder>(elementMenu);
-        deleteMenuButton.bindEnabled<Any, ControlBuilder>(elementMenu);
+        editMenuButton.bindEnabled<Any, ControlBuilder>(elementMenu)
+        viewMenuButton.bindEnabled<Any, ControlBuilder>(elementMenu)
+        deleteMenuButton.bindEnabled<Any, ControlBuilder>(elementMenu)
 
     }
 }
