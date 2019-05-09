@@ -10,6 +10,8 @@ class CriteriaByIdAndString(val parameter : Any?) : Criteria() {
             is String -> parcialList = CriteriaByString(parameter).search(toSearch)
         }
 
+//        (CriteriaById(parameter.toInt()).search(toSearch) + CriteriaByString(parameter).search(toSearch)).toSet().toCollection()
+
         parcialList.forEach { if(!listResult.contains(it)){listResult.add(it) } }
 
         return listResult

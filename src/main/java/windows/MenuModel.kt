@@ -35,6 +35,8 @@ class MenuModel(restaurantModel: RestaurantModel) {
         return  menuName== "" || menuDescription==""
     }
 
+    fun enabledNameStr() = if (enabled.getValue) "Si" else "No"
+
     fun save() {
         if (this.anyOfThisIsEmpty(this.name, this.description)) {
             throw EmptyFieldsException("Fields cant be empty")
@@ -71,7 +73,9 @@ class MenuModel(restaurantModel: RestaurantModel) {
     }
 
     fun addToListOfProducts(){
-        this.productsOfMenu.add(this.selectedProductToAdd!!);
+        val newProductsOfMenu = productsOfMenu
+        newProductsOfMenu.add(this.selectedProductToAdd!!)
+        productsOfMenu = newProductsOfMenu
     }
     fun deleteFromListOfProducts(){
         this.productsOfMenu.remove(selectedProductToRemove);

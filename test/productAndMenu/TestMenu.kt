@@ -36,11 +36,11 @@ class TestMenu {
 
     @Test
     fun CheckThatIfIHaveTwoOfTheSameProductsAndIRemoveOneOfThemTheSizeIsOne() {
-        var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), restaurant);
-        menu.addProductToMenu(this.soda);
-        menu.addProductToMenu(this.soda);
-        menu.removeProductFromMenu(this.soda.code);
-        Assert.assertEquals(menu.productsOfMenu.size, 1);
+        var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf(), restaurant)
+        menu.addProductToMenu(this.soda)
+        menu.addProductToMenu(this.soda)
+        menu.removeProductFromMenu(this.soda.code)
+        Assert.assertEquals(menu.productsOfMenu.size, 1)
     }
 
     @Test

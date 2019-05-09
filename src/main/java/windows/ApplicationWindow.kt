@@ -21,7 +21,8 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
     override fun createFormPanel(panel: Panel) {
         title = "Morfapp :: ${modelObject.restaurantModel.name}";
 
-       var logOutButton = Button(panel)
+       val logoutPanel = Panel(panel)
+       var logOutButton = Button(logoutPanel)
                 logOutButton.setCaption("Log out")
                 logOutButton.alignLeft()
                 logOutButton.onClick {
@@ -29,9 +30,10 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                                     LoginWindow(this,UserModel()).open();
                         }
 
-        panel.setLayout(HorizontalLayout());
+        val contentsPanel = Panel(panel)
+        contentsPanel.setLayout(HorizontalLayout());
 
-        val productPanel = Panel(panel);
+        val productPanel = Panel(contentsPanel);
 
         Label(productPanel)
                 .setText("Product Administration")
@@ -105,7 +107,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         viewButton.bindEnabled<Any, ControlBuilder>(elementProduct);
         deleteButton.bindEnabled<Any, ControlBuilder>(elementProduct);
 
-        val menuPanel = Panel(panel);
+        val menuPanel = Panel(contentsPanel);
 
         Label(menuPanel)
                 .setText("Menu Administration")
@@ -143,7 +145,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         var enabledColumn = Column<MenuModel>(menuTable)
         enabledColumn.setTitle("Enabled")
         enabledColumn.setFixedSize(250)
-        enabledColumn.bindContentsToProperty("enabledName");
+        enabledColumn.bindContentsToProperty("enabledNameStr")
 
 
         var buttonMenuPanel = Panel(menuPanel);

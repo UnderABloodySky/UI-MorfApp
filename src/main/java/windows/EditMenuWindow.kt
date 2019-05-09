@@ -50,10 +50,11 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
         Button(addRemoveButtonPanel)
                 .setCaption(">>")
                 .onClick {
-                    this.close();
+                    //this.close();
                     this.addToListOfProducts();
                     val newMenuWindow = EditMenuWindow(this, modelObject);
-                    newMenuWindow.open();}
+                    //newMenuWindow.open();
+                    }
         Button(addRemoveButtonPanel)
                 .setCaption("<<")
                 .onClick {

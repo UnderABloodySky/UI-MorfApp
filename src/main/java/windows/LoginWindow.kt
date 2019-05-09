@@ -40,8 +40,9 @@ class LoginWindow(owner: WindowOwner, model: UserModel): SimpleWindow <UserModel
 
                         var loggedUserModel = ApplicationModel(modelObject.autenticate());
                         var applicationWindow = ApplicationWindow(this, loggedUserModel);
-                        applicationWindow.open();
-                        this.close();
+                    this.close();
+                    applicationWindow.open();
+
 
                 }
         Button(panel)

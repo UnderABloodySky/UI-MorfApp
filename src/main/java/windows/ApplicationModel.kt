@@ -14,9 +14,9 @@ class ApplicationModel(restaurantModel: RestaurantModel) {
 
     var restaurantModel = restaurantModel;
     var productFilter : String? = null;
-    var productIdFilter : Int? = null
+    var productIdFilter : Int? = null;
     var menuFilter : String? = null;
-    var menuIdFilter : Int? = null
+    var menuIdFilter : Int? = null;
     var products = restaurantModel.transformToProductModel();
     var menus    = restaurantModel.transformToMenuModel();
     var selectedProduct: ProductModel? = null;
@@ -37,6 +37,7 @@ class ApplicationModel(restaurantModel: RestaurantModel) {
             this.products = this.restaurantModel.transformListOfProductsToModel(tempFoundProducts);
         }
         catch(e : NullPointerException){
+            this.productIdFilter = null;
             throw UserException("Incorrect ID")
         }
     }
@@ -50,14 +51,15 @@ class ApplicationModel(restaurantModel: RestaurantModel) {
 
 
     fun updateMenuIdList() {
-        try {
+        if(this.menuIdFilter != null){
             var tempFoundMenus = this.restaurantModel
                     .restaurant?.findMenu(CriteriaById(menuIdFilter)) as MutableList<Menu>;
 
             this.menus = this.restaurantModel.transformListOfMenusToMenuModels(tempFoundMenus);
-        }
-        catch(e : NullPointerException){
+        }else{
+
             throw UserException("Incorrect ID")
         }
+
     }
 }
