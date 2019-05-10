@@ -139,7 +139,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         buttonMenuPanel.setLayout(HorizontalLayout())
 
         Button(buttonMenuPanel)
-                .setCaption("Agregar Menu")
+                .setCaption("Nuevo Menu")
                 .onClick {
                     this.close()
                     val newMenuWindow = NewMenuWindow(this, MenuModel(modelObject.restaurantModel))

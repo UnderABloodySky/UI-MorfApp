@@ -57,6 +57,6 @@ class ProductModel(restaurantModel: RestaurantModel) {
         this.restaurantModel.restaurant?.deleteProduct(this.code)
     }
 
-    fun nameAndPrice():String = "$name $$price"
+    fun nameAndPrice():String = "$name    $$price"
 
 }

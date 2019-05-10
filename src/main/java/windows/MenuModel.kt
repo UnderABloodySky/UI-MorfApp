@@ -1,10 +1,11 @@
 package windows
 
-import applicationModel.MorfApp
 import discount.*
 import exception.EmptyFieldsException
 import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.exceptions.UserException
 import restaurant.Restaurant
+import searcher.CriteriaById
 
 @Observable
 class MenuModel(restaurantModel: RestaurantModel) {
@@ -20,16 +21,16 @@ class MenuModel(restaurantModel: RestaurantModel) {
                                                                         FixedDiscount(100.0),
                                                                         PercentageDiscount(20.0),
                                                                         NoDiscount()))
-    var discount: DiscountModel = DiscountModel(menu!!.discount)
-    var discountName : String = discount.name
+    var discount = getDiscountModelFromDiscount()
+    var discountValue = getDiscountModelFromDiscount().value
     var enabled: ObservableBoolean = Enabled()
-    var enabledName: Boolean = enabled.getValue
+    var enabledName: String = enabled.optionName
     var selectedProductToAdd: ProductModel? = null
     var selectedProductToRemove: ProductModel? = null
     var restaurantModel = restaurantModel
     var availableProducts = restaurantModel.transformToProductModel()
-    var observableNull = null
     var observableBooleans = mutableListOf<ObservableBoolean>(Enabled(), Disabled())
+
     fun anyOfThisIsEmpty(menuName:String,menuDescription:String):Boolean{
 
         return  menuName== "" || menuDescription==""
@@ -70,11 +71,23 @@ class MenuModel(restaurantModel: RestaurantModel) {
     fun delete() = this.restaurantModel.restaurant?.deleteMenu(this.code)
 
     fun addToListOfProducts(){
-        val newProductsOfMenu = productsOfMenu
-        newProductsOfMenu.add(this.selectedProductToAdd!!)
-        productsOfMenu = newProductsOfMenu
+
+        val tempProduct = this.restaurantModel.restaurant?.findProduct(CriteriaById(this.selectedProductToAdd?.code))?.first()
+        val tempMenu = this.restaurantModel.restaurant?.findMenu(CriteriaById(this.code))?.first()
+        tempMenu?.productsOfMenu?.add(tempProduct!!)
+
+        this.productsOfMenu = this.restaurantModel.transformListOfProductsToModel(tempMenu?.productsOfMenu)
+
     }
-    fun deleteFromListOfProducts() = this.productsOfMenu.remove(selectedProductToRemove)
+    fun deleteFromListOfProducts(){
+
+        val tempProduct = this.restaurantModel.restaurant?.findProduct(CriteriaById(this.selectedProductToRemove?.code))?.first()
+        val tempMenu = this.restaurantModel.restaurant?.findMenu(CriteriaById(this.code))?.first()
+        tempMenu?.productsOfMenu?.remove(tempProduct!!)
+
+        this.productsOfMenu = this.restaurantModel.transformListOfProductsToModel(tempMenu?.productsOfMenu)
+
+    }
 
     fun transformListOfDiscountToDiscountModel(discountList: MutableList<Discount>): MutableList<DiscountModel>{
         var tempDiscountList = mutableListOf<DiscountModel>()
@@ -82,6 +95,19 @@ class MenuModel(restaurantModel: RestaurantModel) {
             tempDiscountList.add(tempDiscount)
         }
         return tempDiscountList
+    }
+
+    fun noProductSelected(message: String){
+        throw UserException (message)
+    }
+
+    private fun getDiscountModelFromDiscount(): DiscountModel {
+        var tempDiscountModel = DiscountModel(NoDiscount())
+        if (this.code != 0){
+            val tempDiscount = this.restaurantModel.restaurant?.findMenu(CriteriaById(this.code))?.first()?.discount
+            tempDiscountModel = this.discounts.filter{ discount -> tempDiscount?.name == discount.name }.first()}
+        return tempDiscountModel
+
     }
 
 }

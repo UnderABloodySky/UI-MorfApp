@@ -47,14 +47,4 @@ class ApplicationModel(restaurantModel: RestaurantModel) {
         this.menus = this.restaurantModel.transformListOfMenusToMenuModels(tempFoundMenus)
     }
 
-
-    fun updateMenuIdList() {
-        if(this.menuIdFilter != null){
-            var tempFoundMenus = this.restaurantModel
-                    .restaurant?.findMenu(CriteriaById(menuIdFilter)) as MutableList<Menu>
-            this.menus = this.restaurantModel.transformListOfMenusToMenuModels(tempFoundMenus)
-        }else{
-            throw UserException("ID Incorrecto")
-        }
-    }
 }

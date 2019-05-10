@@ -1,9 +1,14 @@
 package windows
 
+import com.sun.org.apache.bcel.internal.generic.Select
 import org.uqbar.arena.bindings.NotNullObservable
+import org.uqbar.arena.bindings.ObservableProperty
 import org.uqbar.arena.layout.ColumnLayout
+import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.*
+import org.uqbar.arena.widgets.tables.Column
+import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.lacar.ui.model.ControlBuilder
@@ -29,36 +34,43 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
                 .setFontSize(20)
                 .alignLeft()
         Label(labelsColumnPanel)
-                .setText("Seleccionado")
+                .setText("Agregado Al Menu")
                 .setFontSize(20)
                 .alignRight()
 
-        var listOfProductsColumnPanel = Panel(panel).setLayout(ColumnLayout(3))
-        val allProductsSelector = List<ProductModel>(listOfProductsColumnPanel)
-        allProductsSelector.bindItemsToProperty("availableProducts")
-                .adaptWith(ProductModel::class.java,"nameAndPrice")
-        allProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProductToAdd")
+        var threeColumnPanel = Panel(panel).setLayout(ColumnLayout(3))
 
-        var addRemoveButtonPanel = Panel(listOfProductsColumnPanel).setLayout(VerticalLayout())
-        Button(addRemoveButtonPanel)
+        val allProductsTable = List<ProductModel>(threeColumnPanel)
+        allProductsTable.setWidth(300)
+        allProductsTable.setHeight(89)
+        allProductsTable.bindItemsToProperty("availableProducts")
+                .adaptWith(ProductModel::class.java, "nameAndPrice")
+        allProductsTable.bindValueToProperty<ProductModel, ControlBuilder>("selectedProductToAdd")
+
+        var addRemovePanel = Panel(threeColumnPanel)
+
+        Button(addRemovePanel)
                 .setCaption(">>")
-                .onClick {
-                    this.addToListOfProducts()
-                    val newMenuWindow = EditMenuWindow(this, modelObject)
-                    //newMenuWindow.open();
-                    }
-        Button(addRemoveButtonPanel)
-                .setCaption("<<")
-                .onClick {
-                    this.close()
-                    this.removeFromListOfProducts()
-                    val newMenuWindow = EditMenuWindow(this, modelObject)
-                    newMenuWindow.open()}
+                .onClick { if (modelObject.selectedProductToAdd != null)
+                            {this.addToListOfProducts()}
+                            else {modelObject.noProductSelected(
+                            "Debe tener seleccionado un item de la lista de productos disponibles")}
+                         }
 
-        val filteredProductsSelector = List<ProductModel>(listOfProductsColumnPanel)
-        filteredProductsSelector.bindItemsToProperty("productsOfMenu")
-                .adaptWith(ProductModel::class.java,"nameAndPrice")
-        filteredProductsSelector.bindValueToProperty<ProductModel, ControlBuilder>("selectedProductToRemove");
+        Button(addRemovePanel)
+                .setCaption("<<")
+                .onClick { if (modelObject.selectedProductToRemove != null)
+                            {this.removeFromListOfProducts()}
+                            else{modelObject.noProductSelected(
+                            "Debe tener seleccionado un item de la lista de productos agregados al menu")}
+                         }
+
+        val filteredProductsTable = List<ProductModel>(threeColumnPanel)
+        filteredProductsTable.setWidth(300)
+        filteredProductsTable.setHeight(89)
+        filteredProductsTable.bindItems(ObservableProperty<ProductModel>("productsOfMenu"))
+                .adaptWith(ProductModel::class.java, "nameAndPrice")
+        filteredProductsTable.bindValueToProperty<ProductModel, ControlBuilder>("selectedProductToRemove")
 
         Button(panel)
                 .setCaption("Aceptar")
@@ -78,7 +90,6 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
     }
 
     private fun setTextBoxPanel(panel: Panel) {
-        val elementCode: Observable<Any> = NotNullObservable("observableNull")
 
         var columnPanel = Panel(panel).setLayout(ColumnLayout(2))
 
@@ -86,7 +97,6 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
         val codeTextBox = TextBox(columnPanel)
         codeTextBox.setWidth(150)
         codeTextBox.bindValueToProperty<Int, ControlBuilder>("code")
-        codeTextBox.bindEnabled<Any, ControlBuilder>(elementCode)
 
         Label(columnPanel).setText("Nombre")
         TextBox(columnPanel)
@@ -100,11 +110,11 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
 
         Label(columnPanel)
                 .setText("Habilitado")
-        val enabledSelector = RadioSelector<ObservableBoolean>(columnPanel)
+        var enabledSelector = RadioSelector<ObservableBoolean>(columnPanel)
+        enabledSelector.bindItemsToProperty("observableBooleans")
+                .adaptWith(ObservableBoolean::class.java, "optionName")
         enabledSelector.bindValueToProperty<Boolean,ControlBuilder>("enabled")
 
-        enabledSelector.bindItemsToProperty("observableBooleans")
-                .adaptWith(ObservableBoolean::class.java, "getValue")
     }
 
     private fun setFourColumnPanel(panel: Panel) {
@@ -116,13 +126,14 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
         val discountSelector = Selector<DiscountModel>(fourColumnPanel)
         discountSelector.bindValueToProperty<DiscountModel, ControlBuilder>("discount")
         discountSelector.bindItemsToProperty("discounts")
-                .adaptWith(DiscountModel::class.java,"nameAndValue")
+                .adaptWith(DiscountModel::class.java,"name")
 
 
         Label(fourColumnPanel)
                 .setText("Descuento")
-        Label(fourColumnPanel).bindValueToProperty<DiscountModel, ControlBuilder>("discountName")
-
+        var discountInput = TextBox(fourColumnPanel)
+        discountInput.setWidth(100)
+        discountInput.bindValueToProperty<MenuModel, ControlBuilder>("discountValue")
     }
 
     private fun edit() = modelObject.edit()

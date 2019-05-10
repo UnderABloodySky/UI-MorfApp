@@ -62,7 +62,6 @@ class RestaurantModel {
                 tempMenu.discount = this.transformToDiscountModel(menu.discount)
                 tempMenu.productsOfMenu = this.transformListOfProductsToModel(menu.productsOfMenu)
                 tempMenu.enabled = this.createObservableBoolean(menu.enabled)
-                tempMenu.enabledName = menu.enabled
                 menusModel.add(tempMenu)
             }
         }
