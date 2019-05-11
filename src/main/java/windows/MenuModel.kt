@@ -59,11 +59,12 @@ class MenuModel(restaurantModel: RestaurantModel) {
              throw EmptyFieldsException("Los campos de entrada no pueden estar vacios.")
         }
         else {
+            this.discount.discount.value = discount.value
             this.restaurantModel.restaurant?.editMenu(this.code,
                     this.name,
                     this.description,
                     this.restaurantModel.transformListOfProductModelToProduct(this.productsOfMenu),
-                    this.discount!!.discount,
+                    this.discount.discount,
                     this.enabled.getValue)
         }
     }
@@ -106,6 +107,7 @@ class MenuModel(restaurantModel: RestaurantModel) {
         if (this.code != 0){
             val tempDiscount = this.restaurantModel.restaurant?.findMenu(CriteriaById(this.code))?.first()?.discount
             tempDiscountModel = this.discounts.filter{ discount -> tempDiscount?.name == discount.name }.first()}
+
         return tempDiscountModel
 
     }

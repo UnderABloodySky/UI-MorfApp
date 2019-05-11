@@ -10,7 +10,6 @@ class DiscountModel(discount: Discount) {
     var value: Double = discount.value
     var discount: Discount = discount
 
-
     fun nameAndValue(): String = "$name "
 
 }

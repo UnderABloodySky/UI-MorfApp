@@ -9,7 +9,6 @@ import restaurant.Restaurant
 
 @Observable
 class RestaurantModel {
-
     var restaurant: Restaurant? = null
     lateinit var name: String
     var products: MutableMap<Int, Product> = mutableMapOf()
