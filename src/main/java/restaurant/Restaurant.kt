@@ -2,6 +2,8 @@ package restaurant
 import applicationModel.MenuFactory
 import applicationModel.ProductFactory
 import discount.Discount
+import exception.MenuNameAlreadyInUseException
+import exception.ProductNameAlreadyInUseException
 import geoclaseui.Geo
 import order.Order
 import user.*
@@ -34,8 +36,17 @@ class Restaurant(code : Int,
         supervisor = newSupervisor
     }
 
-    fun createProduct(name: String, description: String, price: Double, category: Category): Product {
-        var newProduct: Product = productFactory.createProduct(name, description, price, category)
+    private fun existName(_name : String, toSearch : Map<Int, Searchable>) : Boolean = toSearch.any { it.value.name.toUpperCase() == _name.toUpperCase() }
+
+    fun existProductName(_name : String) : Boolean =  this.existName(_name, products)
+
+    fun existMenuName(_name : String) : Boolean =  this.existName(_name, menus)
+
+    fun createProduct(_name: String, description: String, price: Double, category: Category): Product {
+        if(existProductName(_name)){
+            throw ProductNameAlreadyInUseException("El nombre del producto ingresado ya esta en uso")
+        }
+        var newProduct: Product = productFactory.createProduct(_name, description, price, category)
         addProductToStock(newProduct)
         return newProduct
     }
@@ -67,14 +78,16 @@ class Restaurant(code : Int,
 
     fun deleteMenu(code: Int) = this.menus.remove(code)
 
-    fun createMenu(name: String,
+    fun createMenu(_name: String,
                    description: String,
                    products: MutableList<Product>,
                    restaurant: Restaurant,
                    discount: Discount,
                    enabled: Boolean): Menu {
-
-        var newMenu: Menu = menuFactory.createMenu(name, description, products, restaurant, discount, enabled)
+        if(existMenuName(_name)){
+            throw MenuNameAlreadyInUseException("El nombre del menú ingresado ya esta en uso")
+        }
+        var newMenu: Menu = menuFactory.createMenu(_name, description, products, restaurant, discount, enabled)
         addMenu(newMenu)
         return newMenu
     }
