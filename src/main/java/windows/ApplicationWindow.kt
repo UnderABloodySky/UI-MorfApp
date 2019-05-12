@@ -45,6 +45,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         TextBox(searchProductPanel)
                 .bindValueToProperty<Any, ControlBuilder>("productFilter")
                 .setTransformer(NumericTransformer())
+
         Button(searchProductPanel)
                 .setCaption("Buscar")
                 .onClick { modelObject.updateProductList() }
@@ -121,6 +122,8 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         searchMenuPanel.setLayout(HorizontalLayout())
         TextBox(searchMenuPanel)
                 .bindValueToProperty<Any, ControlBuilder>("menuFilter")
+                .setTransformer(NumericTransformer())
+
         Button(searchMenuPanel)
                 .setCaption("Buscar")
                 .onClick { modelObject.updateMenuList() }

@@ -1,5 +1,6 @@
 package searcher
 
+import exception.NoIDException
 import java.lang.NullPointerException
 
 class CriteriaById(private var id : Int?) : Criteria(){
@@ -10,7 +11,9 @@ class CriteriaById(private var id : Int?) : Criteria(){
             var entity = toSeach.get(id)
             res.add(entity)
         }
-        catch (e : NullPointerException){}
+        catch (e : NullPointerException){
+            throw NoIDException("ID no registrado")
+        }
 
         return res
     }
