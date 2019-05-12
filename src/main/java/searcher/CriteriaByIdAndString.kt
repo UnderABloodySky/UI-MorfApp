@@ -1,6 +1,6 @@
 package searcher
 
-class CriteriaByIdAndString(val parameter : Any?) : Criteria() {
+class CriteriaByIdAndString(val parameter : Any) : Criteria() {
 
     override fun search(toSearch: MutableMap<Int, Searchable>): MutableCollection<Searchable?> {
         var parcialList : MutableCollection<Searchable?> = mutableListOf()

@@ -44,6 +44,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         searchProductPanel.setLayout(HorizontalLayout())
         TextBox(searchProductPanel)
                 .bindValueToProperty<Any, ControlBuilder>("productFilter")
+                .setTransformer(NumericTransformer())
         Button(searchProductPanel)
                 .setCaption("Buscar")
                 .onClick { modelObject.updateProductList() }

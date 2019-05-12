@@ -11,10 +11,8 @@ import searcher.CriteriaByIdAndString
 class ApplicationModel(restaurantModel: RestaurantModel) {
 
     var restaurantModel = restaurantModel
-    var productFilter : String? = null
-    var productIdFilter : Int? = null
-    var menuFilter : String? = null
-    var menuIdFilter : Int? = null
+    var productFilter : Any = ""
+    var menuFilter : Any = ""
     var products = restaurantModel.transformToProductModel()
     var menus    = restaurantModel.transformToMenuModel()
     var selectedProduct: ProductModel? = null
@@ -27,18 +25,6 @@ class ApplicationModel(restaurantModel: RestaurantModel) {
         this.products = this.restaurantModel.transformListOfProductsToModel(tempFoundProducts)
     }
 
-    fun updateProductListId() {
-        try {
-            var tempFoundProducts = this.restaurantModel
-                    .restaurant?.findProduct(CriteriaById(productIdFilter)) as MutableList<Product>
-
-            this.products = this.restaurantModel.transformListOfProductsToModel(tempFoundProducts)
-        }
-        catch(e : NullPointerException){
-            this.productIdFilter = null
-            throw UserException("ID Incorrecto")
-        }
-    }
 
     fun updateMenuList() {
         var tempFoundMenus =  this.restaurantModel
