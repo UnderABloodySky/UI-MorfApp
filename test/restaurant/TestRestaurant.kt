@@ -292,11 +292,11 @@ class TestRestaurant {
     @Test
     fun restaurantWithEnabledMenusReturnTheCorrectCollection() {
         val res : Map<Int, Menu> = newRestaurant.menusAvailable()
-        val menu0: Menu = newRestaurant.createMenu("MenuFantasma", "Buuu", mutableListOf(), newRestaurant, NoDiscount(), false)
-        val menu1: Menu = newRestaurant.createMenu("MenuFantasma", "Buuu", mutableListOf(), newRestaurant, NoDiscount(), false)
-        val menu2: Menu = newRestaurant.createMenu("MenuFantasma", "Buuu", mutableListOf(), newRestaurant, NoDiscount(), false)
-        val menu3: Menu = newRestaurant.createMenu("MenuFantasma", "Buuu", mutableListOf(), newRestaurant, NoDiscount(), false)
-        val menu4: Menu = newRestaurant.createMenu("MenuFantasma", "Buuu", mutableListOf(), newRestaurant, NoDiscount(), true)
+        val menu0: Menu = newRestaurant.createMenu("MenuFantasma0", "Buuu", mutableListOf(), newRestaurant, NoDiscount(), false)
+        val menu1: Menu = newRestaurant.createMenu("MenuFantasma1", "Buuu", mutableListOf(), newRestaurant, NoDiscount(), false)
+        val menu2: Menu = newRestaurant.createMenu("MenuFantasma2", "Buuu", mutableListOf(), newRestaurant, NoDiscount(), false)
+        val menu3: Menu = newRestaurant.createMenu("MenuFantasma3", "Buuu", mutableListOf(), newRestaurant, NoDiscount(), false)
+        val menu4: Menu = newRestaurant.createMenu("MenuFantasma4", "Buuu", mutableListOf(), newRestaurant, NoDiscount(), true)
 
         Assert.assertFalse(res.containsValue(menu4))
         Assert.assertFalse(res.containsValue(menu3))

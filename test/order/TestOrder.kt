@@ -200,4 +200,6 @@ class TestOrder {
         order.cancelled()
         Assert.assertEquals(StateOrder.CANCELLED,order.getState())
     }
+
+
 }
