@@ -43,6 +43,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         val searchProductPanel = Panel(productPanel)
         searchProductPanel.setLayout(HorizontalLayout())
         TextBox(searchProductPanel)
+                .setWidth(200)
                 .bindValueToProperty<Any, ControlBuilder>("productFilter")
                 .setTransformer(NumericTransformer())
 
@@ -121,6 +122,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         val searchMenuPanel = Panel(menuPanel)
         searchMenuPanel.setLayout(HorizontalLayout())
         TextBox(searchMenuPanel)
+                .setWidth(200)
                 .bindValueToProperty<Any, ControlBuilder>("menuFilter")
                 .setTransformer(NumericTransformer())
 

@@ -14,7 +14,6 @@ class CriteriaById(private var id : Int?) : Criteria(){
         catch (e : NullPointerException){
             throw NoIDException("ID no registrado")
         }
-
         return res
     }
 }
