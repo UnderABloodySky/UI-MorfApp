@@ -29,11 +29,30 @@ object MorfApp {
     private var searcher : Searcher = Searcher()
     var distance: Double = 20.00
 
-    fun createSupervisor(restaurant: Restaurant, name: String, password: String): Supervisor {
+    fun createClient(id : String, name: String, address: String, geoLocation : Geo,  password : String): Client {
 
-        if(!registeredUsers.containsKey(name)){
+        if(!registeredUsers.containsKey(id)){
+            var today : Date = Date()
+            val newClient: Client = clientFactory.createClient(address,
+                    today,
+                    geoLocation,
+                    name,
+                    id,
+                    password,
+                    this)
+
+            this.registeredUsers.put(newClient.name,newClient)
+            return newClient
+        }
+        else {throw UserAlreadyRegisteredException("Ya se encuentra registrado el usuario")}
+    }
+
+    fun createSupervisor(restaurant: Restaurant, id: String, name: String, password: String): Supervisor {
+
+        if(!registeredUsers.containsKey(id)){
                 val newSupervisor: Supervisor = clientFactory.createSupervisor(restaurant,
                                                   name,
+                                                  id,
                                                  password,
                                                this)
 

@@ -1,5 +1,3 @@
 package exception
 
-class UserAlreadyRegisteredException(menssage: String): Exception(menssage) {
-
-}
+class UserAlreadyRegisteredException(menssage: String): Exception(menssage)

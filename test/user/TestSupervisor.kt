@@ -18,7 +18,7 @@ class TestSupervisor {
     private var applicationModel : MorfApp = MorfApp
     private var newRestaurant: Restaurant = applicationModel.createRestaurant("El Tano", "Una descripcion bien chingona", "Por Quilmes Oeste", geoLocation, mutableListOf())
 
-    private var newSupervisor : Supervisor = Supervisor(1,"SuperPepe", newRestaurant, "123454", applicationModel)
+    private var newSupervisor : Supervisor = Supervisor(1,"Pepe","SuperPepe", newRestaurant, "123454", applicationModel)
     private var menu = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(), newRestaurant)
     private var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.BEBIDA)
 

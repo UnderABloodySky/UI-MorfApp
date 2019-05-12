@@ -4,8 +4,8 @@ import productAndMenu.*
 import applicationModel.*
 import paymentMethod.PaymentMethod
 
-class Supervisor( code : Int, id : String , val restaurant: Restaurant, password: String, applicationModel: MorfApp):
-        User (code, id, password, applicationModel) {
+class Supervisor( code : Int, name : String, id : String , val restaurant: Restaurant, password: String, applicationModel: MorfApp):
+        User (code, name, id, password, applicationModel) {
 
     fun addProductToRestaurantStock(newProduct: Product) = restaurant.addProductToStock(newProduct)
 

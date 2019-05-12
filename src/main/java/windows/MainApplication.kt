@@ -21,8 +21,8 @@ fun main() {
                                             "Rigoletto 245",
                                             Geo(1.7, 1.8),
                                             mutableListOf(Cash()))
-    morfap.createSupervisor(clubMili, "pepe", "1234")
-    morfap.createSupervisor(laConga, "...", "...")
+    morfap.createSupervisor(clubMili, "pepe", "Pepe","1234")
+    morfap.createSupervisor(laConga, "...", "Beto","...")
 
     var unaHamburguesaSalvaje : Product = laConga.createProduct("Hamburguesa", "Al vapor", 100.00, Category.NINGUNO)
     var unaCocaSalvaje : Product = laConga.createProduct("Coca Cola", "Azucar 200%", 60.00, Category.BEBIDA)
