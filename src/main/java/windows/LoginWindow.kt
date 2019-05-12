@@ -28,7 +28,7 @@ class LoginWindow(owner: WindowOwner, model: UserModel): SimpleWindow <UserModel
                 .bindValueToProperty<String,ControlBuilder>("password")
 
         Button(panel)
-                .setCaption("Login")
+                .setCaption("Ingresar")
                 .onClick {
 
                     var loggedUserModel = ApplicationModel(modelObject.autenticate())

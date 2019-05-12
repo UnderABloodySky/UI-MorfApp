@@ -7,8 +7,6 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.MainWindow
 
 class WelcomeWindow(model: UserModel): MainWindow<UserModel>(model) {
-
-
     override fun createContents(panel: Panel) {
 
         panel.setLayout(VerticalLayout())
@@ -18,14 +16,13 @@ class WelcomeWindow(model: UserModel): MainWindow<UserModel>(model) {
                 .setFontSize(20)
                 .alignCenter()
         Button(panel)
-                .setCaption("Loguearse")
+                .setCaption("Abrir sesión")
                 .onClick {
                     this.close()
                     LoginWindow(this,UserModel()).open()
                 }
         Button(panel)
-                .setCaption("Cerrar aplicacion")
+                .setCaption("Cerrar aplicación")
                 .onClick { this.close() }
-
     }
 }

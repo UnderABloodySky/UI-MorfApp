@@ -136,7 +136,7 @@ class TestRestaurant {
         newRestaurant.editProduct(product.code, "Alloz", "directo de Japon", 30.0, Category.PLATOPRINCIPAL)
         Assert.assertEquals(30.0, product.price, 0.0)
         newRestaurant.editProduct(product.code, "Alloz", "directo de Japon", 30.0, Category.PLATOPRINCIPAL)
-        Assert.assertEquals(Category.NINGUNO, product.category)
+        Assert.assertEquals(Category.PLATOPRINCIPAL, product.category)
     }
 
     @Test

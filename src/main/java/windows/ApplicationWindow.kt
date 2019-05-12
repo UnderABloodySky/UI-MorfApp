@@ -23,7 +23,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
 
        val logoutPanel = Panel(panel)
        var logOutButton = Button(logoutPanel)
-                logOutButton.setCaption("Desloguearse")
+                logOutButton.setCaption("Cerrar sesión")
                 logOutButton.alignLeft()
                 logOutButton.onClick {
                                     this.close()
@@ -36,7 +36,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         val productPanel = Panel(contentsPanel)
 
         Label(productPanel)
-                .setText("Administracion De Productos")
+                .setText("Administración De Productos")
                 .setFontSize(25)
                 .alignCenter()
 
@@ -45,7 +45,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         TextBox(searchProductPanel)
                 .bindValueToProperty<Any, ControlBuilder>("productFilter")
         Button(searchProductPanel)
-                .setCaption("Buscar Por Nombre")
+                .setCaption("Buscar")
                 .onClick { modelObject.updateProductList() }
 
         var productTable = Table<ProductModel>(productPanel, ProductModel::class.java)
@@ -58,7 +58,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .bindContentsToProperty("name")
 
         Column<ProductModel>(productTable)
-                .setTitle("Codigo")
+                .setTitle("Código")
                 .setFixedSize(250)
                 .bindContentsToProperty("code")
 
@@ -112,7 +112,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         val menuPanel = Panel(contentsPanel)
 
         Label(menuPanel)
-                .setText("Administracion Del Menu")
+                .setText("Administración Del Menú")
                 .setFontSize(25)
                 .alignCenter()
 
@@ -121,7 +121,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         TextBox(searchMenuPanel)
                 .bindValueToProperty<Any, ControlBuilder>("menuFilter")
         Button(searchMenuPanel)
-                .setCaption("Buscar Por Nombre")
+                .setCaption("Buscar")
                 .onClick { modelObject.updateMenuList() }
 
 
@@ -134,7 +134,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .bindContentsToProperty("name")
 
         Column<MenuModel>(menuTable)
-                .setTitle("Codigo")
+                .setTitle("Código")
                 .setFixedSize(250)
                 .bindContentsToProperty("code")
 
@@ -153,7 +153,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         buttonMenuPanel.setLayout(HorizontalLayout())
 
         Button(buttonMenuPanel)
-                .setCaption("Nuevo Menu")
+                .setCaption("Nuevo Menú")
                 .onClick {
                     this.close()
                     val newMenuWindow = NewMenuWindow(this, MenuModel(modelObject.restaurantModel))
@@ -161,7 +161,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 }
 
         var viewMenuButton = Button(buttonMenuPanel)
-                .setCaption("Ver Menu")
+                .setCaption("Ver Menú")
                 .onClick {
                     this.close()
                     val newMenuWithProductsWindow = MenuWithProductsWindow(this, modelObject.selectedMenu)
@@ -169,14 +169,14 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 }
 
         var editMenuButton = Button(buttonMenuPanel)
-                .setCaption("Editar Menu")
+                .setCaption("Editar Menú")
                 .onClick {
                     this.close()
                     val newMenuWindow = EditMenuWindow(this, modelObject.selectedMenu)
                     newMenuWindow.open()
                 }
         var deleteMenuButton = Button(buttonMenuPanel)
-                .setCaption("Borrar Menu")
+                .setCaption("Borrar Menú")
                 .onClick {
                     this.close()
                     val newMenuWindow = DeleteMenuDialog(this, modelObject.selectedMenu)
