@@ -22,7 +22,6 @@ class ProductModel(restaurantModel: RestaurantModel) {
         return  productName== "" || produtDescription==""|| price == null
     }
 
-
     fun save() {
         if (this.anyOfThisIsEmpty(this.name, this.description,this.price)) {
                 throw EmptyFieldsException("Los campos de entrada no pueden estar vacios.")

@@ -1,6 +1,5 @@
 package windows
 
-import discount.*
 import exception.EmptyFieldsException
 import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.exceptions.UserException
@@ -9,20 +8,16 @@ import searcher.CriteriaById
 
 @Observable
 class MenuModel(restaurantModel: RestaurantModel) {
-
     var code: Int = 0
     var name: String = ""
     var description: String = ""
     var productsOfMenu: MutableList<ProductModel> = mutableListOf()
     var price: Double? = restaurantModel.getPriceOfMenuWithCode(code)
-    var menu = restaurantModel.restaurant!!.menus[code]
-    var totalWithDiscount: Double = this.menu!!.costAutocalculation()
-    var discounts: MutableList<DiscountModel> = transformListOfDiscountToDiscountModel(mutableListOf(
-                                                                        FixedDiscount(100.0),
-                                                                        PercentageDiscount(20.0),
-                                                                        NoDiscount()))
-    var discount = getDiscountModelFromDiscount()
-    var discountValue = getDiscountModelFromDiscount().value
+    var menu = restaurantModel.restaurant?.findMenu(CriteriaById(this.code))
+    var totalWithDiscount: Double = 0.0
+    var discounts: MutableList<DiscountModel> = restaurantModel.availableDiscounts
+    var discount: DiscountModel = restaurantModel.availableDiscounts.first()
+    var discountValue: Double = 0.0
     var enabled: ObservableBoolean = Enabled()
     var enabledName: String = enabled.optionName
     var selectedProductToAdd: ProductModel? = null
@@ -53,13 +48,12 @@ class MenuModel(restaurantModel: RestaurantModel) {
                     this.enabled.getValue)
         }
     }
-
     fun edit() {
         if (this.anyOfThisIsEmpty(this.name, this.description)) {
              throw EmptyFieldsException("Los campos de entrada no pueden estar vacios.")
         }
         else {
-            this.discount.discount.value = discount.value
+            this.discount.discount.value = this.discountValue
             this.restaurantModel.restaurant?.editMenu(this.code,
                     this.name,
                     this.description,
@@ -90,26 +84,7 @@ class MenuModel(restaurantModel: RestaurantModel) {
 
     }
 
-    fun transformListOfDiscountToDiscountModel(discountList: MutableList<Discount>): MutableList<DiscountModel>{
-        var tempDiscountList = mutableListOf<DiscountModel>()
-        discountList.forEach { var tempDiscount = DiscountModel(it)
-            tempDiscountList.add(tempDiscount)
-        }
-        return tempDiscountList
-    }
-
     fun noProductSelected(message: String){
         throw UserException (message)
     }
-
-    private fun getDiscountModelFromDiscount(): DiscountModel {
-        var tempDiscountModel = DiscountModel(NoDiscount())
-        if (this.code != 0){
-            val tempDiscount = this.restaurantModel.restaurant?.findMenu(CriteriaById(this.code))?.first()?.discount
-            tempDiscountModel = this.discounts.filter{ discount -> tempDiscount?.name == discount.name }.first()}
-
-        return tempDiscountModel
-
-    }
-
 }

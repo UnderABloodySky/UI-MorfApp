@@ -14,7 +14,7 @@ class EditProductWindow(owner: WindowOwner, model: ProductModel?) : SimpleWindow
     override fun addActions(p0: Panel?) {}
 
     override fun createFormPanel(panel: Panel) {
-        title = "Restaurant :: Editar Producto"
+        title = "Restaurant :: ${modelObject.restaurantModel.name} :: Editar Producto"
 
         Label(panel)
                 .setText("Editar Producto")
@@ -35,7 +35,6 @@ class EditProductWindow(owner: WindowOwner, model: ProductModel?) : SimpleWindow
                 .onClick {  this.close()
                             var applicationModel = ApplicationModel(modelObject.restaurantModel)
                             ApplicationWindow(this, applicationModel).open()}
-
     }
 
     private fun setTextBoxPanel(panel : Panel){
@@ -65,7 +64,7 @@ class EditProductWindow(owner: WindowOwner, model: ProductModel?) : SimpleWindow
         var fourColumnPanel = Panel(panel).setLayout(ColumnLayout(4))
         Label(fourColumnPanel).setText("Precio")
         var priceField = TextBox(fourColumnPanel)
-                priceField.bindValueToProperty<String, ControlBuilder>("price")
+                priceField.bindValueToProperty<Double, ControlBuilder>("price")
                 priceField.setWidth(80)
 
         Label(fourColumnPanel)

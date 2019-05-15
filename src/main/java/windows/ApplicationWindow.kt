@@ -10,6 +10,7 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.lacar.ui.model.ControlBuilder
 import org.uqbar.lacar.ui.model.bindings.Observable
+import searcher.CriteriaById
 
 class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWindow<ApplicationModel>(owner, model){
 
@@ -19,7 +20,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
     override fun addActions(p0: Panel?) {}
 
     override fun createFormPanel(panel: Panel) {
-        title = "Morfapp :: ${modelObject.restaurantModel.name}"
+       title = "Morfapp :: ${modelObject.restaurantModel.name}"
 
        val logoutPanel = Panel(panel)
        var logOutButton = Button(logoutPanel)
@@ -162,7 +163,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .setCaption("Nuevo Menú")
                 .onClick {
                     this.close()
-                    val newMenuWindow = NewMenuWindow(this, MenuModel(modelObject.restaurantModel))
+                    val newMenuWindow = EditMenuWindow(this, MenuModel(modelObject.restaurantModel))
                     newMenuWindow.open()
                 }
 

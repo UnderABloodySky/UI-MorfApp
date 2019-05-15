@@ -1,11 +1,13 @@
 package windows
 
 import discount.Discount
+import discount.FixedDiscount
+import discount.NoDiscount
+import discount.PercentageDiscount
 import org.uqbar.commons.model.annotations.Observable
 import productAndMenu.Menu
 import productAndMenu.Product
 import restaurant.Restaurant
-
 
 @Observable
 class RestaurantModel {
@@ -14,6 +16,10 @@ class RestaurantModel {
     var products: MutableMap<Int, Product> = mutableMapOf()
     var menus: MutableMap<Int, Menu> = mutableMapOf()
     var menusOfProduct: MutableList<MenuModel>? = null
+    var availableDiscounts: MutableList<DiscountModel> = transformListOfDiscountToDiscountModel(mutableListOf(
+                                                            NoDiscount(),
+                                                            FixedDiscount(0.0),
+                                                            PercentageDiscount(0.0)))
 
 
     fun menusOfProduct(code: Int?):MutableList<MenuModel>?{
@@ -93,4 +99,11 @@ class RestaurantModel {
         return tempProductList
     }
 
+    fun transformListOfDiscountToDiscountModel(discountList: MutableList<Discount>): MutableList<DiscountModel>{
+        var tempDiscountList = mutableListOf<DiscountModel>()
+        discountList.forEach { var tempDiscount = DiscountModel(it)
+            tempDiscountList.add(tempDiscount)
+        }
+        return tempDiscountList
+    }
 }

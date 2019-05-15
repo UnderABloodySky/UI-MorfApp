@@ -13,7 +13,7 @@ import user.Supervisor
 import java.util.*
 
 abstract class GeneralFactory{
-    protected var code : Int = 0
+    protected var code : Int = 1
     protected fun addOne() = code++
     fun code() : Int = code
 }
