@@ -163,7 +163,8 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .setCaption("Nuevo Menú")
                 .onClick {
                     this.close()
-                    val newMenuWindow = EditMenuWindow(this, MenuModel(modelObject.restaurantModel))
+                    var tempMenu = MenuModel(modelObject.restaurantModel)
+                    val newMenuWindow = EditMenuWindow(this, tempMenu.save())
                     newMenuWindow.open()
                 }
 

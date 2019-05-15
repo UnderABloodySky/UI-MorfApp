@@ -68,8 +68,7 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
         Button(panel)
                 .setCaption("Aceptar")
                 .onClick {
-                    if (modelObject.code == 0)  { this.save() }
-                                           else { this.edit() }
+                    this.edit()
                     this.close()
                     var applicationModel = ApplicationModel(modelObject.restaurantModel)
                     ApplicationWindow(this, applicationModel).open() }

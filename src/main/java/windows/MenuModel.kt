@@ -5,6 +5,7 @@ import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.exceptions.UserException
 import restaurant.Restaurant
 import searcher.CriteriaById
+import searcher.CriteriaByString
 
 @Observable
 class MenuModel(restaurantModel: RestaurantModel) {
@@ -33,12 +34,8 @@ class MenuModel(restaurantModel: RestaurantModel) {
 
     fun enabledNameStr() = if (enabled.getValue) "Si" else "No"
 
-    fun save() {
-        if (this.anyOfThisIsEmpty(this.name, this.description)) {
-            throw EmptyFieldsException("Los campos de entrada no pueden estar vacios.")
-        }
+    fun save(): MenuModel {
 
-        else {
             this.restaurantModel.restaurant?.createMenu(this.name,
                     this.description,
                     this.restaurantModel
@@ -46,7 +43,8 @@ class MenuModel(restaurantModel: RestaurantModel) {
                     this.restaurantModel.restaurant as Restaurant,
                     this.discount!!.discount,
                     this.enabled.getValue)
-        }
+
+            return this.restaurantModel.transformToMenuModel()!!.last()
     }
     fun edit() {
         if (this.anyOfThisIsEmpty(this.name, this.description)) {
@@ -67,11 +65,19 @@ class MenuModel(restaurantModel: RestaurantModel) {
 
     fun addToListOfProducts(){
 
-        val tempProduct = this.restaurantModel.restaurant?.findProduct(CriteriaById(this.selectedProductToAdd?.code))?.first()
-        val tempMenu = this.restaurantModel.restaurant?.findMenu(CriteriaById(this.code))?.first()
-        tempMenu?.productsOfMenu?.add(tempProduct!!)
+        val tempProduct = this.restaurantModel.
+                                restaurant?.
+                                findProduct(CriteriaById(this.selectedProductToAdd?.code))?.
+                                first()
+        val tempMenu = this.restaurantModel.
+                            restaurant?.
+                            findMenu(CriteriaById(this.code))?.
+                            first()
+        tempMenu?.productsOfMenu?.
+                    add(tempProduct!!)
 
-        this.productsOfMenu = this.restaurantModel.transformListOfProductsToModel(tempMenu?.productsOfMenu)
+        this.productsOfMenu = this.restaurantModel.
+                                transformListOfProductsToModel(tempMenu?.productsOfMenu)
 
     }
     fun deleteFromListOfProducts(){
