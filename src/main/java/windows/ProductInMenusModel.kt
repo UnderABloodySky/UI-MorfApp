@@ -6,5 +6,10 @@ import org.uqbar.commons.model.annotations.Observable
 class ProductInMenusModel(var applicationModel: ApplicationModel) {
 
     var menusOfSelectedProduct = applicationModel.restaurantModel.menusOfProduct(applicationModel.selectedProduct?.code)
+    var productName:String?= applicationModel.selectedProduct?.name
+    var code:Int? = applicationModel.selectedProduct?.code
+    var description = applicationModel.selectedProduct?.description
+    var price = applicationModel.selectedProduct?.price
+    var category = applicationModel.selectedProduct?.category
 
 }

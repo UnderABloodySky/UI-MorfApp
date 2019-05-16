@@ -1,5 +1,6 @@
 package windows
 
+import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
@@ -28,15 +29,17 @@ class MenuWithProductsWindow(owner: WindowOwner, model: MenuModel?) : SimpleWind
         listOfProducts.bindItemsToProperty("productsOfMenu")
                       .adaptWith(ProductModel::class.java,"nameAndPrice")
 
-        var lastPanel = Panel(panel)
-        lastPanel.setLayout(VerticalLayout())
-        Label(lastPanel).setText("Sub total $ ").alignCenter()
-        var subTotalLabel = Label(lastPanel).setText("monto").alignCenter()
+        var lastPanel = Panel(panel).setLayout(ColumnLayout(2)).setWidth(2000)
+
+
+        Label(lastPanel).setText("Sub total        $ ")
+        var subTotalLabel = Label(lastPanel)
         subTotalLabel.bindValueToProperty<Double,ControlBuilder>("price")
 
-        Label(lastPanel).setText("Total con descuento $ ").alignCenter()
-        var totalLabel = Label(lastPanel).setText("monto").alignCenter()
+        Label(lastPanel).setText("Total con descuento$ ")
+        var totalLabel = Label(lastPanel)
         totalLabel.bindValueToProperty<Double,ControlBuilder>("totalWithDiscount")
+        totalLabel.alignLeft()
 
         Button(panel)
                 .setCaption("Aceptar")
