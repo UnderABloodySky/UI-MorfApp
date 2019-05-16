@@ -54,16 +54,15 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         var productTable = Table<ProductModel>(productPanel, ProductModel::class.java)
         productTable.bindItemsToProperty("products")
         productTable.bindValueToProperty<ProductModel, ControlBuilder>("selectedProduct")
+        Column<ProductModel>(productTable)
+                .setTitle("Código")
+                .setFixedSize(250)
+                .bindContentsToProperty("code")
 
         Column<ProductModel>(productTable)
                 .setTitle("Nombre")
                 .setFixedSize(250)
                 .bindContentsToProperty("name")
-
-        Column<ProductModel>(productTable)
-                .setTitle("Código")
-                .setFixedSize(250)
-                .bindContentsToProperty("code")
 
         Column<ProductModel>(productTable)
                 .setTitle("Precio")
@@ -135,14 +134,14 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         menuTable.bindItemsToProperty("menus")
         menuTable.bindValueToProperty<MenuModel, ControlBuilder>("selectedMenu")
         Column<MenuModel>(menuTable)
-                .setTitle("Nombre")
-                .setFixedSize(250)
-                .bindContentsToProperty("name")
-
-        Column<MenuModel>(menuTable)
                 .setTitle("Código")
                 .setFixedSize(250)
                 .bindContentsToProperty("code")
+
+        Column<MenuModel>(menuTable)
+                .setTitle("Nombre")
+                .setFixedSize(250)
+                .bindContentsToProperty("name")
 
         Column<MenuModel>(menuTable)
                 .setTitle("Precio")

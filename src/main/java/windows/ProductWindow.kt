@@ -45,8 +45,8 @@ class ProductWindow(owner: WindowOwner, model: ProductModel?) : SimpleWindow<Pro
         var columnPanel = Panel(panel).setLayout(ColumnLayout(2)).setWidth(100)
 
         Label(columnPanel).setText("Codigo")
-        val codeTextBox = TextBox(columnPanel)
-        codeTextBox.setWidth(150)
+        val codeTextBox = Label(columnPanel)
+        codeTextBox.setFontSize(20)
         codeTextBox.bindValueToProperty<Int, ControlBuilder>("code")
         codeTextBox.bindEnabled<Any, ControlBuilder>(elementCode)
 

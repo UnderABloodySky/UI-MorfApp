@@ -92,7 +92,6 @@ class MenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuModel
 
         Label(columnPanel).setText("Codigo")
         val codeTextBox = Label(columnPanel)
-        //codeTextBox.setWidth(14)
         codeTextBox.setFontSize(20)
         codeTextBox.bindValueToProperty<Int, ControlBuilder>("code")
 
