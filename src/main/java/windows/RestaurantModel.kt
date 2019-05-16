@@ -54,25 +54,6 @@ class RestaurantModel {
         return productsModel
     }
 
-    fun transformListOfMenusToMenuModels(menuList: MutableList<Menu>?):MutableList<MenuModel>?{
-        var menusModel = mutableListOf<MenuModel>()
-        if (!menuList.isNullOrEmpty()) {
-            menuList.forEach { menu ->
-                var tempMenu = MenuModel(this)
-                tempMenu.code = menu.code
-                tempMenu.name = menu.name
-                tempMenu.description = menu.description
-                tempMenu.price = menu.totalPrice()
-                tempMenu.totalWithDiscount = menu.costAutocalculation()
-                tempMenu.discount = this.transformToDiscountModel(menu.discount)
-                tempMenu.productsOfMenu = this.transformListOfProductsToModel(menu.productsOfMenu)
-                tempMenu.enabled = this.createObservableBoolean(menu.enabled)
-                menusModel.add(tempMenu)
-            }
-        }
-            return menusModel
-
-     }
     private fun createObservableBoolean(bool: Boolean): ObservableBoolean{
         var tempBool: ObservableBoolean = Disabled()
         if(bool){
@@ -90,6 +71,26 @@ class RestaurantModel {
         var menusInRestaurant1 = mutableListOf<Menu>()
         this.restaurant?.menus?.forEach { menu-> menusInRestaurant1.add(menu.value) }
         return this.transformListOfMenusToMenuModels(menusInRestaurant1)
+    }
+
+    fun transformListOfMenusToMenuModels(menuList: MutableList<Menu>?):MutableList<MenuModel>?{
+        var menusModel = mutableListOf<MenuModel>()
+        if (!menuList.isNullOrEmpty()) {
+            menuList.forEach { menu ->
+                var tempMenu = MenuModel(this)
+                tempMenu.code = menu.code
+                tempMenu.name = menu.name
+                tempMenu.description = menu.description
+                tempMenu.price = menu.totalPrice()
+                tempMenu.totalWithDiscount = menu.costAutocalculation()
+                tempMenu.discount = this.transformToDiscountModel(menu.discount)
+                tempMenu.productsOfMenu = this.transformListOfProductsToModel(menu.productsOfMenu)
+                tempMenu.enabled = this.createObservableBoolean(menu.enabled)
+                menusModel.add(tempMenu)
+            }
+        }
+        return menusModel
+
     }
 
     fun transformListOfProductModelToProduct(productModelList: MutableList<ProductModel>): MutableList<Product>{

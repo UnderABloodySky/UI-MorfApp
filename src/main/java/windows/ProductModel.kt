@@ -16,19 +16,18 @@ class ProductModel(restaurantModel: RestaurantModel) {
     var categories : MutableList<Category> = Category.values().toMutableList()
     var restaurantModel = restaurantModel
     var observableNull = null
+    var newProduct = true
 
     fun anyOfThisIsEmpty(productName:String,produtDescription:String,price:Double):Boolean{
 
         return  productName== "" || produtDescription==""|| price == null
     }
 
-    fun save() {
-        if (this.anyOfThisIsEmpty(this.name, this.description,this.price)) {
-                throw EmptyFieldsException("Los campos de entrada no pueden estar vacios.")
-            }
-        else {
-                this.restaurantModel.restaurant?.createProduct(this.name, this.description, this.price, this.category)
-        }
+    fun save(): ProductModel {
+        this.restaurantModel.restaurant?.createProduct(this.name, this.description, this.price, this.category)
+        var tempProductModel = this.restaurantModel.transformToProductModel()!!.last()
+        tempProductModel.newProduct = true //new product
+        return tempProductModel
     }
 
     fun validatePositiveNumber(price:Double):Boolean{
@@ -57,5 +56,9 @@ class ProductModel(restaurantModel: RestaurantModel) {
     }
 
     fun nameAndPrice():String = "$name    $$price"
+
+    fun removeProduct(code: Int) {
+        this.restaurantModel.restaurant?.deleteProduct(code)
+    }
 
 }

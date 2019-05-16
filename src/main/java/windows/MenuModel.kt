@@ -26,6 +26,7 @@ class MenuModel(restaurantModel: RestaurantModel) {
     var restaurantModel = restaurantModel
     var availableProducts = restaurantModel.transformToProductModel()
     var observableBooleans = mutableListOf<ObservableBoolean>(Enabled(), Disabled())
+    var newMenu = true
 
     fun anyOfThisIsEmpty(menuName:String,menuDescription:String):Boolean{
 
@@ -44,7 +45,9 @@ class MenuModel(restaurantModel: RestaurantModel) {
                     this.discount!!.discount,
                     this.enabled.getValue)
 
-            return this.restaurantModel.transformToMenuModel()!!.last()
+            var tempMenuModel = this.restaurantModel.transformToMenuModel()!!.last()
+            tempMenuModel.newMenu = true //New Product
+            return tempMenuModel
     }
     fun edit() {
         if (this.anyOfThisIsEmpty(this.name, this.description)) {
@@ -92,5 +95,9 @@ class MenuModel(restaurantModel: RestaurantModel) {
 
     fun noProductSelected(message: String){
         throw UserException (message)
+    }
+
+    fun removeMenu(code: Int) {
+        this.restaurantModel.restaurant?.deleteMenu(code)
     }
 }

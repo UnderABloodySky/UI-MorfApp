@@ -6,26 +6,27 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.lacar.ui.model.ControlBuilder
 
-class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuModel>(owner, model) {
+class MenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuModel>(owner, model) {
     override fun addActions(p0: Panel?) {}
 
     override fun createFormPanel(panel: Panel) {
 
-        title = "MorfApp :: ${modelObject.restaurantModel.name} :: Editar Menu"
+        title = "MorfApp :: ${modelObject.restaurantModel.name} :: Administración De Menú"
 
         Label(panel)
-                .setText("Editar Menu")
+                .setText("Administración De Menú")
                 .setFontSize(30)
                 .alignCenter()
 
         this.setTextBoxPanel(panel)
         this.setFourColumnPanel(panel)
 
-        var labelsColumnPanel = Panel(panel).setLayout(ColumnLayout(2))
+        var labelsColumnPanel = Panel(panel).setLayout(ColumnLayout(3))
         Label(labelsColumnPanel)
                 .setText("Disponible")
                 .setFontSize(20)
                 .alignLeft()
+        Label(labelsColumnPanel)
         Label(labelsColumnPanel)
                 .setText("Agregado Al Menu")
                 .setFontSize(20)
@@ -34,7 +35,7 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
         var threeColumnPanel = Panel(panel).setLayout(ColumnLayout(3))
 
         val allProductsTable = List<ProductModel>(threeColumnPanel)
-        allProductsTable.setWidth(300)
+        allProductsTable.setWidth(200)
         allProductsTable.setHeight(89)
         allProductsTable.bindItemsToProperty("availableProducts")
                 .adaptWith(ProductModel::class.java, "nameAndPrice")
@@ -42,24 +43,26 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
 
         var addRemovePanel = Panel(threeColumnPanel)
 
-        Button(addRemovePanel)
-                .setCaption(">>")
-                .onClick { if (modelObject.selectedProductToAdd != null)
+        var rightButton = Button(addRemovePanel)
+                rightButton.setCaption("         >>         ")
+                rightButton.setFontSize(20)
+                rightButton.onClick { if (modelObject.selectedProductToAdd != null)
                             {this.addToListOfProducts()}
                             else {modelObject.noProductSelected(
                             "Debe tener seleccionado un item de la lista de productos disponibles")}
                          }
 
-        Button(addRemovePanel)
-                .setCaption("<<")
-                .onClick { if (modelObject.selectedProductToRemove != null)
+        var leftButton = Button(addRemovePanel)
+                leftButton.setCaption("         <<         ")
+                leftButton.setFontSize(20)
+                leftButton.onClick { if (modelObject.selectedProductToRemove != null)
                             {this.removeFromListOfProducts()}
                             else{modelObject.noProductSelected(
                             "Debe tener seleccionado un item de la lista de productos agregados al menu")}
                          }
 
         val filteredProductsTable = List<ProductModel>(threeColumnPanel)
-        filteredProductsTable.setWidth(300)
+        filteredProductsTable.setWidth(200)
         filteredProductsTable.setHeight(89)
         filteredProductsTable.bindItemsToProperty("productsOfMenu")
                 .adaptWith(ProductModel::class.java, "nameAndPrice")
@@ -75,6 +78,8 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
         Button(panel)
                 .setCaption("Cancelar")
                 .onClick {
+                    if (modelObject.newMenu)
+                        this.removeMenu(modelObject.code)
                     this.close()
                     var applicationModel = ApplicationModel(modelObject.restaurantModel)
                     ApplicationWindow(this, applicationModel).open()
@@ -87,7 +92,8 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
 
         Label(columnPanel).setText("Codigo")
         val codeTextBox = Label(columnPanel)
-        codeTextBox.setWidth(150)
+        codeTextBox.setWidth(13)
+        codeTextBox.setFontSize(20)
         codeTextBox.bindValueToProperty<Int, ControlBuilder>("code")
 
         Label(columnPanel).setText("Nombre")
@@ -126,7 +132,7 @@ class EditMenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuM
                 discountInput.setWidth(100)
     }
 
-    private fun save() = modelObject.save()
+    private fun removeMenu(code: Int) = modelObject.removeMenu(code)
 
     private fun edit() = modelObject.edit()
 

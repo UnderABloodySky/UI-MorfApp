@@ -10,7 +10,6 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.lacar.ui.model.ControlBuilder
 import org.uqbar.lacar.ui.model.bindings.Observable
-import searcher.CriteriaById
 
 class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWindow<ApplicationModel>(owner, model){
 
@@ -72,7 +71,6 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .bindContentsToProperty("price")
 
 
-
         var buttonProductPanel = Panel(productPanel)
         buttonProductPanel
                 .setLayout(ColumnLayout(2))
@@ -82,14 +80,15 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .setCaption("Nuevo Producto")
                 .onClick {
                     this.close()
-                    val newProductWindow = NewProductWindow(this, ProductModel(modelObject.restaurantModel))
+                    var tempProduct = ProductModel(modelObject.restaurantModel)
+                    val newProductWindow = ProductWindow(this, tempProduct.save())
                     newProductWindow.open()
                 }
         var editButton = Button(buttonProductLeftPanel)
                 .setCaption("Editar Producto")
                 .onClick {
                     this.close()
-                    val newProductWindow = EditProductWindow(this, modelObject.selectedProduct)
+                    val newProductWindow = ProductWindow(this, modelObject.selectedProduct)
                     newProductWindow.open()
                 }
 
@@ -116,7 +115,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         val menuPanel = Panel(contentsPanel)
 
         Label(menuPanel)
-                .setText("Administración Del Menú")
+                .setText("Administración De Los Menues")
                 .setFontSize(25)
                 .alignCenter()
 
@@ -164,7 +163,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .onClick {
                     this.close()
                     var tempMenu = MenuModel(modelObject.restaurantModel)
-                    val newMenuWindow = EditMenuWindow(this, tempMenu.save())
+                    val newMenuWindow = MenuWindow(this, tempMenu.save())
                     newMenuWindow.open()
                 }
 
@@ -180,7 +179,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 .setCaption("Editar Menú")
                 .onClick {
                     this.close()
-                    val newMenuWindow = EditMenuWindow(this, modelObject.selectedMenu)
+                    val newMenuWindow = MenuWindow(this, modelObject.selectedMenu)
                     newMenuWindow.open()
                 }
         var deleteMenuButton = Button(buttonMenuPanel)
