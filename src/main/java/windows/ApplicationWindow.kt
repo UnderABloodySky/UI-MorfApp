@@ -28,7 +28,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                 logOutButton.onClick {
                                     this.close()
                                     LoginWindow(this,UserModel()).open()
-                        }
+                }
 
         val contentsPanel = Panel(panel)
         contentsPanel.setLayout(HorizontalLayout())
@@ -115,7 +115,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         val menuPanel = Panel(contentsPanel)
 
         Label(menuPanel)
-                .setText("Administración De Los Menues")
+                .setText("Administración De Menues")
                 .setFontSize(25)
                 .alignCenter()
 

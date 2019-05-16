@@ -5,7 +5,7 @@ import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.exceptions.UserException
 import restaurant.Restaurant
 import searcher.CriteriaById
-import searcher.CriteriaByString
+import java.lang.Exception
 
 @Observable
 class MenuModel(restaurantModel: RestaurantModel) {
@@ -46,7 +46,7 @@ class MenuModel(restaurantModel: RestaurantModel) {
                     this.enabled.getValue)
 
             var tempMenuModel = this.restaurantModel.transformToMenuModel()!!.last()
-            tempMenuModel.newMenu = true //New Product
+            tempMenuModel.newMenu = true //New Menu
             return tempMenuModel
     }
     fun edit() {

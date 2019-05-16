@@ -92,7 +92,7 @@ class MenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuModel
 
         Label(columnPanel).setText("Codigo")
         val codeTextBox = Label(columnPanel)
-        codeTextBox.setWidth(13)
+        //codeTextBox.setWidth(14)
         codeTextBox.setFontSize(20)
         codeTextBox.bindValueToProperty<Int, ControlBuilder>("code")
 
@@ -101,17 +101,19 @@ class MenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuModel
                 .setWidth(150)
                 .bindValueToProperty<String, ControlBuilder>("name")
 
-        Label(columnPanel).setText("Descripcion")
+        Label(columnPanel).setText("Descripción")
         TextBox(columnPanel)
                 .setWidth(150)
                 .bindValueToProperty<String, ControlBuilder>("description")
 
         Label(columnPanel)
                 .setText("Habilitado")
-        var enabledSelector = RadioSelector<ObservableBoolean>(columnPanel)
+        val enabledSelector = Selector<ObservableBoolean>(columnPanel)
+        enabledSelector.setWidth(160)
+        enabledSelector.bindValueToProperty<ObservableBoolean, ControlBuilder>("enabled")
         enabledSelector.bindItemsToProperty("observableBooleans")
                 .adaptWith(ObservableBoolean::class.java, "optionName")
-        enabledSelector.bindValueToProperty<Boolean,ControlBuilder>("enabled")
+
 
     }
     private fun setFourColumnPanel(panel: Panel) {
@@ -123,7 +125,7 @@ class MenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuModel
         val discountSelector = Selector<DiscountModel>(fourColumnPanel)
         discountSelector.bindValueToProperty<DiscountModel, ControlBuilder>("discount")
         discountSelector.bindItemsToProperty("discounts")
-                .adaptWith(DiscountModel::class.java,"name")
+                .adaptWith(DiscountModel::class.java,"description")
 
         Label(fourColumnPanel)
                 .setText("Descuento")

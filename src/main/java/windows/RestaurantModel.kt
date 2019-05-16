@@ -49,22 +49,14 @@ class RestaurantModel {
             tempProduct.description = product.description
             tempProduct.price = product.price
             tempProduct.category = product.category
+            tempProduct.newProduct = false
             productsModel.add(tempProduct) }
 
         return productsModel
     }
 
-    private fun createObservableBoolean(bool: Boolean): ObservableBoolean{
-        var tempBool: ObservableBoolean = Disabled()
-        if(bool){
-            tempBool = Enabled()
-        }
-        return tempBool
-    }
-
-    private fun transformToDiscountModel(discount: Discount): DiscountModel {
-
-        return DiscountModel(discount)
+    private fun getCorrectObservableBoolean(tempList: MutableList<ObservableBoolean>, bool: Boolean): ObservableBoolean?{
+        return tempList.find { it.getValue == bool }
     }
 
     fun transformToMenuModel(): MutableList<MenuModel>?{
@@ -83,14 +75,22 @@ class RestaurantModel {
                 tempMenu.description = menu.description
                 tempMenu.price = menu.totalPrice()
                 tempMenu.totalWithDiscount = menu.costAutocalculation()
-                tempMenu.discount = this.transformToDiscountModel(menu.discount)
+                tempMenu.discount = this.getCorrectDiscountModel(tempMenu.discounts, menu.discount)!!
+                tempMenu.discountValue = tempMenu.discount.value
                 tempMenu.productsOfMenu = this.transformListOfProductsToModel(menu.productsOfMenu)
-                tempMenu.enabled = this.createObservableBoolean(menu.enabled)
+                tempMenu.enabled = this.getCorrectObservableBoolean(tempMenu.observableBooleans, menu.enabled)!!
                 menusModel.add(tempMenu)
             }
         }
         return menusModel
 
+    }
+    private fun getCorrectDiscountModel(tempList: MutableList<DiscountModel>, discount: Discount): DiscountModel? {
+
+        var tempDiscount = tempList.find{ it.name == discount.name}
+        tempDiscount?.value = discount.value
+        tempDiscount?.discount = discount
+        return tempDiscount
     }
 
     fun transformListOfProductModelToProduct(productModelList: MutableList<ProductModel>): MutableList<Product>{
