@@ -100,16 +100,19 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
                     newProductInMenusWindow.open()
                 }
 
-        var deleteButton = Button(buttonProductRightPanel)
+        var deleteProductButton = Button(buttonProductRightPanel)
                 .setCaption("Borrar Producto")
                 .onClick {
-                    this.close()
                     val deleteProductDialog = DeleteProductDialog(this, modelObject.selectedProduct)
+                    deleteProductDialog.onAccept {
+                        this.close()
+                        var applicationModel = ApplicationModel(modelObject.restaurantModel)
+                        ApplicationWindow(this, applicationModel).open()}
                     deleteProductDialog.open()
                 }
         editButton.bindEnabled<Any, ControlBuilder>(elementProduct)
         viewButton.bindEnabled<Any, ControlBuilder>(elementProduct)
-        deleteButton.bindEnabled<Any, ControlBuilder>(elementProduct)
+        deleteProductButton.bindEnabled<Any, ControlBuilder>(elementProduct)
 
         val menuPanel = Panel(contentsPanel)
 
@@ -184,9 +187,12 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         var deleteMenuButton = Button(buttonMenuPanel)
                 .setCaption("Borrar Menú")
                 .onClick {
-                    this.close()
-                    val newMenuWindow = DeleteMenuDialog(this, modelObject.selectedMenu)
-                    newMenuWindow.open()
+                    val deleteWindow = DeleteMenuDialog(this, modelObject.selectedMenu)
+                    deleteWindow.onAccept {
+                        this.close()
+                        var applicationModel = ApplicationModel(modelObject.restaurantModel)
+                        ApplicationWindow(this, applicationModel).open()}
+                    deleteWindow.open()
                 }
 
         editMenuButton.bindEnabled<Any, ControlBuilder>(elementMenu)
