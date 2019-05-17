@@ -13,8 +13,8 @@ import java.lang.NullPointerException
 class ApplicationModel(restaurantModel: RestaurantModel) {
 
     var restaurantModel = restaurantModel
-    var productFilter : Any? = null
-    var menuFilter : Any? = null
+    var productFilter : Any? = ""
+    var menuFilter : Any? = ""
     var products = restaurantModel.transformToProductModel()
     var menus    = restaurantModel.transformToMenuModel()
     var selectedProduct: ProductModel? = null
@@ -25,6 +25,7 @@ class ApplicationModel(restaurantModel: RestaurantModel) {
             var tempFoundProducts = this.restaurantModel
                     .restaurant?.findProduct(CriteriaByIdAndString(productFilter)) as MutableList<Product>
             this.products = this.restaurantModel.transformListOfProductsToModel(tempFoundProducts)
+            resetFilters()
         }
         catch(e : NullPointerException){
             throw NoIDException("ID no registrado")
@@ -41,6 +42,13 @@ class ApplicationModel(restaurantModel: RestaurantModel) {
         catch (e : NullPointerException){
             throw NoIDException("ID no registrado")
         }
+
     }
+
+    private fun resetFilters(){
+        menuFilter = ""
+        productFilter = ""
+    }
+
 
 }
