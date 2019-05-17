@@ -80,7 +80,7 @@ class RestaurantModel {
                 tempMenu.productsOfMenu = this.transformListOfProductsToModel(menu.productsOfMenu)
                 tempMenu.enabled = this.getCorrectObservableBoolean(tempMenu.observableBooleans, menu.enabled)!!
                 tempMenu.newMenu = false
-                menusModel.add(tempMenu)
+                menusModel.add(tempMenu) //
             }
         }
         return menusModel
