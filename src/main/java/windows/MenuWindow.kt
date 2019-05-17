@@ -131,6 +131,7 @@ class MenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuModel
         var discountInput = TextBox(fourColumnPanel)
                 discountInput.bindValueToProperty<Double, ControlBuilder>("discountValue")
                 discountInput.setWidth(100)
+                discountInput.withFilter { event -> event.potentialTextResult.matches(Regex("[0-9]*"))}
     }
 
     private fun removeMenu(code: Int) = modelObject.removeMenu(code)

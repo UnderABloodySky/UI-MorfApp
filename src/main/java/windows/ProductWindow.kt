@@ -1,12 +1,10 @@
 package windows
 
-import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.*
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.lacar.ui.model.ControlBuilder
-import org.uqbar.lacar.ui.model.bindings.Observable
 import productAndMenu.Category
 
 
@@ -40,7 +38,6 @@ class ProductWindow(owner: WindowOwner, model: ProductModel?) : SimpleWindow<Pro
     }
 
     private fun setTextBoxPanel(panel : Panel){
-        val elementCode: Observable<Any> = NotNullObservable("observableNull")
 
         var columnPanel = Panel(panel).setLayout(ColumnLayout(2)).setWidth(100)
 
@@ -48,7 +45,6 @@ class ProductWindow(owner: WindowOwner, model: ProductModel?) : SimpleWindow<Pro
         val codeTextBox = Label(columnPanel)
         codeTextBox.setFontSize(20)
         codeTextBox.bindValueToProperty<Int, ControlBuilder>("code")
-        codeTextBox.bindEnabled<Any, ControlBuilder>(elementCode)
 
         Label(columnPanel).setText("Nombre")
         TextBox(columnPanel)
@@ -68,6 +64,7 @@ class ProductWindow(owner: WindowOwner, model: ProductModel?) : SimpleWindow<Pro
         var priceField = TextBox(fourColumnPanel)
                 priceField.bindValueToProperty<Double, ControlBuilder>("price")
                 priceField.setWidth(80)
+                priceField.withFilter { event -> event.potentialTextResult.matches(Regex("[0-9]*"))}
 
         Label(fourColumnPanel)
                 .setText("Categoria")
@@ -80,6 +77,5 @@ class ProductWindow(owner: WindowOwner, model: ProductModel?) : SimpleWindow<Pro
     private fun removeProduct(code: Int) = modelObject.removeProduct(code)
 
     private fun edit() = modelObject.edit()
-
 
 }

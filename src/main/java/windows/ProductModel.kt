@@ -35,18 +35,14 @@ class ProductModel(restaurantModel: RestaurantModel) {
 
     }
     fun edit() {
-        if (this.anyOfThisIsEmpty(this.name, this.description,this.price)) {
+        if (this.anyOfThisIsEmpty(this.name, this.description,this.price))
             throw EmptyFieldsException("Los campos de entrada no pueden estar vacios.")
-            }
 
         else {
-           if(this.validatePositiveNumber(this.price))  {
-               throw UserException("El precio debe ser un valor positivo.")}
-
-           else {
-                 this.restaurantModel.restaurant?.removeProductsFromMenus(this.code)
-                 this.restaurantModel.restaurant?.editProduct(this.code, this.name, this.description, this.price, this.category)
-            }
+           if(this.validatePositiveNumber(this.price))
+               throw UserException("El precio debe ser un valor positivo.")
+           else
+               this.restaurantModel.restaurant?.editProduct(this.code, this.name, this.description, this.price, this.category)
         }
     }
 
