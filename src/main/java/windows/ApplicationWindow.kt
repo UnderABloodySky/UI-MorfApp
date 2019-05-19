@@ -21,10 +21,12 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
     override fun createFormPanel(panel: Panel) {
        title = "Morfapp :: ${modelObject.restaurantModel.name}"
 
-       val logoutPanel = Panel(panel)
+
+       val logoutPanel = Panel(panel).setLayout(HorizontalLayout())
+       Label(logoutPanel).setWidth(756)
        var logOutButton = Button(logoutPanel)
                 logOutButton.setCaption("Cerrar sesión")
-                logOutButton.alignLeft()
+                logOutButton.alignRight()
                 logOutButton.onClick {
                                     this.close()
                                     LoginWindow(this,UserModel()).open()
