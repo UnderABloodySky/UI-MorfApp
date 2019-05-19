@@ -11,5 +11,11 @@ class ProductInMenusModel(var applicationModel: ApplicationModel) {
     var description = applicationModel.selectedProduct?.description
     var price = applicationModel.selectedProduct?.price
     var category = applicationModel.selectedProduct?.category
+    var restaurantModel = applicationModel.restaurantModel
+
+    fun delete() {
+        this.restaurantModel.restaurant?.removeProductsFromMenus(this.code!!)
+        this.restaurantModel.restaurant?.deleteProduct(this.code!!)
+    }
 
 }

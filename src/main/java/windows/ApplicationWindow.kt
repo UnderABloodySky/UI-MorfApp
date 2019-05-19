@@ -103,7 +103,7 @@ class ApplicationWindow(owner: WindowOwner, model: ApplicationModel) : SimpleWin
         var deleteProductButton = Button(buttonProductRightPanel)
                 .setCaption("Borrar Producto")
                 .onClick {
-                    val deleteProductDialog = DeleteProductDialog(this, modelObject.selectedProduct)
+                    val deleteProductDialog = DeleteProductDialog(this, ProductInMenusModel(modelObject))
                     deleteProductDialog.onAccept {
                         this.close()
                         var applicationModel = ApplicationModel(modelObject.restaurantModel)

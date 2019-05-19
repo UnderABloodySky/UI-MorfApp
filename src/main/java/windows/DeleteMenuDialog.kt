@@ -12,9 +12,8 @@ class DeleteMenuDialog: Dialog<MenuModel> {
 
     override fun createFormPanel(mainPanel: Panel) {
 
-        Label(mainPanel).setText("Desea borrar el menú " + this.modelObject.name + "?")
+        Label(mainPanel).setText("¿Desea borrar el menú " + this.modelObject.name + "?")
                 .setFontSize(20)
-                .setWidth(400)
 
         Button(mainPanel)
                 .setCaption("Aceptar")

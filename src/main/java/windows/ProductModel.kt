@@ -46,11 +46,6 @@ class ProductModel(restaurantModel: RestaurantModel) {
         }
     }
 
-    fun delete() {
-        this.restaurantModel.restaurant?.removeProductsFromMenus(this.code)
-        this.restaurantModel.restaurant?.deleteProduct(this.code)
-    }
-
     fun nameAndPrice():String = "$name    $$price"
 
     fun removeProduct(code: Int) {

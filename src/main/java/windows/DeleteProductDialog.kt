@@ -6,15 +6,24 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 
-class DeleteProductDialog: Dialog<ProductModel> {
-    constructor(owner: WindowOwner, model: ProductModel?) : super(owner, model)
+class DeleteProductDialog: Dialog<ProductInMenusModel> {
+    constructor(owner: WindowOwner, model: ProductInMenusModel) : super(owner, model)
     override fun addActions(actions: Panel) {}
 
     override fun createFormPanel(mainPanel: Panel) {
 
-        Label(mainPanel).setText("Desea borrar el producto " + this.modelObject.name + "?")
+        Label(mainPanel).setText("¿Desea borrar el producto " + this.modelObject.productName + "?")
                         .setFontSize(20)
-                        .setWidth(400)
+        Label(mainPanel)
+        Label(mainPanel)
+        Label(mainPanel)
+                .setText("Tenga en cuenta que se borrará de los siguientes menús:")
+                .setFontSize(20)
+                .alignCenter()
+
+        var listOfMenusWithTheProduct = org.uqbar.arena.widgets.List<MenuModel>(mainPanel)
+        listOfMenusWithTheProduct.bindItemsToProperty("menusOfSelectedProduct")
+                .adaptWith(MenuModel::class.java,"name")
 
         var acceptButton = Button(mainPanel)
                 .setCaption("Aceptar")
