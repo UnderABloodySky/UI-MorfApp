@@ -67,8 +67,8 @@ class RestaurantModel {
 
     fun transformListOfMenusToMenuModels(menuList: MutableList<Menu>?):MutableList<MenuModel>?{
         var menusModel = mutableListOf<MenuModel>()
-        if (!menuList.isNullOrEmpty()) {
-            menuList.forEach { menu ->
+    //    if (!menuList.isNullOrEmpty()) {
+            menuList?.forEach { menu ->
                 var tempMenu = MenuModel(this)
                 tempMenu.code = menu.code
                 tempMenu.name = menu.name
@@ -80,8 +80,8 @@ class RestaurantModel {
                 tempMenu.productsOfMenu = this.transformListOfProductsToModel(menu.productsOfMenu)
                 tempMenu.enabled = this.getCorrectObservableBoolean(tempMenu.observableBooleans, menu.enabled)!!
                 tempMenu.newMenu = false
-                menusModel.add(tempMenu) //
-            }
+                menusModel.add(tempMenu)
+      //      }
         }
         return menusModel
 

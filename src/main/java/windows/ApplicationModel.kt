@@ -38,6 +38,7 @@ class ApplicationModel(restaurantModel: RestaurantModel) {
             var tempFoundMenus = this.restaurantModel
                     .restaurant?.findMenu(CriteriaByIdAndString(menuFilter)) as MutableList<Menu>
             this.menus = this.restaurantModel.transformListOfMenusToMenuModels(tempFoundMenus)
+            resetFilters()
         }
         catch (e : NullPointerException){
             throw NoIDException("ID no registrado")

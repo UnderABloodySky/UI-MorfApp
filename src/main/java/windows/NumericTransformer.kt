@@ -9,7 +9,7 @@ class NumericTransformer : ValueTransformer<Any, String> {
     override fun modelToView(valueFromModel: Any): String = valueFromModel.toString()
     override fun viewToModel(valueFromView: String): Any {
         if( isParserToInt(valueFromView))
-            return valueFromView.toInt().toString()
+            return valueFromView.toInt()
         else{
             return valueFromView
         }
