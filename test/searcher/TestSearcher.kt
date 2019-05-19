@@ -86,7 +86,7 @@ class TestSearcher {
     fun test01_theSearchByIdDontGiveTheCorrectRestaurantBecauseTheMapIsEmpty() {
         val fakeId = CriteriaById(666)
         val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapRestaurants)
-        Assert.assertEquals(mutableListOf<Restaurant?>(null), listResult)
+        Assert.assertEquals(mutableListOf<Restaurant?>(), listResult)
     }
 
     @Test
@@ -94,7 +94,7 @@ class TestSearcher {
         val fakeId = CriteriaById(666)
         addRestaurants()
         val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapRestaurants)
-        Assert.assertEquals(mutableListOf<Product?>(null), listResult)
+        Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
     @Test
@@ -119,7 +119,7 @@ class TestSearcher {
     fun test04_theSearchByIdDontGiveTheCorrectMenuBecauseTheMapIsEmpty() {
         val fakeId = CriteriaById(666)
         val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapMenus)
-        Assert.assertEquals(mutableListOf<Restaurant?>(null), listResult)
+        Assert.assertEquals(mutableListOf<Restaurant?>(), listResult)
     }
 
     @Test
@@ -127,7 +127,7 @@ class TestSearcher {
         val fakeId = CriteriaById(666)
         addProducts()
         val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapMenus)
-        Assert.assertEquals(mutableListOf<Product?>(null), listResult)
+        Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
     @Test
@@ -152,7 +152,7 @@ class TestSearcher {
     fun test07_theSearchByIdDontGiveTheCorrectProductBecauseTheMapIsEmpty() {
         val fakeId = CriteriaById(666)
         val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapProducts)
-        Assert.assertEquals(mutableListOf<Product?>(null), listResult)
+        Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
     @Test
@@ -160,7 +160,7 @@ class TestSearcher {
         val fakeId = CriteriaById(666)
         addProducts()
         val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapProducts)
-        Assert.assertEquals(mutableListOf<Product?>(null), listResult)
+        Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
     //SEARCHING BY STRING
@@ -326,7 +326,7 @@ class TestSearcher {
         val fakeId = CriteriaByIdAndString(777)
         addRestaurants()
         val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapRestaurants)
-        Assert.assertEquals(mutableListOf<Product?>(null), listResult)
+        Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
     @Test
@@ -337,7 +337,7 @@ class TestSearcher {
 
         val otheFakeId = CriteriaByIdAndString(100000)
         listResult = searcher.searchBy(otheFakeId, mapRestaurants)
-        Assert.assertEquals(mutableListOf<Product?>(null), listResult)
+        Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
     @Test
@@ -392,7 +392,7 @@ class TestSearcher {
         val fakeId = CriteriaByIdAndString(777)
         addRestaurants()
         val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapRestaurants)
-        Assert.assertEquals(mutableListOf<Product?>(null), listResult)
+        Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
     @Test
@@ -403,7 +403,7 @@ class TestSearcher {
 
         val otheFakeId = CriteriaByIdAndString(100000)
         listResult = searcher.searchBy(otheFakeId, mapRestaurants)
-        Assert.assertEquals(mutableListOf<Product?>(null), listResult)
+        Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
     @Test
