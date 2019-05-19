@@ -1,11 +1,9 @@
 package windows
 
-import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
@@ -20,23 +18,38 @@ class MenuWithProductsWindow(owner: WindowOwner, model: MenuModel?) : SimpleWind
 
         title = "Productos en Menu"
         Label(panel)
-                .setText("Productos")
+                .setText("Productos del ${modelObject.name}")
                 .setFontSize(20)
-                .alignCenter();
+                .alignCenter()
         panel.setLayout(VerticalLayout()).setWidth(2000)
 
-        var listOfProducts = List<ProductModel>(panel)
-        listOfProducts.bindItemsToProperty("productsOfMenu")
-                      .adaptWith(ProductModel::class.java,"nameAndPrice")
-
-        var lastPanel = Panel(panel).setLayout(ColumnLayout(2)).setWidth(2000)
+        var tableOfProducts = Table<ProductModel>(panel, ProductModel::class.java)
+        tableOfProducts.bindItemsToProperty("productsOfMenu")
 
 
-        Label(lastPanel).setText("Sub total        $ ")
-        var subTotalLabel = Label(lastPanel)
+        Column<ProductModel>(tableOfProducts)
+                .setTitle("Nombre")
+                .setFixedSize(250)
+                .bindContentsToProperty("name")
+
+        Column<ProductModel>(tableOfProducts)
+                .setTitle("Precio")
+                .setFixedSize(250)
+                .bindContentsToProperty("price")
+
+        var firstPanel = Panel(panel).setLayout(HorizontalLayout())
+
+
+        Label(firstPanel).setText("Sub total                                  ")
+        Label(firstPanel).setText("")
+        var subTotalLabel = Label(firstPanel)
         subTotalLabel.bindValueToProperty<Double,ControlBuilder>("price")
 
-        Label(lastPanel).setText("Total con descuento$ ")
+
+        var lastPanel = Panel(panel).setLayout(HorizontalLayout())
+
+        Label(lastPanel).setText("Total con descuento         ")
+        Label(lastPanel).setText("")
         var totalLabel = Label(lastPanel)
         totalLabel.bindValueToProperty<Double,ControlBuilder>("totalWithDiscount")
         totalLabel.alignLeft()

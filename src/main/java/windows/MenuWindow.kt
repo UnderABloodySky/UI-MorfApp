@@ -75,6 +75,7 @@ class MenuWindow(owner: WindowOwner, model: MenuModel?) : SimpleWindow<MenuModel
                     this.close()
                     var applicationModel = ApplicationModel(modelObject.restaurantModel)
                     ApplicationWindow(this, applicationModel).open() }
+
         Button(panel)
                 .setCaption("Cancelar")
                 .onClick {
