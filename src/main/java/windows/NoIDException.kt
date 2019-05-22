@@ -1,4 +1,4 @@
-package exception
+package windows
 
 import org.uqbar.commons.model.exceptions.UserException
 

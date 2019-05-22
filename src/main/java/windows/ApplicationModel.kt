@@ -1,11 +1,8 @@
 package windows
 
-import exception.NoIDException
 import org.uqbar.commons.model.annotations.Observable
-import org.uqbar.commons.model.exceptions.UserException
 import productAndMenu.Menu
 import productAndMenu.Product
-import searcher.CriteriaById
 import searcher.CriteriaByIdAndString
 import java.lang.NullPointerException
 

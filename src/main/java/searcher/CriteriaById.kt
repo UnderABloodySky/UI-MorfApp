@@ -1,8 +1,5 @@
 package searcher
 
-import exception.NoIDException
-import java.lang.NullPointerException
-
 class CriteriaById(private var id : Int?) : Criteria(){
 
     override fun search(toSeach: MutableMap<Int, Searchable>) : MutableCollection<Searchable?> {

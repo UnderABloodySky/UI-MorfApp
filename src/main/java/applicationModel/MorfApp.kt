@@ -1,11 +1,10 @@
 package applicationModel
 
-import exception.NoUserFoundException
 import exception.UserAlreadyRegisteredException
+import exception.UserNoFoundException
 import geoclaseui.*
 import user.*
 import order.*
-import org.uqbar.commons.model.exceptions.UserException
 import paymentMethod.*
 import restaurant.Restaurant
 import productAndMenu.*
@@ -91,7 +90,7 @@ object MorfApp {
         if (name!=null && registeredUsers.contains(name)) {
             actualUser = registeredUsers.get(name)
         }
-        else { throw UserException("Usuario incorrecto") }
+        else { throw UserNoFoundException("ERROR") }
         return actualUser
     }
  }
