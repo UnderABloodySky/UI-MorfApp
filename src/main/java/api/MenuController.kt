@@ -11,8 +11,6 @@ data class Product(var code: Int,
                    var price: Double,
                    var category: Category){}
 
-data class Menu(var code: Int){}
-
     class MenuControllerContext {
         private var lastId = 0;
         private val products = mutableListOf<Product>()
