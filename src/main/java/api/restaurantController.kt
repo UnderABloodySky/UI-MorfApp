@@ -1,13 +1,14 @@
 package api
 
+import applicationModel.MorfApp
 import discount.Discount
 import geoclaseui.Geo
 import io.javalin.Context
 import io.javalin.NotFoundResponse
 import org.eclipse.jetty.http.HttpStatus
-import paymentMethod.PaymentMethod
+import searcher.CriteriaByIdAndString
 
-data class PaymentMethod(var id: Int, var name: String)
+data class PaymentMethod(var id: Int, var name: String, var paymentM: paymentMethod.PaymentMethod)
 data class Restaurant(val code : Int,
                       var name : String,
                       var description : String,
@@ -43,8 +44,19 @@ class RestaurantController{
     }
 
     fun getRestaurant(ctx: Context) {
-        val code = ctx.pathParam("code").toInt()
-        ctx.json(getRestaurantById(code))
+        val criteria = ctx.queryParam("q")
+
+        val lat = ctx.queryParam("lat")
+
+        val long= ctx.queryParam("long")
+
+        val posibleFoundRestaurant = MorfApp.findRestaurant(CriteriaByIdAndString(criteria))
+
+        //val foundRestaurant = getRestaurantById(code)
+        //val foundMenu = getMenuById(code)
+
+        ctx.json(posibleFoundRestaurant)
+        //ctx.json(foundMenu)
     }
 
     fun addRestaurant(ctx: Context) {
@@ -59,16 +71,16 @@ class RestaurantController{
         ctx.json(addMenu(menu))
     }
 
-    fun updateRestaurants(ctx: Context) {
+    fun updateRestaurant(ctx: Context) {
         val code = ctx.pathParam("code").toInt()
         val viewRestaurant = ctx.body<Restaurant>()
         val oldRestaurant = getRestaurantById(code)
-        val newRestaurant = Restaurant( oldRestaurant.code,
+        val newRestaurant = Restaurant( viewRestaurant.code,
                                         viewRestaurant.name,
                                         viewRestaurant.description,
                                         viewRestaurant.direction,
                                         viewRestaurant.geoLocation,
-                                        oldRestaurant.availablePaymentMethods)
+                                        viewRestaurant.availablePaymentMethods)
 
         restaurants.remove(oldRestaurant)
         restaurants.add(newRestaurant)
@@ -129,13 +141,13 @@ class RestaurantController{
     }
 
     fun addRestaurant(restaurant: Restaurant): Restaurant{
-        val newRestaurant = Restaurant( restaurant.code,
-                restaurant.name,
-                restaurant.description,
-                restaurant.direction,
-                restaurant.geoLocation,
-                restaurant.availablePaymentMethods)
-        restaurants.add(newRestaurant)
-        return newRestaurant
+        MorfApp.createRestaurant(   restaurant.name,
+                                    restaurant.description,
+                                    restaurant.direction,
+                                    restaurant.geoLocation,
+                                    mutableListOf<paymentMethod.PaymentMethod>())
+        restaurants.add(restaurant)
+
+        return restaurant
     }
 }
