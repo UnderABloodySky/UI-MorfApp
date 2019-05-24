@@ -1,7 +1,7 @@
 package api
 
 import discount.Discount
-import geoclaseui.Geo
+import geoclase.Geo
 import io.javalin.Context
 import io.javalin.NotFoundResponse
 import org.eclipse.jetty.http.HttpStatus
