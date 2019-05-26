@@ -6,7 +6,9 @@ import geoclaseui.Geo
 import io.javalin.Context
 import io.javalin.NotFoundResponse
 import org.eclipse.jetty.http.HttpStatus
+import searcher.CriteriaById
 import searcher.CriteriaByIdAndString
+import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 data class PaymentMethod(var id: Int, var name: String, var paymentM: paymentMethod.PaymentMethod)
 data class Restaurant(val code : Int,
@@ -45,19 +47,49 @@ class RestaurantController{
 
     fun getRestaurant(ctx: Context) {
         val criteria = ctx.queryParam("q")
+        val lat = ctx.queryParam("lat") as Double?
+        val long= ctx.queryParam("long") as Double?
 
-        val lat = ctx.queryParam("lat")
+        val tempRestaurants = this.findRestaurant(criteria, lat, long)
+        val tempMenus = this.findMenu(criteria)
+        ctx.json(tempRestaurants + tempMenus)
 
-        val long= ctx.queryParam("long")
-
-        val posibleFoundRestaurant = MorfApp.findRestaurant(CriteriaByIdAndString(criteria))
-
-        //val foundRestaurant = getRestaurantById(code)
-        //val foundMenu = getMenuById(code)
-
-        ctx.json(posibleFoundRestaurant)
-        //ctx.json(foundMenu)
     }
+
+    private fun findMenu(criteria: String?): MutableList<Menu> {
+        var tempMenus = mutableListOf<Menu>()
+        if (isNotNull(criteria)) tempMenus = filterMenuByCriteria(this.menus, criteria)
+        return tempMenus
+    }
+
+    private fun filterMenuByCriteria(menus: MutableList<Menu>, criteria: String?): MutableList<Menu> {
+        return menus.filter { it.name.contains(Regex(criteria!!)) } as MutableList<Menu>
+    }
+
+    private fun findRestaurant(criteria: String?, lat: Double?, long: Double?): MutableList<Restaurant> {
+        var tempRestaurants = mutableListOf<Restaurant>()
+        if (isNotNull(criteria)) tempRestaurants = filterRestaurantByCriteria(this.restaurants, criteria)
+        if (isNotNull(lat)) tempRestaurants = filterByLatitude(tempRestaurants, lat)
+        if (isNotNull(long)) tempRestaurants = filterByLongitude(tempRestaurants, long)
+        return  tempRestaurants
+    }
+
+    private fun filterRestaurantByCriteria(restaurants: MutableList<Restaurant>, criteria: String?): MutableList<Restaurant> {
+        return restaurants.filter { it.name.contains(Regex(criteria!!)) } as MutableList<Restaurant>
+    }
+
+    private fun filterByLongitude(restaurants: MutableList<Restaurant>, long: Double?): MutableList<Restaurant> {
+        return restaurants.filter { it.geoLocation.longitude == long } as MutableList<Restaurant>
+    }
+
+    private fun filterByLatitude(restaurants: MutableList<Restaurant>, lat: Double?): MutableList<Restaurant> {
+        return restaurants.filter { it.geoLocation.latitude == lat } as MutableList<Restaurant>
+    }
+
+    private fun isNotNull(nullable: Any?): Boolean{
+        return nullable != null
+    }
+
 
     fun addRestaurant(ctx: Context) {
         val restaurant = ctx.body<Restaurant>()
@@ -118,6 +150,7 @@ class RestaurantController{
 
     /** Support Functions **/
 
+
     private fun getRestaurantById(code: Int): Restaurant {
         return restaurants.firstOrNull { it.code == code }
                 ?: throw NotFoundResponse("No se encontró el restaurant con id $code")
@@ -129,13 +162,18 @@ class RestaurantController{
     }
 
     fun addMenu(menu: Menu): Menu{
-        val newMenu = Menu( menu.code,
+        var tempRest = MorfApp.findRestaurant(CriteriaById(menu.restaurant.code)).first() as restaurant.Restaurant
+        tempRest.createMenu(menu.name, menu.description, menu.productsOfMenu, tempRest, menu.discount, menu.enabled)
+
+        var tempMenu = tempRest.findMenu(CriteriaById(menu.code)).first()
+        val newMenu = Menu( tempMenu!!.code,
                             menu.name,
                             menu.description,
                             menu.productsOfMenu,
                             menu.restaurant,
                             menu.discount,
                             menu.enabled)
+
         menus.add(newMenu)
         return newMenu
     }

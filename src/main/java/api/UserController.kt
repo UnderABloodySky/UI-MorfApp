@@ -1,7 +1,7 @@
 package controllers
 
-import data.DataUser
-import geoclase.Geo
+//import data.DataUser
+//import geoclase.Geo
 import io.javalin.Context
 import io.javalin.NotFoundResponse
 import org.eclipse.jetty.http.HttpStatus.CREATED_201

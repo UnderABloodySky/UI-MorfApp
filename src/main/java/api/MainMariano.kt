@@ -34,8 +34,13 @@ fun main() {
 
     val restaurantController = RestaurantController()
 
+
+    restaurantController.addMenu(
+            Menu(0, "")
+    )
+
     restaurantController.addRestaurant(
-            Restaurant(1, "La Conga", "Peru", "falsa 123", geo, availablePM))
+            Restaurant(1, "Pipox", "Peru", "falsa 123", geo, availablePM))
     restaurantController.addRestaurant(
             Restaurant(2, "Pepex", "Peru", "falsa 234", geo, availablePM))
     restaurantController.addRestaurant(
@@ -44,15 +49,11 @@ fun main() {
     // CRUD de Lugares
     // Sintaxis alternativa, mucho más concisa
     // Donde el comportamiento se traslada al controller
-    MorfApp.createRestaurant("pepe", "a", "a", Geo(1.1,1.1),mutableListOf())
 
     app.routes {
-
         path("search"){
                 get(restaurantController::getRestaurant)
         }
-
-
         path("products") {
             get(menuController::getAll)
             post(menuController::addProduct)
