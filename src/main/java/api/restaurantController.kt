@@ -27,7 +27,7 @@ data class Menu(val code: Int,
                 var enabled: Boolean = true)
 
 class RestaurantController{
-    private val menus = mutableListOf<Menu>()
+    val menus = mutableListOf<Menu>()
     private val restaurants = mutableListOf<Restaurant>()
 
     /** CRUD **/

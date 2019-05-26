@@ -1,5 +1,6 @@
 package productAndMenu
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import discount.Discount
 import discount.NoDiscount
 import restaurant.Restaurant
@@ -9,6 +10,7 @@ class Menu(code: Int,
            name: String,
            description: String,
            var productsOfMenu: MutableList<Product>,
+           @JsonIgnore
            var restaurant : Restaurant,
            var discount: Discount = NoDiscount(),
            var enabled: Boolean = true) : Searchable(code, name, description)
