@@ -1,5 +1,6 @@
 package api
 
+
 import applicationModel.MorfApp
 import io.javalin.Context
 import productAndMenu.Menu
@@ -7,7 +8,7 @@ import restaurant.Restaurant
 import searcher.CriteriaById
 import searcher.CriteriaByString
 
-class RestaurantController2 {
+class RestaurantController {
 
     fun getAllMenus(ctx: Context) {
         val code = ctx.pathParam("code").toInt()
@@ -24,9 +25,9 @@ class RestaurantController2 {
 
         var tempRestaurants = MorfApp.findRestaurant(CriteriaByString(criteria!!)) as MutableList<Restaurant>
         if (isNotNull(long)) tempRestaurants = tempRestaurants.filter {
-                                            it.geoLocation.longitude == long!!.toDouble() } as MutableList<Restaurant>
+            it.geoLocation.longitude == long!!.toDouble() } as MutableList<Restaurant>
         if (isNotNull(lat)) tempRestaurants = tempRestaurants.filter {
-                                            it.geoLocation.latitude == lat!!.toDouble() } as MutableList<Restaurant>
+            it.geoLocation.latitude == lat!!.toDouble() } as MutableList<Restaurant>
 
         var tempMenus = mutableListOf<Menu>()
         MorfApp.restaurants.forEach{ tempMenus.addAll(it.value.findMenu(CriteriaByString(criteria)) as Collection<Menu>) }
