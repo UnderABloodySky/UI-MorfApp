@@ -2,16 +2,18 @@ package api
 
 
 import applicationModel.MorfApp
+import controllers.DataUser
 import geoclaseui.Geo
 import io.javalin.Context
 import io.javalin.NotFoundResponse
 import org.eclipse.jetty.http.HttpStatus
 import restaurant.Restaurant
 import user.Client
+import user.User
 
 data class Geo(var lat:Double,var long:Double)
 
-data class OrderData(var code:Int,var client:User, var restaurantCode: Int, var paymentMethod:paymentMethod.PaymentMethod,var menus : MutableCollection<productAndMenu.Menu>)
+data class OrderData(var code:Int,var client:DataUser, var restaurantCode: Int, var paymentMethod:paymentMethod.PaymentMethod,var menus : MutableCollection<productAndMenu.Menu>)
 
 
 class OrderController() {
@@ -70,11 +72,18 @@ class OrderController() {
         return menus
     }
 
+    fun changeToUserData(user:Client):DataUser{
+       return  DataUser(user)
+
+
+    }
+
+
     fun addOrderComplentary(modelOrder: order.Order):OrderData {
         // client:Client, restaurant:Restaurant , paymentMethod:PaymentMethod, menus:MutableList<Menu>
 
         val newOrder = OrderData(modelOrder.code,
-                User(modelOrder.getUser().code),
+                this.changeToUserData(modelOrder.getUser()),
                 modelOrder.getRestaurant().code,
                 modelOrder.getPaymentMethod(),
                 modelOrder.menus())

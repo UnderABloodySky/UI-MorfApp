@@ -73,7 +73,7 @@ data class Order(val code : Int, private val user : Client,
 
     fun canChange(): Boolean = state.canChange()
 
-    fun getUser() : User = user
+    fun getUser() : Client = user
 
     fun getRestaurant() : Restaurant = restaurant
 
