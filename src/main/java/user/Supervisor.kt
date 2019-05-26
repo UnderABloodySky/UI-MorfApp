@@ -2,10 +2,15 @@ package user
 import restaurant.*
 import productAndMenu.*
 import applicationModel.*
+import com.fasterxml.jackson.annotation.JsonIgnore
 import paymentMethod.PaymentMethod
 
-class Supervisor( code : Int, name : String, id : String , val restaurant: Restaurant, password: String, applicationModel: MorfApp):
-        User (code, name, id, password, applicationModel) {
+class Supervisor(code: Int,
+                 name: String,
+                 id : String,
+                 @JsonIgnore val restaurant: Restaurant,
+                 password: String,
+                 applicationModel: MorfApp): User (code, name, id, password, applicationModel) {
 
     fun addProductToRestaurantStock(newProduct: Product) = restaurant.addProductToStock(newProduct)
 
