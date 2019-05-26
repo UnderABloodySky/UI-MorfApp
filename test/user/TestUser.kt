@@ -12,8 +12,8 @@ class TestUser {
     private var applicationModel : MorfApp = MorfApp
     private var geoLocation1: Geo = Geo(1.2,2.2)
     private var cash : PaymentMethod = Cash()
-    private var listOfPaymentMethod : MutableCollection<PaymentMethod> = mutableListOf(cash)
-    private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1, listOfPaymentMethod)
+    private var listOfPaymentMethod : MutableList<PaymentMethod> = mutableListOf(cash)
+    private var restaurant : Restaurant = applicationModel.createRestaurant("El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1, listOfPaymentMethod)
     private var date = Date()
     private  var client: Client = Client(2, "Pepe","Pepe", "Roque saenz peña", date,geoLocation1, "1212", applicationModel)
 

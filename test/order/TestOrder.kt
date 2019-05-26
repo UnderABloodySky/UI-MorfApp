@@ -22,7 +22,7 @@ class TestOrder {
     private var geoLocation: Geo = Geo(1.2,2.2);
     private var iceCream = Product(1, "Soda", "Made with milk from happy cows", 20.0, Category.POSTRE)
     private var pizza = Product(2, "HotDog", "Really italian pepperoni pizza", 40.0, Category.PLATOPRINCIPAL)
-    private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation, mutableListOf(cash))
+    private var restaurant = applicationModel.createRestaurant("un Nombre", "Una descripcion", "Ay no se", geoLocation, mutableListOf(cash))
     private var menu0 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),restaurant)
     private var menu1 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),restaurant)
     private var menu2 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),restaurant)

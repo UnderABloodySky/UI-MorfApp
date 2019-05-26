@@ -15,7 +15,8 @@ class TestMenu {
     private var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.BEBIDA)
     private var hotDog = Product(2, "HotDog", "Original Deustch Sausage", 120.0, Category.PLATOPRINCIPAL)
     private var geoLocation = Geo(2.0,2.0)
-    private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation, mutableListOf(cash))
+    private var restaurant : Restaurant = applicationModel.createRestaurant("Otro nombre", "Otra descripcion", "asd", geoLocation, mutableListOf(cash))
+
 
     @Test
     fun addANewProductToAnEmptyListAndCheckIfSizeIsAsEspected() {

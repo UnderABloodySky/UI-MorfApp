@@ -9,21 +9,22 @@ import paymentMethod.PaymentMethod
 import productAndMenu.Category
 import productAndMenu.Menu
 import productAndMenu.Product
+import applicationModel.MorfApp
 import restaurant.Restaurant
 
 class TestSearcher {
 
     private val searcher: Searcher = Searcher()
-
-    private val geoLocation: Geo = Geo(2.0, 1.0)
-
-    private val cash : PaymentMethod  = Cash()
-    private val debit : PaymentMethod = Debit()
-    private val paymentMethods : MutableCollection<PaymentMethod> = mutableListOf(cash, debit)
-    private val restaurant0: Restaurant = Restaurant(0, "El Tano", "LLenadero magico de tripas", "Por Quilmes Oeste", geoLocation, paymentMethods)
-    private val restaurant1: Restaurant = Restaurant(1, "Guerrin", "The best pizza of Bs. As.", "Corrientes 4321", geoLocation, paymentMethods)
-    private val restaurant2: Restaurant = Restaurant(2, "Los Maizales", "inserte descripcion", "Calle Falsa 1234", geoLocation, paymentMethods)
-    private val restaurant3: Restaurant = Restaurant(3, "Bar 1840", "inserte descripcion", "Corrientes 4320", geoLocation, paymentMethods)
+    private val geoLocation = Geo(2.0, 1.0)
+    private val applicationModel = MorfApp
+    private val cash = Cash()
+    private val debit = Debit()
+    private val paymentMethods = mutableListOf(cash, debit)
+    private val restaurant0: Restaurant = applicationModel.createRestaurant("Bar 144234", "LLenadero magico de tripas", "Por Quilmes Oeste", geoLocation, paymentMethods)
+    private val restaurant1: Restaurant = applicationModel.createRestaurant("Le Guerrin", "The best pizza of Bs. As.", "Corrientes 4321", geoLocation, paymentMethods)
+    private val restaurant2: Restaurant = applicationModel.createRestaurant("Les Maizales", "inserte descripcion", "Calle Falsa 1234", geoLocation, paymentMethods)
+    private val restaurant3: Restaurant = applicationModel.createRestaurant("Le Bar 1840", "inserte descripcion", "Corrientes 4320", geoLocation, paymentMethods)
+    private val restaurant4: Restaurant = applicationModel.createRestaurant("A 1200", "inserte descripcion", "Corrientes 4320", geoLocation, paymentMethods)
 
     private val menu0 = Menu(0,"SodaMenu","with authentic sodas since 90's", mutableListOf(),restaurant0)
     private val menu1 = Menu(1,"ItalianFood","With Pepperoni", mutableListOf(),restaurant1)
@@ -39,7 +40,7 @@ class TestSearcher {
     private val mapMenus: MutableMap<Int, Searchable> = mutableMapOf()
     private val mapProducts: MutableMap<Int, Searchable> = mutableMapOf()
 
-    private val restaurants : MutableCollection<Searchable> = mutableListOf(restaurant0, restaurant1, restaurant2, restaurant3)
+    private val restaurants : MutableCollection<Searchable> = mutableListOf(restaurant0, restaurant1, restaurant2, restaurant3, restaurant3, restaurant4)
     private val menus : MutableCollection<Searchable> = mutableListOf(menu0, menu1, menu2, menu3)
     private val products : MutableCollection<Searchable> = mutableListOf(product0, product1, product2, product3)
 
@@ -65,10 +66,15 @@ class TestSearcher {
     //SEARCHING BY ID
     @Test
     fun test00_theSearchByIdGiveTheCorrectRestaurant() {
-        val byId0 = CriteriaById(0)
-        val byId1 = CriteriaById(1)
-        val byId2 = CriteriaById(2)
-        val byId3 = CriteriaById(3)
+        val code0 = restaurant0.code
+        val code1 = restaurant1.code
+        val code2 = restaurant2.code
+        val code3 = restaurant3.code
+
+        val byId0 = CriteriaById(code0)
+        val byId1 = CriteriaById(code1)
+        val byId2 = CriteriaById(code2)
+        val byId3 = CriteriaById(code3)
 
         var listResult : MutableCollection<Searchable?>
         addRestaurants()
@@ -166,10 +172,10 @@ class TestSearcher {
     //SEARCHING BY STRING
     @Test
     fun test09_theSearchByStringGiveTheCorrectRestaurantWhenSearchByName(){
-        val byString0 = CriteriaByString("El Tano")
-        val byString1 = CriteriaByString("Guerrin")
-        val byString2 = CriteriaByString("Los Maizales")
-        val byString3 = CriteriaByString("Bar 1840")
+        val byString0 = CriteriaByString("Bar 144234")
+        val byString1 = CriteriaByString("Le Guerrin")
+        val byString2 = CriteriaByString("Les Maizales")
+        val byString3 = CriteriaByString("Le Bar 1840")
         var listResult : MutableCollection<Searchable?>
         addRestaurants()
         listResult = searcher.searchBy(byString0, mapRestaurants)
@@ -265,9 +271,9 @@ class TestSearcher {
 
    @Test
     fun test18_theSearchByIdAndStringGiveTheCorrectRestaurantWhenSearchByName(){
-        val byIdAndString0 = CriteriaByIdAndString("El Tano")
-        val byIdAndString1 = CriteriaByIdAndString("Guerrin")
-        val byIdAndString2 = CriteriaByIdAndString("Los Maizales")
+        val byIdAndString0 = CriteriaByIdAndString("Bar 144234")
+        val byIdAndString1 = CriteriaByIdAndString("Le Guerrin")
+        val byIdAndString2 = CriteriaByIdAndString("Les Maizales")
         val byIdAndString3 = CriteriaByIdAndString("1840")
         addRestaurants()
         var listResult : MutableCollection<Searchable?> = searcher.searchBy(byIdAndString0, mapRestaurants)
@@ -285,8 +291,11 @@ class TestSearcher {
 
     @Test
     fun test19_theSearchByIdAndStringGiveTheCorrectRestaurantWhenSearchByCode(){
-        val byIdAndString2 = CriteriaByIdAndString(2)
-        val byIdAndString3 = CriteriaByIdAndString(3)
+        restaurant2.code = 54
+        restaurant3.code = 55
+        val byIdAndString2 = CriteriaByIdAndString(54)
+        val byIdAndString3 = CriteriaByIdAndString(55)
+
         var listResult : MutableCollection<Searchable?>
         addRestaurants()
 
@@ -298,19 +307,22 @@ class TestSearcher {
 
     @Test
     fun test20_theSearchByIdAndStringGivePartiallyTheRestaurantsWhenSearchByCode(){
-        val byIdAndString0 = CriteriaByIdAndString(0)
-        val byIdAndString1 = CriteriaByIdAndString(1)
+        val byIdAndString0 = CriteriaByIdAndString(1)
+        val byIdAndString1 = CriteriaByIdAndString(2)
         addRestaurants()
 
         var listResult : MutableCollection<Searchable?> = searcher.searchBy(byIdAndString0, mapRestaurants)
-        Assert.assertEquals(2, listResult.size)
+
+        Assert.assertEquals(3, listResult.size)
         Assert.assertTrue(listResult.contains(restaurant0))
         Assert.assertTrue(listResult.contains(restaurant3))
 
         listResult = searcher.searchBy(byIdAndString1, mapRestaurants)
+        print(listResult.map{it!!.code})
+        print(listResult.map{it!!.name})
         Assert.assertEquals(2, listResult.size)
-        Assert.assertTrue(listResult.contains(restaurant1))
-        Assert.assertTrue(listResult.contains(restaurant3))
+        Assert.assertTrue(listResult.contains(restaurant0))
+        Assert.assertTrue(listResult.contains(restaurant4))
     }
 
     @Test

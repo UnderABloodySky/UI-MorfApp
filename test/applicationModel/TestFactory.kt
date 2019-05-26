@@ -22,14 +22,13 @@ class TestFactory{
     private var restaurantFactory : RestaurantFactory = RestaurantFactory()
     private var productFactory : ProductFactory = ProductFactory()
     private var menuFactory : MenuFactory = MenuFactory()
-
     private var applicationModel : MorfApp = MorfApp
     private val cash : PaymentMethod = Cash()
-    private val listOfPaymentMethod : MutableCollection<PaymentMethod> = mutableListOf(cash)
+    private val listOfPaymentMethod : MutableList<PaymentMethod> = mutableListOf(cash)
     private var geoLocation: Geo = Geo(1.2,2.2)
     private var iceCream = Product(1, "Soda", "Made with milk from happy cows", 20.0, Category.POSTRE)
     private var pizza = Product(2, "HotDog", "Really italian pepperoni pizza", 40.0, Category.PLATOPRINCIPAL)
-    private var restaurant : Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation, mutableListOf(cash))
+    private var restaurant : Restaurant = applicationModel.createRestaurant("El Tano", "Por Avellaneda", "Ay no se", geoLocation, listOfPaymentMethod)
     private var menu0 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),restaurant)
     private var menu1 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),restaurant)
     private var menu2 = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(),restaurant)
@@ -75,9 +74,9 @@ class TestFactory{
     @Test
     fun theClientFactoryIncreasesItsCodeByOneWhenItCreatesAnOrder(){
         Assert.assertEquals(0,clientFactory.code())
-        clientFactory.createClient("Algun lado", date, geoLocation, "Pepe", "Pepe","Aloha", applicationModel)
+        clientFactory.createClient("Algun lado", date, geoLocation, "PepeA", "Pepe","Aloha", applicationModel)
         Assert.assertEquals(1,clientFactory.code())
-        clientFactory.createClient("Algun lado", date, geoLocation, "Pepe","Pepe","Aloha", applicationModel)
+        clientFactory.createClient("Algun lado", date, geoLocation, "PepeB","Pepe","Aloha", applicationModel)
         Assert.assertEquals(2,clientFactory.code())
     }
 
@@ -132,9 +131,9 @@ class TestFactory{
 
     @Test
     fun testRestaurantFactoryReturnsAConsistentRestaurant(){
-        var newRestaurant : Restaurant = restaurantFactory.createRestaurant("Los Maizales A", "ATR", "Por Caballito", geoLocation, listOfPaymentMethod)
+        var newRestaurant : Restaurant = restaurantFactory.createRestaurant("Los Maizales Z", "ATR", "Por Caballito", geoLocation, listOfPaymentMethod)
         Assert.assertEquals("Por Caballito", newRestaurant.direcction)
-        Assert.assertEquals("Los Maizales A", newRestaurant.name)
+        Assert.assertEquals("Los Maizales Z", newRestaurant.name)
         Assert.assertEquals(geoLocation, newRestaurant.geoLocation)
         Assert.assertEquals("ATR", newRestaurant.description)
         Assert.assertEquals(mutableListOf(cash), newRestaurant.availablePaymentMethods)

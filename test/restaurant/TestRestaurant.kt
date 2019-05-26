@@ -22,7 +22,7 @@ class TestRestaurant {
     private var applicationModel: MorfApp = MorfApp
     private var cash: PaymentMethod = Cash()
     private var listOfPaymentMethod = mutableListOf(cash)
-    var newRestaurant: Restaurant = Restaurant(1, "El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1, mutableListOf())
+    private var newRestaurant: Restaurant = applicationModel.createRestaurant("Asd", "asd", "asd", geoLocation1, listOfPaymentMethod)
     private var newSupervisor: Supervisor = Supervisor(1, "Pepe", "SuperPepe",newRestaurant, "123454", applicationModel)
     private var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), newRestaurant)
     private var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.BEBIDA)
@@ -35,11 +35,10 @@ class TestRestaurant {
     @Test
     fun newRestaurantIsCreated() {
         Assert.assertTrue(newRestaurant.menus.isEmpty())
-        Assert.assertEquals(newRestaurant.code, 1)
-        Assert.assertEquals(newRestaurant.name, "El Tano")
-        Assert.assertEquals(newRestaurant.description, "inserte descripcion")
-        Assert.assertEquals(newRestaurant.direcction, "por quilmes oeste")
-        Assert.assertEquals(newRestaurant.geoLocation, geoLocation1)
+        Assert.assertEquals("Asd", newRestaurant.name)
+        Assert.assertEquals("asd",newRestaurant.description)
+        Assert.assertEquals("asd", newRestaurant.direcction)
+        Assert.assertEquals(geoLocation1, newRestaurant.geoLocation)
         Assert.assertEquals("SuperPepe", newRestaurant.supervisor.name)
     }
 
@@ -88,13 +87,16 @@ class TestRestaurant {
 
     @Test
     fun supervisorCanAddAndPaymentMethodsInTheRestaurant() {
-        val cash: PaymentMethod = Cash()
-        newRestaurant.addSupervisor(newSupervisor)
-        newSupervisor.addPaymentMethod(cash)
+        val newSupervisor: Supervisor = newRestaurant.supervisor
+        val debit = Debit()
+        newSupervisor.addPaymentMethod(debit)
         Assert.assertTrue(newRestaurant.availablePaymentMethods.contains(cash))
+        Assert.assertTrue(newRestaurant.availablePaymentMethods.contains(debit))
         newSupervisor.removePaymentMethodRestaurant(cash)
+        Assert.assertEquals(mutableListOf(debit), newRestaurant.availablePaymentMethods)
         val emptyPaymentsMethods: MutableCollection<PaymentMethod> = mutableListOf<PaymentMethod>()
-        Assert.assertEquals(newRestaurant.availablePaymentMethods, emptyPaymentsMethods)
+        newSupervisor.removePaymentMethodRestaurant(debit)
+        Assert.assertEquals(emptyPaymentsMethods, newRestaurant.availablePaymentMethods )
     }
 
     @Test
@@ -235,6 +237,7 @@ class TestRestaurant {
 
     @Test
     fun restaurantCanAddANewPaymentMethod(){
+        newRestaurant.removePaymentMethod(cash)
         Assert.assertTrue(newRestaurant.availablePaymentMethods.isEmpty())
         newRestaurant.addPaymentMethod(Debit())
         Assert.assertFalse(newRestaurant.availablePaymentMethods.isEmpty())
@@ -242,6 +245,7 @@ class TestRestaurant {
 
     @Test
     fun restaurantCanRemoveANewPaymentMethod(){
+        newRestaurant.removePaymentMethod(cash)
         Assert.assertTrue(newRestaurant.availablePaymentMethods.isEmpty())
         val debit : PaymentMethod = Debit()
         newRestaurant.addPaymentMethod(debit)

@@ -23,7 +23,7 @@ class Restaurant(code : Int,
 
     var products: MutableMap<Int, Product> = mutableMapOf()
     var menus: MutableMap<Int, Menu> = mutableMapOf()
-    var supervisor: Supervisor = MorfApp.createSupervisor(this, "Supervisor-$code", "Supervisor", "")
+    var supervisor: Supervisor = MorfApp.createSupervisor(this, "Supervisor$name$code".replace(" ",""), "Supervisor", "")
     var orders: MutableCollection<Order> = mutableListOf()
     var searcher: Searcher = Searcher()
     private var productFactory: ProductFactory = ProductFactory()

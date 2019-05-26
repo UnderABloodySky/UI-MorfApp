@@ -29,7 +29,6 @@ object MorfApp {
     var distance: Double = 20.00
 
     fun createClient(id : String, name: String, address: String, geoLocation : Geo,  password : String): Client {
-
         if(!registeredUsers.containsKey(id)){
             var today : Date = Date()
             val newClient: Client = clientFactory.createClient(address,
@@ -43,13 +42,14 @@ object MorfApp {
             this.registeredUsers.put(newClient.name,newClient)
             return newClient
         }
-        else {throw UserAlreadyRegisteredException("Ya se encuentra registrado el usuario")}
+        else {throw UserAlreadyRegisteredException("Ya se encuentra registrado el usuario de ID: $id")}
     }
 
     fun createSupervisor(restaurant: Restaurant, id: String, name: String, password: String): Supervisor {
-
-        if(!registeredUsers.containsKey(id)){
-                val newSupervisor: Supervisor = clientFactory.createSupervisor(restaurant,
+        if(!isCorrectID(id)){
+            throw UserAlreadyRegisteredException("Ya se encuentra registrado el supervisor de ID: $id")
+        }
+        val newSupervisor: Supervisor = clientFactory.createSupervisor(restaurant,
                                                   name,
                                                   id,
                                                  password,
@@ -58,9 +58,9 @@ object MorfApp {
                 this.registeredUsers.put(newSupervisor.name,newSupervisor)
                 restaurant.addSupervisor(newSupervisor)
                 return newSupervisor
-            }
-        else {throw UserAlreadyRegisteredException("Ya se encuentra registrado el usuario")}
     }
+
+
     fun createRestaurant(name: String,
                              description: String,
                              direction: String,
@@ -93,4 +93,8 @@ object MorfApp {
         else { throw UserNoFoundException("ERROR") }
         return actualUser
     }
+
+    private fun isCorrectID(id : String) = !registeredUsers.containsKey(id)
+
+    fun cantidad() = registeredUsers.values.size
  }
