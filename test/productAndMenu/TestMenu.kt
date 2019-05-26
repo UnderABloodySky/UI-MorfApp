@@ -1,7 +1,7 @@
 package productAndMenu
 
 import applicationModel.MorfApp
-import geoclaseui.Geo
+import geoclase.Geo
 import org.junit.Test
 import org.junit.Assert
 import paymentMethod.Cash

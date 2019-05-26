@@ -1,7 +1,7 @@
 package user
 
 import applicationModel.MorfApp
-import geoclaseui.Geo
+import geoclase.Geo
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test

@@ -1,6 +1,6 @@
 package searcher
 
-import geoclaseui.Geo
+import geoclase.Geo
 import org.junit.Assert
 import org.junit.Test
 import paymentMethod.Cash

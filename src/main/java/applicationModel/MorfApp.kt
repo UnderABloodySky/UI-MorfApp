@@ -2,7 +2,7 @@ package applicationModel
 
 import exception.UserAlreadyRegisteredException
 import exception.UserNoFoundException
-import geoclaseui.*
+import geoclase.*
 import user.*
 import order.*
 import paymentMethod.*
@@ -28,7 +28,7 @@ object MorfApp {
     private var searcher : Searcher = Searcher()
     var distance: Double = 20.00
 
-    fun createClient(id : String, name: String, address: String, geoLocation : Geo,  password : String): Client {
+    fun createClient(id : String, name: String, address: String, geoLocation : Geo,  password : String, email : String): Client {
         if(!registeredUsers.containsKey(id)){
             var today : Date = Date()
             val newClient: Client = clientFactory.createClient(address,
@@ -37,6 +37,7 @@ object MorfApp {
                     name,
                     id,
                     password,
+                    email,
                     this)
 
             this.registeredUsers.put(newClient.name,newClient)

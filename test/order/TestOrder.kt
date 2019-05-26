@@ -1,7 +1,7 @@
 package order
 
 import applicationModel.MorfApp
-import geoclaseui.Geo
+import geoclase.Geo
 import org.junit.Assert
 import org.junit.Test
 import paymentMethod.Cash
@@ -32,7 +32,7 @@ class TestOrder {
     private var menu6 = Menu(2, "FullyMenu", "Good friends, good FOOD, good times", mutableListOf<Product>(iceCream, pizza), restaurant)
     private val menus : MutableCollection<Menu> = mutableListOf<Menu>()
     private var date : Date = Date()
-    private  var client: Client = Client(1,"Pepe","Pepe", "Roque saenz peña", date, geoLocation, "1212", applicationModel)
+    private  var client: Client = Client(1,"Pepe","Pepe", "Roque saenz peña", date, geoLocation, "1212", "mail@asd.com",applicationModel)
     private var order : Order = Order(2, client, restaurant, cash, menus)
 
     @Test

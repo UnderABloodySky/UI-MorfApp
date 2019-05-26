@@ -7,7 +7,7 @@ import org.eclipse.jetty.http.HttpStatus.*
 import com.fasterxml.jackson.databind.exc.MismatchedInputException
 import discount.FixedDiscount
 import discount.NoDiscount
-import geoclaseui.Geo
+import geoclase.Geo
 import paymentMethod.Cash
 import productAndMenu.Category
 import productAndMenu.Menu

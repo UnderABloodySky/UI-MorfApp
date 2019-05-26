@@ -3,7 +3,7 @@ package windows
 import applicationModel.MorfApp
 import discount.FixedDiscount
 import discount.NoDiscount
-import geoclaseui.Geo
+import geoclase.Geo
 import paymentMethod.Cash
 import productAndMenu.Category
 import productAndMenu.Menu

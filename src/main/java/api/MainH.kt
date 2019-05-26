@@ -1,7 +1,7 @@
 import applicationModel.MorfApp
 import com.fasterxml.jackson.databind.exc.MismatchedInputException
 import controllers.MorfAppControllerContext
-import geoclaseui.Geo
+import geoclase.Geo
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
 import org.eclipse.jetty.http.HttpStatus.BAD_REQUEST_400
@@ -32,10 +32,10 @@ fun main() {
     //Ubicacion restaurants
     val flores = Geo(-34.603595, -58.381717, "Flores")
 
-    val mChaile = morfApp.createClient("NinjaMan", "Matias Chaile", "Roque Saenz Peña 500", unq, "dilequechupelimon")
-    val mPais = morfApp.createClient("BBQMaster", "Mariano Pais", "Siempre Viva 442", bernal, "proyecto")
-    val jLajcha = morfApp.createClient("RunForestRun", "Juliana Lajcha", "Calle Falsa 1234", capital, "1234")
-    val fCaramelieri = morfApp.createClient("OracleFanBoy", "Fede Caramelieri", "Otra Calle Falsa 4321", bernal, "plusvalia")
+    val mChaile = morfApp.createClient("NinjaMan", "Matias Chaile", "Roque Saenz Peña 500", unq, "dilequechupelimon", "mailTrucho0@asd.com")
+    val mPais = morfApp.createClient("BBQMaster", "Mariano Pais", "Siempre Viva 442", bernal, "proyecto", "mailTrucho1@asd.com")
+    val jLajcha = morfApp.createClient("RunForestRun", "Juliana Lajcha", "Calle Falsa 1234", capital, "1234", "mailTrucho2@asd.com")
+    val fCaramelieri = morfApp.createClient("OracleFanBoy", "Fede Caramelieri", "Otra Calle Falsa 4321", bernal, "plusvalia", "mailTrucho3@asd.com")
 
     val cash = Cash()
     val debit = Debit()
@@ -86,12 +86,24 @@ fun main() {
     app.routes {
         path("users") {
             get(controller::getAllUsers)
-//          post(controller::addPlace)
-            path(":name") {
-                get(controller::getUser)
-//              put(controller::updatePlace)
-                delete(controller::deletePlace)
+            path("register"){
+                post(controller::addUser2)
+            }
+            path(":id") {
+                get(controller::findUser)
+//                put(controller::updateUser)
+//                delete(controller::deleteUser)
+                }
+            }
+            path("email"){
+                path(":email"){
+                    get(controller::findUserByMail)
+                }
             }
         }
-    }
 }
+
+
+
+
+

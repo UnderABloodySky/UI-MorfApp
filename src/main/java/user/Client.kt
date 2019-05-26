@@ -3,12 +3,12 @@ package user
 import restaurant.*
 import productAndMenu.*
 import order.*
-import geoclaseui.*
+import geoclase.*
 import applicationModel.*
 import paymentMethod.*
 import java.util.*
 class Client (code :Int,  name: String, id: String, var address: String, var registrationDate: Date,
-              var geoLocation: Geo,  password : String, applicationModel: MorfApp )
+              var geoLocation: Geo,  password : String, var email : String, applicationModel: MorfApp )
                 : User(code, id, name,password,applicationModel) {
 
     var ordersMade: MutableList<Order> = mutableListOf()

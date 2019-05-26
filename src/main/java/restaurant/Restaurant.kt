@@ -5,7 +5,7 @@ import applicationModel.ProductFactory
 import discount.Discount
 import exception.MenuNameAlreadyInUseException
 import exception.ProductNameAlreadyInUseException
-import geoclaseui.Geo
+import geoclase.Geo
 import order.Order
 import user.*
 import paymentMethod.*

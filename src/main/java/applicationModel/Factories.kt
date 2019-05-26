@@ -1,7 +1,7 @@
 package applicationModel
 
 import discount.Discount
-import geoclaseui.Geo
+import geoclase.Geo
 import order.Order
 import restaurant.Restaurant
 import productAndMenu.Menu
@@ -54,9 +54,10 @@ class ClientFactory : GeneralFactory() {
                      name : String,
                      id : String,
                      password: String,
+                     email : String,
                      applicationModel: MorfApp): Client {
 
-        val newClient = Client(code, name, id, address, registrationDate, geoLocation,  password, applicationModel)
+        val newClient = Client(code, name, id, address, registrationDate, geoLocation,  password, email, applicationModel)
         addOne()
         return newClient
     }

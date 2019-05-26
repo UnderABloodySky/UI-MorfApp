@@ -4,7 +4,7 @@ import applicationModel.MorfApp
 import discount.Discount
 import discount.FixedDiscount
 import discount.NoDiscount
-import geoclaseui.Geo
+import geoclase.Geo
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
