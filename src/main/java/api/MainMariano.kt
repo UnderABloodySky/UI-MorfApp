@@ -5,8 +5,10 @@ import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
 import org.eclipse.jetty.http.HttpStatus.*
 import com.fasterxml.jackson.databind.exc.MismatchedInputException
+import discount.NoDiscount
 import geoclaseui.Geo
 import productAndMenu.Category
+import productAndMenu.Product
 
 fun main() {
     val app = Javalin.create()
@@ -22,25 +24,19 @@ fun main() {
 
     app.get("/") { ctx -> ctx.json(mapOf("message" to "Hello World")) }
 
-    // Instancio el controller (OJO, ESTE ES OTRO!!)
-    // Le agrego data para poder probar inicialmente
-    val menuController = MenuControllerContext()
-    menuController.addProduct(Product(1, "a", "b", 10.0, Category.BEBIDA))
-    menuController.addProduct(Product(2, "b", "d", 14.0, Category.ADICIONAL))
-    menuController.addProduct(Product(3, "c", "f", 18.0, Category.POSTRE))
+    var unaHamburguesaSalvaje = Product(0,"Hamburguesa", "Al vapor", 100.00, Category.NINGUNO)
 
     val geo = Geo(123.0, 123.0, "123")
     val availablePM = mutableListOf<PaymentMethod>()
 
     val restaurantController = RestaurantController()
 
+    val tempRest = Restaurant(1, "Pipox", "Peru", "falsa 123", geo, availablePM)
 
-    restaurantController.addMenu(
-            Menu(0, "")
-    )
+    restaurantController.addRestaurant(tempRest)
 
-    restaurantController.addRestaurant(
-            Restaurant(1, "Pipox", "Peru", "falsa 123", geo, availablePM))
+    restaurantController.menus.add(Menu(0, "pep", "a", mutableListOf(unaHamburguesaSalvaje), tempRest, NoDiscount(), true))
+
     restaurantController.addRestaurant(
             Restaurant(2, "Pepex", "Peru", "falsa 234", geo, availablePM))
     restaurantController.addRestaurant(
@@ -54,14 +50,7 @@ fun main() {
         path("search"){
                 get(restaurantController::getRestaurant)
         }
-        path("products") {
-            get(menuController::getAll)
-            post(menuController::addProduct)
-            path(":code") {
-                get(menuController::getAll)
-                put(menuController::updateProduct)
-                delete(menuController::deleteProduct)
-            }
-        }
+
     }
+
 }
