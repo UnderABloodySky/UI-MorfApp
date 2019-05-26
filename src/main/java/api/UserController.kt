@@ -14,8 +14,8 @@ data class DataUser(private var user : Client) {
     var name = user.name
     var address = user.address
     var email = user.email
-    var pendingOrders = mutableListOf<DataOrder>()
-    var historicOrders = mutableListOf<DataOrder>()
+    var pendingOrders = user.pendingOrders
+    var historicOrders = user.historicOrders
 
 }
 
@@ -38,8 +38,13 @@ class MorfAppControllerContext {
 
         //Ok
         fun findUser(ctx: Context) {
-            val id = ctx.queryParam("id")!!
-            val include = ctx.queryParam("orders")
+            val id = ctx.pathParam("id")
+            val res = getUserById(id)
+            ctx.json(res)
+        }
+
+        fun findUser2(ctx: Context) {
+            val id = ctx.pathParam("id")
             val res = getUserById(id)
             ctx.json(res)
         }

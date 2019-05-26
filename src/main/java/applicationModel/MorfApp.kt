@@ -30,9 +30,7 @@ object MorfApp {
 
     fun createClient(id : String, name: String, address: String, geoLocation : Geo,  password : String, email : String): Client {
         if(!registeredUsers.containsKey(id)){
-            var today : Date = Date()
             val newClient: Client = clientFactory.createClient(address,
-                    today,
                     geoLocation,
                     name,
                     id,

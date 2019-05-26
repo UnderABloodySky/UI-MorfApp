@@ -49,7 +49,6 @@ class MenuFactory : GeneralFactory(){
 class ClientFactory : GeneralFactory() {
 
         fun createClient(address: String,
-                     registrationDate: Date,
                      geoLocation: Geo,
                      name : String,
                      id : String,
@@ -57,7 +56,7 @@ class ClientFactory : GeneralFactory() {
                      email : String,
                      applicationModel: MorfApp): Client {
 
-        val newClient = Client(code, name, id, address, registrationDate, geoLocation,  password, email, applicationModel)
+        val newClient = Client(code, name, id, address, geoLocation,  password, email, applicationModel)
         addOne()
         return newClient
     }

@@ -47,7 +47,7 @@ data class Order(val code : Int, private val user : Client,
     fun getState() : StateOrder = state
 
     fun delivered() {
-        user.addOrder(this)
+        user.addDeliveredOrder(this)
         setState(DELIVERED)
     }
 

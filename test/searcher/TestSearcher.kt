@@ -318,8 +318,6 @@ class TestSearcher {
         Assert.assertTrue(listResult.contains(restaurant3))
 
         listResult = searcher.searchBy(byIdAndString1, mapRestaurants)
-        print(listResult.map{it!!.code})
-        print(listResult.map{it!!.name})
         Assert.assertEquals(2, listResult.size)
         Assert.assertTrue(listResult.contains(restaurant0))
         Assert.assertTrue(listResult.contains(restaurant4))
