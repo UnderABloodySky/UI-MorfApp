@@ -1,12 +1,15 @@
 package controllers
 
 import applicationModel.MorfApp
+import com.fasterxml.jackson.annotation.JsonCreator
+import exception.NoUserAuthenticateException
 import geoclase.Geo
 import io.javalin.Context
 import io.javalin.NotFoundResponse
 import org.eclipse.jetty.http.HttpStatus.CREATED_201
 import org.eclipse.jetty.http.HttpStatus.NO_CONTENT_204
 import user.Client
+import user.User
 
 data class DataUser(private var user : Client) {
     var code = user.code
@@ -16,14 +19,10 @@ data class DataUser(private var user : Client) {
     var email = user.email
     var pendingOrders = user.pendingOrders
     var historicOrders = user.historicOrders
-
 }
 
-/*
-fun update(id: Int, user: User) {
-    users.put(id, User(name = user.name, email = user.email, id = id))
-}
-*/
+data class LittleUser(var aId : String, var aPass : String)
+
 
 class UserControllerContext {
 
@@ -31,12 +30,29 @@ class UserControllerContext {
    private val morfApp = MorfApp
 
         // CRUD
-        //Ok
+
+        fun login(ctx : Context){
+            val data = ctx.body<LittleUser>()
+            var validate = false
+            try{
+                morfApp.authenticate(data.aId, data.aPass)
+                validate = true
+            }
+
+            catch (e : NoUserAuthenticateException){
+                throw NotFoundResponse(e.message as String)
+            }
+
+            if(validate){
+                ctx.status(200)
+                ctx.json(getUserById(data.aId))
+            }
+        }
+
         fun getAllUsers(ctx: Context) {
             ctx.json(users)
         }
 
-        //Ok
         fun findUser(ctx: Context) {
             val id = ctx.pathParam("id")
             val res = getUserById(id)
@@ -44,9 +60,16 @@ class UserControllerContext {
         }
 
         fun findUser2(ctx: Context) {
-            val id = ctx.pathParam("id")
-            val res = getUserById(id)
-            ctx.json(res)
+            val id = ctx.queryParam("id") as String
+            val plus = ctx.queryParam("orders") as String
+            var res = ctx.json(getUserById(id))
+            if(id != null && plus ==  null){
+
+            }
+            else{
+                findUser(ctx)
+            }
+            ctx.status(200)
         }
 
         fun findUserByMail(ctx : Context){
@@ -65,7 +88,7 @@ class UserControllerContext {
             val newUser = morfApp.createClient(id, name, address, geo, pass, email)
             ctx.status(CREATED_201)
             ctx.json(addDataUser(newUser))
-    }
+        }
 
         fun addUser(ctx: Context) {
             if (!canRead(ctx)) {
@@ -75,7 +98,7 @@ class UserControllerContext {
                 val pass = ctx.formParam("pass") as String
                 //Ver esto
                 //val geo =  ctx.body<Geo>() as geoclaseui.Geo
-                val geo = Geo(2.0, 2.0)
+                val geo = Geo(ctx.formParam("latitude")!!.toDouble(), ctx.formParam("longitude")!!.toDouble())
                 val email = ctx.formParam("email") as String
                 val newUser = morfApp.createClient(id, name, address, geo, pass, email)
                 ctx.status(CREATED_201)
@@ -85,21 +108,22 @@ class UserControllerContext {
 
         private fun canRead(ctx: Context) : Boolean = ctx.anyFormParamNull("id", "name","lastName","address", "pass", "email")
 
-    /*
-        //Preguntar TOKEN
+        /*//Preguntar TOKEN
         fun updateUser(ctx: Context) {
-            val id = ctx.pathParam("id").toInt()
-            val newGeo = ctx.body<Geo>()
-            val oldPlace = getPlaceById(id)
-            val newPlace = Place(oldPlace.id, newGeo.name, newGeo.latitude, newGeo.longitude)
-            places.remove(oldPlace)
-            places.add(newPlace)
-            ctx.json(newPlace)
+            val id = ctx.pathParam("id")
+
+            val newDataUser = ctx.body<Client>()
+            val user = morfApp.findUser(id)
+
+
+            users.remove(oldDataUser.id)
+            users.put(newDataUser.id, newDataUser)
+            ctx.json(newDataUser)
         }
-    */
+        */
 
         //Preguntar TOKEN
-        fun deleteDataUser(ctx: Context) {
+        fun deleteUser(ctx: Context) {
             val id = ctx.pathParam("id")
             //Lo borro de la vista, no del modelo.
             users.remove(id)
@@ -127,6 +151,7 @@ class UserControllerContext {
             return dataClient
         }
 }
+
 
 
 

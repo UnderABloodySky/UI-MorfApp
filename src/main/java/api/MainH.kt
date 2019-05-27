@@ -8,6 +8,7 @@ import org.eclipse.jetty.http.HttpStatus.BAD_REQUEST_400
 import paymentMethod.*
 import productAndMenu.Category
 import productAndMenu.Product
+import sun.security.jgss.GSSUtil.login
 
 fun main() {
     val app = Javalin.create()
@@ -93,12 +94,15 @@ fun main() {
     controller.addDataUser(fCaramelieri)
 
     app.routes {
+        path("login"){
+            post(controller::login)
+        }
         path("users") {
             get(controller::getAllUsers)
             path(":id") {
                 get(controller::findUser)
-//                put(controller::updateUser)
-//                delete(controller::deleteUser)
+                //put(controller::updateUser)
+                delete(controller::deleteUser)
             }
             path("email") {
                 path(":email") {

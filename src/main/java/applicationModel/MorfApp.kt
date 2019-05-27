@@ -1,5 +1,6 @@
 package applicationModel
 
+import exception.NoUserAuthenticateException
 import exception.UserAlreadyRegisteredException
 import exception.UserNoFoundException
 import geoclase.*
@@ -37,7 +38,7 @@ object MorfApp {
                     password,
                     email)
 
-            this.registeredUsers.put(newClient.name,newClient)
+            this.registeredUsers.put(newClient.id,newClient)
             return newClient
         }
         else {throw UserAlreadyRegisteredException("Ya se encuentra registrado el usuario de ID: $id")}
@@ -91,7 +92,14 @@ object MorfApp {
         return actualUser
     }
 
+    fun authenticate(name : String, aPass : String) : Client?{
+        val aUser = registeredUsers.get(name) as Client
+        if(!aUser!!.isCorrectPassword(aPass)){
+            throw NoUserAuthenticateException("usuario o contraseña incorrecto")
+        }
+        return aUser
+    }
+
     private fun isCorrectID(id : String) = !registeredUsers.containsKey(id)
 
-    fun cantidad() = registeredUsers.values.size
- }
+}
