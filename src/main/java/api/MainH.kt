@@ -44,7 +44,7 @@ fun main() {
 
     val onlyCash = mutableListOf<PaymentMethod>(cash)
     val cashDebitAndCreditCard = mutableListOf(cash, debit, creditCard)
-    val everything =  mutableListOf(cash, debit, creditCard, mercadoPago)
+    val everything = mutableListOf(cash, debit, creditCard, mercadoPago)
 
     val laConga = morfApp.createRestaurant("laConga", "Un antro", "Rivadavia al algo", flores, onlyCash)
     val guerrin = morfApp.createRestaurant("guerrin", "Alta pizza", "Por Corrientes", capital, everything)
@@ -57,21 +57,19 @@ fun main() {
 
     val muzza = guerrin.createProduct("Pizza Muzzarella", "Hecho con leche de vacas contentas", 120.0, Category.PLATOPRINCIPAL)
     val cuatroQuesos = guerrin.createProduct("Pizza 4 quesos", "Azucar al 200%", 280.0, Category.PLATOPRINCIPAL)
-    val faina= guerrin.createProduct("faina", "Garbanzo power", 120.0, Category.ADICIONAL)
-    val pepsi= guerrin.createProduct("Pepsi", "Azucar al 190%", 80.0, Category.BEBIDA)
+    val faina = guerrin.createProduct("faina", "Garbanzo power", 120.0, Category.ADICIONAL)
+    val pepsi = guerrin.createProduct("Pepsi", "Azucar al 190%", 80.0, Category.BEBIDA)
     val productsOfGuerrin = mutableListOf(muzza, cuatroQuesos, faina, pepsi)
     val productsGuerrin = mutableListOf(muzza, pepsi)
     val vacio = elTano.createProduct("vacio", "", 80.0, Category.PLATOPRINCIPAL)
     val parrilada2 = elTano.createProduct("Parrillada para 2", "", 100.0, Category.POSTRE)
-    val parrilada1= elTano.createProduct("Parrillada para 1", "", 120.0, Category.ADICIONAL)
+    val parrilada1 = elTano.createProduct("Parrillada para 1", "", 120.0, Category.ADICIONAL)
     val chori = elTano.createProduct("choripan", "", 80.0, Category.BEBIDA)
     val productsOfElTano = mutableListOf(vacio, parrilada1, parrilada2, chori)
     val productsTano = mutableListOf(vacio, chori)
 
     val menu0 = laConga.createMenu("Menu1", "", mutableListOf(helado), laConga, discount.NoDiscount(), true)
     val menu1 = laConga.createMenu("Menu2", "", productsOfLaConga, laConga, discount.NoDiscount(), true)
-
-    val menu2 = guerrin.createMenu("MenuA", "", productsOfGuerrin, guerrin, discount.FixedDiscount(100.0), true)
     val menu3 = guerrin.createMenu("MenuB", "", productsGuerrin, guerrin, discount.FixedDiscount(5.0), true)
 
     val orderP = mChaile.makeNewOrder(elTano, mutableListOf(), cash)
@@ -97,26 +95,25 @@ fun main() {
     app.routes {
         path("users") {
             get(controller::getAllUsers)
-            path("register_form"){
-                post(controller::addUser)
-            }
-            path("register"){
-                post(controller::addUser2)
-            }
             path(":id") {
                 get(controller::findUser)
 //                put(controller::updateUser)
 //                delete(controller::deleteUser)
-                }
             }
-            path("email"){
-                path(":email"){
+            path("email") {
+                path(":email") {
                     get(controller::findUserByMail)
                 }
             }
+            path("register_form") {
+                post(controller::addUser)
+            }
+            path("register") {
+                post(controller::addUser2)
+            }
         }
+    }
 }
-
 
 
 

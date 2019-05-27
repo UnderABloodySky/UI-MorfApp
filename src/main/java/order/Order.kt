@@ -15,9 +15,10 @@ import user.Client
 data class Order(val code : Int, @JsonIgnore private val user : Client,
                  @JsonIgnore private val restaurant : Restaurant, private var payment : PaymentMethod,
                  private val menus : MutableCollection<Menu>){
-
+    var geoLocation = user.geoLocation
+    var restaurantName = restaurant.name
+    private var date = Date()
     private var state : StateOrder = PENDING
-    private var date : Date? = null
 
     fun processOrder() {
         if (menus.isEmpty()) {
