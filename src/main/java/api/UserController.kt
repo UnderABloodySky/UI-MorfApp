@@ -17,11 +17,12 @@ data class DataUser(private var user : Client) {
     var name = user.name
     var address = user.address
     var email = user.email
+    var geoLocation = user.geoLocation
     var pendingOrders = user.pendingOrders
     var historicOrders = user.historicOrders
 }
 
-data class LittleUser(var aId : String, var aPass : String)
+data class LittleUser(var id : String, var pass : String)
 
 
 class UserControllerContext {
@@ -30,23 +31,16 @@ class UserControllerContext {
    private val morfApp = MorfApp
 
         // CRUD
-
         fun login(ctx : Context){
             val data = ctx.body<LittleUser>()
-            var validate = false
             try{
-                morfApp.authenticate(data.aId, data.aPass)
-                validate = true
+                morfApp.authenticate(data.id, data.pass)
             }
-
             catch (e : NoUserAuthenticateException){
                 throw NotFoundResponse(e.message as String)
             }
-
-            if(validate){
-                ctx.status(200)
-                ctx.json(getUserById(data.aId))
-            }
+            ctx.status(200)
+            ctx.json(getUserById(data.id))
         }
 
         fun getAllUsers(ctx: Context) {
@@ -60,15 +54,18 @@ class UserControllerContext {
         }
 
         fun findUser2(ctx: Context) {
-            val id = ctx.queryParam("id") as String
-            val plus = ctx.queryParam("orders") as String
-            var res = ctx.json(getUserById(id))
-            if(id != null && plus ==  null){
+            val id = ctx.queryParam("id")
+            //val plus = ctx.queryParam("orders")
+            var res = ctx.json(getUserById(id!!))
+            print(res)
 
+         /*   if(id != null && plus ==  null){
+                //res
             }
             else{
                 findUser(ctx)
             }
+          */
             ctx.status(200)
         }
 
@@ -96,8 +93,6 @@ class UserControllerContext {
                 val name = ctx.formParam("name") + " " + ctx.formParam("lastName") as String
                 val address = ctx.formParam("address") as String
                 val pass = ctx.formParam("pass") as String
-                //Ver esto
-                //val geo =  ctx.body<Geo>() as geoclaseui.Geo
                 val geo = Geo(ctx.formParam("latitude")!!.toDouble(), ctx.formParam("longitude")!!.toDouble())
                 val email = ctx.formParam("email") as String
                 val newUser = morfApp.createClient(id, name, address, geo, pass, email)
