@@ -5,11 +5,12 @@ import productAndMenu.*
 import order.*
 import geoclase.*
 import applicationModel.*
+import com.fasterxml.jackson.annotation.JsonIgnore
 import paymentMethod.*
 import java.util.*
 class Client (code :Int,  name: String, id: String, var address: String,
-              var geoLocation: Geo,  password : String, var email : String, applicationModel: MorfApp )
-                : User(code, id, name,password,applicationModel) {
+              var geoLocation: Geo,  password : String, var email : String)
+                : User(code, id, name,password) {
 
     var pendingOrders: MutableList<Order> = mutableListOf()
     var registrationDate: Date = Date()
@@ -18,9 +19,11 @@ class Client (code :Int,  name: String, id: String, var address: String,
     var currentOrder : Order? = null
     var currentMenu: Menu? = null
 
-    fun makeNewOrder(restaurant : Restaurant, menus : MutableList<Menu>, paymentMethod : PaymentMethod){
-        val newOrder: Order= applicationModel.createOrder(this, restaurant, paymentMethod, menus)
+    fun makeNewOrder(restaurant : Restaurant, menus : MutableList<Menu>, paymentMethod : PaymentMethod) : Order{
+
+        val newOrder= applicationModel.createOrder(this, restaurant, paymentMethod, menus)
         pendingOrders.add(newOrder)
+        return newOrder
     }
 
     fun restartCurrentOrder(){
@@ -44,4 +47,7 @@ class Client (code :Int,  name: String, id: String, var address: String,
     fun canDoOrder(_restaurant : Restaurant) : Boolean =
             GeoCalculator.distance(geoLocation, _restaurant.geoLocation) <= applicationModel.distance
 
+    fun removePendingOrder(aOrder : Order){
+        pendingOrders.remove(aOrder)
+    }
 }

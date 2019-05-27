@@ -23,7 +23,7 @@ class TestRestaurant {
     private var cash: PaymentMethod = Cash()
     private var listOfPaymentMethod = mutableListOf(cash)
     private var newRestaurant: Restaurant = applicationModel.createRestaurant("Asd", "asd", "asd", geoLocation1, listOfPaymentMethod)
-    private var newSupervisor: Supervisor = Supervisor(1, "Pepe", "SuperPepe",newRestaurant, "123454", applicationModel)
+    private var newSupervisor: Supervisor = Supervisor(1, "Pepe", "SuperPepe",newRestaurant, "123454")
     private var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), newRestaurant)
     private var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.BEBIDA)
 
@@ -102,7 +102,7 @@ class TestRestaurant {
     @Test
     fun restaurantCanChangeItsSupervisor() {
         Assert.assertEquals(newSupervisor, newRestaurant.supervisor)
-        val otherSupervisor = Supervisor(2, "Arya Stark", "TheWolfGirl", newRestaurant, "123454", applicationModel)
+        val otherSupervisor = Supervisor(2, "Arya Stark", "TheWolfGirl", newRestaurant, "123454")
         newRestaurant.addSupervisor(otherSupervisor)
         Assert.assertFalse(newSupervisor == newRestaurant.supervisor)
         Assert.assertEquals(otherSupervisor, newRestaurant.supervisor)

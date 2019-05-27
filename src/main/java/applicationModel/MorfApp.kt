@@ -35,8 +35,7 @@ object MorfApp {
                     name,
                     id,
                     password,
-                    email,
-                    this)
+                    email)
 
             this.registeredUsers.put(newClient.name,newClient)
             return newClient
@@ -51,8 +50,7 @@ object MorfApp {
         val newSupervisor: Supervisor = clientFactory.createSupervisor(restaurant,
                                                   name,
                                                   id,
-                                                 password,
-                                               this)
+                                                 password)
 
                 this.registeredUsers.put(newSupervisor.name,newSupervisor)
                 restaurant.addSupervisor(newSupervisor)

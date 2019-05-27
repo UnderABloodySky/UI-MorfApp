@@ -1,6 +1,6 @@
 import applicationModel.MorfApp
 import com.fasterxml.jackson.databind.exc.MismatchedInputException
-import controllers.MorfAppControllerContext
+import controllers.UserControllerContext
 import geoclase.Geo
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
@@ -53,7 +53,7 @@ fun main() {
     val helado = laConga.createProduct("Helado", "Hecho con leche de vacas contentas", 100.0, Category.POSTRE)
     val cocaCola = laConga.createProduct("Coca Cola", "Azucar al 200%", 80.0, Category.BEBIDA)
     val hamburguesa = laConga.createProduct("Hamburguesa", "Aprobadas por la Universidad Bovina", 120.0, Category.PLATOPRINCIPAL)
-    val productsOfLaConga = mutableListOf<Product>(helado, cocaCola, hamburguesa)
+    val productsOfLaConga = mutableListOf<Product>(cocaCola, hamburguesa)
 
     val muzza = guerrin.createProduct("Pizza Muzzarella", "Hecho con leche de vacas contentas", 120.0, Category.PLATOPRINCIPAL)
     val cuatroQuesos = guerrin.createProduct("Pizza 4 quesos", "Azucar al 200%", 280.0, Category.PLATOPRINCIPAL)
@@ -68,16 +68,27 @@ fun main() {
     val productsOfElTano = mutableListOf(vacio, parrilada1, parrilada2, chori)
     val productsTano = mutableListOf(vacio, chori)
 
-    laConga.createMenu("Menu1", "", productsOfLaConga, laConga, discount.NoDiscount(), true)
-    laConga.createMenu("Menu2", "", productsOfLaConga, laConga, discount.NoDiscount(), true)
+    val menu0 = laConga.createMenu("Menu1", "", mutableListOf(helado), laConga, discount.NoDiscount(), true)
+    val menu1 = laConga.createMenu("Menu2", "", productsOfLaConga, laConga, discount.NoDiscount(), true)
 
-    guerrin.createMenu("MenuA", "", productsOfGuerrin, guerrin, discount.FixedDiscount(100.0), true)
-    guerrin.createMenu("MenuB", "", productsGuerrin, guerrin, discount.FixedDiscount(5.0), true)
+    val menu2 = guerrin.createMenu("MenuA", "", productsOfGuerrin, guerrin, discount.FixedDiscount(100.0), true)
+    val menu3 = guerrin.createMenu("MenuB", "", productsGuerrin, guerrin, discount.FixedDiscount(5.0), true)
 
-    elTano.createMenu("MenuC", "", productsOfElTano, elTano, discount.FixedDiscount(50.0), true)
-    elTano.createMenu("MenuD", "", productsTano, elTano, discount.PercentageDiscount(10.0), true)
+    val orderP = mChaile.makeNewOrder(elTano, mutableListOf(), cash)
+    orderP.addMenu(menu0)
+    orderP.processOrder()
 
-    val controller = MorfAppControllerContext()
+    val orderH0 = mChaile.makeNewOrder(guerrin, mutableListOf(), cash)
+    orderH0.addMenu(menu3)
+    orderH0.processOrder()
+    orderH0.delivered()
+
+    val orderH1 = mChaile.makeNewOrder(elTano, mutableListOf(), cash)
+    orderH1.addMenu(menu1)
+    orderH1.processOrder()
+    orderH1.delivered()
+
+    val controller = UserControllerContext()
     controller.addDataUser(mChaile)
     controller.addDataUser(mPais)
     controller.addDataUser(jLajcha)
@@ -86,6 +97,9 @@ fun main() {
     app.routes {
         path("users") {
             get(controller::getAllUsers)
+            path("register_form"){
+                post(controller::addUser)
+            }
             path("register"){
                 post(controller::addUser2)
             }

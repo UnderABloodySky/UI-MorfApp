@@ -53,10 +53,9 @@ class ClientFactory : GeneralFactory() {
                      name : String,
                      id : String,
                      password: String,
-                     email : String,
-                     applicationModel: MorfApp): Client {
+                     email : String): Client {
 
-        val newClient = Client(code, name, id, address, geoLocation,  password, email, applicationModel)
+        val newClient = Client(code, name, id, address, geoLocation,  password, email)
         addOne()
         return newClient
     }
@@ -64,10 +63,9 @@ class ClientFactory : GeneralFactory() {
     fun createSupervisor(restaurant: Restaurant,
                          name : String,
                          id : String,
-                         password: String,
-                         applicationModel: MorfApp): Supervisor{
+                         password: String): Supervisor{
 
-        val newSupervisor = Supervisor(code, name, id , restaurant,password, applicationModel)
+        val newSupervisor = Supervisor(code, name, id , restaurant,password)
         addOne()
         return newSupervisor
     }

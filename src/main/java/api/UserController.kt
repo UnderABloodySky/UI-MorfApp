@@ -25,7 +25,7 @@ fun update(id: Int, user: User) {
 }
 */
 
-class MorfAppControllerContext {
+class UserControllerContext {
 
    private val users = HashMap<String, DataUser>()
    private val morfApp = MorfApp

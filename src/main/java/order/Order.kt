@@ -1,5 +1,6 @@
 package order
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import exception.EmptyOrderException
 import exception.NoValidateOrderException
 import statesOrder.StateOrder
@@ -11,8 +12,8 @@ import restaurant.Restaurant
 import productAndMenu.Menu
 import user.Client
 
-data class Order(val code : Int, private val user : Client,
-                 private val restaurant : Restaurant, private var payment : PaymentMethod,
+data class Order(val code : Int, @JsonIgnore private val user : Client,
+                 @JsonIgnore private val restaurant : Restaurant, private var payment : PaymentMethod,
                  private val menus : MutableCollection<Menu>){
 
     private var state : StateOrder = PENDING
@@ -20,7 +21,7 @@ data class Order(val code : Int, private val user : Client,
 
     fun processOrder() {
         if (menus.isEmpty()) {
-            throw EmptyOrderException("")
+            throw EmptyOrderException("La orden debe contener al menos un menu")
         }
         restaurant.addOrder(this)
     }
@@ -47,6 +48,7 @@ data class Order(val code : Int, private val user : Client,
     fun getState() : StateOrder = state
 
     fun delivered() {
+        user.removePendingOrder(this)
         user.addDeliveredOrder(this)
         setState(DELIVERED)
     }

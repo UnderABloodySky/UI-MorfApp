@@ -38,7 +38,7 @@ class TestFactory{
     private var menu6 = Menu(2, "FullyMenu", "Good friends, good FOOD, good times", mutableListOf<Product>(iceCream, pizza), restaurant)
     private val menus : MutableCollection<Menu> = mutableListOf<Menu>(menu0,menu1,menu2,menu3,menu4,menu5,menu6)
     private var date : Date = Date()
-    private  var client: Client = Client(1,"Pepe", "Pepe","Roque saenz peña", geoLocation, "1212", "mail@asd.com",applicationModel)
+    private  var client: Client = Client(1,"Pepe", "Pepe","Roque saenz peña", geoLocation, "1212", "mail@asd.com")
     private var products = mutableListOf(iceCream, pizza)
 
     //OrderFactory
@@ -74,15 +74,15 @@ class TestFactory{
     @Test
     fun theClientFactoryIncreasesItsCodeByOneWhenItCreatesAnOrder(){
         Assert.assertEquals(0,clientFactory.code())
-        clientFactory.createClient("Algun lado", geoLocation, "PepeA", "Pepe","Aloha", "mail@asd.com",applicationModel)
+        clientFactory.createClient("Algun lado", geoLocation, "PepeA", "Pepe","Aloha", "mail@asd.com")
         Assert.assertEquals(1,clientFactory.code())
-        clientFactory.createClient("Algun lado", geoLocation, "PepeB","Pepe","Aloha", "mail@asd.com",applicationModel)
+        clientFactory.createClient("Algun lado", geoLocation, "PepeB","Pepe","Aloha", "mail@asd.com")
         Assert.assertEquals(2,clientFactory.code())
     }
 
     @Test
     fun testClientFactoryReturnsAConsistentClient(){
-        var newClient : Client = clientFactory.createClient("Algun lado", geoLocation, "Pepe", "Pepe", "Aloha", "mail@asd.com", applicationModel)
+        var newClient : Client = clientFactory.createClient("Algun lado", geoLocation, "Pepe", "Pepe", "Aloha", "mail@asd.com")
         Assert.assertEquals("Algun lado",newClient.address)
         Assert.assertEquals(0, newClient.code)
         val date = Date()
@@ -95,7 +95,7 @@ class TestFactory{
 
     @Test
     fun testClientFactoryReturnsAConsistentSupervisor(){
-        var supervisor : Supervisor = clientFactory.createSupervisor(restaurant, "Pepe", "Pepe","Aloha", applicationModel)
+        var supervisor : Supervisor = clientFactory.createSupervisor(restaurant, "Pepe", "Pepe","Aloha")
         Assert.assertEquals(0, supervisor.code)
         Assert.assertEquals("Pepe", supervisor.name)
         Assert.assertEquals("Aloha", supervisor.password)
@@ -105,13 +105,13 @@ class TestFactory{
     @Test
     fun theClientFactoryIncreasesItsCounterWhenItCreatesAnClientOrASupervisor(){
         Assert.assertEquals(0,orderFactory.code())
-        clientFactory.createClient("Algun lado", geoLocation, "Pepe", "Pepe", "Aloha", "mail@asd.com",applicationModel)
+        clientFactory.createClient("Algun lado", geoLocation, "Pepe", "Pepe", "Aloha", "mail@asd.com")
         Assert.assertEquals(1,clientFactory.code())
-        clientFactory.createClient("Algun lado", geoLocation, "Pepe", "Pepe", "Aloha","mail@asd.com",applicationModel)
+        clientFactory.createClient("Algun lado", geoLocation, "Pepe", "Pepe", "Aloha","mail@asd.com")
         Assert.assertEquals(2,clientFactory.code())
-        clientFactory.createSupervisor(restaurant, "Pepe", "Pepe","Aloha", applicationModel)
+        clientFactory.createSupervisor(restaurant, "Pepe", "Pepe","Aloha")
         Assert.assertEquals(3,clientFactory.code())
-        clientFactory.createSupervisor(restaurant, "Pepe", "Pepe","Aloha", applicationModel)
+        clientFactory.createSupervisor(restaurant, "Pepe", "Pepe","Aloha")
         Assert.assertEquals(4,clientFactory.code())
     }
 

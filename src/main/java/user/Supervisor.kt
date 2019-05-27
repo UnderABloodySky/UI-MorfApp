@@ -9,8 +9,7 @@ class Supervisor(code: Int,
                  name: String,
                  id : String,
                  @JsonIgnore val restaurant: Restaurant,
-                 password: String,
-                 applicationModel: MorfApp): User (code, name, id, password, applicationModel) {
+                 password: String): User (code, name, id, password) {
 
     fun addProductToRestaurantStock(newProduct: Product) = restaurant.addProductToStock(newProduct)
 

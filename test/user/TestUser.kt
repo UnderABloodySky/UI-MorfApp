@@ -15,7 +15,7 @@ class TestUser {
     private var listOfPaymentMethod : MutableList<PaymentMethod> = mutableListOf(cash)
     private var restaurant : Restaurant = applicationModel.createRestaurant("El Tano", "inserte descripcion", "por quilmes oeste", geoLocation1, listOfPaymentMethod)
     private var date = Date()
-    private  var client: Client = Client(2, "Pepe","Pepe", "Roque saenz peña", geoLocation1, "1212", "mail@asd.com", applicationModel)
+    private  var client: Client = Client(2, "Pepe","Pepe", "Roque saenz peña", geoLocation1, "1212", "mail@asd.com")
 
     @Test
     fun  newClient(){
