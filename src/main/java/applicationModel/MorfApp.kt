@@ -95,11 +95,10 @@ object MorfApp {
     fun authenticate(name : String, aPass : String) : Client?{
         val aUser = registeredUsers.get(name)
         if(aUser == null  || !aUser!!.isCorrectPassword(aPass)){
-            throw NoUserAuthenticateException("usuario o contraseña incorrecto")
+            throw NoUserAuthenticateException("Usuario o Contraseña incorrecto")
         }
         return aUser as Client
     }
 
     private fun isCorrectID(id : String) = !registeredUsers.containsKey(id)
-
 }

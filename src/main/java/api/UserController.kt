@@ -34,7 +34,7 @@ class UserControllerContext {
         fun login(ctx : Context){
             val data = ctx.body<LittleUser>()
             try{
-                morfApp.authenticate(data.id, data.pass)
+                 morfApp.authenticate(data.id, data.pass)
             }
             catch (e : NoUserAuthenticateException){
                 throw NotFoundResponse(e.message as String)
@@ -49,12 +49,11 @@ class UserControllerContext {
 
         fun findUser(ctx: Context) {
             val id = ctx.pathParam("id")
-            val res = getUserById(id)
-            ctx.json(res)
+            ctx.json(getUserById(id))
         }
 
         fun findUser2(ctx: Context) {
-            val id = ctx.queryParam("id")
+            val id = ctx.queryParam(":id")
             //val plus = ctx.queryParam("orders")
             var res = ctx.json(getUserById(id!!))
             print(res)
@@ -101,8 +100,6 @@ class UserControllerContext {
             }
         }
 
-        private fun canRead(ctx: Context) : Boolean = ctx.anyFormParamNull("id", "name","lastName","address", "pass", "email")
-
         /*//Preguntar TOKEN
         fun updateUser(ctx: Context) {
             val id = ctx.pathParam("id")
@@ -135,10 +132,9 @@ class UserControllerContext {
                     ?: throw NotFoundResponse("No se encontró el usuario $id")
         }
 
-        //Falta estas clases
-        private fun isCorrectPassWord(pass : String) : Boolean = true
+        private fun canRead(ctx: Context) : Boolean = ctx.anyFormParamNull("id", "name","lastName","address", "pass", "email")
 
-        private fun isCorrectId(id : String) : Boolean = true
+        private fun isCorrectId(id : String) : Boolean = !users.containsKey(id)
 
         fun addDataUser(client : Client): DataUser {
             val dataClient = DataUser(client)
