@@ -15,6 +15,7 @@ import user.User
 
 data class Geo(var lat:Double,var long:Double)
 
+
 data class OrderData(var order:Order ){
 
     var code = order.code
@@ -22,7 +23,7 @@ data class OrderData(var order:Order ){
     var restaurantCode = order.getRestaurant().code
     var paymentMethod =order.getPaymentMethod()
     var menus = order.menus()
-    var menusAccumulated = order.getMenuSummerize()
+    var menusAccumulated = order.getMenusAndCuantity()
 }
 
 
@@ -77,28 +78,8 @@ class OrderController() {
         return newDataOrder
     }
 
-    //ver como hacer para recorrer las 2 listas y armar la lista de tuplas.
-
-    fun appearencesOfMenus(ids: MutableList<Int>,amounts:MutableList<Int>):MutableList<Tuple2<Int,Int>>{
-        var listGrouped = mutableListOf<Tuple2<Int,Int>>()
 
 
-        ids.forEach {it->
-        }
-
-    }
-
-    fun getMenusAndCuantity(orderData:OrderData):MutableSet<Tuple2<Int,Int>> {
-
-        var ids = mutableListOf<Int>()
-        orderData.menus.forEach { menu-> ids.add(menu.code)  }
-       var listAmounts = orderData.menus.groupBy{it.code} //cuenta las repeticiones del codigo
-
-        menus
-
-
-
-    }
 }
 
 
