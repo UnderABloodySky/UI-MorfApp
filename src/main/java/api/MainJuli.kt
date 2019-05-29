@@ -7,8 +7,9 @@ import org.eclipse.jetty.http.HttpStatus.*
 import com.fasterxml.jackson.databind.exc.MismatchedInputException
 import discount.Discount
 import discount.NoDiscount
-import geoclaseui.Geo
 import order.Order
+import geoclase.Geo
+import paymentMethod.Cash
 import paymentMethod.Debit
 import paymentMethod.PaymentMethod
 import productAndMenu.Category
@@ -17,6 +18,9 @@ import productAndMenu.Product
 import restaurant.Restaurant
 import user.Client
 import java.util.*
+
+
+
 
 fun main() {
     val app = Javalin.create()
@@ -29,18 +33,16 @@ fun main() {
                 ))
             }
             .start(8000)
-
-    app.get("/") { ctx -> ctx.json(mapOf("message" to "Hello World")) }
+    app.get("/") { ctx -> ctx.json(mapOf("message" to " Welcome to MorfApp ~ Online ")) }
 
     // Instancio el controller (OJO, ESTE ES OTRO!!)
     // Le agrego data para poder probar inicialmente
 
+    var morfApp = MorfApp
+   /*var paymentMethods = mutableListOf<PaymentMethod>()
 
-    var paymentMethods = mutableListOf<api.PaymentMethod>()
-    var localization = Geo(2.00, 2.00)
-    var restaurant1 =
-            Restaurant(1, "La conga", "buena onda", "Roque saenz pena",
-                    localization, paymentMethods)
+    var restaurant1 = morfApp.createRestaurant ( "La conga", "buena onda", "Roque saenz pena",
+            localization, paymentMethods)
 
     var menusProducts = mutableListOf<productAndMenu.Product>()
     menusProducts.add(productAndMenu.Product(2, "Coca", "Regular", 34.0, Category.BEBIDA))
@@ -53,15 +55,15 @@ fun main() {
     var menuList = mutableListOf<Menu>()
     menuList.add(menu2)
 
-    var clienteDeMierda = Client(66,"juancho","otroId","mi casa",Date(10-2-2019),localization,"123",MorfApp)
-    var clientModel = MorfApp.createClient("1","marina","111",localization,"aaa")
+    var clienteDeMierda = Client(66,"juancho","otroId","mi casa",localization,"1234","aaa@qq.com")
+    //var clientModel = MorfApp.createClient("1","marina","111",localization,"aaa")
 
-    var restaurantData = api.Restaurant(5, "lo de moe", "mmm", "cerca de aca ", localization, paymentMethods)
-    var listOfDataMenus = mutableListOf<api.Menu>()
+    var restaurantData = Restaurant(5, "lo de moe", "mmm", "cerca de aca ", localization, paymentMethods)
+    var listOfDataMenus = mutableListOf<Menu>()
 
-    listOfDataMenus.add(api.Menu(4, "papa", "fritas", mutableListOf<Product>(), restaurantData, NoDiscount(), true))
+    listOfDataMenus.add(Menu(4, "papa", "fritas", mutableListOf<Product>(), restaurantData, NoDiscount(), true))
 
-    var localizationData = Geo(2.00, 3.00, "Bernal")
+    var localizationData = Geo(2.00, 3.00)
 
     var debitCard = Debit()
 
@@ -69,9 +71,25 @@ fun main() {
     var order2 = order.Order(6,clienteDeMierda,restaurant1,debitCard,menuList)
     //  var order1= Order(1,restaurant1.code,debitCard,localizationData,listOfDataMenus)
 
+
+
+*/
+    var localization = geoclase.Geo(2.00, 2.00,"algun lado")
+    val elTano = morfApp.createRestaurant("elTano", "Llenadero magico de tripas", "Por Avellaneda", localization, mutableListOf(Cash()))
+
+
+    val parrilada2 = elTano.createProduct("Parrillada para 2", "", 100.0, Category.POSTRE)
+    val menu0 = elTano.createMenu("Menu1", "", mutableListOf(parrilada2), elTano, discount.NoDiscount(), true)
+
+    val mChaile = morfApp.createClient("NinjaMan", "Matias Chaile", "Roque Saenz Peña 500", localization, "dilequechupelimon", "mailTrucho0@asd.com")
+    val orderP = mChaile.makeNewOrder(elTano, mutableListOf(), Cash())
+
+    orderP.addMenu(menu0)
+
+
     val orderController = OrderController()
-    orderController.addMenu(menu2)
-    orderController.addOrderComplentary(order2)
+    //orderController.addMenu(menu0)
+    orderController.addOrderComplentary(orderP)
 
 
     // CRUD de Lugares
@@ -79,7 +97,7 @@ fun main() {
     // Donde el comportamiento se traslada al controller
     app.routes {
         path("menus") {
-            get(orderController::allMenus)
+           // get(orderController::allMenus)
             // post(orderController::addOrder)
             // path(":code") {
             //              get(menuController::getProduct)

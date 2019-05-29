@@ -3,120 +3,104 @@ package api
 
 import applicationModel.MorfApp
 import controllers.DataUser
-import geoclaseui.Geo
 import io.javalin.Context
 import io.javalin.NotFoundResponse
+import order.Order
 import org.eclipse.jetty.http.HttpStatus
+import productAndMenu.Menu
 import restaurant.Restaurant
+import scala.Tuple2
 import user.Client
 import user.User
 
 data class Geo(var lat:Double,var long:Double)
 
-data class OrderData(var code:Int,var client:DataUser, var restaurantCode: Int, var paymentMethod:paymentMethod.PaymentMethod,var menus : MutableCollection<productAndMenu.Menu>)
+data class OrderData(var order:Order ){
+
+    var code = order.code
+    var client =order.getUser()
+    var restaurantCode = order.getRestaurant().code
+    var paymentMethod =order.getPaymentMethod()
+    var menus = order.menus()
+    var menusAccumulated = order.getMenuSummerize()
+}
 
 
 class OrderController() {
     private var orders = mutableListOf<OrderData>()
-    private var menus = mutableListOf<Menu>()
-    private var lastId = 0;
+    private val morfApp = MorfApp;
 
-
-    fun allMenus(ctx: Context) {
-        ctx.json(this.menus)
+    fun allOrders(ctx: Context) {
+        print(orders)
+        ctx.json(this.orders)
     }
 
     fun addOrder(ctx: Context) {
-
-        val order = ctx.body<order.Order>()
+        val order = ctx.body<Order>()
         ctx.status(HttpStatus.CREATED_201)
-        ctx.json(addOrderComplentary(order))
 
+        var newOrder = morfApp.createOrder(order.getUser(),
+                order.getRestaurant(),
+                order.getPaymentMethod(),
+                order.getMenu())
+        ctx.json(addOrderData(newOrder))
     }
 
-    fun allOrders(ctx: Context){
-        print(orders)
-        ctx.json(this.orders)
-
-    }
-
-    fun addCalification(ctx: Context){
-
-        val code = ctx.pathParam("code").toInt()
-        ctx.json(getOrderById(code))
-    }
-
-    fun getOrder(ctx:Context){
+    fun getOrder(ctx: Context) {
         val code = ctx.pathParam("code").toInt()
         ctx.json(getOrderById(code))
     }
     //funciones complementarias
 
-    fun getOrderById(code:Int):OrderData{
+    fun getOrderById(code: Int): OrderData {
         print(orders)
         var orderCorrect = orders.find { it.code == code }
         return orderCorrect
                 ?: throw NotFoundResponse("No se encontró la orden con id $code")
     }
 
-
-    fun menuToData(menu: productAndMenu.Menu):Menu{
-        var menuData = Menu(menu.code,menu.name,menu.description,menu.productsOfMenu,this.transformToRestaurantData(menu.restaurant),menu.discount,menu.enabled)
-        return menuData
-    }
-
-    fun listOfDataMenus(listOfMenus:MutableList<Menu>):MutableList<Menu>{
-        listOfMenus.forEach { menu-> var mData = this.menuToData(menu)
-            menus.add(mData)
-        }
-        return menus
-    }
-
-    fun changeToUserData(user:Client):DataUser{
-       return  DataUser(user)
-
-
-    }
-
-
-    fun addOrderComplentary(modelOrder: order.Order):OrderData {
+    fun addOrderComplentary(modelOrder: order.Order): Order {
         // client:Client, restaurant:Restaurant , paymentMethod:PaymentMethod, menus:MutableList<Menu>
 
-        val newOrder = OrderData(modelOrder.code,
-                this.changeToUserData(modelOrder.getUser()),
-                modelOrder.getRestaurant().code,
+        val newOrder = morfApp.createOrder(modelOrder.getUser(),
+                modelOrder.getRestaurant(),
                 modelOrder.getPaymentMethod(),
-                modelOrder.menus())
-        orders.add(newOrder)
+                modelOrder.getMenu())
+        this.addOrderData(newOrder)
         return newOrder
+
     }
 
-
-    fun transformToRestaurantData(retaurant: Restaurant):api.Restaurant{
-        var dataRestaurant=   api.Restaurant(retaurant.code,
-                retaurant.name,
-                retaurant.description,
-                retaurant.direcction,
-                retaurant.geoLocation,
-                retaurant.availablePaymentMethods)
-        return dataRestaurant
+    fun addOrderData(order: Order): OrderData {
+        var newDataOrder = OrderData(order)
+        orders.add(newDataOrder)
+        return newDataOrder
     }
 
+    //ver como hacer para recorrer las 2 listas y armar la lista de tuplas.
 
-    fun addMenu(aMenu:productAndMenu.Menu):Menu{
+    fun appearencesOfMenus(ids: MutableList<Int>,amounts:MutableList<Int>):MutableList<Tuple2<Int,Int>>{
+        var listGrouped = mutableListOf<Tuple2<Int,Int>>()
 
-        val menuNew = Menu(++this.lastId,
-                aMenu.name,
-                aMenu.description,
-                aMenu.productsOfMenu,
-                this.transformToRestaurantData( aMenu.restaurant),
-                aMenu.discount,
-                aMenu.enabled)
-        menus.add(menuNew)
-        return menuNew
+
+        ids.forEach {it->
+        }
+
     }
 
+    fun getMenusAndCuantity(orderData:OrderData):MutableSet<Tuple2<Int,Int>> {
+
+        var ids = mutableListOf<Int>()
+        orderData.menus.forEach { menu-> ids.add(menu.code)  }
+       var listAmounts = orderData.menus.groupBy{it.code} //cuenta las repeticiones del codigo
+
+        menus
+
+
+
+    }
 }
+
 
 
 

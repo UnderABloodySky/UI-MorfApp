@@ -10,11 +10,12 @@ import java.util.*
 import user.User
 import restaurant.Restaurant
 import productAndMenu.Menu
+import scala.Tuple2
 import user.Client
 
 data class Order(val code : Int, @JsonIgnore private val user : Client,
                  @JsonIgnore private val restaurant : Restaurant, private var payment : PaymentMethod,
-                 private val menus : MutableCollection<Menu>){
+                 private val menus : MutableList<Menu>){
     var geoLocation = user.geoLocation
     var restaurantName = restaurant.name
     private var date = Date()
@@ -80,7 +81,8 @@ data class Order(val code : Int, @JsonIgnore private val user : Client,
 
     fun getRestaurant() : Restaurant = restaurant
 
-    fun getMenu() : MutableCollection<Menu> = menus
+    fun getMenu() : MutableList<Menu> = menus
+
 
     private fun canProcessOrder(_menu : Menu) : Boolean = user.canDoOrder(_menu.restaurant)
 }
