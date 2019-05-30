@@ -22,7 +22,7 @@ class OrderFactory : GeneralFactory(){
     fun createOrder(user: Client,
                     restaurant: Restaurant,
                     payment: PaymentMethod,
-                    menus: MutableCollection<Menu>): Order {
+                    menus: MutableList<Menu>): Order {
 
         val newOrder = Order(code, user, restaurant, payment, menus)
         addOne()

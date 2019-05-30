@@ -36,8 +36,7 @@ class TestFactory{
     private var menu4 = Menu(2, "SweetMenu", "Muuuuuuu", mutableListOf<Product>(iceCream), restaurant)
     private var menu5 = Menu(2, "SaltyMenu", "Pizza Time", mutableListOf<Product>(pizza), restaurant)
     private var menu6 = Menu(2, "FullyMenu", "Good friends, good FOOD, good times", mutableListOf<Product>(iceCream, pizza), restaurant)
-    private val menus : MutableCollection<Menu> = mutableListOf<Menu>(menu0,menu1,menu2,menu3,menu4,menu5,menu6)
-    private var date : Date = Date()
+    private val menus = mutableListOf(menu0,menu1,menu2,menu3,menu4,menu5,menu6)
     private  var client: Client = Client(1,"Pepe", "Pepe","Roque saenz peña", geoLocation, "1212", "mail@asd.com")
     private var products = mutableListOf(iceCream, pizza)
 
