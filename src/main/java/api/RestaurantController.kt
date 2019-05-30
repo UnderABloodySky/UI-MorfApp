@@ -14,8 +14,7 @@ class RestaurantController {
         val code = ctx.pathParam("code").toInt()
         ctx.json((MorfApp
                 .findRestaurant(CriteriaById(code))
-                .first() as Restaurant)
-                .menus)
+                .first() as Restaurant))
     }
 
     fun getRestaurantsAndMenusByCriteria(ctx: Context) {
