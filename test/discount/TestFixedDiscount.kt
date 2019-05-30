@@ -5,10 +5,10 @@ import org.junit.Test
 
 class TestFixedDiscount {
 
-    private var fixedDiscount100 : FixedDiscount = FixedDiscount(100.0)
-    private var fixedDiscount148 : FixedDiscount = FixedDiscount(148.0)
-    private var fixedDiscount1000 : FixedDiscount = FixedDiscount(1000.0)
-    private var fixedDiscountFool : FixedDiscount = FixedDiscount(0.0)
+    private var fixedDiscount100 = FixedDiscount(100.0)
+    private var fixedDiscount148 = FixedDiscount(148.0)
+    private var fixedDiscount1000 = FixedDiscount(1000.0)
+    private var fixedDiscountFool = FixedDiscount(0.0)
     private var n : Double = 1000.00
 
     @Test

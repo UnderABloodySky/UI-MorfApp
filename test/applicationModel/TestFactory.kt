@@ -17,14 +17,14 @@ import java.util.*
 
 class TestFactory{
 
-    private var orderFactory : OrderFactory = OrderFactory()
-    private var clientFactory : ClientFactory = ClientFactory()
-    private var restaurantFactory : RestaurantFactory = RestaurantFactory()
-    private var productFactory : ProductFactory = ProductFactory()
-    private var menuFactory : MenuFactory = MenuFactory()
-    private var applicationModel : MorfApp = MorfApp
+    private var orderFactory = OrderFactory()
+    private var clientFactory= ClientFactory()
+    private var restaurantFactory = RestaurantFactory()
+    private var productFactory = ProductFactory()
+    private var menuFactory = MenuFactory()
+    private var applicationModel = MorfApp
     private val cash : PaymentMethod = Cash()
-    private val listOfPaymentMethod : MutableList<PaymentMethod> = mutableListOf(cash)
+    private val listOfPaymentMethod= mutableListOf(cash)
     private var geoLocation: Geo = Geo(1.2,2.2)
     private var iceCream = Product(1, "Soda", "Made with milk from happy cows", 20.0, Category.POSTRE)
     private var pizza = Product(2, "HotDog", "Really italian pepperoni pizza", 40.0, Category.PLATOPRINCIPAL)

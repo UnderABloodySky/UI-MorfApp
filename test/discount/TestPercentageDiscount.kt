@@ -5,10 +5,10 @@ import org.junit.Test
 
 class  TestPercentageDiscount {
 
-    private var percentageDiscount0 : PercentageDiscount = PercentageDiscount(0.0)
-    private var percentageDiscount1 : PercentageDiscount = PercentageDiscount(1.0)
-    private var percentageDiscount48 : PercentageDiscount = PercentageDiscount(48.0)
-    private var percentageDiscount100 : PercentageDiscount = PercentageDiscount(100.0)
+    private var percentageDiscount0 = PercentageDiscount(0.0)
+    private var percentageDiscount1 = PercentageDiscount(1.0)
+    private var percentageDiscount48 = PercentageDiscount(48.0)
+    private var percentageDiscount100 = PercentageDiscount(100.0)
 
 
     @Test
@@ -39,7 +39,6 @@ class  TestPercentageDiscount {
 
     @Test
     fun thePercentageDiscount100processingDiscount100IsAlwaysZero(){
-//        Assert.assertEquals(0.0, percentageDiscount100.processDiscount(1.0), 0.0)
         Assert.assertEquals(0.0, percentageDiscount100.processDiscount(10.0), 0.0)
         Assert.assertEquals(0.0, percentageDiscount100.processDiscount(100.0), 0.0)
         Assert.assertEquals(0.0, percentageDiscount100.processDiscount(10000000.0), 0.0)

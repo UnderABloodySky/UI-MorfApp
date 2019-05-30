@@ -18,12 +18,12 @@ import searcher.CriteriaByString
 import user.Supervisor
 
 class TestRestaurant {
-    private var geoLocation1: Geo = Geo(1.2, 2.2)
-    private var applicationModel: MorfApp = MorfApp
-    private var cash: PaymentMethod = Cash()
-    private var listOfPaymentMethod = mutableListOf(cash)
-    private var newRestaurant: Restaurant = applicationModel.createRestaurant("Asd", "asd", "asd", geoLocation1, listOfPaymentMethod)
-    private var newSupervisor: Supervisor = Supervisor(1, "Pepe", "SuperPepe",newRestaurant, "123454")
+    private var geoLocation1 = Geo(1.2, 2.2)
+    private var applicationModel = MorfApp
+    private var cash = Cash()
+    private var listOfPaymentMethod = mutableListOf<PaymentMethod>(cash)
+    private var newRestaurant = applicationModel.createRestaurant("Asd", "asd", "asd", geoLocation1, listOfPaymentMethod)
+    private var newSupervisor = Supervisor(1, "Pepe", "SuperPepe",newRestaurant, "123454")
     private var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), newRestaurant)
     private var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.BEBIDA)
 
@@ -53,7 +53,7 @@ class TestRestaurant {
     @Test
     fun supervisorCanRemovePrductsFromStock() {
         Assert.assertTrue(newRestaurant.products.isEmpty())
-        val newSupervisor: Supervisor = newRestaurant.supervisor
+        val newSupervisor = newRestaurant.supervisor
         newSupervisor.addProductToRestaurantStock(soda)
         Assert.assertTrue(newRestaurant.products.containsValue(soda))
         Assert.assertTrue(newRestaurant.products.containsKey(soda.code))
@@ -64,7 +64,7 @@ class TestRestaurant {
     @Test
     fun supervisorCanAddAAMenu() {
         Assert.assertTrue(newRestaurant.menus.isEmpty())
-        val newSupervisor: Supervisor = newRestaurant.supervisor
+        val newSupervisor = newRestaurant.supervisor
         newSupervisor.addMenuToRestaurant(menu)
         Assert.assertTrue(newRestaurant.menuIsRegistered(menu))
         Assert.assertFalse(newRestaurant.menus.isEmpty())
@@ -75,7 +75,7 @@ class TestRestaurant {
 
     @Test
     fun supervisorCanRemoveAMenu() {
-        val newSupervisor: Supervisor = newRestaurant.supervisor
+        val newSupervisor = newRestaurant.supervisor
         newSupervisor.addMenuToRestaurant(menu)
         Assert.assertFalse(newRestaurant.menus.isEmpty())
         newSupervisor.removeMenuFromRestaurant(menu)
@@ -87,7 +87,7 @@ class TestRestaurant {
 
     @Test
     fun supervisorCanAddAndPaymentMethodsInTheRestaurant() {
-        val newSupervisor: Supervisor = newRestaurant.supervisor
+        val newSupervisor = newRestaurant.supervisor
         val debit = Debit()
         newSupervisor.addPaymentMethod(debit)
         Assert.assertTrue(newRestaurant.availablePaymentMethods.contains(cash))
@@ -120,7 +120,7 @@ class TestRestaurant {
 
     @Test
     fun restaurantCanCreateItsOwnProductsAndItIsConsist() {
-        val product: Product = newRestaurant.createProduct("Arroz", "directo de China", 20.0, Category.PLATOPRINCIPAL)
+        val product = newRestaurant.createProduct("Arroz", "directo de China", 20.0, Category.PLATOPRINCIPAL)
         Assert.assertEquals("Arroz", product.name)
         Assert.assertEquals("directo de China", product.description)
         Assert.assertEquals(20.0, product.price, 0.0)
@@ -130,7 +130,7 @@ class TestRestaurant {
 
     @Test
     fun restaurantCanEditItsOwnProducts() {
-        val product: Product = newRestaurant.createProduct("Arroz", "directo de China", 20.0, Category.PLATOPRINCIPAL)
+        val product = newRestaurant.createProduct("Arroz", "directo de China", 20.0, Category.PLATOPRINCIPAL)
         newRestaurant.editProduct(product.code, "Alloz", "directo de China", 20.0, Category.PLATOPRINCIPAL)
         Assert.assertEquals("Alloz", product.name)
         newRestaurant.editProduct(product.code, "Alloz", "directo de Japon", 20.0, Category.PLATOPRINCIPAL)

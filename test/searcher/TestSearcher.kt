@@ -14,7 +14,7 @@ import restaurant.Restaurant
 
 class TestSearcher {
 
-    private val searcher: Searcher = Searcher()
+    private val searcher = Searcher()
     private val geoLocation = Geo(2.0, 1.0)
     private val applicationModel = MorfApp
     private val cash = Cash()
@@ -36,30 +36,30 @@ class TestSearcher {
     private val product2 = Product(2, "Soda", "Bzzz bzzz bzzz", 40.0, Category.PLATOPRINCIPAL)
     private val product3 = Product(3, "HotDog", "German sausage", 40.0, Category.PLATOPRINCIPAL)
 
-    private val mapRestaurants: MutableMap<Int, Searchable> = mutableMapOf()
-    private val mapMenus: MutableMap<Int, Searchable> = mutableMapOf()
-    private val mapProducts: MutableMap<Int, Searchable> = mutableMapOf()
+    private val mapRestaurants = mutableMapOf<Int, Searchable>()
+    private val mapMenus = mutableMapOf<Int, Searchable>()
+    private val mapProducts = mutableMapOf<Int, Searchable>()
 
-    private val restaurants : MutableCollection<Searchable> = mutableListOf(restaurant0, restaurant1, restaurant2, restaurant3, restaurant3, restaurant4)
-    private val menus : MutableCollection<Searchable> = mutableListOf(menu0, menu1, menu2, menu3)
-    private val products : MutableCollection<Searchable> = mutableListOf(product0, product1, product2, product3)
+    private val restaurants = mutableListOf<Searchable>(restaurant0, restaurant1, restaurant2, restaurant3, restaurant3, restaurant4)
+    private val menus  = mutableListOf<Searchable>(menu0, menu1, menu2, menu3)
+    private val products = mutableListOf<Searchable>(product0, product1, product2, product3)
 
-    private fun addElements(map : MutableMap<Int, Searchable>, list : MutableCollection<Searchable>) {
+    private fun addElements(map : MutableMap<Int, Searchable>, list : MutableList<Searchable>) {
         list.forEach { element -> map.put(element.code, element) }
     }
 
     private fun addRestaurants() {
-        val listRestaurant: MutableCollection<Searchable> = restaurants
+        val listRestaurant = restaurants
         addElements(mapRestaurants, listRestaurant)
     }
 
     private fun addMenus() {
-        val listMenus: MutableCollection<Searchable> = menus
+        val listMenus = menus
         addElements(mapMenus, listMenus)
     }
 
     private fun addProducts() {
-        val listProducts: MutableCollection<Searchable> = products
+        val listProducts = products
         addElements(mapProducts, listProducts)
     }
 
@@ -91,7 +91,7 @@ class TestSearcher {
     @Test
     fun test01_theSearchByIdDontGiveTheCorrectRestaurantBecauseTheMapIsEmpty() {
         val fakeId = CriteriaById(666)
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapRestaurants)
+        val listResult = searcher.searchBy(fakeId, mapRestaurants)
         Assert.assertEquals(mutableListOf<Restaurant?>(), listResult)
     }
 
@@ -99,7 +99,7 @@ class TestSearcher {
     fun test02_theSearchByIdDontGiveTheCorrectRestaurantBecauseTheCodeDontExist() {
         val fakeId = CriteriaById(666)
         addRestaurants()
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapRestaurants)
+        val listResult = searcher.searchBy(fakeId, mapRestaurants)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
@@ -124,7 +124,7 @@ class TestSearcher {
     @Test
     fun test04_theSearchByIdDontGiveTheCorrectMenuBecauseTheMapIsEmpty() {
         val fakeId = CriteriaById(666)
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapMenus)
+        val listResult = searcher.searchBy(fakeId, mapMenus)
         Assert.assertEquals(mutableListOf<Restaurant?>(), listResult)
     }
 
@@ -132,7 +132,7 @@ class TestSearcher {
     fun test05_theSearchByIdDontGiveTheCorrectMenuBecauseTheCodeDontExist() {
         val fakeId = CriteriaById(666)
         addProducts()
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapMenus)
+        val listResult = searcher.searchBy(fakeId, mapMenus)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
@@ -157,7 +157,7 @@ class TestSearcher {
     @Test
     fun test07_theSearchByIdDontGiveTheCorrectProductBecauseTheMapIsEmpty() {
         val fakeId = CriteriaById(666)
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapProducts)
+        val listResult = searcher.searchBy(fakeId, mapProducts)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
@@ -165,7 +165,7 @@ class TestSearcher {
     fun test08_theSearchByIdDontGiveTheCorrectProductBecauseTheCodeDontExist() {
         val fakeId = CriteriaById(666)
         addProducts()
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapProducts)
+        val listResult = searcher.searchBy(fakeId, mapProducts)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
@@ -192,14 +192,14 @@ class TestSearcher {
     fun test10_theSearchByStringDontGiveTheCorrectRestaurantBecauseTheNameDontExist() {
         val fakeId = CriteriaByString("Ozzymandias")
         addRestaurants()
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapRestaurants)
+        val listResult = searcher.searchBy(fakeId, mapRestaurants)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
     @Test
     fun test11_theSearchByStringDontGiveTheCorrectRestaurantBecauseTheMapIsEmpty() {
         val fakeId = CriteriaByString("Ozzymandias")
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapRestaurants)
+        val listResult = searcher.searchBy(fakeId, mapRestaurants)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
@@ -225,14 +225,14 @@ class TestSearcher {
     fun test13_theSearchByStringDontGiveTheCorrectMenuBecauseTheNameDontExist() {
         val fakeId = CriteriaByString("Ozzymandias")
         addMenus()
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapMenus)
+        val listResult = searcher.searchBy(fakeId, mapMenus)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
     @Test
     fun test14_theSearchByStringDontGiveTheCorrectMenuBecauseTheMapIsEmpty() {
         val fakeId = CriteriaByString("Ozzymandias")
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapRestaurants)
+        val listResult = searcher.searchBy(fakeId, mapRestaurants)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
@@ -258,14 +258,14 @@ class TestSearcher {
     fun test16_theSearchByStringDontGiveTheCorrectProductBecauseTheNameDontExist() {
         val fakeId = CriteriaByString("Ozzymandias")
         addProducts()
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapProducts)
+        val listResult = searcher.searchBy(fakeId, mapProducts)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
     @Test
     fun test17_theSearchByStringDontGiveTheCorrectProductBecauseTheMapIsEmpty() {
         val fakeId = CriteriaByString("Ozzymandias")
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapProducts)
+        val listResult = searcher.searchBy(fakeId, mapProducts)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
@@ -276,7 +276,7 @@ class TestSearcher {
         val byIdAndString2 = CriteriaByIdAndString("Les Maizales")
         val byIdAndString3 = CriteriaByIdAndString("1840")
         addRestaurants()
-        var listResult : MutableCollection<Searchable?> = searcher.searchBy(byIdAndString0, mapRestaurants)
+        var listResult = searcher.searchBy(byIdAndString0, mapRestaurants)
         Assert.assertEquals(mutableListOf(restaurant0), listResult)
 
         listResult = searcher.searchBy(byIdAndString1, mapRestaurants)
@@ -311,7 +311,7 @@ class TestSearcher {
         val byIdAndString1 = CriteriaByIdAndString(2)
         addRestaurants()
 
-        var listResult : MutableCollection<Searchable?> = searcher.searchBy(byIdAndString0, mapRestaurants)
+        var listResult = searcher.searchBy(byIdAndString0, mapRestaurants)
 
         Assert.assertEquals(3, listResult.size)
         Assert.assertTrue(listResult.contains(restaurant0))
@@ -327,7 +327,7 @@ class TestSearcher {
     fun test21_theSearchByIdAndStringDontGiveTheCorrectRestaurantBecauseTheNameDontExist() {
         val fakeId = CriteriaByIdAndString("Ozzymandias")
         addRestaurants()
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapRestaurants)
+        val listResult = searcher.searchBy(fakeId, mapRestaurants)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
@@ -335,14 +335,14 @@ class TestSearcher {
     fun test22_theSearchByIdAndStringDontGiveTheCorrectRestaurantBecauseTheCodeDontExist() {
         val fakeId = CriteriaByIdAndString(777)
         addRestaurants()
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapRestaurants)
+        val listResult = searcher.searchBy(fakeId, mapRestaurants)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
     @Test
     fun test23_theSearchByIdAndStringDontGiveTheCorrectRestaurantBecauseTheMapIsEmpty() {
         val fakeId = CriteriaByIdAndString("Ozzymandias")
-        var listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapRestaurants)
+        var listResult = searcher.searchBy(fakeId, mapRestaurants)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
 
         val otheFakeId = CriteriaByIdAndString(100000)
@@ -357,7 +357,7 @@ class TestSearcher {
         val byIdAndString2 = CriteriaByIdAndString("VegieMenu")
         val byIdAndString3 = CriteriaByIdAndString("Kaloric")
         addMenus()
-        var listResult : MutableCollection<Searchable?> = searcher.searchBy(byIdAndString0, mapMenus)
+        var listResult = searcher.searchBy(byIdAndString0, mapMenus)
         Assert.assertEquals(mutableListOf(menu0), listResult)
         listResult = searcher.searchBy(byIdAndString1, mapMenus)
         Assert.assertEquals(mutableListOf(menu1), listResult)
@@ -376,7 +376,7 @@ class TestSearcher {
         val byIdAndString3 = CriteriaByIdAndString(3)
 
         addMenus()
-        var listResult : MutableCollection<Searchable?> = searcher.searchBy(byIdAndString0, mapMenus)
+        var listResult = searcher.searchBy(byIdAndString0, mapMenus)
         Assert.assertEquals(mutableListOf(menu0), listResult)
 
         listResult = searcher.searchBy(byIdAndString1, mapMenus)
@@ -393,7 +393,7 @@ class TestSearcher {
     fun test26_theSearchByIdAndStringDontGiveTheCorrectMenuBecauseTheNameDontExist() {
         val fakeId = CriteriaByIdAndString("Ozzymandias")
         addRestaurants()
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapRestaurants)
+        val listResult = searcher.searchBy(fakeId, mapRestaurants)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
@@ -401,14 +401,14 @@ class TestSearcher {
     fun test27_theSearchByIdAndStringDontGiveTheCorrectMenuBecauseTheCodeDontExist() {
         val fakeId = CriteriaByIdAndString(777)
         addRestaurants()
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapRestaurants)
+        val listResult = searcher.searchBy(fakeId, mapRestaurants)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
     @Test
     fun test28_theSearchByIdAndStringDontGiveTheCorrectMenuBecauseTheMapIsEmpty() {
         val fakeId = CriteriaByIdAndString("Ozzymandias")
-        var listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapRestaurants)
+        var listResult = searcher.searchBy(fakeId, mapRestaurants)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
 
         val otheFakeId = CriteriaByIdAndString(100000)
@@ -438,14 +438,14 @@ class TestSearcher {
     fun test30_theSearchByIdAndStringDontGiveTheCorrectProductBecauseTheNameDontExist() {
         val fakeId = CriteriaByIdAndString("Ozzymandias")
         addProducts()
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapProducts)
+        val listResult = searcher.searchBy(fakeId, mapProducts)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 
     @Test
     fun test31_theSearchByIdAndStringDontGiveTheCorrectProductBecauseTheMapIsEmpty() {
         val fakeId = CriteriaByIdAndString("Ozzymandias")
-        val listResult : MutableCollection<Searchable?> = searcher.searchBy(fakeId, mapProducts)
+        val listResult = searcher.searchBy(fakeId, mapProducts)
         Assert.assertEquals(mutableListOf<Product?>(), listResult)
     }
 }

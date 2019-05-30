@@ -13,21 +13,19 @@ import searcher.Criteria
 import searcher.Searcher
 import searcher.Searchable
 
-import java.util.*
-
 object MorfApp {
-    var restaurants: MutableMap<Int,Restaurant> = mutableMapOf()
-    var registeredUsers: MutableMap<String,User> = mutableMapOf()
-    var paymentMethods: MutableCollection<PaymentMethod> = mutableListOf(Cash(),
+    var restaurants= mutableMapOf<Int,Restaurant>()
+    var registeredUsers = mutableMapOf<String,User>()
+    var paymentMethods = mutableListOf(Cash(),
                                                                          CreditCard(),
                                                                          Debit(),
                                                                          MercadoPago(),
                                                                          PayPal())
-    private var orderFactory : OrderFactory = OrderFactory()
-    var clientFactory : ClientFactory = ClientFactory()
-    private var restaurantFactory : RestaurantFactory  = RestaurantFactory()
-    private var searcher : Searcher = Searcher()
-    var distance: Double = 20.00
+    private var orderFactory = OrderFactory()
+    var clientFactory = ClientFactory()
+    private var restaurantFactory  = RestaurantFactory()
+    private var searcher = Searcher()
+    var distance = 20.00
 
     fun createClient(id : String, name: String, address: String, geoLocation : Geo,  password : String, email : String): Client {
         if(!registeredUsers.containsKey(id)){
@@ -41,7 +39,8 @@ object MorfApp {
             this.registeredUsers.put(newClient.id,newClient)
             return newClient
         }
-        else {throw UserAlreadyRegisteredException("Ya se encuentra registrado el usuario de ID: $id")}
+        else {throw UserAlreadyRegisteredException("Ya se encuentra registrado el usuario de ID: $id")
+        }
     }
 
     fun createSupervisor(restaurant: Restaurant, id: String, name: String, password: String): Supervisor {

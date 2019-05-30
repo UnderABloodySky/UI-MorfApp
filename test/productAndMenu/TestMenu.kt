@@ -10,8 +10,8 @@ import restaurant.Restaurant
 
 class TestMenu {
 
-    private var applicationModel : MorfApp = MorfApp
-    private var cash : PaymentMethod = Cash()
+    private var applicationModel = MorfApp
+    private var cash = Cash()
     private var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.BEBIDA)
     private var hotDog = Product(2, "HotDog", "Original Deustch Sausage", 120.0, Category.PLATOPRINCIPAL)
     private var geoLocation = Geo(2.0,2.0)

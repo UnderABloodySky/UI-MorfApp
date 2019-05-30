@@ -17,9 +17,9 @@ import java.util.*
 
 class TestOrder {
 
-    private var applicationModel : MorfApp = MorfApp
-    private val cash : PaymentMethod = Cash()
-    private var geoLocation: Geo = Geo(1.2,2.2);
+    private var applicationModel = MorfApp
+    private val cash = Cash()
+    private var geoLocation = Geo(1.2,2.2);
     private var iceCream = Product(1, "Soda", "Made with milk from happy cows", 20.0, Category.POSTRE)
     private var pizza = Product(2, "HotDog", "Really italian pepperoni pizza", 40.0, Category.PLATOPRINCIPAL)
     private var restaurant = applicationModel.createRestaurant("un Nombre", "Una descripcion", "Ay no se", geoLocation, mutableListOf(cash))
@@ -31,9 +31,8 @@ class TestOrder {
     private var menu5 = Menu(2, "SaltyMenu", "Pizza Time", mutableListOf<Product>(pizza), restaurant)
     private var menu6 = Menu(2, "FullyMenu", "Good friends, good FOOD, good times", mutableListOf<Product>(iceCream, pizza), restaurant)
     private val menus = mutableListOf<Menu>()
-    private var date : Date = Date()
-    private  var client: Client = Client(1,"Pepe","Pepe", "Roque saenz peña", geoLocation, "1212", "mail@asd.com")
-    private var order : Order = Order(2, client, restaurant, cash, menus)
+    private  var client = Client(1,"Pepe","Pepe", "Roque saenz peña", geoLocation, "1212", "mail@asd.com")
+    private var order = Order(2, client, restaurant, cash, menus)
 
     @Test
     fun test01_theCustomerWhoMadeTheOrderIsTheOneIndicated(){

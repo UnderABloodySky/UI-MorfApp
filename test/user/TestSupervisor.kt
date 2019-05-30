@@ -14,11 +14,11 @@ import restaurant.Restaurant
 
 class TestSupervisor {
 
-    private var geoLocation: Geo = Geo(48.84,84.48)
-    private var applicationModel : MorfApp = MorfApp
-    private var newRestaurant: Restaurant = applicationModel.createRestaurant("El Tano", "Una descripcion bien chingona", "Por Quilmes Oeste", geoLocation, mutableListOf())
+    private var geoLocation = Geo(48.84,84.48)
+    private var applicationModel = MorfApp
+    private var newRestaurant = applicationModel.createRestaurant("El Tano", "Una descripcion bien chingona", "Por Quilmes Oeste", geoLocation, mutableListOf())
 
-    private var newSupervisor : Supervisor = Supervisor(1,"Pepe","SuperPepe", newRestaurant, "123454")
+    private var newSupervisor = Supervisor(1,"Pepe","SuperPepe", newRestaurant, "123454")
     private var menu = Menu(1,"SodaMenu","with authentic sodas since 90's", mutableListOf<Product>(), newRestaurant)
     private var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.BEBIDA)
 
@@ -37,7 +37,7 @@ class TestSupervisor {
     @Test
     fun supervisorCanRemovePrductsFromStock(){
         Assert.assertTrue(newRestaurant.products.isEmpty())
-        val newSupervisor : Supervisor = newRestaurant.supervisor
+        val newSupervisor = newRestaurant.supervisor
         newSupervisor.addProductToRestaurantStock(soda)
         Assert.assertTrue(newRestaurant.products.containsValue(soda))
         Assert.assertTrue(newRestaurant.products.containsKey(soda.code))
@@ -48,7 +48,7 @@ class TestSupervisor {
     @Test
     fun supervisorCanAddAAMenu(){
         Assert.assertTrue(newRestaurant.menus.isEmpty())
-        val newSupervisor : Supervisor = newRestaurant.supervisor
+        val newSupervisor = newRestaurant.supervisor
         newSupervisor.addMenuToRestaurant(menu)
         Assert.assertTrue(newRestaurant.menuIsRegistered(menu))
         Assert.assertFalse(newRestaurant.menus.isEmpty())
@@ -59,7 +59,7 @@ class TestSupervisor {
 
     @Test
     fun supervisorCanRemoveAMenu(){
-        val newSupervisor : Supervisor = newRestaurant.supervisor
+        val newSupervisor = newRestaurant.supervisor
         newSupervisor.addMenuToRestaurant(menu)
         Assert.assertFalse(newRestaurant.menus.isEmpty())
         newSupervisor.removeMenuFromRestaurant(menu)
@@ -71,12 +71,12 @@ class TestSupervisor {
 
     @Test
     fun supervisorCanAddAndPaymentMethodsInTheRestaurant(){
-        val cash:PaymentMethod= Cash()
+        val cash = Cash()
         newRestaurant.addSupervisor(newSupervisor)
         newSupervisor.addPaymentMethod(cash)
         Assert.assertTrue(newRestaurant.availablePaymentMethods.contains(cash))
         newSupervisor.removePaymentMethodRestaurant(cash)
-        val emptyPaymentsMethods : MutableCollection<PaymentMethod> = mutableListOf()
+        val emptyPaymentsMethods = mutableListOf<PaymentMethod>()
         Assert.assertEquals(newRestaurant.availablePaymentMethods,emptyPaymentsMethods)
     }
 

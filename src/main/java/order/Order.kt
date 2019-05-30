@@ -7,7 +7,6 @@ import statesOrder.StateOrder
 import statesOrder.StateOrder.*
 import paymentMethod.*
 import java.util.*
-import user.User
 import restaurant.Restaurant
 import productAndMenu.Menu
 import scala.Tuple2
