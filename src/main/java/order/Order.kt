@@ -82,23 +82,23 @@ data class Order(val code : Int, @JsonIgnore private val user : Client,
 
     fun getMenu() : MutableList<Menu> = menus
 
-    fun getMenusAndCuantity():MutableSet<Tuple2<Int,Int>> {
+    fun getMenusAndCuantity():MutableMap<Int,Int> {
 
         var ids = mutableSetOf<Int>()
+
         menus.forEach { menu-> ids.add(menu.code)  }
-        var finalList = mutableSetOf<Tuple2<Int,Int>>()
-        var listAmounts = ids.forEach{id->
-            finalList.add(
-                    Tuple2.apply(id,(this.appearencesOfId(id,ids))))
-        }
+        var finalList = mutableMapOf<Int,Int>()
+        ids.forEach{id->
+                        finalList.put(id,(this.appearencesOfId(id,menus)))
+                }
         return finalList
     }
 
-    fun appearencesOfId(id:Int, list:MutableSet<Int>):Int{
+    fun appearencesOfId(id:Int, list:MutableList<Menu>):Int{
         var  quantity =0
-        list.forEach { it-> if (it==id){
+        list.forEach { menu-> if (menu.code==id){
             quantity++
-        }
+           }
         }
         return quantity;
     }

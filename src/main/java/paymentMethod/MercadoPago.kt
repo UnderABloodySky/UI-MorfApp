@@ -1,3 +1,7 @@
 package paymentMethod
 
-class MercadoPago : PaymentMethod("Mercado Pago")
+class MercadoPago (user:String,password:String):PaymentMethod(){
+
+    var user=user
+    var password= password
+}

@@ -82,13 +82,13 @@ fun main() {
     val menu0 = elTano.createMenu("Menu1", "", mutableListOf(parrilada2), elTano, discount.NoDiscount(), true)
 
     val mChaile = morfApp.createClient("NinjaMan", "Matias Chaile", "Roque Saenz Peña 500", localization, "dilequechupelimon", "mailTrucho0@asd.com")
-    val orderP = mChaile.makeNewOrder(elTano, mutableListOf(), Cash())
+    val orderP = mChaile.makeNewOrder(elTano, mutableListOf(),PaymentMethod().cash())
 
     orderP.addMenu(menu0)
 
 
     val orderController = OrderController()
-    //orderController.addMenu(menu0)
+
     orderController.addOrderComplentary(orderP)
 
 
@@ -96,14 +96,6 @@ fun main() {
     // Sintaxis alternativa, mucho más concisa
     // Donde el comportamiento se traslada al controller
     app.routes {
-        path("menus") {
-           // get(orderController::allMenus)
-            // post(orderController::addOrder)
-            // path(":code") {
-            //              get(menuController::getProduct)
-            //            put(menuController::updateProduct)
-            //          delete(menuController::deleteProduct)
-        }
         path("orders"){
             get(orderController::allOrders)
             post(orderController::addOrder)

@@ -1,3 +1,6 @@
 package paymentMethod
 
-class PayPal : PaymentMethod("Paypal")
+class PayPal (user:String,password:String):PaymentMethod() {
+    var user=user
+    var password= password
+}

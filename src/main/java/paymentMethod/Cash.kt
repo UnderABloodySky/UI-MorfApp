@@ -1,3 +1,5 @@
 package paymentMethod
 
-class Cash : PaymentMethod("Efectivo")
+class Cash ():PaymentMethod(){
+
+}

@@ -16,11 +16,7 @@ import searcher.Searchable
 object MorfApp {
     var restaurants= mutableMapOf<Int,Restaurant>()
     var registeredUsers = mutableMapOf<String,User>()
-    var paymentMethods = mutableListOf(Cash(),
-                                                                         CreditCard(),
-                                                                         Debit(),
-                                                                         MercadoPago(),
-                                                                         PayPal())
+   // var paymentMethods = mutableListOf(Cash(),CreditCard(),Debit(), MercadoPago(), PayPal())
     private var orderFactory = OrderFactory()
     var clientFactory = ClientFactory()
     private var restaurantFactory  = RestaurantFactory()
@@ -90,6 +86,11 @@ object MorfApp {
         else { throw UserNoFoundException("ERROR") }
         return actualUser
     }
+    fun findClient(name:String?):Client? {
+        return this.findUser(name)as(Client)
+
+    }
+
 
     fun authenticate(name : String, aPass : String) : Client?{
         val aUser = registeredUsers.get(name)
