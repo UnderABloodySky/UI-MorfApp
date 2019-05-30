@@ -22,7 +22,7 @@ class OrderFactory : GeneralFactory(){
     fun createOrder(user: Client,
                     restaurant: Restaurant,
                     payment: PaymentMethod,
-                    menus: MutableCollection<Menu>): Order {
+                    menus: MutableList<Menu>): Order {
 
         val newOrder = Order(code, user, restaurant, payment, menus)
         addOne()
@@ -49,14 +49,13 @@ class MenuFactory : GeneralFactory(){
 class ClientFactory : GeneralFactory() {
 
         fun createClient(address: String,
-                         registrationDate: Date,
-                         geoLocation: Geo,
-                         name : String,
-                         id : String,
-                         password: String,
-                         applicationModel: MorfApp): Client {
+                     geoLocation: Geo,
+                     name : String,
+                     id : String,
+                     password: String,
+                     email : String): Client {
 
-        val newClient = Client(code, name, id, address, registrationDate, geoLocation,  password, applicationModel)
+        val newClient = Client(code, name, id, address, geoLocation,  password, email)
         addOne()
         return newClient
     }
@@ -64,10 +63,9 @@ class ClientFactory : GeneralFactory() {
     fun createSupervisor(restaurant: Restaurant,
                          name : String,
                          id : String,
-                         password: String,
-                         applicationModel: MorfApp): Supervisor{
+                         password: String): Supervisor{
 
-        val newSupervisor = Supervisor(code, name, id , restaurant,password, applicationModel)
+        val newSupervisor = Supervisor(code, name, id , restaurant,password)
         addOne()
         return newSupervisor
     }

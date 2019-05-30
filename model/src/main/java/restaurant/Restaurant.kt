@@ -1,5 +1,6 @@
 package restaurant
 import applicationModel.MenuFactory
+import applicationModel.MorfApp
 import applicationModel.ProductFactory
 import discount.Discount
 import exception.MenuNameAlreadyInUseException
@@ -22,7 +23,7 @@ class Restaurant(code : Int,
 
     var products: MutableMap<Int, Product> = mutableMapOf()
     var menus: MutableMap<Int, Menu> = mutableMapOf()
-    lateinit var supervisor: Supervisor
+    var supervisor: Supervisor = MorfApp.createSupervisor(this, "Supervisor$name$code".replace(" ",""), "Supervisor", "")
     var orders: MutableCollection<Order> = mutableListOf()
     var searcher: Searcher = Searcher()
     private var productFactory: ProductFactory = ProductFactory()

@@ -1,26 +1,27 @@
 package order
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import exception.EmptyOrderException
 import exception.NoValidateOrderException
 import statesOrder.StateOrder
 import statesOrder.StateOrder.*
 import paymentMethod.*
 import java.util.*
-import user.User
 import restaurant.Restaurant
 import productAndMenu.Menu
 import user.Client
 
-data class Order(val code : Int, private val user : Client,
-                 private val restaurant : Restaurant, private var payment : PaymentMethod,
-                 private val menus : MutableCollection<Menu>){
-
+data class Order(val code : Int, @JsonIgnore private val user : Client,
+                 @JsonIgnore private val restaurant : Restaurant, private var payment : PaymentMethod,
+                 private val menus : MutableList<Menu>){
+    var geoLocation = user.geoLocation
+    var restaurantName = restaurant.name
+    private var date = Date()
     private var state : StateOrder = PENDING
-    private var date : Date? = null
 
     fun processOrder() {
         if (menus.isEmpty()) {
-            throw EmptyOrderException("")
+            throw EmptyOrderException("La orden debe contener al menos un menu")
         }
         restaurant.addOrder(this)
     }
@@ -47,7 +48,8 @@ data class Order(val code : Int, private val user : Client,
     fun getState() : StateOrder = state
 
     fun delivered() {
-        user.addOrder(this)
+        user.removePendingOrder(this)
+        user.addDeliveredOrder(this)
         setState(DELIVERED)
     }
 
@@ -73,11 +75,21 @@ data class Order(val code : Int, private val user : Client,
 
     fun canChange(): Boolean = state.canChange()
 
-    fun getUser() : User = user
+    fun getUser() : Client = user
 
     fun getRestaurant() : Restaurant = restaurant
 
-    fun getMenu() : MutableCollection<Menu> = menus
+    fun getMenu() : MutableList<Menu> = menus
+
+ 
+    fun appearencesOfId(id:Int, list:MutableSet<Int>):Int{
+        var  quantity =0
+        list.forEach { it-> if (it==id){
+            quantity++
+        }
+        }
+        return quantity;
+    }
 
     private fun canProcessOrder(_menu : Menu) : Boolean = user.canDoOrder(_menu.restaurant)
 }
