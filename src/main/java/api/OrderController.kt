@@ -39,10 +39,14 @@ class OrderController() {
     }
 
     //la idea es que reciba lo que le viene por el json y devuelva la lista piola de los menus
-    fun transformToMenuList(idsAccumulate:MutableMap<Int,Int>):MutableList<Menu>{
-
+    fun transformToMenuList(idsAccumulate:MutableMap<Int,Int>,resto:Restaurant):MutableList<Menu>{
+                var allMenus = resto.menus()
                 var newMenus = mutableListOf<Menu>()
-                idsAccumulate.forEach { m-> newMenus.add() }
+                idsAccumulate.forEach { m-> var menuToAdd = allMenus.get(m.key)!!
+                                            newMenus.add(menuToAdd)
+
+                                        }
+                return newMenus
 
     }
 
@@ -52,11 +56,11 @@ class OrderController() {
     fun addOrder(ctx: Context) {
         val order = ctx.body<OrderData>()
         ctx.status(HttpStatus.CREATED_201)
-        val client = morfApp.findClient(order.clientID)
-        var menus = this.transformToMenuList(order.menusAccumulated)
-        var restaurant = morfApp.findRestaurant(CriteriaById(order.restaurantId))as Restaurant
+        val client = morfApp.findClient(order.clientID)!!
 
-        var newOrder =client?.makeNewOrder(restaurant,menus,order.paymentMethod)
+        var restaurant = morfApp.findRestaurant(CriteriaById(order.restaurantId))as Restaurant
+        var menus = this.transformToMenuList(order.menusAccumulated,restaurant)
+        client.makeNewOrder(restaurant,menus,order.paymentMethod)
         ctx.json(orders.add(order))
     }
 
