@@ -88,8 +88,7 @@ fun main() {
 
 
     val orderController = OrderController()
-
-  //  orderController.addOrderComplentary(orderP)
+    orderController.addOrderData(orderP)
 
 
     // CRUD de Lugares
@@ -101,6 +100,7 @@ fun main() {
             post(orderController::addOrder)
             path(":code"){
                 get(orderController::getOrder)
+                //put(orderController::rateAnOrder)
             }
         }
     }

@@ -19,15 +19,7 @@ data class Geo(var lat:Double,var long:Double)
 data class MenusAndAmount(var menuId:Int,var ammount:Int)
 
 data class OrderData(var code:Int,var restaurant:Int,var menus: MutableList<MenusAndAmount>,var clientID:String,var paymentMethod: PaymentMethod){
-   /* var clientiD = o
-    var code = order.code
-    var restaurantCode = order.getRestaurant().code
-    //var menusAccumulated = order.getMenusAndCuantity()
-    var menus = order.menus()
-    var paymentMethod =order.getPaymentMethod()
-*/
-}
-
+  }
 
 class OrderController() {
     private var orders = mutableListOf<OrderData>()
@@ -54,12 +46,14 @@ class OrderController() {
 //hacer que esta mierda tome un data y cree un order .
     fun addOrder(ctx: Context) {
         val order = ctx.body<OrderData>()
-        ctx.status(HttpStatus.CREATED_201)
+
         val client = morfApp.findClient(order.clientID)!!
 
         var restaurant = morfApp.findRestaurant(CriteriaById(order.restaurant))as Restaurant
         var menus = this.transformToMenuList(order.menus,restaurant)
         client.makeNewOrder(restaurant,menus,order.paymentMethod)
+
+        ctx.status(HttpStatus.CREATED_201)
         ctx.json(orders.add(order))
     }
 
@@ -67,7 +61,10 @@ class OrderController() {
         val code = ctx.pathParam("code").toInt()
         ctx.json(getOrderById(code))
     }
+
+
     //funciones complementarias
+
 
     fun getOrderById(code: Int): OrderData {
         print(orders)
@@ -76,18 +73,30 @@ class OrderController() {
                 ?: throw NotFoundResponse("No se encontró la orden con id $code")
     }
 
-    /*fun addOrderComplentary(modelOrder: order.Order): Order {
+    fun addOrderComplentary(modelOrder: order.Order): Order {
         // client:Client, restaurant:Restaurant , paymentMethod:PaymentMethod, menus:MutableList<Menu>
 
-        val newOrder = morfApp.createOrder(modelOrder.getUser(),
+        /*val newOrder = morfApp.createOrder(modelOrder.getUser(),
                 modelOrder.getRestaurant(),
                 modelOrder.getPaymentMethod(),
-                modelOrder.getMenu())
-        this.addOrderData(newOrder)
-        return newOrder
+                modelOrder.getMenu())*/
+        this.addOrderData(modelOrder)
+        return modelOrder
 
-    }*/
+    }
 
+    fun transforToMenuAndAmount (map:MutableMap<Int,Int>):MutableList<MenusAndAmount>{
+        var list= mutableListOf<MenusAndAmount>()
+        map.forEach { m-> var mamount= MenusAndAmount(m.key,m.value)
+                            list.add(mamount)}
+        return list
+    }
+
+    fun addOrderData(order:Order){
+       var  orderData = OrderData(order.code,order.getRestaurant().code,this.transforToMenuAndAmount(order.getMenusAndCuantity()),order.getUser().id,order.getPaymentMethod())
+       orders.add(orderData)
+
+    }
 
 
 }
