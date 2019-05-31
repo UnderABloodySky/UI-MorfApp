@@ -16,9 +16,9 @@ import user.Client
 import user.User
 
 data class Geo(var lat:Double,var long:Double)
+data class MenusAndAmount(var menuId:Int,var ammount:Int)
 
-
-data class OrderData(var code:Int,var restaurantId:Int,var clientID:String,var menusAccumulated: MutableMap<Int,Int>,var paymentMethod: PaymentMethod,var geoLocation:Geo  ){
+data class OrderData(var code:Int,var restaurant:Int,var menus: MutableList<MenusAndAmount>,var clientID:String,var paymentMethod: PaymentMethod){
    /* var clientiD = o
     var code = order.code
     var restaurantCode = order.getRestaurant().code
@@ -39,15 +39,14 @@ class OrderController() {
     }
 
     //la idea es que reciba lo que le viene por el json y devuelva la lista piola de los menus
-    fun transformToMenuList(idsAccumulate:MutableMap<Int,Int>,resto:Restaurant):MutableList<Menu>{
+    fun transformToMenuList(idsAccumulate:MutableList<MenusAndAmount>,resto:Restaurant):MutableList<Menu>{
                 var allMenus = resto.menus()
                 var newMenus = mutableListOf<Menu>()
-                idsAccumulate.forEach { m-> var menuToAdd = allMenus.get(m.key)!!
+                idsAccumulate.forEach { m-> var menuToAdd = allMenus.get(m.menuId)!!
                                             newMenus.add(menuToAdd)
 
                                         }
                 return newMenus
-
     }
 
 
@@ -58,8 +57,8 @@ class OrderController() {
         ctx.status(HttpStatus.CREATED_201)
         val client = morfApp.findClient(order.clientID)!!
 
-        var restaurant = morfApp.findRestaurant(CriteriaById(order.restaurantId))as Restaurant
-        var menus = this.transformToMenuList(order.menusAccumulated,restaurant)
+        var restaurant = morfApp.findRestaurant(CriteriaById(order.restaurant))as Restaurant
+        var menus = this.transformToMenuList(order.menus,restaurant)
         client.makeNewOrder(restaurant,menus,order.paymentMethod)
         ctx.json(orders.add(order))
     }
@@ -77,7 +76,7 @@ class OrderController() {
                 ?: throw NotFoundResponse("No se encontró la orden con id $code")
     }
 
-   /* fun addOrderComplentary(modelOrder: order.Order): Order {
+    /*fun addOrderComplentary(modelOrder: order.Order): Order {
         // client:Client, restaurant:Restaurant , paymentMethod:PaymentMethod, menus:MutableList<Menu>
 
         val newOrder = morfApp.createOrder(modelOrder.getUser(),
@@ -92,11 +91,3 @@ class OrderController() {
 
 
 }
-
-
-
-
-
-
-
-
