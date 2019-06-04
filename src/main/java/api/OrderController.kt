@@ -48,10 +48,10 @@ class OrderController() {
         val order = ctx.body<OrderData>()
 
         val client = morfApp.findClient(order.clientID)!!
-
+        var paymentMethod = this.createPaymentMethodApropieted(order.paymentMethod)
         var restaurant = morfApp.findRestaurant(CriteriaById(order.restaurant))as Restaurant
         var menus = this.transformToMenuList(order.menus,restaurant)
-        client.makeNewOrder(restaurant,menus,order.paymentMethod)
+        client.makeNewOrder(restaurant,menus,paymentMethod)
 
         ctx.status(HttpStatus.CREATED_201)
         ctx.json(orders.add(order))
@@ -64,7 +64,12 @@ class OrderController() {
 
 
     //funciones complementarias
+    //como hago , por que le pueden llegar de manera variable los parametros, tendria uqe fijarse el type que le llegar y decidir que tiene que construir. pero como le paso para ese momento el constructor.
 
+
+    fun createPaymentMethodApropieted():PaymentMethod{
+
+    }
 
     fun getOrderById(code: Int): OrderData {
         print(orders)
