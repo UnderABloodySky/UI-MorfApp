@@ -7,18 +7,21 @@ import io.javalin.Context
 import io.javalin.NotFoundResponse
 import order.Order
 import org.eclipse.jetty.http.HttpStatus
-import paymentMethod.PaymentMethod
+import paymentMethod.*
 import productAndMenu.Menu
 import restaurant.Restaurant
 import scala.Tuple2
 import searcher.CriteriaById
 import user.Client
 import user.User
+import java.util.*
 
 data class Geo(var lat:Double,var long:Double)
 data class MenusAndAmount(var menuId:Int,var ammount:Int)
+data class PaymentMethodsParameters(var type:String, var user:String?,var password:String?,
+                                    var cardNumber:Int?,var cardOwnerName:String?,var cardExpirationDate:Date?,var cardCode:Int?)
 
-data class OrderData(var code:Int,var restaurant:Int,var menus: MutableList<MenusAndAmount>,var clientID:String,var paymentMethod: PaymentMethod){
+data class OrderData(var code:Int,var restaurant:Int,var menus: MutableList<MenusAndAmount>,var clientID:String,var paymentMethod: PaymentMethodsParameters){
   }
 
 class OrderController() {
@@ -49,8 +52,8 @@ class OrderController() {
 
         val client = morfApp.findClient(order.clientID)!!
         var paymentMethod = this.createPaymentMethodApropieted(order.paymentMethod)
-        var restaurant = morfApp.findRestaurant(CriteriaById(order.restaurant))as Restaurant
-        var menus = this.transformToMenuList(order.menus,restaurant)
+        var restaurant:Restaurant? = morfApp.findOtherRestaurant(order.restaurant)
+        var menus = this.transformToMenuList(order.menus,restaurant!!)
         client.makeNewOrder(restaurant,menus,paymentMethod)
 
         ctx.status(HttpStatus.CREATED_201)
@@ -67,8 +70,24 @@ class OrderController() {
     //como hago , por que le pueden llegar de manera variable los parametros, tendria uqe fijarse el type que le llegar y decidir que tiene que construir. pero como le paso para ese momento el constructor.
 
 
-    fun createPaymentMethodApropieted():PaymentMethod{
+    fun createPaymentMethodApropieted(parametersMethods:PaymentMethodsParameters):PaymentMethod {
+        val type = parametersMethods.type
+        var newPaymentMethod:PaymentMethod =  paymentMethod.Cash()
+        if(type == "CreditCard"){
+            newPaymentMethod = CreditCard(parametersMethods.cardOwnerName!!,parametersMethods.cardNumber!!,parametersMethods.cardCode!!,parametersMethods.cardExpirationDate!!)
+        }
+        if (type == "DebitCard"){
+            newPaymentMethod = Debit(parametersMethods.cardOwnerName!!,parametersMethods.cardNumber!!,parametersMethods.cardCode!!,parametersMethods.cardExpirationDate!!)
+        }
+        if (type == "MercadoPago"){
+            newPaymentMethod = MercadoPago(parametersMethods.user!!,parametersMethods.password!!)
+        }
 
+        if (type == "PayPal"){
+            newPaymentMethod = PayPal(parametersMethods.user!!,parametersMethods.password!!)
+        }
+
+        return newPaymentMethod
     }
 
     fun getOrderById(code: Int): OrderData {
@@ -79,12 +98,12 @@ class OrderController() {
     }
 
     fun addOrderComplentary(modelOrder: order.Order): Order {
-        // client:Client, restaurant:Restaurant , paymentMethod:PaymentMethod, menus:MutableList<Menu>
+    // client:Client, restaurant:Restaurant , paymentMethod:PaymentMethod, menus:MutableList<Menu>
 
-        /*val newOrder = morfApp.createOrder(modelOrder.getUser(),
+        val newOrder = morfApp.createOrder(modelOrder.getUser(),
                 modelOrder.getRestaurant(),
                 modelOrder.getPaymentMethod(),
-                modelOrder.getMenu())*/
+                modelOrder.getMenu())
         this.addOrderData(modelOrder)
         return modelOrder
 
@@ -98,10 +117,11 @@ class OrderController() {
     }
 
     fun addOrderData(order:Order){
-       var  orderData = OrderData(order.code,order.getRestaurant().code,this.transforToMenuAndAmount(order.getMenusAndCuantity()),order.getUser().id,order.getPaymentMethod())
-       orders.add(orderData)
+      var paymentParameters= PaymentMethodsParameters("Cash",null,null,null,null,null,null)
+      var  orderData = OrderData(order.code,order.getRestaurant().code,this.transforToMenuAndAmount(order.getMenusAndCuantity()),order.getUser().id,paymentParameters)
+      orders.add(orderData)
 
     }
 
-
 }
+

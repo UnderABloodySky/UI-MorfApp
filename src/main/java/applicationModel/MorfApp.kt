@@ -72,6 +72,9 @@ object MorfApp {
     fun createOrder(client:Client, restaurant:Restaurant , paymentMethod:PaymentMethod, menus:MutableList<Menu> ):Order{
         return orderFactory.createOrder(client , restaurant , paymentMethod , menus)
     }
+    fun findOtherRestaurant(code:Int):Restaurant?{
+        return restaurants.get(code)
+    }
 
     fun findRestaurant(criteria: Criteria): MutableCollection<Searchable?>{
             var searchableRestaurant = restaurants as MutableMap<Int, Searchable>

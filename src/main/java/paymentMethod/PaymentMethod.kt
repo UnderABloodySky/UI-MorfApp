@@ -3,13 +3,6 @@ package paymentMethod
 import java.util.*
 open class PaymentMethod () {
 
-    //la idea es que este metodo vaya viendo cual tiene que crear  , 
-    fun suitableClassFinder(type:String):PaymentMethod {
-        if (type == "Cash") {
-
-        }
-
-    }
 
     fun creditCard(ownerName:String,number:Int,securityNumber: Int, dueDate: Date):CreditCard{
 
