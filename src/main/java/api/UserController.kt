@@ -54,9 +54,9 @@ class UserControllerContext {
 
         fun findUser2(ctx: Context) {
             val id = ctx.queryParam(":id")
-            //val plus = ctx.queryParam("orders")
-            var res = ctx.json(getUserById(id!!))
-            print(res)
+            val plus = ctx.queryParam("orders")
+            //var res = ctx.json(getUserById(id!!))
+            //print(res)
 
          /*   if(id != null && plus ==  null){
                 //res
@@ -65,7 +65,7 @@ class UserControllerContext {
                 findUser(ctx)
             }
           */
-            ctx.status(200)
+            //ctx.status(200)
         }
 
         fun findUserByMail(ctx : Context){

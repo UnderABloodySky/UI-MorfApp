@@ -60,6 +60,5 @@ class Client (code :Int,  name: String, id: String, var address: String,
         var order:Order
         order  = this.findOrderInCollection(updatedOrder.code)
         order.updateRate(rate)
-
         }
     }
