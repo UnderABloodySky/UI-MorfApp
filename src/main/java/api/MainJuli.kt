@@ -66,8 +66,9 @@ fun main() {
             post(orderController::addOrder)
             path(":code"){
                 get(orderController::getOrder)
-                //put(orderController::rateAnOrder)
+                put(orderController::rateAnOrder)
             }
+
         }
     }
 }

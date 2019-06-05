@@ -16,12 +16,15 @@ import user.Client
 import user.User
 import java.util.*
 
+data class RateData(var rating:Int)
 data class Geo(var lat:Double,var long:Double)
 data class MenusAndAmount(var menuId:Int,var ammount:Int)
 data class PaymentMethodsParameters(var type:String, var user:String?,var password:String?,
                                     var cardNumber:Int?,var cardOwnerName:String?,var cardExpirationDate:Date?,var cardCode:Int?)
 
-data class OrderData(var code:Int,var restaurant:Int,var menus: MutableList<MenusAndAmount>,var clientID:String,var paymentMethod: PaymentMethodsParameters){
+data class OrderData(var code:Int,var restaurant:Int,var menus: MutableList<MenusAndAmount>,
+                     var clientID:String,var paymentMethod: PaymentMethodsParameters){
+    var rating:RateData?=null
   }
 
 class OrderController() {
@@ -47,6 +50,19 @@ class OrderController() {
 
 
 //hacer que esta mierda tome un data y cree un order .
+    fun rateAnOrder(ctx: Context){
+        val code = ctx.pathParam("code").toInt()
+        val rate = ctx.body<RateData>()
+        val order = getOrderById(code)
+        ctx.status(HttpStatus.CREATED_201)
+        ctx.json(rateTheOrder(order,rate))
+
+        val client = morfApp.findClient(order.clientID)!!
+        var orderToUpdate = client.findOrderInCollection(order.code)
+        client.rateOrder(orderToUpdate,rate.rating)
+}
+
+
     fun addOrder(ctx: Context) {
         val order = ctx.body<OrderData>()
 
@@ -69,6 +85,13 @@ class OrderController() {
     //funciones complementarias
     //como hago , por que le pueden llegar de manera variable los parametros, tendria uqe fijarse el type que le llegar y decidir que tiene que construir. pero como le paso para ese momento el constructor.
 
+    fun rateTheOrder(newOrderData: OrderData,rate:RateData):OrderData{
+        orders.remove(newOrderData)
+
+        newOrderData.rating = rate
+        orders.add(newOrderData)
+        return newOrderData
+    }
 
     fun createPaymentMethodApropieted(parametersMethods:PaymentMethodsParameters):PaymentMethod {
         val type = parametersMethods.type
@@ -117,8 +140,11 @@ class OrderController() {
     }
 
     fun addOrderData(order:Order){
-      var paymentParameters= PaymentMethodsParameters("Cash",null,null,null,null,null,null)
-      var  orderData = OrderData(order.code,order.getRestaurant().code,this.transforToMenuAndAmount(order.getMenusAndCuantity()),order.getUser().id,paymentParameters)
+      var paymentParameters= PaymentMethodsParameters("Cash",null,null,null,
+              null,null,null)
+      var  orderData = OrderData(order.code,order.getRestaurant().code,
+                                this.transforToMenuAndAmount(order.getMenusAndCuantity()),
+                                order.getUser().id,paymentParameters)
       orders.add(orderData)
 
     }

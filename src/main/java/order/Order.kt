@@ -17,6 +17,8 @@ data class Order(val code : Int, @JsonIgnore private val user : Client,
                  private val menus : MutableList<Menu>){
     var geoLocation = user.geoLocation
     var restaurantName = restaurant.name
+    var rate:Int? = null
+
     private var date = Date()
     private var state : StateOrder = PENDING
 
@@ -27,6 +29,9 @@ data class Order(val code : Int, @JsonIgnore private val user : Client,
         restaurant.addOrder(this)
     }
 
+    fun updateRate(newRate:Int){
+        rate = newRate
+    }
     fun addMenu(_new_menu : Menu) {
         if(!canProcessOrder(_new_menu)) {
             throw NoValidateOrderException("")
