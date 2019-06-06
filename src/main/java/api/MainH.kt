@@ -102,7 +102,7 @@ fun main() {
             get(controller::getAllUsers)
             path(":id") {
                 get(controller::findUser)
-                //put(controller::updateUser)
+                put(controller::updateUser)
                 delete(controller::deleteUser)
             }
             path("email") {
@@ -111,10 +111,10 @@ fun main() {
                 }
             }
             path("register_form") {
-                post(controller::addUser)
+                post(controller::addUserByForm)
             }
             path("register") {
-                post(controller::addUser2)
+                post(controller::addUser)
             }
         }
     }
