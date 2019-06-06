@@ -53,7 +53,7 @@ class Client (code :Int,  name: String, id: String, var address: String,
 
     fun findOrderInCollection(updatedOrder:Int):Order {
 
-     return  historicOrders.findLast { order -> order.code == updatedOrder }!!
+     return  historicOrders.firstOrNull { order -> order.code == updatedOrder }!!
     }
 
     fun rateOrder(updatedOrder:Order,rate:Int){

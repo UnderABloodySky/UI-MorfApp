@@ -52,6 +52,7 @@ fun main() {
 
     orderP.addMenu(menu0)
 
+    orderP.delivered()
 
     val orderController = OrderController()
       orderController.addOrderData(orderP)

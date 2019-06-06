@@ -24,8 +24,8 @@ data class PaymentMethodsParameters(var type:String, var user:String?,var passwo
 
 data class OrderData(var code:Int,var restaurant:Int,var menus: MutableList<MenusAndAmount>,
                      var clientID:String,var paymentMethod: PaymentMethodsParameters){
-    var rating:RateData?=null
-  }
+    var ratingData:RateData= RateData(0)
+}
 
 class OrderController() {
     private var orders = mutableListOf<OrderData>()
@@ -54,12 +54,13 @@ class OrderController() {
         val code = ctx.pathParam("code").toInt()
         val rate = ctx.body<RateData>()
         val order = getOrderById(code)
-        ctx.status(HttpStatus.CREATED_201)
-        ctx.json(rateTheOrder(order,rate))
 
         val client = morfApp.findClient(order.clientID)!!
         var orderToUpdate = client.findOrderInCollection(order.code)
         client.rateOrder(orderToUpdate,rate.rating)
+        ctx.status(HttpStatus.CREATED_201)
+        ctx.json(rateTheOrder(order,rate))
+
 }
 
 
@@ -88,7 +89,7 @@ class OrderController() {
     fun rateTheOrder(newOrderData: OrderData,rate:RateData):OrderData{
         orders.remove(newOrderData)
 
-        newOrderData.rating = rate
+        newOrderData.ratingData = rate
         orders.add(newOrderData)
         return newOrderData
     }

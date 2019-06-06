@@ -17,7 +17,7 @@ data class Order(val code : Int, @JsonIgnore private val user : Client,
                  private val menus : MutableList<Menu>){
     var geoLocation = user.geoLocation
     var restaurantName = restaurant.name
-    var rate:Int? = null
+    var rate:Int = 0
 
     private var date = Date()
     private var state : StateOrder = PENDING
