@@ -50,4 +50,15 @@ class Client (code :Int,  name: String, id: String, var address: String,
     fun removePendingOrder(aOrder : Order){
         pendingOrders.remove(aOrder)
     }
-}
+
+    fun findOrderInCollection(updatedOrder:Int):Order {
+
+     return  historicOrders.findLast { order -> order.code == updatedOrder }!!
+    }
+
+    fun rateOrder(updatedOrder:Order,rate:Int){
+        var order:Order
+        order  = this.findOrderInCollection(updatedOrder.code)
+        order.updateRate(rate)
+        }
+    }

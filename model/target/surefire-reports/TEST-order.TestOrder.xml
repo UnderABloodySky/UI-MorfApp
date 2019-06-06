@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="21" failures="0" name="order.TestOrder" time="0.011" errors="0" skipped="0">
+<testsuite tests="21" failures="0" name="order.TestOrder" time="0.01" errors="0" skipped="0">
   <properties>
     <property name="jna.platform.library.path" value="/usr/lib/i386-linux-gnu:/lib/i386-linux-gnu:/usr/lib:/lib:/usr/lib/i386-linux-gnu/i686/sse2:/usr/lib/i386-linux-gnu/sse2:/usr/lib/i386-linux-gnu/libfakeroot"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -27,37 +27,36 @@
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Linux"/>
-    <property name="classworlds.conf" value="/usr/share/maven/bin/m2.conf"/>
+    <property name="classworlds.conf" value="/home/chesire/Escritorio/ideaIU-2019.1.1/idea-IU-191.6707.61/plugins/maven/lib/maven3/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="jnidispatch.path" value="/tmp/jna-742789033/jna5025310450841855118.tmp"/>
+    <property name="jnidispatch.path" value="/tmp/jna-742789033/jna9055652900960515094.tmp"/>
     <property name="java.library.path" value="/usr/java/packages/lib/i386:/usr/lib/i386-linux-gnu/jni:/lib/i386-linux-gnu:/usr/lib/i386-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
-    <property name="maven.conf" value="/usr/share/maven/conf"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot Tiered Compilers"/>
     <property name="os.version" value="4.15.0-50-generic"/>
-    <property name="library.jansi.path" value="/usr/share/maven/lib/jansi-native"/>
     <property name="user.home" value="/home/chesire"/>
     <property name="user.timezone" value="America/Argentina/Buenos_Aires"/>
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="user.name" value="chesire"/>
-    <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
+    <property name="java.class.path" value="/home/chesire/Escritorio/ideaIU-2019.1.1/idea-IU-191.6707.61/plugins/maven/lib/maven3/boot/plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="32"/>
     <property name="java.home" value="/usr/lib/jvm/java-8-openjdk-i386/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher install"/>
+    <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version2019.1.1 install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="es"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
+    <property name="idea.version2019.1.1" value="true"/>
     <property name="java.version" value="1.8.0_212"/>
     <property name="java.ext.dirs" value="/usr/lib/jvm/java-8-openjdk-i386/jre/lib/ext:/usr/java/packages/lib/ext"/>
     <property name="securerandom.source" value="file:/dev/./urandom"/>
     <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-openjdk-i386/jre/lib/resources.jar:/usr/lib/jvm/java-8-openjdk-i386/jre/lib/rt.jar:/usr/lib/jvm/java-8-openjdk-i386/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-openjdk-i386/jre/lib/jsse.jar:/usr/lib/jvm/java-8-openjdk-i386/jre/lib/jce.jar:/usr/lib/jvm/java-8-openjdk-i386/jre/lib/charsets.jar:/usr/lib/jvm/java-8-openjdk-i386/jre/lib/jfr.jar:/usr/lib/jvm/java-8-openjdk-i386/jre/classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="/usr/share/maven"/>
+    <property name="maven.home" value="/home/chesire/Escritorio/ideaIU-2019.1.1/idea-IU-191.6707.61/plugins/maven/lib/maven3"/>
     <property name="file.separator" value="/"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -65,23 +64,23 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="order.TestOrder" name="test17_thePriceOfTheOrderModifiedByTheMenusThatComposeIt" time="0.005"/>
+  <testcase classname="order.TestOrder" name="test17_thePriceOfTheOrderModifiedByTheMenusThatComposeIt" time="0.008"/>
   <testcase classname="order.TestOrder" name="test11_theOrderCanBeModificatedWhenItsStateIsDelivered" time="0"/>
   <testcase classname="order.TestOrder" name="test13_thePriceOfTheOrderWithoutMenusIsZero" time="0"/>
   <testcase classname="order.TestOrder" name="test02_thePaymentMethodOfTheOrderIsPending" time="0"/>
   <testcase classname="order.TestOrder" name="test09_theOrderCanBeModificatedWhenItsStateIsCancelled" time="0"/>
-  <testcase classname="order.TestOrder" name="test04_thePaymentMethodOfOfTheOrderIsTheOneIndicated" time="0.001"/>
+  <testcase classname="order.TestOrder" name="test04_thePaymentMethodOfOfTheOrderIsTheOneIndicated" time="0"/>
   <testcase classname="order.TestOrder" name="test18_theStateOfTheOrderIsDelivered" time="0"/>
   <testcase classname="order.TestOrder" name="test14_thePriceOfTheOrderIsThePriceOfItsOnlyMenu" time="0"/>
-  <testcase classname="order.TestOrder" name="test06_addMenuAddsMenusInTheOrdersCollection" time="0.001"/>
+  <testcase classname="order.TestOrder" name="test06_addMenuAddsMenusInTheOrdersCollection" time="0"/>
   <testcase classname="order.TestOrder" name="test15_thePriceOfTheOrderIsTheSumOfThePricesThatComposeIt" time="0"/>
-  <testcase classname="order.TestOrder" name="test05_theMenusAreTheIndicated" time="0.001"/>
+  <testcase classname="order.TestOrder" name="test05_theMenusAreTheIndicated" time="0"/>
   <testcase classname="order.TestOrder" name="test10_theOrderCanBeModificatedWhenItsStateIsOnMyWay" time="0"/>
-  <testcase classname="order.TestOrder" name="test21_theStateOfTheOrderIsDeliveredCancelled" time="0.001"/>
+  <testcase classname="order.TestOrder" name="test21_theStateOfTheOrderIsDeliveredCancelled" time="0.002"/>
   <testcase classname="order.TestOrder" name="test16_theOrderCanChangeItsPaymentMethod" time="0"/>
-  <testcase classname="order.TestOrder" name="test01_theCustomerWhoMadeTheOrderIsTheOneIndicated" time="0.001"/>
+  <testcase classname="order.TestOrder" name="test01_theCustomerWhoMadeTheOrderIsTheOneIndicated" time="0"/>
   <testcase classname="order.TestOrder" name="test19_theStateOfTheOrderIsDeliveredPending" time="0"/>
-  <testcase classname="order.TestOrder" name="test03_theRestaurantOfTheOrderIsTheOneIndicated" time="0.001"/>
+  <testcase classname="order.TestOrder" name="test03_theRestaurantOfTheOrderIsTheOneIndicated" time="0"/>
   <testcase classname="order.TestOrder" name="test08_theModificationOfThePaymentMenthodOfTheOrderDependOfItsState" time="0"/>
   <testcase classname="order.TestOrder" name="test20_theStateOfTheOrderIsDeliveredOnMyWay" time="0"/>
   <testcase classname="order.TestOrder" name="test07_removeMenuRemovesMenusInTheOrdersCollection" time="0"/>

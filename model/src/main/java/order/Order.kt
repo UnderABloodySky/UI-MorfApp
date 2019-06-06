@@ -16,6 +16,8 @@ data class Order(val code : Int, @JsonIgnore private val user : Client,
                  private val menus : MutableList<Menu>){
     var geoLocation = user.geoLocation
     var restaurantName = restaurant.name
+    var rate:Int? = null
+
     private var date = Date()
     private var state : StateOrder = PENDING
 
@@ -26,6 +28,9 @@ data class Order(val code : Int, @JsonIgnore private val user : Client,
         restaurant.addOrder(this)
     }
 
+    fun updateRate(newRate:Int){
+        rate = newRate
+    }
     fun addMenu(_new_menu : Menu) {
         if(!canProcessOrder(_new_menu)) {
             throw NoValidateOrderException("")
@@ -81,12 +86,23 @@ data class Order(val code : Int, @JsonIgnore private val user : Client,
 
     fun getMenu() : MutableList<Menu> = menus
 
- 
-    fun appearencesOfId(id:Int, list:MutableSet<Int>):Int{
+    fun getMenusAndCuantity():MutableMap<Int,Int> {
+
+        var ids = mutableSetOf<Int>()
+
+        menus.forEach { menu-> ids.add(menu.code)  }
+        var finalList = mutableMapOf<Int,Int>()
+        ids.forEach{id->
+                        finalList.put(id,(this.appearencesOfId(id,menus)))
+                }
+        return finalList
+    }
+
+    fun appearencesOfId(id:Int, list:MutableList<Menu>):Int{
         var  quantity =0
-        list.forEach { it-> if (it==id){
+        list.forEach { menu-> if (menu.code==id){
             quantity++
-        }
+           }
         }
         return quantity;
     }

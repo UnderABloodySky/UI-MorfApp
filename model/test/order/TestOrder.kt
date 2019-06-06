@@ -159,7 +159,7 @@ class TestOrder {
 
     @Test
     fun test16_theOrderCanChangeItsPaymentMethod(){
-        var mercadoPago : PaymentMethod = MercadoPago()
+        var mercadoPago = MercadoPago("", "")
         order.setPaymentMethod(mercadoPago)
         Assert.assertEquals(mercadoPago, order.getPaymentMethod())
     }

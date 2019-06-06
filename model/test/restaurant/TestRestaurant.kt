@@ -16,6 +16,7 @@ import productAndMenu.Menu
 import productAndMenu.Product
 import searcher.CriteriaByString
 import user.Supervisor
+import java.util.*
 
 class TestRestaurant {
     private var geoLocation1 = Geo(1.2, 2.2)
@@ -88,7 +89,7 @@ class TestRestaurant {
     @Test
     fun supervisorCanAddAndPaymentMethodsInTheRestaurant() {
         val newSupervisor = newRestaurant.supervisor
-        val debit = Debit()
+        val debit = Debit("", 1, 1, Date())
         newSupervisor.addPaymentMethod(debit)
         Assert.assertTrue(newRestaurant.availablePaymentMethods.contains(cash))
         Assert.assertTrue(newRestaurant.availablePaymentMethods.contains(debit))
@@ -239,7 +240,7 @@ class TestRestaurant {
     fun restaurantCanAddANewPaymentMethod(){
         newRestaurant.removePaymentMethod(cash)
         Assert.assertTrue(newRestaurant.availablePaymentMethods.isEmpty())
-        newRestaurant.addPaymentMethod(Debit())
+        newRestaurant.addPaymentMethod(Debit("", 123, 1, Date()))
         Assert.assertFalse(newRestaurant.availablePaymentMethods.isEmpty())
     }
 
@@ -247,7 +248,7 @@ class TestRestaurant {
     fun restaurantCanRemoveANewPaymentMethod(){
         newRestaurant.removePaymentMethod(cash)
         Assert.assertTrue(newRestaurant.availablePaymentMethods.isEmpty())
-        val debit : PaymentMethod = Debit()
+        val debit : PaymentMethod = Debit("", 123, 1, Date())
         newRestaurant.addPaymentMethod(debit)
         Assert.assertFalse(newRestaurant.availablePaymentMethods.isEmpty())
         newRestaurant.removePaymentMethod(debit)
@@ -289,7 +290,7 @@ class TestRestaurant {
 
     @Test
     fun restaurantWithoutEnabledMenusReturnAEmptyCollection(){
-        val list : MutableMap<Int, Menu> = newRestaurant.menusAvailable() as MutableMap<Int,Menu>
+        val list = newRestaurant.menusAvailable() as MutableMap<Int,Menu>
         Assert.assertTrue(list.isEmpty())
     }
 
