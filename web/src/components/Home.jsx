@@ -33,16 +33,8 @@ export default class Home extends React.Component {
     <div>
         <div className="banner">
             <div className="container">
-                <div className="logo">
-                    <div className="ribbon">        
-                        
-                        <div className="ribbon-fold"><h1><a href="index.html">:MorfApp:</a></h1></div>
-
-                    </div>
-                </div>
                 <Navbar />
-                <SignUp />
-                {/* <Body /> */}
+                <Body />
                 <Footer />
             </div>
         </div>
