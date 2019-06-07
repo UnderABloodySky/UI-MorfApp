@@ -1,6 +1,6 @@
 import React from 'react';
 
-//import './css/Navbar.css';
+import '../css/Footer.css';
 
 export default () =>  (
   
@@ -47,6 +47,3 @@ export default () =>  (
             </div>
           </div></div>
       );
-    }
-  });
-);

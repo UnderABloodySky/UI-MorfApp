@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-import Navbar from './homeContainer/Navbar';
+import Navbar from './homeComponents/Navbar';
 import SignUp from './SignUp';
-import Body from './homeContainer/Body';
-import Footer from './homeContainer/Footer';
+import Body from './homeComponents/Body';
+import Footer from './homeComponents/Footer';
 
 import { getTodos } from '../api/api';
 
