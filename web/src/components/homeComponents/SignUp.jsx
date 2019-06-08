@@ -7,6 +7,7 @@ import { signUp } from '../../api/api';
 export default class SignUp extends React.Component {
   constructor(props) {
     super(props);
+    this.myRef=null
     this.state = {
       username: '',
       password: '',
@@ -39,7 +40,8 @@ export default class SignUp extends React.Component {
     };
     signUp(body)
       .then(userId => this.props.history.push('/home', { userId }))
-      .catch(() => this.setState({ error: 'Usuario ya utilizado' }));
+      .catch(() => this.setState({ error: 'Usuario ya utilizado' }));  
+      this.scrollToMyRef();
   }
 
   renderInput(label, value, inputType, onChange) {
@@ -52,14 +54,21 @@ export default class SignUp extends React.Component {
       </div>
     );
   }
+  scrollToMyRef = () => {   //run this method to execute scrolling. 
+    window.scrollTo({
+        top:this.myRef.offsetTop, 
+        behavior: "smooth"   //Optional, adds animation
+    })
+}
 
   render() {
     return (
-      <div className="containerSign">
+      <div className="container">
         <div className="row centerRow">
           <div className="col-3" />
           <div className="col-6 card newCard">
             <div className="card-body">
+            <div ref={ (ref) => this.myRef=ref }></div>
               {this.renderInput('Usuario', this.state.username, 'text', this.changeUsername)}
               {this.renderInput('Contraseña', this.state.password, 'password', this.changePassword)}
               {this.renderInput('ImageLink', this.state.imageLink, 'text', this.changeImageLink)}
