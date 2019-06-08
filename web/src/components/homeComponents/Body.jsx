@@ -1,8 +1,20 @@
 import React from 'react';
 
 import '../css/Body.css';
+import SignUp from './SignUp';
 
-export default () =>  (
+export default class Body extends React.Component {
+  state = { render: false }
+    constructor(props) {
+    super(props)
+    }
+
+register = () => {
+  this.setState({render : !this.state.render})
+}
+
+render() {
+  return (
     <div>
         <div className="banner">
           <div className="banner-info">
@@ -23,7 +35,9 @@ export default () =>  (
             <div className="banner-text">
               <h3>Comida a un click!</h3>
               <p>Promociones diarias &amp; mas</p>
-              <a href="#" className="btn btn-1 btn-1b">Registrate</a>
+              <a href="#" className="btn btn-1 btn-1b" onClick={() => this.register()}>Registrate</a>
+              { this.state.render &&
+              <SignUp/>}
             </div>
             {/*welcome*/}
             <div className="welcome">
@@ -53,3 +67,6 @@ export default () =>  (
         </div>
       </div>
     );
+
+  }
+}

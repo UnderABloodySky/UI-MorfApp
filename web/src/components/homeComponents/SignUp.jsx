@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// import './css/SignUp.css';
-import { signUp } from '../api/api';
+import '../css/SignIn.css';
+import { signUp } from '../../api/api';
 
 export default class SignUp extends React.Component {
   constructor(props) {
@@ -55,13 +55,13 @@ export default class SignUp extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="containerSign">
         <div className="row centerRow">
           <div className="col-3" />
           <div className="col-6 card newCard">
             <div className="card-body">
-              {this.renderInput('Username', this.state.username, 'text', this.changeUsername)}
-              {this.renderInput('Password', this.state.password, 'password', this.changePassword)}
+              {this.renderInput('Usuario', this.state.username, 'text', this.changeUsername)}
+              {this.renderInput('Contraseña', this.state.password, 'password', this.changePassword)}
               {this.renderInput('ImageLink', this.state.imageLink, 'text', this.changeImageLink)}
               <div className="col-12">
                 <button type="button" className="btn btn-primary btn-block" onClick={this.executeSignUp}>Registrarse</button>

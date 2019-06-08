@@ -1,0 +1,27 @@
+.containerSign{
+  width: auto;
+  padding: 0% 0%;
+  margin: -50px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.centerRow {
+  width: 1000px;
+  padding-top: 10%;
+  padding-right: -5px;	
+}
+body {
+  background-color: whitesmoke;
+}
+
+.newCard {
+  border: 0ch;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 4px 0 rgba(0, 0, 0, 0.19);
+  
+}
+
+
+.empty {
+  height: 1.5rem;
+}
