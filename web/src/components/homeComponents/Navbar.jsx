@@ -3,7 +3,6 @@ import React from 'react';
 //import '../css/Nav.css';
 import '../css/bootstrap.css';
 import '../css/lightbox.css';
-import Restaurants from './homeComponents/Restaurants';
 import '../css/style.css';
 export default () =>  (
 
@@ -29,10 +28,8 @@ export default () =>  (
             <ul className="nav navbar-nav navbar-center cl-effect-14">
               <li><a href="index.html" className="active">Home</a></li>
               <li><a href="about.html">Somos</a></li>
-              <li><a href="gallery.html">Fotos</a></li>		
-              <li>
-              <link to="/restaurants">{Restaurants}</link>			
-              </li>
+              <li><a href="gallery.html">Fotos</a></li>					
+              <li><a href="codes.html">Restaurant</a></li>
               <li><a href="contact.html">Contacto</a></li>
             </ul>	
           </div>	
