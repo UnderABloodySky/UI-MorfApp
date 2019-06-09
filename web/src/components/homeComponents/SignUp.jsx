@@ -23,7 +23,7 @@ export default class SignUp extends React.Component {
     this.executeSignUp = this.executeSignUp.bind(this);
   }
   changeEmail(event) {
-    this.setState({ name: event.target.value });
+    this.setState({ email: event.target.value });
   }
 
   changeUsername(event) {
@@ -39,7 +39,7 @@ export default class SignUp extends React.Component {
   }
 
   changeAdress(event) {
-    this.setState({ name: event.target.value });
+    this.setState({ adress: event.target.value });
   }
 
   executeSignUp() {
@@ -89,7 +89,7 @@ export default class SignUp extends React.Component {
               {this.renderInput('Direccion', this.state.adress, 'text', this.changeAdress)}
               
               <div className="col-12">
-                <button type="button" className="btn btn-primary btn-block" onClick={(event) => {this.executeSignUp();}}>Registrarse</button>
+                <button type="button" className="btn btn-primary btn-block" onClick={this.executeSignUp}>Registrarse</button>
               </div>
               <div className="col-12">
                 <Link to="/" className="btn btn-link">Cancelar</Link>

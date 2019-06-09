@@ -6,14 +6,14 @@ import { BrowserRouter } from 'react-router-dom';
 import SignIn from './homeComponents/SignIn';
 import SignUp from './homeComponents/SignUp';
 import Home from './Home';
-import Restaurants from './homeComponents/Restaurants'
+import Restaurants from './homeComponents/Restaurants';
 
 export default class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/register" component={SignUp} />
+          <Route path="/users/register" component={SignUp} />
           <Route path="/signIn/:id" component={SignIn} />
           <Route path="/home" component={Home} />
           <Route path="/" component={Home} />

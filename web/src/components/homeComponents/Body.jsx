@@ -2,15 +2,26 @@ import React from 'react';
 
 import '../css/Body.css';
 import SignUp from './SignUp';
+import SignIn from './SignIn';
 
 export default class Body extends React.Component {
-  state = { render: false }
+  state = { renderReg: false, renderLog: false }
     constructor(props) {
     super(props)  
     }
 
 register = () => {
-  this.setState({render : !this.state.render})
+  this.setState({renderReg : !this.state.renderReg})
+  if(this.state.renderLog){
+    this.setState({renderLog : false})
+  }
+}
+
+login = () => {
+  this.setState({renderLog : !this.state.renderLog})
+  if(this.state.renderReg){
+    this.setState({renderReg : false})
+  }
 }
 
 render() {
@@ -36,8 +47,11 @@ render() {
               <h3>Comida a un click!</h3>
               <p>Promociones diarias &amp; mas</p>
               <a href="#" className="btn btn-1 btn-1b" onClick={() => this.register()}>Registrate</a>
-              { this.state.render &&
+              <a href="#" className="btn btn-2 btn-2b" onClick={() => this.login()}>Loguearse</a>
+              { this.state.renderReg &&
               <SignUp/>}
+              { this.state.renderLog &&
+              <SignIn/>}
             </div>
             {/*welcome*/}
             <div className="welcome">

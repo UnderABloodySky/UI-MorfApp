@@ -8,7 +8,7 @@ export default class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: props.match.params.id || '',
+      username: '',
       password: '',
       error: '',
     };
@@ -55,7 +55,7 @@ export default class SignIn extends React.Component {
                 <button type="button" className="btn btn-primary btn-block" onClick={this.executeSignIn}>Ingresar</button>
               </div>
               <div className="col-12">
-                <Link to="/register" className="btn btn-link">No tenes cuenta, registrate!</Link>
+                <Link to="/" className="btn btn-link">Cancelar</Link>
               </div>
               <div className="col-12 empty">
                 {this.state.error && this.state.error}

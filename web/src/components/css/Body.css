@@ -163,6 +163,23 @@ body a:hover{
 .btn-1b:active:after {
   height: 100%;
 }
+/* Button 1C */
+
+.btn-2b:after {
+  width: 100%;
+  height: 0;
+  top: 0;
+  left: 0;
+  background: #555;
+}
+.btn-2b:hover, .btn-1b:active {
+    color: #fff;
+    z-index: 9;
+}
+.btn-2b:hover:after,
+.btn-2b:active:after {
+  height: 100%;
+}
 /*--//baner--*/
 /*--top-nav--*/ 
 nav.navbar.navbar-default {
