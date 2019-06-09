@@ -7,17 +7,23 @@ import { signUp } from '../../api/api';
 export default class SignUp extends React.Component {
   constructor(props) {
     super(props);
-    this.myRef=null
     this.state = {
+      email: '',
       username: '',
       password: '',
-      imageLink: '',
+      name: '',
+      adress: '',
       error: '',
     };
+    this.changeEmail = this.changeEmail.bind(this);
     this.changeUsername = this.changeUsername.bind(this);
     this.changePassword = this.changePassword.bind(this);
-    this.changeImageLink = this.changeImageLink.bind(this);
+    this.changeName = this.changeName.bind(this);
+    this.changeAdress = this.changeAdress.bind(this);
     this.executeSignUp = this.executeSignUp.bind(this);
+  }
+  changeEmail(event) {
+    this.setState({ name: event.target.value });
   }
 
   changeUsername(event) {
@@ -28,20 +34,25 @@ export default class SignUp extends React.Component {
     this.setState({ password: event.target.value });
   }
 
-  changeImageLink(event) {
-    this.setState({ imageLink: event.target.value });
+  changeName(event) {
+    this.setState({ name: event.target.value });
+  }
+
+  changeAdress(event) {
+    this.setState({ name: event.target.value });
   }
 
   executeSignUp() {
     const body = {
+      email: this.state.email,
       username: this.state.username,
       password: this.state.password,
-      imageLink: this.state.imageLink,
+      name: this.state.name,
+      adress: this.state.adress
     };
     signUp(body)
       .then(userId => this.props.history.push('/home', { userId }))
       .catch(() => this.setState({ error: 'Usuario ya utilizado' }));  
-      this.scrollToMyRef();
   }
 
   renderInput(label, value, inputType, onChange) {
@@ -54,26 +65,31 @@ export default class SignUp extends React.Component {
       </div>
     );
   }
-  scrollToMyRef = () => {   //run this method to execute scrolling. 
-    window.scrollTo({
-        top:this.myRef.offsetTop, 
-        behavior: "smooth"   //Optional, adds animation
-    })
-}
+
+  componentDidMount(){
+    this.nameInput.focus(); 
+  }
 
   render() {
     return (
-      <div className="container">
+      <div className="container" ref = { (ref) => this.myRef=ref }>
         <div className="row centerRow">
           <div className="col-3" />
           <div className="col-6 card newCard">
             <div className="card-body">
-            <div ref={ (ref) => this.myRef=ref }></div>
-              {this.renderInput('Usuario', this.state.username, 'text', this.changeUsername)}
+            <div className="form-group row">
+              <label className="col-sm-3 col-form-label">{"Email"}</label>
+              <div className="col-sm-9">
+                <input type='text' className="form-control" value={this.state.email} onChange={this.changeEmail} ref={(input) => { this.nameInput = input}}/>
+              </div>
+            </div>
+              {this.renderInput('Usuario', this.state.username, 'username', this.changeUsername)}
               {this.renderInput('Contraseña', this.state.password, 'password', this.changePassword)}
-              {this.renderInput('ImageLink', this.state.imageLink, 'text', this.changeImageLink)}
+              {this.renderInput('Nombre', this.state.name, 'text', this.changeName)}
+              {this.renderInput('Direccion', this.state.adress, 'text', this.changeAdress)}
+              
               <div className="col-12">
-                <button type="button" className="btn btn-primary btn-block" onClick={this.executeSignUp}>Registrarse</button>
+                <button type="button" className="btn btn-primary btn-block" onClick={(event) => {this.executeSignUp();}}>Registrarse</button>
               </div>
               <div className="col-12">
                 <Link to="/" className="btn btn-link">Cancelar</Link>
