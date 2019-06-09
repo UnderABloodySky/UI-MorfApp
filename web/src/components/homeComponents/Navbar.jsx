@@ -1,12 +1,14 @@
 import React from 'react';
 
 //import '../css/Nav.css';
-import '../css/bootstrap.css';
-import '../css/lightbox.css';
-import '../css/style.css';
+//import '../css/bootstrap.css';
+//import '../css/lightbox.css';
+//import '../css/style.css';
+
 export default () =>  (
 
-      <div className="top-nav">
+    <div className="top-nav">
+      <div className="grid-footer-container">
         <nav className="navbar navbar-default">
           <div className="navbar-header">
             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -34,6 +36,7 @@ export default () =>  (
             </ul>	
           </div>	
         </nav>		
+      </div>
       </div>
     );
   
