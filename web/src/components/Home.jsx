@@ -36,7 +36,7 @@ export default class Home extends React.Component {
                 <Navbar />
                 <Body />
                 <Footer />
-                <Restaurants />
+                
             </div>
         </div>
         
