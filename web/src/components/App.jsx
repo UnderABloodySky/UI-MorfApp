@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import SignIn from './homeComponents/SignIn';
 import SignUp from './homeComponents/SignUp';
 import Home from './Home';
+import Restaurants from './homeComponents/Restaurants'
 
 export default class App extends React.Component {
   render() {
@@ -16,6 +17,7 @@ export default class App extends React.Component {
           <Route path="/signIn/:id" component={SignIn} />
           <Route path="/home" component={Home} />
           <Route path="/" component={Home} />
+          <Route path="/restaurants" component={Restaurants} />
         </Switch>
       </BrowserRouter>
     );

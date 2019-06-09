@@ -6,6 +6,7 @@ import Body from './homeComponents/Body';
 import Footer from './homeComponents/Footer';
 
 import { getTodos } from '../api/api';
+import Restaurants from './homeComponents/Restaurants';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ export default class Home extends React.Component {
                 <Navbar />
                 <Body />
                 <Footer />
+                <Restaurants />
             </div>
         </div>
         
