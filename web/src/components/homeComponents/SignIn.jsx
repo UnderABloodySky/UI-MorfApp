@@ -8,7 +8,7 @@ export default class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      id: '',
       password: '',
       error: '',
     };
@@ -18,7 +18,7 @@ export default class SignIn extends React.Component {
   }
 
   changeUsername(event) {
-    this.setState({ username: event.target.value });
+    this.setState({ id: event.target.value });
   }
 
   changePassword(event) {
@@ -26,10 +26,12 @@ export default class SignIn extends React.Component {
   }
 
   executeSignIn() {
-    signIn({ username: this.state.username, password: this.state.password })
-      .then(userId => this.props.history.push('/home', { userId }))
+    signIn({ id: this.state.id, password: this.state.password })
+      //.then(userId => this.props.history.push('/home', { userId }))
       .catch(() => this.setState({ error: 'Usuario o contraseña incorrecta' }));
   }
+
+  
 
   renderInput(label, value, inputType, onChange) {
     return (
@@ -49,8 +51,8 @@ export default class SignIn extends React.Component {
           <div className="col-3" />
           <div className="col-6 card newCard">
             <div className="card-body">
-              {this.renderInput('Username', this.state.username, 'text', this.changeUsername)}
-              {this.renderInput('Password', this.state.password, 'password', this.changePassword)}
+              {this.renderInput('Usuario', this.state.id, 'text', this.changeUsername)}
+              {this.renderInput('Contraseña', this.state.password, 'password', this.changePassword)}
               <div className="col-12">
                 <button type="button" className="btn btn-primary btn-block" onClick={this.executeSignIn}>Ingresar</button>
               </div>

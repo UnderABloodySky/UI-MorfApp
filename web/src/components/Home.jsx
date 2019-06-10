@@ -6,25 +6,32 @@ import Body from './homeComponents/Body';
 import Footer from './homeComponents/Footer';
 
 import { getTodos } from '../api/api';
+import { getRestaurant } from '../api/api';
 
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {
-        id: '',
-        imageLink: '',
-        username: '',
-        todos: [],
+      restaurant: {
+        code: 0,
+        name: '',
+        description: '',
+        direcction: '',
+        geoLocation: '',
+        menus: []        
       },
-      error: '',
+      error: ''
     };
   }
 
   componentDidMount() {
-     getTodos(this.props.location.state.userId)
-       .then(user => this.setState({ user }))
-       .catch(() => this.setState({ error: '??' }));
+    getRestaurant()
+    .then(restaurant => this.setState({ restaurant: restaurant }))
+    .catch(() => this.setState({ error: '??' }));
+  }
+
+  componentDidUpdate() {
+    console.log(this.state.restaurant);
   }
 
   render() {

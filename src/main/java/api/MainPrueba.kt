@@ -21,7 +21,7 @@ fun main() {
                         "message" to e.message
                 ))
             }
-            .start(8000)
+            .start(7000)
     app.get("/") { ctx -> ctx.json(mapOf("message" to " Welcome to MorfApp ~ Online ")) }
 
     val morfApp = MorfApp
