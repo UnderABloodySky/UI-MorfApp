@@ -27,7 +27,7 @@ export default class SignIn extends React.Component {
 
   executeSignIn() {
     signIn({ id: this.state.id, password: this.state.password })
-      //.then(userId => this.props.history.push('/home', { userId }))
+      .then(() => this.setState({ error: 'Usuario o contraseña correcta!!!' }))
       .catch(() => this.setState({ error: 'Usuario o contraseña incorrecta' }));
   }
 

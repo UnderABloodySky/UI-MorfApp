@@ -15,7 +15,7 @@ export default class App extends React.Component {
         <Switch>
           <Route path="/users/register" component={SignUp} />
           <Route path="/signIn/:id" component={SignIn} />
-          <Route path="/home" component={Home this.location="Pepe"} />
+          <Route path="/home" component={Home} />
           <Route path="/" component={Home} />
           <Route path="/restaurants" component={Restaurants} />
         </Switch>

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.exc.MismatchedInputException
 import geoclase.Geo
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
+import io.javalin.core.util.Header
 import org.eclipse.jetty.http.HttpStatus.BAD_REQUEST_400
 import paymentMethod.*
 import productAndMenu.Category
@@ -13,6 +14,7 @@ import java.util.*
 
 fun main() {
     val app = Javalin.create()
+            .enableCorsForAllOrigins()
             .enableRouteOverview("/routes")
             .exception(MismatchedInputException::class.java) { e, ctx ->
                 ctx.status(BAD_REQUEST_400)
@@ -23,6 +25,7 @@ fun main() {
             }
             .start(7000)
     app.get("/") { ctx -> ctx.json(mapOf("message" to " Welcome to MorfApp ~ Online ")) }
+
 
     val morfApp = MorfApp
     //Ubicacion usuarios
