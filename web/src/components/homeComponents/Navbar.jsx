@@ -4,8 +4,19 @@ import React from 'react';
 import '../css/bootstrap.css';
 //import '../css/lightbox.css';
 //import '../css/style.css';
+import '../homeComponents/Restaurants';
+import Restaurants from '../homeComponents/Restaurants';
 
-export default () =>  (
+
+export default class Navbar extends React.Component {
+
+
+  onClick = () => {
+    console.log('aprete restaurant');
+}
+
+render() {
+  return (
     <div className="top-nav">
       <div className="grid-nav-container">
         <nav className="navbar navbar-default">
@@ -29,8 +40,11 @@ export default () =>  (
             <ul className="nav navbar-nav navbar-center cl-effect-14">
               <li><a href="index.html" className="active">Home</a></li>
               <li><a href="about.html">Somos</a></li>
-              <li><a href="gallery.html">Fotos</a></li>					
-              <li><a href="codes.html">Restaurant</a></li>
+              <li><a href="gallery.html">Fotos</a></li>		
+              <li>
+                <a href="#" className="btn btn-1 btn-1b" onClick={this.onClick}> Restaurants</a>
+              
+              </li>
               <li><a href="contact.html">Contacto</a></li>
             </ul>	
           </div>	
@@ -38,4 +52,5 @@ export default () =>  (
       </div>
       </div>
     );
-  
+  }
+}

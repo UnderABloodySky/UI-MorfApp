@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/Restaurant.css';
 import SignUp from './SignUp';
+import RestaurantSearcher from './RestaurantSearcher';
 
 export default class Restaurants extends React.Component {
   state = { render: false }
@@ -15,16 +16,18 @@ register = () => {
 render() {
   return (
     <div>
-        <div className="banner">
-          <div className="banner-info">
-            <div className="container">
+        <div className="app container">
+          <div className="jumbotron">
+            <p className="lead text-center"> 
+            "Buscador de Restaurants"
+            </p>
+            <RestaurantSearcher />
               <div className="logo">
                 <div className="ribbon">
                   <div className="ribbon-fold"><h1> <a href="index.html">:MorfApp:</a></h1></div>
                 </div>
                 <h2> XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxx </h2>
               </div>			
-            </div>
           </div>
         </div>
         {/*//banner*/}
@@ -68,4 +71,5 @@ render() {
     );
 
   }
+  
 }
