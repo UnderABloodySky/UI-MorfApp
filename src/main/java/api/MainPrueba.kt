@@ -1,6 +1,7 @@
+package api
+
 import applicationModel.MorfApp
 import com.fasterxml.jackson.databind.exc.MismatchedInputException
-import controllers.UserController
 import geoclase.Geo
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
@@ -8,7 +9,6 @@ import org.eclipse.jetty.http.HttpStatus.BAD_REQUEST_400
 import paymentMethod.*
 import productAndMenu.Category
 import productAndMenu.Product
-import sun.security.jgss.GSSUtil.login
 import java.util.*
 
 fun main() {
@@ -88,7 +88,7 @@ fun main() {
     orderH1.processOrder()
     orderH1.delivered()
 
-    val controller = UserController()
+    val controller = SuperController()
     controller.addDataUser(mChaile)
     controller.addDataUser(mPais)
     controller.addDataUser(jLajcha)
@@ -101,7 +101,7 @@ fun main() {
         path("users") {
             get(controller::getAllUsers)
             path(":id") {
-                get(controller::findUser2)
+                get(controller::findUser)
                 put(controller::updateUser)
                 delete(controller::deleteUser)
             }
@@ -117,5 +117,25 @@ fun main() {
                 post(controller::addUser)
             }
         }
+        //Ver si falta una ruta que traiga todos los restaurants
+        path("restaurants"){
+            path(":code") {
+                get(controller::getAllMenus)
+            }
+        }
+        path("search"){
+            get(controller::getRestaurantsAndMenusByCriteria)
+        }
+
+        path("orders"){
+            get(controller::allOrders)
+            post(controller::addOrder)
+            path(":code"){
+                get(controller::getOrder)
+                put(controller::rateAnOrder)
+            }
+
+        }
+
     }
 }

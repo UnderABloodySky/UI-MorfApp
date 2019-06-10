@@ -22,9 +22,9 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    // getTodos(this.props.location.state.userId)
-    //   .then(user => this.setState({ user }))
-    //   .catch(() => this.setState({ error: '??' }));
+     getTodos(this.props.location.state.userId)
+       .then(user => this.setState({ user }))
+       .catch(() => this.setState({ error: '??' }));
   }
 
   render() {

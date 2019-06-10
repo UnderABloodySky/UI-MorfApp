@@ -30,18 +30,10 @@ data class DataUser(@JsonIgnore val client : Client){
     var historicOrders = mutableListOf<DataOrder>()
 }
 
-data class MiddleUser(@JsonIgnore val aDataUser : DataUser){
-    val code = aDataUser.code
-    val id = aDataUser.id
-    val name = aDataUser.id
-    var address = aDataUser.address
-    var geoLocation = aDataUser.geoLocation
-    val email = aDataUser.email
-}
+data class MiddleUser(val code : Int, val id : String, val name : String, val address : String, val geoLocation: Geo, val email : String)
 
 
-class UserControllerContext {
-
+class UserController {
    private val users = HashMap<String, DataUser>()
    private val morfApp = MorfApp
 
@@ -66,30 +58,15 @@ class UserControllerContext {
             ctx.json(getUserById(id))
         }
 
-        //Aca:
-        private fun middleUser(ctx : Context){
-            val dataUser = reallyUser(ctx)
-            val newPseudoUser = MiddleUser(dataUser)
-            ctx.json(newPseudoUser)
-        }
-
-        private fun reallyUser(ctx: Context) : DataUser{
+        fun findUser2(ctx: Context) {
             val id = ctx.pathParam("id")
             val dataUser = getUserById(id)
-            ctx.json(dataUser)
-            return dataUser
-        }
-
-        fun findUser2(ctx: Context) {
-            val id = ctx.queryParam(":id")
             val plus = ctx.queryParam("include")
-            if(!(id == null)){
-                   if(plus == null){
-                        middleUser(ctx)
-                   }
-                   else{
-                       reallyUser(ctx)
-                   }
+            if(plus == "orders") {
+                ctx.json(dataUser)
+            }
+            else{
+                ctx.json(MiddleUser(dataUser.code, id, dataUser.name, dataUser.address, dataUser.geoLocation, dataUser.email))
             }
         }
 
@@ -101,7 +78,13 @@ class UserControllerContext {
        fun addUser(ctx: Context){
             val user = ctx.body<PseudoUser>()
             val id = user.id
-            validate(id)
+            try{
+                validate(id)
+            }
+            catch(e : UserNameInUseException) {
+                throw NotFoundResponse(e.message as String)
+            }
+
             val name = user.name
             val address = user.address
             val pass = user.password
@@ -112,7 +95,7 @@ class UserControllerContext {
             ctx.json(addDataUser(newUser))
         }
 
-        fun validate(id : String){
+        private fun validate(id : String){
             if(!isCorrectId(id)){
                 throw UserNameInUseException("El nombre de usuario ya esta en uso")
             }
