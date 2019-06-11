@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 // import './css/SignIn.css';
 import { signIn } from '../../api/api';
+import { Redirect } from 'react-router-dom'
 
 export default class SignIn extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class SignIn extends React.Component {
       id: '',
       password: '',
       error: '',
+      toOrders: false
     };
     this.changeUsername = this.changeUsername.bind(this);
     this.changePassword = this.changePassword.bind(this);
@@ -27,11 +29,9 @@ export default class SignIn extends React.Component {
 
   executeSignIn() {
     signIn({ id: this.state.id, password: this.state.password })
-      .then(() => this.setState({ error: 'Usuario o contraseña correcta!!!' }))
+      .then(() => this.setState({ toOrders: true }))
       .catch(() => this.setState({ error: 'Usuario o contraseña incorrecta' }));
   }
-
-  
 
   renderInput(label, value, inputType, onChange) {
     return (
@@ -45,6 +45,9 @@ export default class SignIn extends React.Component {
   }
 
   render() {
+    if (this.state.toOrders){
+      return <Redirect to='/orders'/>
+    }
     return (
       <div className="container">
         <div className="row centerRow">

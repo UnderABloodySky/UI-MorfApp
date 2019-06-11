@@ -5,7 +5,6 @@ import SignUp from './homeComponents/SignUp';
 import Body from './homeComponents/Body';
 import Footer from './homeComponents/Footer';
 
-import { getTodos } from '../api/api';
 import { getRestaurant } from '../api/api';
 
 export default class Home extends React.Component {
