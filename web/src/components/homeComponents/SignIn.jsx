@@ -46,7 +46,9 @@ export default class SignIn extends React.Component {
 
   render() {
     if (this.state.toOrders){
-      return <Redirect to='/orders'/>
+      return <Redirect to={{
+        pathname: '/orders',
+        state: { id: this.state.id, password: this.state.password } }}/>
     }
     return (
       <div className="container">
@@ -60,7 +62,7 @@ export default class SignIn extends React.Component {
                 <button type="button" className="btn btn-primary btn-block" onClick={this.executeSignIn}>Ingresar</button>
               </div>
               <div className="col-12">
-                <Link to="/" className="btn btn-link">Cancelar</Link>
+                <Link to="/orders" className="btn btn-link" >Cancelar</Link>
               </div>
               <div className="col-12 empty">
                 {this.state.error && this.state.error}

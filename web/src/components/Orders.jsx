@@ -1,45 +1,32 @@
 import React from 'react';
 
-import Navbar from './homeComponents/Navbar';
+import { Redirect } from 'react-router-dom'
 
 export default class Orders extends React.Component {
     constructor(props) {
-      super(props);
+        super(props);
+        this.state = {
+          id: '',
+          pendingOrders: [],
+          finishedOrders: []
+        };
+        if (this.props.location.state != undefined){
+          this.state.id = this.props.location.state.id;  //Chequeo que haya venido una props
+        }
+      }
 
-      this.state = {
-        error: '',
-      };
-    }
     componentDidMount(){
-
+      //pegarle a la API
     }
 
-      render() {
-        const list = ['a', 'b', 'c'];
-        return (
-        <div className="container" >
-        <div className="row centerRow">
-          <div className="col-3" />
-          <div className="col-6 card newCard">
-            <div className="card-body">
-            <div className="form-group row">
-              <label className="col-sm-3 col-form-label">{"Ordenes Pendientes"}</label>
-              <div className="col-sm-9"> </div>
-                <ul>
-                    {list.map(item => {
-                    return <li key={item}>{item}</li>;
-                    })}
-                </ul>
-              );
-            </div>              
-              <div className="col-12 empty">
-                {this.state.error && this.state.error}
-              </div>
+    render() {
+      if (this.state.id === ''){
+        return <Redirect to={'/'}/> //Caso que se entre directamente a /orders
+      }
+        return(
+            <div>
+                <div>{this.state.id} LOGUEADO</div>  
             </div>
-          </div>
-        </div>
-      </div>
         );
       }
-    
 }
