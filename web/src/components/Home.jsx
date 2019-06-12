@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Navbar from './homeComponents/Navbar';
-import SignUp from './homeComponents/SignUp';
 import Body from './homeComponents/Body';
 import Footer from './homeComponents/Footer';
 
@@ -21,16 +20,6 @@ export default class Home extends React.Component {
       },
       error: ''
     };
-  }
-
-  componentDidMount() {
-    getRestaurant()
-    .then(restaurant => this.setState({ restaurant: restaurant }))
-    .catch(() => this.setState({ error: '??' }));
-  }
-
-  componentDidUpdate() {
-    console.log(this.state.restaurant);
   }
 
   render() {

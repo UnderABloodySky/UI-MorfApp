@@ -72,7 +72,7 @@ export default class SignUp extends React.Component {
 
   render() {
     return (
-      <div className="container" ref = { (ref) => this.myRef=ref }>
+      <div className="container" >
         <div className="row centerRow">
           <div className="col-3" />
           <div className="col-6 card newCard">
@@ -92,7 +92,7 @@ export default class SignUp extends React.Component {
                 <button type="button" className="btn btn-primary btn-block" onClick={this.executeSignUp}>Registrarse</button>
               </div>
               <div className="col-12">
-                <Link to="/" className="btn btn-link">Cancelar</Link>
+              <Link to="/home" className="btn btn-link" >Cancelar</Link>
               </div>
               <div className="col-12 empty">
                 {this.state.error && this.state.error}

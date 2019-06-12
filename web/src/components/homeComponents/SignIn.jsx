@@ -51,7 +51,7 @@ export default class SignIn extends React.Component {
         state: { id: this.state.id, password: this.state.password } }}/>
     }
     return (
-      <div className="container">
+      <div className="container" >
         <div className="row centerRow">
           <div className="col-3" />
           <div className="col-6 card newCard">
@@ -62,7 +62,7 @@ export default class SignIn extends React.Component {
                 <button type="button" className="btn btn-primary btn-block" onClick={this.executeSignIn}>Ingresar</button>
               </div>
               <div className="col-12">
-                <Link to="/orders" className="btn btn-link" >Cancelar</Link>
+                <Link to="/" className="btn btn-link" >Cancelar</Link>
               </div>
               <div className="col-12 empty">
                 {this.state.error && this.state.error}

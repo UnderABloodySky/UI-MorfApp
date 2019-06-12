@@ -8,13 +8,14 @@ export default class Body extends React.Component {
   state = { renderReg: false, renderLog: false }
     constructor(props) {
     super(props)  
-    }
+    }  
 
 register = () => {
   this.setState({renderReg : !this.state.renderReg})
   if(this.state.renderLog){
     this.setState({renderLog : false})
   }
+
 }
 
 login = () => {
@@ -74,7 +75,7 @@ render() {
                     <div className="clearfix"> </div>
                 </div>
               </div>
-              <p>Recuerde ordenar una de nuestras pizzas especiales. Pizza pero pizza pizza!!! </p>			
+              <p>LA LA LA LA LA LA LA LA LA LA LA LA LA LA LA LA LA LA LA LA </p>			
             </div>
             {/*//welcome*/}
           </div>
