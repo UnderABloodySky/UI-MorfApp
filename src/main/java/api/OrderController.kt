@@ -3,6 +3,8 @@ package api
 
 import applicationModel.MorfApp
 import controllers.DataUser
+import controllers.LittleUser
+import exception.UserNoFoundException
 import io.javalin.Context
 import io.javalin.NotFoundResponse
 import order.Order
@@ -27,14 +29,54 @@ data class OrderData(var code:Int,var restaurant:Int,var menus: MutableList<Menu
     var ratingData:RateData= RateData(0)
 }
 
+//creo este data para que devolverlo con el metodo de pago entero y no la villereada de arriba
+data class OrderDataComplete(var code:Int,var restaurant:Int,var menus: MutableList<MenusAndAmount>,
+                             var clientID:String,var paymentMethod: PaymentMethod){
+    var ratingData:RateData= RateData(0)
+}
+
+
 class OrderController() {
     private var orders = mutableListOf<OrderData>()
     private val morfApp = MorfApp;
 
-    fun allOrders(ctx: Context) {
-        print(orders)
-        ctx.json(this.orders)
+
+    //refactorizar esto
+    fun historicOrders(ctx: Context) {
+        val userId = ctx.pathParam("code")
+        var client =  try{morfApp.findClient(userId)}
+                      catch (e: Exception)
+                        {throw NotFoundResponse("No se encontró la orden con id $userId")}
+
+        var ordersDataComplete= this.transformOrdersToOrderData(client!!.historicOrders)
+        ctx.status(HttpStatus.OK_200)
+        ctx.json(ordersDataComplete)
+
     }
+
+
+    fun pendingOrders(ctx: Context) {
+        val userId = ctx.pathParam("code")
+        var client =  morfApp.findClient(userId)?:throw NotFoundResponse("No se encontró la orden con id $userId")
+        var ordersDataComplete= this.transformOrdersToOrderData(client.pendingOrders)
+        ctx.status(HttpStatus.OK_200)
+        ctx.json(ordersDataComplete)
+    }
+
+
+
+    //toma las ordenes del usuario de modelo y las pasa a order data
+    fun transformOrdersToOrderData(order: MutableList<Order>):MutableList<OrderDataComplete>{
+        var orderDatas = mutableListOf<OrderDataComplete>()
+        order.forEach { m-> var orderDataNew = OrderDataComplete(m.code,m.getRestaurant().code,
+                                                                this.transforToMenuAndAmount(m.getMenusAndCuantity()),
+                                                                m.getUser().id,m.getPaymentMethod())
+                                   orderDatas.add(orderDataNew)
+                            }
+        return  orderDatas
+
+        }
+
 
     //la idea es que reciba lo que le viene por el json y devuelva la lista piola de los menus
     fun transformToMenuList(idsAccumulate:MutableList<MenusAndAmount>,resto:Restaurant):MutableList<Menu>{
@@ -123,9 +165,8 @@ class OrderController() {
     }
 
     fun addOrderComplentary(modelOrder: order.Order): Order {
-    // client:Client, restaurant:Restaurant , paymentMethod:PaymentMethod, menus:MutableList<Menu>
 
-        val newOrder = morfApp.createOrder(modelOrder.getUser(),
+            val newOrder = morfApp.createOrder(modelOrder.getUser(),
                 modelOrder.getRestaurant(),
                 modelOrder.getPaymentMethod(),
                 modelOrder.getMenu())

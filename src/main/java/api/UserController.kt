@@ -1,5 +1,6 @@
 package controllers
 
+import api.OrderData
 import api.UserNameInUseException
 import applicationModel.MorfApp
 import com.fasterxml.jackson.annotation.JsonIgnore
@@ -26,8 +27,8 @@ data class DataUser(@JsonIgnore val client : Client){
     var address = client.address
     var geoLocation = client.geoLocation
     val email = client.email
-    var pendingOrders = mutableListOf<DataOrder>()
-    var historicOrders = mutableListOf<DataOrder>()
+    var pendingOrders = mutableListOf<OrderData>()
+    var historicOrders = mutableListOf<OrderData>()
 }
 
 data class MiddleUser(val code : Int, val id : String, val name : String, val address : String, val geoLocation: Geo, val email : String)

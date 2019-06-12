@@ -75,10 +75,13 @@ class SuperController{
         restaurantController.getRestaurantsAndMenusByCriteria(ctx)
     }
 
-    fun allOrders(ctx : Context){
-        orderController.allOrders(ctx)
+    fun historicOrders(ctx : Context){
+        orderController.historicOrders(ctx)
     }
 
+    fun pendingOrders(ctx : Context){
+        orderController.pendingOrders(ctx)
+    }
     fun addOrder(ctx : Context){
         orderController.addOrder(ctx)
     }

@@ -12,7 +12,7 @@ export default class Navbar extends React.Component {
 
 
   onClick = () => {
-    console.log('aprete restaurant');
+   return <Restaurants/>;
 }
 
 render() {
@@ -42,8 +42,11 @@ render() {
               <li><a href="about.html">Somos</a></li>
               <li><a href="gallery.html">Fotos</a></li>		
               <li>
-                <a href="#" className="btn btn-1 btn-1b" onClick={this.onClick}> Restaurants</a>
-              
+                <a href="#" className="btn btn-1 btn-1b" onClick={Restaurants}> 
+                Restaurants
+                
+                </a>
+                
               </li>
               <li><a href="contact.html">Contacto</a></li>
             </ul>	
