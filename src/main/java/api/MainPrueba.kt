@@ -43,9 +43,9 @@ fun main() {
     val fCaramelieri = morfApp.createClient("OracleFanBoy", "Fede Caramelieri", "Otra Calle Falsa 4321", bernal, "plusvalia", "mailTrucho3@asd.com")
 
     val cash = Cash()
-    val debit = Debit("pepe",12121212,123,Date())
-    val creditCard = CreditCard("pepe",1212121212,123,Date())
-    val mercadoPago = MercadoPago("pepe","1233")
+    val debit = Debit("pepe", 12121212, 123, Date())
+    val creditCard = CreditCard("pepe", 1212121212, 123, Date())
+    val mercadoPago = MercadoPago("pepe", "1233")
 
     val onlyCash = mutableListOf<PaymentMethod>(cash)
     val cashDebitAndCreditCard = mutableListOf(cash, debit, creditCard)
@@ -98,7 +98,7 @@ fun main() {
     controller.addDataUser(fCaramelieri)
 
     app.routes {
-        path("login"){
+        path("login") {
             post(controller::login)
         }
         path("users") {
@@ -121,31 +121,39 @@ fun main() {
             }
         }
         //Ver si falta una ruta que traiga todos los restaurants
-        path("restaurants"){
+        path("restaurants") {
             path(":code") {
                 get(controller::getAllMenus)
             }
         }
-        path("search"){
+        path("search") {
             get(controller::getRestaurantsAndMenusByCriteria)
         }
 
-        path("order_historic"){
-            post(controller::addOrder)
-            path(":code"){
+        path("order_historic") {
+            path(":code") {
                 get(controller::historicOrders)
-                put(controller::rateAnOrder)
+                path(":code_order   ") {
+                    put(controller::rateAnOrder)
+                    get(controller::getHistoricOrder)
+                }
             }
 
         }
 
-        path("orders_pending"){
-            post(controller::addOrder)
-            path(":code"){
+        path("orders_pending") {
+
+            path(":code") {
                 get(controller::pendingOrders)
-                put(controller::rateAnOrder)
+                post(controller::addOrder)
+
+                path(":code_order") {
+                    get(controller::getPendingOrder)
+                }
             }
         }
-
     }
 }
+
+
+

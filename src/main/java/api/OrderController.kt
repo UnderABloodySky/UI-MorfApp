@@ -24,13 +24,13 @@ data class MenusAndAmount(var menuId:Int,var ammount:Int)
 data class PaymentMethodsParameters(var type:String, var user:String?,var password:String?,
                                     var cardNumber:Int?,var cardOwnerName:String?,var cardExpirationDate:Date?,var cardCode:Int?)
 
-data class OrderData(var code:Int,var restaurant:Int,var menus: MutableList<MenusAndAmount>,
+data class OrderData(var codeOrder:Int,var restaurant:Int,var menus: MutableList<MenusAndAmount>,
                      var clientID:String,var paymentMethod: PaymentMethodsParameters){
     var ratingData:RateData= RateData(0)
 }
 
 //creo este data para que devolverlo con el metodo de pago entero y no la villereada de arriba
-data class OrderDataComplete(var code:Int,var restaurant:Int,var menus: MutableList<MenusAndAmount>,
+data class OrderDataComplete(var code_order_complete:Int,var restaurant:Int,var menus: MutableList<MenusAndAmount>,
                              var clientID:String,var paymentMethod: PaymentMethod){
     var ratingData:RateData= RateData(0)
 }
@@ -41,7 +41,7 @@ class OrderController() {
     private val morfApp = MorfApp;
 
 
-    //refactorizar esto
+    //refactorizar esto. ver por que no está handleando el error
     fun historicOrders(ctx: Context) {
         val userId = ctx.pathParam("code")
         var client =  try{morfApp.findClient(userId)}
@@ -51,6 +51,28 @@ class OrderController() {
         var ordersDataComplete= this.transformOrdersToOrderData(client!!.historicOrders)
         ctx.status(HttpStatus.OK_200)
         ctx.json(ordersDataComplete)
+    }
+
+    //hacer que esta mierda tome un data y cree un order .
+    fun rateAnOrder(ctx: Context){
+        val rate = ctx.body<RateData>()
+        val codeUser = ctx.pathParam("code")
+        val orderCode =  ctx.pathParam("code_order").toInt()
+
+        var client =  morfApp.findClient(codeUser)
+
+        var orderToUpdate = client!!.findOrderInCollection(orderCode)
+
+
+        client.rateOrder(orderToUpdate,rate.rating)
+
+
+        var orderDataComplete = OrderDataComplete(orderToUpdate.code,orderToUpdate.getRestaurant().code,
+                this.transforToMenuAndAmount(orderToUpdate.getMenusAndCuantity()),orderToUpdate.getUser().id,
+                orderToUpdate.getPaymentMethod())
+        orderDataComplete.ratingData = rate
+        ctx.status(HttpStatus.CREATED_201)
+        ctx.json(orderDataComplete)
 
     }
 
@@ -62,6 +84,42 @@ class OrderController() {
         ctx.status(HttpStatus.OK_200)
         ctx.json(ordersDataComplete)
     }
+
+
+    fun addOrder(ctx: Context) {
+        val order = ctx.body<OrderData>()
+
+        val client = morfApp.findClient(order.clientID)!!
+        var paymentMethod = this.createPaymentMethodApropieted(order.paymentMethod)
+        var restaurant:Restaurant? = morfApp.findOtherRestaurant(order.restaurant)
+        var menus = this.transformToMenuList(order.menus,restaurant!!)
+        client.makeNewOrder(restaurant,menus,paymentMethod)
+
+        ctx.status(HttpStatus.CREATED_201)
+    }
+
+    fun getHistoricOrder(ctx: Context) {
+        val userId = ctx.pathParam("code")
+        val orderCode = ctx.pathParam("code_order").toInt()
+
+        var client =  morfApp.findClient(userId)?:throw NotFoundResponse("No se encontró la orden con id $userId")
+        print(orderCode)
+        var orderFound = client.historicOrders.find { order -> (order.code)==orderCode }
+                ?: throw NotFoundResponse("No se encontró la orden con id $orderCode")
+
+        var orderDataComplete = OrderDataComplete(orderFound.code,orderFound.getRestaurant().code,
+                this.transforToMenuAndAmount(orderFound.getMenusAndCuantity()),orderFound.getUser().id,
+                orderFound.getPaymentMethod())
+
+
+        ctx.json(orderDataComplete)
+    }
+    fun getPendingOrder(ctx: Context) {
+        val code = ctx.pathParam("code").toInt()
+        ctx.json(getOrderById(code))
+    }
+
+
 
 
 
@@ -91,50 +149,8 @@ class OrderController() {
 
 
 
-//hacer que esta mierda tome un data y cree un order .
-    fun rateAnOrder(ctx: Context){
-        val code = ctx.pathParam("code").toInt()
-        val rate = ctx.body<RateData>()
-        val order = getOrderById(code)
-
-        val client = morfApp.findClient(order.clientID)!!
-        var orderToUpdate = client.findOrderInCollection(order.code)
-        client.rateOrder(orderToUpdate,rate.rating)
-        ctx.status(HttpStatus.CREATED_201)
-        ctx.json(rateTheOrder(order,rate))
-
-}
-
-
-    fun addOrder(ctx: Context) {
-        val order = ctx.body<OrderData>()
-
-        val client = morfApp.findClient(order.clientID)!!
-        var paymentMethod = this.createPaymentMethodApropieted(order.paymentMethod)
-        var restaurant:Restaurant? = morfApp.findOtherRestaurant(order.restaurant)
-        var menus = this.transformToMenuList(order.menus,restaurant!!)
-        client.makeNewOrder(restaurant,menus,paymentMethod)
-
-        ctx.status(HttpStatus.CREATED_201)
-        ctx.json(orders.add(order))
-    }
-
-    fun getOrder(ctx: Context) {
-        val code = ctx.pathParam("code").toInt()
-        ctx.json(getOrderById(code))
-    }
-
 
     //funciones complementarias
-    //como hago , por que le pueden llegar de manera variable los parametros, tendria uqe fijarse el type que le llegar y decidir que tiene que construir. pero como le paso para ese momento el constructor.
-
-    fun rateTheOrder(newOrderData: OrderData,rate:RateData):OrderData{
-        orders.remove(newOrderData)
-
-        newOrderData.ratingData = rate
-        orders.add(newOrderData)
-        return newOrderData
-    }
 
     fun createPaymentMethodApropieted(parametersMethods:PaymentMethodsParameters):PaymentMethod {
         val type = parametersMethods.type
@@ -159,37 +175,17 @@ class OrderController() {
 
     fun getOrderById(code: Int): OrderData {
         print(orders)
-        var orderCorrect = orders.find { it.code == code }
+        var orderCorrect = orders.find { it.codeOrder == code }
         return orderCorrect
                 ?: throw NotFoundResponse("No se encontró la orden con id $code")
     }
 
-    fun addOrderComplentary(modelOrder: order.Order): Order {
-
-            val newOrder = morfApp.createOrder(modelOrder.getUser(),
-                modelOrder.getRestaurant(),
-                modelOrder.getPaymentMethod(),
-                modelOrder.getMenu())
-        this.addOrderData(modelOrder)
-        return modelOrder
-
-    }
 
     fun transforToMenuAndAmount (map:MutableMap<Int,Int>):MutableList<MenusAndAmount>{
         var list= mutableListOf<MenusAndAmount>()
         map.forEach { m-> var mamount= MenusAndAmount(m.key,m.value)
                             list.add(mamount)}
         return list
-    }
-
-    fun addOrderData(order:Order){
-      var paymentParameters= PaymentMethodsParameters("Cash",null,null,null,
-              null,null,null)
-      var  orderData = OrderData(order.code,order.getRestaurant().code,
-                                this.transforToMenuAndAmount(order.getMenusAndCuantity()),
-                                order.getUser().id,paymentParameters)
-      orders.add(orderData)
-
     }
 
 }
