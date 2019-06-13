@@ -130,10 +130,10 @@ fun main() {
             get(controller::getRestaurantsAndMenusByCriteria)
         }
 
-        path("order_historic") {
-            path(":code") {
+        path("orders_historic") {
+            path(":id") {
                 get(controller::historicOrders)
-                path(":code_order   ") {
+                path(":code_order") {
                     put(controller::rateAnOrder)
                 }
             }
@@ -141,7 +141,7 @@ fun main() {
 
 
         path("orders_pending") {
-            path(":code") {
+            path(":id") {
                 get(controller::pendingOrders)
                 post(controller::addOrder)
                 path(":code_order") {
