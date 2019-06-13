@@ -1,9 +1,5 @@
 import React from 'react';
 
-//import '../css/Nav.css';
-//import '../css/bootstrap.css';
-//import '../css/lightbox.css';
-//import '../css/style.css';
 import '../homeComponents/Restaurants';
 import Restaurants from '../homeComponents/Restaurants';
 
