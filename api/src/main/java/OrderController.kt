@@ -42,6 +42,34 @@ class OrderController() {
 
 
     //refactorizar esto. ver por que no está handleando el error
+    fun transformOrdersToOrderData(order: MutableList<Order>):MutableList<OrderDataComplete>{
+        var orderDatas = mutableListOf<OrderDataComplete>()
+        order.forEach { o-> var orderDataNew = OrderDataComplete(o.code,o.getRestaurant().code,o.restaurantName,
+                o.getMenusAndCuantity(),
+                o.getUser().id,o.getPaymentMethod())
+            orderDatas.add(orderDataNew)
+        }
+        return  orderDatas
+
+    }
+
+
+    //la idea es que reciba lo que le viene por el json y devuelva la lista piola de los menus
+    fun transformToMenuList(idsAccumulate:MutableList<MenusAndAmount>,resto:Restaurant):MutableList<Menu>{
+        var allMenus = resto.menus()
+        var newMenus = mutableListOf<Menu>()
+        idsAccumulate.forEach { m-> var menuToAdd = allMenus.get(m.menuId)!!
+            newMenus.add(menuToAdd)
+
+        }
+        return newMenus
+    }
+
+
+
+
+
+
     fun historicOrders(ctx: Context) {
         val userId = ctx.pathParam("code")
         var client =  try{morfApp.findClient(userId)}
@@ -53,33 +81,38 @@ class OrderController() {
         ctx.json(ordersDataComplete)
     }
 
+    fun isNotNull(nullable: Any?): Boolean {
+        return nullable != null
+    }
     //hacer que esta mierda tome un data y cree un order .
     fun rateAnOrder(ctx: Context){
         val rate = ctx.body<RateData>()
-        val codeUser = ctx.pathParam("code")
-        val orderCode =  ctx.pathParam("code_order").toInt()
+        val codeUser = ctx.pathParam("id")
+        val codeOrder = ctx.pathParam("code_order")!!.toInt()
 
         var client =  morfApp.findClient(codeUser)
 
-        var orderToUpdate = client!!.findOrderInCollection(orderCode)
+        var orderToUpdate = client!!.findOrderInCollection(codeOrder)
 
 
         client.rateOrder(orderToUpdate,rate.rating)
 
 
-        var orderDataComplete = OrderDataComplete(orderToUpdate.code,orderToUpdate.getRestaurant().code,
+        if (this.isNotNull(codeOrder)){
+            var orderToUpdate = client!!.findOrderInCollection(codeOrder)
+            var orderDataComplete = OrderDataComplete(orderToUpdate.code,orderToUpdate.getRestaurant().code,
                     orderToUpdate.getRestaurant().name,
-                orderToUpdate.getMenusAndCuantity(),orderToUpdate.getUser().id,
-                orderToUpdate.getPaymentMethod())
-        orderDataComplete.ratingData = rate
-        ctx.status(HttpStatus.CREATED_201)
-        ctx.json(orderDataComplete)
-
+                    orderToUpdate.getMenusAndCuantity(),orderToUpdate.getUser().id,
+                    orderToUpdate.getPaymentMethod())
+            orderDataComplete.ratingData = rate
+            ctx.status(HttpStatus.CREATED_201)
+            ctx.json(orderDataComplete)
+        }
     }
 
 
     fun pendingOrders(ctx: Context) {
-        val userId = ctx.pathParam("code")
+        val userId = ctx.pathParam("id")
         var client =  morfApp.findClient(userId)?:throw NotFoundResponse("No se encontró la orden con id $userId")
         var ordersDataComplete= this.transformOrdersToOrderData(client.pendingOrders)
         ctx.status(HttpStatus.OK_200)
@@ -97,54 +130,6 @@ class OrderController() {
         client.makeNewOrder(restaurant,menus,paymentMethod)
 
         ctx.status(HttpStatus.CREATED_201)
-    }
-/*
-    fun getHistoricOrder(ctx: Context) {
-        val userId = ctx.pathParam("code")
-        val orderCode = ctx.pathParam("code_order").toInt()
-
-        var client =  morfApp.findClient(userId)?:throw NotFoundResponse("No se encontró la orden con id $userId")
-        print(orderCode)
-        var orderFound = client.historicOrders.find { order -> (order.code)==orderCode }
-                ?: throw NotFoundResponse("No se encontró la orden con id $orderCode")
-
-        var orderDataComplete = OrderDataComplete(orderFound.code,orderFound.getRestaurant().code,orderFound.restaurantName,
-                orderFound.getMenusAndCuantity(),orderFound.getPaymentMethod(),orderFound.price(),
-                orderFound.getUser().id
-               )
-
-        ctx.json(orderDataComplete)
-    }
-    */
-    fun getPendingOrder(ctx: Context) {
-        val code = ctx.pathParam("code").toInt()
-        ctx.json(getOrderById(code))
-    }
-
-
-
-    //toma las ordenes del usuario de modelo y las pasa a order data
-    fun transformOrdersToOrderData(order: MutableList<Order>):MutableList<OrderDataComplete>{
-        var orderDatas = mutableListOf<OrderDataComplete>()
-        order.forEach { o-> var orderDataNew = OrderDataComplete(o.code,o.getRestaurant().code,o.restaurantName,
-                                                                o.getMenusAndCuantity(),
-                                                                o.getUser().id,o.getPaymentMethod())
-                                   orderDatas.add(orderDataNew)
-                            }
-        return  orderDatas
-
-        }
-
-
-    //la idea es que reciba lo que le viene por el json y devuelva la lista piola de los menus
-    fun transformToMenuList(idsAccumulate:MutableList<MenusAndAmount>,resto:Restaurant):MutableList<Menu>{
-                var allMenus = resto.menus()
-                var newMenus = mutableListOf<Menu>()
-                idsAccumulate.forEach { m-> var menuToAdd = allMenus.get(m.menuId)!!
-                                            newMenus.add(menuToAdd)
-
-                                        }
-                return newMenus
     }
 
 
@@ -172,21 +157,14 @@ class OrderController() {
         return newPaymentMethod
     }
 
-
+/*
     fun getOrderById(code: Int): OrderData {
         print(orders)
         var orderCorrect = orders.find { it.codeOrder == code }
         return orderCorrect
                 ?: throw NotFoundResponse("No se encontró la orden con id $code")
     }
-
-/*
-    fun transforToMenuAndAmount (menusInOrder:MutableList<DataMenuInOrder>):MutableList<MenusAndAmount>{
-        var list= mutableListOf<MenusAndAmount>()
-        map.forEach { m-> var mamount= MenusAndAmount(m.key,m.value,)
-                            list.add(mamount)}
-        return list
-    }
 */
+
 }
 
