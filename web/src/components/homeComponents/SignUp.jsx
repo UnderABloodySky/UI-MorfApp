@@ -1,0 +1,111 @@
+import React from 'react';
+import { Redirect } from 'react-router-dom'
+import { signUp } from '../../api/api';
+import '../css/SignIn.css';
+
+export default class SignUp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: '',
+      email: '',
+      password: '',
+      name: '',
+      adress: '',
+      error: '',
+      toOrders: false
+    };
+    this.changeId = this.changeId.bind(this);
+    this.changeEmail = this.changeEmail.bind(this);
+    this.changePassword = this.changePassword.bind(this);
+    this.changeName = this.changeName.bind(this);
+    this.changeAdress = this.changeAdress.bind(this);
+    this.executeSignUp = this.executeSignUp.bind(this);
+
+  }
+  changeId(event){
+    this.setState({ id: event.target.value });
+  }
+
+  changeEmail(event) {
+    this.setState({ email: event.target.value });
+  }
+
+  changePassword(event) {
+    this.setState({ password: event.target.value });
+  }
+
+  changeName(event) {
+    this.setState({ name: event.target.value });
+  }
+
+  changeAdress(event) {
+    this.setState({ adress: event.target.value });
+  }
+
+  executeSignUp() {
+    const body = {
+      id : this.state.id,
+      email: this.state.email,
+      password: this.state.password,
+      name: this.state.name,
+      adress: this.state.adress
+    };
+    signUp(body)
+      .then(() => this.setState({ toOrders: true }))
+      .catch(() => this.setState({ error: 'Usuario ya utilizado' }));  
+  }
+
+  renderInput(label, value, inputType, onChange) {
+    return (
+      <div className="form-group row">
+        <label className="col-sm-3 col-form-label">{label}</label>
+        <div className="col-sm-9">
+          <input type={inputType} className="form-control" value={value} onChange={onChange} />
+        </div>
+      </div>
+    );
+  }
+  componentDidMount(){
+    this.nameInput.focus(); 
+  }
+
+  render() {
+    if (this.state.toOrders){
+      return <Redirect to={{
+        pathname: '/orders',
+        state: { id: this.state.id, password: this.state.password } }}/>
+    }
+    return (
+      <div className="container" >
+        <div className="row centerRow">
+          <div className="col-3" />
+          <div className="col-6 card newCard">
+            <div className="card-body">
+            <div className="form-group row">
+              <label className="col-sm-3 col-form-label">{"Email"}</label>
+              <div className="col-sm-9">
+                <input type='text' className="form-control" value={this.state.email} onChange={this.changeEmail} ref={(input) => { this.nameInput = input}}/>
+              </div>
+            </div>
+              {this.renderInput('Usuario', this.state.id, 'username', this.changeId)}
+              {this.renderInput('Contraseña', this.state.password, 'password', this.changePassword)}
+              {this.renderInput('Nombre', this.state.name, 'text', this.changeName)}
+              {this.renderInput('Direccion', this.state.adress, 'text', this.changeAdress)}
+              
+              <div className="col-12">
+                <button type="button" className="btn btn-primary btn-block" onClick={this.executeSignUp}>Registrarse</button>
+              </div>
+              <div className="col-12">
+              <button type="button" className="btn btn-link" onClick={this.props.handlerReg}>Cancelar</button>
+              </div>
+              <div className="col-12 empty">
+                {this.state.error && this.state.error}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}

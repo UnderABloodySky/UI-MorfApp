@@ -11,12 +11,14 @@ import restaurant.Restaurant
 import productAndMenu.Menu
 import user.Client
 
+data class  DataMenuInOrder (var code: Int,var name:String,var ammountOfMenus:Int,var price:Double)
+
 data class Order(val code : Int, @JsonIgnore private val user : Client,
                  @JsonIgnore private val restaurant : Restaurant, private var payment : PaymentMethod,
                  private val menus : MutableList<Menu>){
     var geoLocation = user.geoLocation
     var restaurantName = restaurant.name
-    var rate:Int? = null
+    var rate:Int = 0
 
     private var date = Date()
     private var state : StateOrder = PENDING
@@ -86,14 +88,27 @@ data class Order(val code : Int, @JsonIgnore private val user : Client,
 
     fun getMenu() : MutableList<Menu> = menus
 
-    fun getMenusAndCuantity():MutableMap<Int,Int> {
+    fun getNameOfMenu(code:Int):String{
+        var menu = menus.find{ menu-> menu.code ==code }
+        return menu!!.name
+    }
+
+    fun menuPrice(id:Int):Double{
+        var menu = menus.find {menu-> menu.code ==id }
+        return menu!!.totalPrice()
+
+    }
+
+
+    fun getMenusAndCuantity():MutableList<DataMenuInOrder>{
 
         var ids = mutableSetOf<Int>()
 
         menus.forEach { menu-> ids.add(menu.code)  }
-        var finalList = mutableMapOf<Int,Int>()
+        var finalList = mutableListOf<DataMenuInOrder>()
         ids.forEach{id->
-                        finalList.put(id,(this.appearencesOfId(id,menus)))
+                        finalList.add(DataMenuInOrder(id,this.getNameOfMenu(id),
+                                this.appearencesOfId(id,menus),this.menuPrice(id)))
                 }
         return finalList
     }

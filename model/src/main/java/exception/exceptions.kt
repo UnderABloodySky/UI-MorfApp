@@ -14,8 +14,6 @@ class UserAlreadyRegisteredException(menssage: String): Exception(menssage)
 
 class UserNoFoundException(message:String ): Exception(message)
 
-class ProductNameAlreadyInUseException(s: String) : Exception(s)
-
 class IncorrectDiscountValueException (message: String) : Exception(message)
     fun main(args: Array<String>) {
         throw IncorrectDiscountValueException("Error!")
