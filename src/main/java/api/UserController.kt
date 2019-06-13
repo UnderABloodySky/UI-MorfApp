@@ -17,7 +17,7 @@ import user.Client
 data class LittleUser(var id : String, var password : String)
 
 //Register
-data class PseudoUser(val id : String, val name : String, var password : String, var address : String, var geoLocation : Geo, val email : String)
+data class PseudoUser(val id : String, val name : String, var password : String, var address : String , var longitude : Double, var latitude : Double , val email : String)
 
 //De la vista
 data class DataUser(@JsonIgnore val client : Client){
@@ -29,10 +29,21 @@ data class DataUser(@JsonIgnore val client : Client){
     val email = client.email
     var pendingOrders = mutableListOf<OrderData>()
     var historicOrders = mutableListOf<OrderData>()
+
+    private fun addOrderDataTo(aOrder : OrderData, aList : MutableList<OrderData>){
+        aList.add(aOrder)
+    }
+
+    fun addOrderToPending(aOrder : OrderData){
+        addOrderDataTo(aOrder, pendingOrders)
+    }
+
+    fun addOrderToHistoric(aOrder : OrderData){
+        addOrderDataTo(aOrder, pendingOrders)
+    }
 }
 
 data class MiddleUser(val code : Int, val id : String, val name : String, val address : String, val geoLocation: Geo, val email : String)
-
 
 class UserController {
    private val users = HashMap<String, DataUser>()
@@ -89,7 +100,7 @@ class UserController {
             val name = user.name
             val address = user.address
             val pass = user.password
-            val geo = user.geoLocation
+            val geo = Geo(user.latitude, user.longitude, user.address)
             val email = user.email
             val newUser = morfApp.createClient(id, name, address, geo, pass, email)
             ctx.status(CREATED_201)
