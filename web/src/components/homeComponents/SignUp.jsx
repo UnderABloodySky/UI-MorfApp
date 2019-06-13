@@ -88,7 +88,7 @@ export default class SignUp extends React.Component {
         state: { id: this.state.id, password: this.state.password } }}/>
     }
     return (
-      <div className="container" >
+      <div id="signUp" className="container" >
         <div className="row centerRow">
           <div className="col-3" />
           <div className="col-6 card newCard">

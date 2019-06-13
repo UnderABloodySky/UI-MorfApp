@@ -37,26 +37,6 @@ body a:hover{
   text-decoration:none;
 }
 
-.banner {
-  background:url(../images/1.png)no-repeat 0px 0px;
-  background-size:cover;
-  -webkit-background-size:cover;
-  -moz-background-size:cover;
-  -o-background-size:cover;
-  -ms-background-size:cover;
-  min-height:450px;
-  position:relative;
-}
-.banner-info {
-  background:url(../images/dott.png)repeat 0px 0px;
-  background-size:4px;
-  -webkit-background-size:4px;
-  -moz-background-size:4px;
-  -o-background-size:4px;
-  -ms-background-size:4px;
-  min-height:450px;
-  padding:2em 0;
-}
 .logo {
     text-align: center;
 }
@@ -181,30 +161,7 @@ body a:hover{
   height: 100%;
 }
 /*--//baner--*/
-/*--top-nav--*/ 
-nav.navbar.navbar-default {
-    border: none;
-    background: none;
-}
-div#bs-example-navbar-collapse-1 {
-    padding: 0;
-    width: 44%;
-    margin: 7em auto 0;
-}
-.navbar-default .navbar-nav > li > a {
-    color: #FFF;
-    font-size: 1.2em;
-}
-.navbar-nav > li > a {
-    padding: 10px 25px;
-    line-height: 1.5em;
-}
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: #AEE3EF;
-}
-.navbar-nav > li > a.active {
-    color: #AEE3EF;
-}
+
 .cl-effect-14 a {
   padding: 0 20px;
   height: 45px;
@@ -275,7 +232,7 @@ div#bs-example-navbar-collapse-1 {
   display: grid;
   grid: 255px / auto auto ;
   grid-gap: 1px;
-  background-color: #555;
+  background-color: #0000;
   padding: 10px 0; 
   margin-top: 0.5em;
 }
@@ -283,7 +240,7 @@ div#bs-example-navbar-collapse-1 {
     margin: 0em 0 0em 0;
 }
 h3.title {
-    font-size: 7.5em;
+    font-size: 5em;
     font-family: 'OleoScript-Regular';
     line-height: 4em;
     color: #000;
@@ -291,7 +248,7 @@ h3.title {
 }
 .welcome p {
     font-size: 1em;
-  margin-top:.5em;
+  margin-top:8em;
     color: #555;
     line-height: 1.8em;
   text-align:center;

@@ -21,15 +21,10 @@ export default class Home extends React.Component {
 
   render() {
     return (
-    <div>
-        <div className="banner">
-            <div className="container">
-                <Navbar />
-                <Body />
-                <Footer />
-            </div>
-        </div>
-        
+      <div>    
+        <Navbar />
+        <Body />
+        <Footer />
         {this.state.error && <div>{this.state.error}</div>}
       </div>
     );

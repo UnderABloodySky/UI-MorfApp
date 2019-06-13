@@ -3,6 +3,7 @@ import React from 'react';
 import '../css/Body.css';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
+import imag1 from '../images/img1.jpg';
 
 export default class Body extends React.Component {
   constructor(props) {
@@ -47,7 +48,7 @@ render() {
             <div className="container">
               <div className="logo">
                 <div className="ribbon">
-                  <div className="ribbon-fold"><h1> <a href="index.html">:MorfApp:</a></h1></div>
+                  <div className="ribbon-fold"><h1>::MorfApp::</h1></div>
                 </div>
                 <h2> Un Subtitulo muy ocurrente </h2>
               </div>			
@@ -61,24 +62,24 @@ render() {
             <div className="banner-text" >
               <h3>Comida a un click!</h3>
               <p>Promociones diarias &amp; mas</p>
-              <a href="#" className="btn btn-1 btn-1b" onClick={() => this.register() }>Registrarte</a>
-              <a href="#" className="btn btn-2 btn-2b" onClick={() => this.login() }>Loguearte</a>
+              <a href="#signUp" className="btn btn-1 btn-1b" onClick={(e) => this.register() }>Registrarte</a>
+              <a href="#2" className="btn btn-2 btn-2b" onClick={() => this.login() }>Loguearte</a>
               { this.state.renderReg &&
               <SignUp handlerReg = {this.handlerReg} />}
               { this.state.renderLog &&
-              <SignIn handlerLog = {this.handlerLog} />}
+              <SignIn id="2" handlerLog = {this.handlerLog} />}
             </div>
             {/*welcome*/}
             <div className="welcome">
               <h3 className="title">Bienvenidxs!</h3>
-              <p>Gracias por aportar tu granito de arena por mas precarizacion laboral, para que no tengas que levantar el culo del sillon si se te antojan unas papas con cheddard</p>
+              <p><h5>Gracias por aportar tu granito de arena por mas precarizacion laboral, para que no tengas que levantar el culo del sillon si se te antojan unas papas con cheddard</h5></p>
               <br />
               <br />
               <div className="welcome-info">
                 <div className="grid-body-container">
                     <div className="col-md-6 welcome-grids">
                         <div className="welcome-img">
-                            <img src={require('../images/img1.jpg')} className="img-responsive zoom-img" alt />
+                            <img src={imag1} className="img-responsive zoom-img" alt />
                         </div>
                     </div>
                     <div className="col-md-6 welcome-grids">
@@ -89,7 +90,6 @@ render() {
                     <div className="clearfix"> </div>
                 </div>
               </div>
-                   <p> cargar algo aca </p>			
             </div>
             {/*//welcome*/}
           </div>
