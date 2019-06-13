@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { getPendingOrdersFrom } from '../api/api'
 import { getHistoricOrdersFrom } from '../api/api'
 
-import '../css/Orders.css';
+import './css/Orders.css';
 
 export default class Orders extends React.Component {
     constructor(props) {
@@ -18,11 +18,15 @@ export default class Orders extends React.Component {
           this.state.id = this.props.location.state.id;  //Chequeo que haya venido una props
         }
       }
+    priceOfOrder(order){      
+      var total = 0;
+      order.menus.map(element => { total = total + element.price });
+      return total;  
+    }
 
     componentDidMount(){
        getPendingOrdersFrom(this.state.id)
         .then(result => { 
-          //console.log(result);
           this.setState({pendingOrders: result})});
       getHistoricOrdersFrom(this.state.id)
         .then(result => {
@@ -30,24 +34,25 @@ export default class Orders extends React.Component {
     }
 
     render() {
-      const mappingOrderCode = item => (<li key={order.code_order_complete}>
-                                          <div className="col-md-4" key={i}>
+      const mappingOrderCode = (order) => (<li key={order.code_order_complete}>
+                                          <div className="col-md-4" >
                                               <div className="card mt-4">
                                                 <div className="card-headercard-title text-center">
-                                                  <h4>Código Orden: {order.code_order_complete}</h4>
+                                                  <h3>Código Orden: {order.code_order_complete}</h3>
                                                 </div>
                                                   <div className="card-body">
-                                                    <p>Código Restaurant: {order.restaurantName}</p>
-                                                    <p><mark>{order.menus.map(itMenus => (<li key={itMenus.menuId}> Código Menú: {itMenus.menuId}
-                                                                                                  Cantidad: {itMenus.ammount}
+                                                    <p><h5>Restaurant: {order.restaurantName}</h5></p>
+                                                    <p><mark>{order.menus.map(itMenus => (<li key={itMenus.code}>
+                                                                                                            <p><h6>Menú: {itMenus.name}</h6></p>
+                                                                                                            <p>Cantidad: {itMenus.ammountOfMenus}</p>
+                                                                                                            <p>Precio: {itMenus.price} $</p>
+
                                                                                          </li>))}
+                                                      <br></br>
+                                                      <p><h4>Precio Total: {this.priceOfOrder(order)} $</h4></p>
                                                       </mark>
                                                     </p>
-                                                    <button
-                                                      className="btn btn-danger"
-                                                      onClick={this.removeOrder.bind(this, i)}>
-                                                      Cancelar
-                                                    </button>
+                                                    <button className="btn btn-danger">Cancelar</button>
                                                   </div>
                                                   </div>  
                                                 </div>
@@ -58,70 +63,20 @@ export default class Orders extends React.Component {
       }
         return(
             <div>
-                <div>{this.state.id} LOGUEADO </div>  
-                <div>Ordenes pendientes</div>
+                <div><h1>{this.state.id} LOGUEADO </h1></div>  
+                <br></br>
+                <div><h3>Ordenes Pendientes</h3></div>
                   <div>
+                    
                     <ul>
                       {this.state.pendingOrders.map(mappingOrderCode)}
                     </ul>
                   </div>
-                <div>Ordenes Históricas</div>
+                  <br></br>
+                <div><h3>Ordenes Históricas</h3></div>
                   <ul>
                     {this.state.historicOrders.map(mappingOrderCode)}
                   </ul>
-
-            </div>
-        
-      /*
-
-      const myOrders = this.state.Orders.map((order, i) => {
-          return(
-            <div className="col-md-4" key={i}>
-              <div className="card mt-4">
-                <div className="card-headercard-title text-center">
-                  <h4>Order: {order.code}</h4>
-                  <span className="badge-pill badge-danger ml-2">
-                    {order.state}
-                  </span>
-                </div>
-                <div className="card-body">
-                  <p>{"Restaurant: " + order.restaurant}</p>
-                  <p><mark>{"Menu: " + order.menu}</mark></p>
-                  <p><mark>{order.client}</mark></p>
-                  <div className="card-footer">
-                  <button
-                    className="btn btn-danger"
-                    onClick={this.removeOrder.bind(this, i)}>
-                    Cancelar
-                  </button>
-                </div>
-                </div>  
-              </div>
-            </div>
-            )
-        })
-        
-        return (
-            <div className="App">
-              <Navigation title = {this.state.title} orders={this.state.Orders}/>
-                <div className="container">
-                 <div className="row mt-4">
-                    <div className="col-md-3 text-center">
-                      <img src={logo} className="App-logo" alt="logo" />
-                      <OrderForm onAddOrder={this.handleAddOrder}/>
-                    </div>
-                    <div className="col-md-8">
-                      <div className="row">
-                        { myOrders }
-                      </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-      );
-      );
-      }
-        */
-    
+            </div>    
         )}
   }

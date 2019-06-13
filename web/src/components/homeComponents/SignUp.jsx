@@ -11,7 +11,9 @@ export default class SignUp extends React.Component {
       email: '',
       password: '',
       name: '',
-      adress: '',
+      address: '',
+      latitude: 0.0,
+      longitude: 0.0,
       error: '',
       toOrders: false
     };
@@ -19,7 +21,9 @@ export default class SignUp extends React.Component {
     this.changeEmail = this.changeEmail.bind(this);
     this.changePassword = this.changePassword.bind(this);
     this.changeName = this.changeName.bind(this);
-    this.changeAdress = this.changeAdress.bind(this);
+    this.changeAddress = this.changeAddress.bind(this);
+    this.changeLatitude = this.changeLatitude.bind(this);
+    this.changeLongitude = this.changeLongitude.bind(this);
     this.executeSignUp = this.executeSignUp.bind(this);
 
   }
@@ -39,17 +43,24 @@ export default class SignUp extends React.Component {
     this.setState({ name: event.target.value });
   }
 
-  changeAdress(event) {
-    this.setState({ adress: event.target.value });
+  changeAddress(event) {
+    this.setState({ address: event.target.value });
   }
-
+  changeLongitude(event) {
+    this.setState({ longitude: event.target.value });
+  }
+  changeLatitude(event) {
+    this.setState({ latitude: event.target.value });
+  }
   executeSignUp() {
     const body = {
       id : this.state.id,
       email: this.state.email,
       password: this.state.password,
       name: this.state.name,
-      adress: this.state.adress
+      address: this.state.address,
+      latitude: this.state.latitude,
+      longitude: this.state.longitude
     };
     signUp(body)
       .then(() => this.setState({ toOrders: true }))
@@ -91,7 +102,9 @@ export default class SignUp extends React.Component {
               {this.renderInput('Usuario', this.state.id, 'username', this.changeId)}
               {this.renderInput('Contraseña', this.state.password, 'password', this.changePassword)}
               {this.renderInput('Nombre', this.state.name, 'text', this.changeName)}
-              {this.renderInput('Direccion', this.state.adress, 'text', this.changeAdress)}
+              {this.renderInput('Direccion', this.state.address, 'text', this.changeAddress)}
+              {this.renderInput('Latitud', this.state.latitude, 'text', this.changeLatitude)}
+              {this.renderInput('Longitud', this.state.longitude, 'text', this.changeLongitude)}
               
               <div className="col-12">
                 <button type="button" className="btn btn-primary btn-block" onClick={this.executeSignUp}>Registrarse</button>

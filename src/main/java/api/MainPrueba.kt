@@ -83,6 +83,8 @@ fun main() {
 
     val orderH0 = mChaile.makeNewOrder(guerrin, mutableListOf(), cash)
     orderH0.addMenu(menu3)
+    orderH0.addMenu(menu0)
+    orderH0.addMenu(menu1)
     orderH0.processOrder()
     orderH0.delivered()
 
@@ -136,9 +138,7 @@ fun main() {
                 path(":code_order   ") {
                     put(controller::rateAnOrder)
                 }
-                }
             }
-
         }
 
         path("orders_pending") {
@@ -151,6 +151,7 @@ fun main() {
             }
         }
     }
+}
 
 
 
