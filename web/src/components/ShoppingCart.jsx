@@ -69,7 +69,7 @@ export default class ShoppingCart extends React.Component {
             return(<Redirect to={{
                         pathname: '/orders',
                         state: { id: this.state.id, password: this.state.password } }}/>)
-        }else{ if(this.state.toOrders && !this.state.toPayment){
+        }else{ if(!this.state.toOrders && this.state.toPayment){
             return(<Redirect to={{
                         pathname: '/payOrder',
                         state: { id: this.state.id, password: this.state.password } }}/>)}
@@ -88,7 +88,8 @@ export default class ShoppingCart extends React.Component {
                                 {this.state.availableMenus.map(mappingAvailableMenus)}
                             </ul>
                         </div>
-
+                    <button className="btn btn-danger" onClick={this.backToOrders}>Volver a Ordenes</button>
+                    <button className="btn btn-danger" onClick={this.toPayment}>Realizar el Pago</button>
                 </div>
                 
                 );
