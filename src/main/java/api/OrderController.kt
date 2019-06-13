@@ -7,6 +7,7 @@ import controllers.LittleUser
 import exception.UserNoFoundException
 import io.javalin.Context
 import io.javalin.NotFoundResponse
+import order.DataMenuInOrder
 import order.Order
 import org.eclipse.jetty.http.HttpStatus
 import paymentMethod.*
@@ -30,7 +31,7 @@ data class OrderData(var codeOrder:Int,var restaurant:Int,var menus: MutableList
 }
 
 //creo este data para que devolverlo con el metodo de pago entero y no la villereada de arriba
-data class OrderDataComplete(var code_order_complete:Int,var restaurant:Int,var menus: MutableList<MenusAndAmount>,
+data class OrderDataComplete(var code_order_complete:Int,var restaurant:Int,var restaurantName:String ,var menus: MutableList<DataMenuInOrder>,
                              var clientID:String,var paymentMethod: PaymentMethod){
     var ratingData:RateData= RateData(0)
 }
@@ -68,7 +69,8 @@ class OrderController() {
 
 
         var orderDataComplete = OrderDataComplete(orderToUpdate.code,orderToUpdate.getRestaurant().code,
-                this.transforToMenuAndAmount(orderToUpdate.getMenusAndCuantity()),orderToUpdate.getUser().id,
+                    orderToUpdate.getRestaurant().name,
+                orderToUpdate.getMenusAndCuantity(),orderToUpdate.getUser().id,
                 orderToUpdate.getPaymentMethod())
         orderDataComplete.ratingData = rate
         ctx.status(HttpStatus.CREATED_201)
@@ -97,7 +99,7 @@ class OrderController() {
 
         ctx.status(HttpStatus.CREATED_201)
     }
-
+/*
     fun getHistoricOrder(ctx: Context) {
         val userId = ctx.pathParam("code")
         val orderCode = ctx.pathParam("code_order").toInt()
@@ -107,13 +109,14 @@ class OrderController() {
         var orderFound = client.historicOrders.find { order -> (order.code)==orderCode }
                 ?: throw NotFoundResponse("No se encontró la orden con id $orderCode")
 
-        var orderDataComplete = OrderDataComplete(orderFound.code,orderFound.getRestaurant().code,
-                this.transforToMenuAndAmount(orderFound.getMenusAndCuantity()),orderFound.getUser().id,
-                orderFound.getPaymentMethod())
-
+        var orderDataComplete = OrderDataComplete(orderFound.code,orderFound.getRestaurant().code,orderFound.restaurantName,
+                orderFound.getMenusAndCuantity(),orderFound.getPaymentMethod(),orderFound.price(),
+                orderFound.getUser().id
+               )
 
         ctx.json(orderDataComplete)
     }
+    */
     fun getPendingOrder(ctx: Context) {
         val code = ctx.pathParam("code").toInt()
         ctx.json(getOrderById(code))
@@ -121,14 +124,12 @@ class OrderController() {
 
 
 
-
-
     //toma las ordenes del usuario de modelo y las pasa a order data
     fun transformOrdersToOrderData(order: MutableList<Order>):MutableList<OrderDataComplete>{
         var orderDatas = mutableListOf<OrderDataComplete>()
-        order.forEach { m-> var orderDataNew = OrderDataComplete(m.code,m.getRestaurant().code,
-                                                                this.transforToMenuAndAmount(m.getMenusAndCuantity()),
-                                                                m.getUser().id,m.getPaymentMethod())
+        order.forEach { o-> var orderDataNew = OrderDataComplete(o.code,o.getRestaurant().code,o.restaurantName,
+                                                                o.getMenusAndCuantity(),
+                                                                o.getUser().id,o.getPaymentMethod())
                                    orderDatas.add(orderDataNew)
                             }
         return  orderDatas
@@ -180,13 +181,13 @@ class OrderController() {
                 ?: throw NotFoundResponse("No se encontró la orden con id $code")
     }
 
-
-    fun transforToMenuAndAmount (map:MutableMap<Int,Int>):MutableList<MenusAndAmount>{
+/*
+    fun transforToMenuAndAmount (menusInOrder:MutableList<DataMenuInOrder>):MutableList<MenusAndAmount>{
         var list= mutableListOf<MenusAndAmount>()
-        map.forEach { m-> var mamount= MenusAndAmount(m.key,m.value)
+        map.forEach { m-> var mamount= MenusAndAmount(m.key,m.value,)
                             list.add(mamount)}
         return list
     }
-
+*/
 }
 

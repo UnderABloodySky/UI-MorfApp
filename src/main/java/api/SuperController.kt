@@ -85,14 +85,14 @@ class SuperController{
     fun addOrder(ctx : Context){
         orderController.addOrder(ctx)
     }
-
+/*
     fun getHistoricOrder(ctx : Context){
         orderController.getHistoricOrder(ctx)
     }
     fun getPendingOrder(ctx : Context){
         orderController.getPendingOrder(ctx)
     }
-
+*/
     fun rateAnOrder(ctx : Context){
         orderController.rateAnOrder(ctx)
     }

@@ -73,9 +73,9 @@ fun main() {
     val productsOfElTano = mutableListOf(vacio, parrilada1, parrilada2, chori)
     val productsTano = mutableListOf(vacio, chori)
 
-    val menu0 = laConga.createMenu("Menu1", "", mutableListOf(helado), laConga, discount.NoDiscount(), true)
-    val menu1 = laConga.createMenu("Menu2", "", productsOfLaConga, laConga, discount.NoDiscount(), true)
-    val menu3 = guerrin.createMenu("MenuB", "", productsGuerrin, guerrin, discount.FixedDiscount(5.0), true)
+    val menu0 = laConga.createMenu("Menu1", "Bien barato", mutableListOf(helado), laConga, discount.NoDiscount(), true)
+    val menu1 = laConga.createMenu("Menu2", "carito", productsOfLaConga, laConga, discount.NoDiscount(), true)
+    val menu3 = guerrin.createMenu("MenuB", "chetito", productsGuerrin, guerrin, discount.FixedDiscount(5.0), true)
 
     val orderP = mChaile.makeNewOrder(elTano, mutableListOf(), cash)
     orderP.addMenu(menu0)
@@ -135,25 +135,23 @@ fun main() {
                 get(controller::historicOrders)
                 path(":code_order   ") {
                     put(controller::rateAnOrder)
-                    get(controller::getHistoricOrder)
+                }
                 }
             }
 
         }
 
         path("orders_pending") {
-
             path(":code") {
                 get(controller::pendingOrders)
                 post(controller::addOrder)
-
                 path(":code_order") {
-                    get(controller::getPendingOrder)
+
                 }
             }
         }
     }
-}
+
 
 
 
