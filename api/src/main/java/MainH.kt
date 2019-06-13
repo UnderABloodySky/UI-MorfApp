@@ -1,20 +1,18 @@
-package api
-
 import applicationModel.MorfApp
 import com.fasterxml.jackson.databind.exc.MismatchedInputException
+import controllers.UserController
 import geoclase.Geo
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
-import io.javalin.core.util.Header
 import org.eclipse.jetty.http.HttpStatus.BAD_REQUEST_400
 import paymentMethod.*
 import productAndMenu.Category
 import productAndMenu.Product
+import sun.security.jgss.GSSUtil.login
 import java.util.*
 
 fun main() {
     val app = Javalin.create()
-            .enableCorsForAllOrigins()
             .enableRouteOverview("/routes")
             .exception(MismatchedInputException::class.java) { e, ctx ->
                 ctx.status(BAD_REQUEST_400)
@@ -23,9 +21,8 @@ fun main() {
                         "message" to e.message
                 ))
             }
-            .start(7000)
+            .start(8000)
     app.get("/") { ctx -> ctx.json(mapOf("message" to " Welcome to MorfApp ~ Online ")) }
-
 
     val morfApp = MorfApp
     //Ubicacion usuarios
@@ -43,9 +40,9 @@ fun main() {
     val fCaramelieri = morfApp.createClient("OracleFanBoy", "Fede Caramelieri", "Otra Calle Falsa 4321", bernal, "plusvalia", "mailTrucho3@asd.com")
 
     val cash = Cash()
-    val debit = Debit("pepe", 12121212, 123, Date())
-    val creditCard = CreditCard("pepe", 1212121212, 123, Date())
-    val mercadoPago = MercadoPago("pepe", "1233")
+    val debit = Debit("pepe",12121212,123,Date())
+    val creditCard = CreditCard("pepe",1212121212,123,Date())
+    val mercadoPago = MercadoPago("pepe","1233")
 
     val onlyCash = mutableListOf<PaymentMethod>(cash)
     val cashDebitAndCreditCard = mutableListOf(cash, debit, creditCard)
@@ -73,9 +70,9 @@ fun main() {
     val productsOfElTano = mutableListOf(vacio, parrilada1, parrilada2, chori)
     val productsTano = mutableListOf(vacio, chori)
 
-    val menu0 = laConga.createMenu("Menu1", "Bien barato", mutableListOf(helado), laConga, discount.NoDiscount(), true)
-    val menu1 = laConga.createMenu("Menu2", "carito", productsOfLaConga, laConga, discount.NoDiscount(), true)
-    val menu3 = guerrin.createMenu("MenuB", "chetito", productsGuerrin, guerrin, discount.FixedDiscount(5.0), true)
+    val menu0 = laConga.createMenu("Menu1", "", mutableListOf(helado), laConga, discount.NoDiscount(), true)
+    val menu1 = laConga.createMenu("Menu2", "", productsOfLaConga, laConga, discount.NoDiscount(), true)
+    val menu3 = guerrin.createMenu("MenuB", "", productsGuerrin, guerrin, discount.FixedDiscount(5.0), true)
 
     val orderP = mChaile.makeNewOrder(elTano, mutableListOf(), cash)
     orderP.addMenu(menu0)
@@ -91,20 +88,20 @@ fun main() {
     orderH1.processOrder()
     orderH1.delivered()
 
-    val controller = SuperController()
+    val controller = UserController()
     controller.addDataUser(mChaile)
     controller.addDataUser(mPais)
     controller.addDataUser(jLajcha)
     controller.addDataUser(fCaramelieri)
 
     app.routes {
-        path("login") {
+        path("login"){
             post(controller::login)
         }
         path("users") {
             get(controller::getAllUsers)
             path(":id") {
-                get(controller::findUser)
+                get(controller::findUser2)
                 put(controller::updateUser)
                 delete(controller::deleteUser)
             }
@@ -120,38 +117,5 @@ fun main() {
                 post(controller::addUser)
             }
         }
-        //Ver si falta una ruta que traiga todos los restaurants
-        path("restaurants") {
-            path(":code") {
-                get(controller::getAllMenus)
-            }
-        }
-        path("search") {
-            get(controller::getRestaurantsAndMenusByCriteria)
-        }
-
-        path("order_historic") {
-            path(":code") {
-                get(controller::historicOrders)
-                path(":code_order   ") {
-                    put(controller::rateAnOrder)
-                }
-            }
-        }
-
-
-        path("orders_pending") {
-            path(":code") {
-                get(controller::pendingOrders)
-                post(controller::addOrder)
-                path(":code_order") {
-
-                }
-            }
-        }
     }
 }
-
-
-
-

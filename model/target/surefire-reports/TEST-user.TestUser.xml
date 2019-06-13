@@ -29,7 +29,7 @@
     <property name="os.name" value="Linux"/>
     <property name="classworlds.conf" value="/usr/share/maven/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="jnidispatch.path" value="/tmp/jna-742789033/jna6562378143746162094.tmp"/>
+    <property name="jnidispatch.path" value="/tmp/jna-742789033/jna5416584875666718791.tmp"/>
     <property name="java.library.path" value="/usr/java/packages/lib/i386:/usr/lib/i386-linux-gnu/jni:/lib/i386-linux-gnu:/usr/lib/i386-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
     <property name="maven.conf" value="/usr/share/maven/conf"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>

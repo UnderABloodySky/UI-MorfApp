@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="21" failures="0" name="order.TestOrder" time="0.006" errors="0" skipped="0">
+<testsuite tests="21" failures="0" name="order.TestOrder" time="0.009" errors="0" skipped="0">
   <properties>
     <property name="jna.platform.library.path" value="/usr/lib/i386-linux-gnu:/lib/i386-linux-gnu:/usr/lib:/lib:/usr/lib/i386-linux-gnu/i686/sse2:/usr/lib/i386-linux-gnu/sse2:/usr/lib/i386-linux-gnu/libfakeroot"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -29,7 +29,7 @@
     <property name="os.name" value="Linux"/>
     <property name="classworlds.conf" value="/usr/share/maven/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="jnidispatch.path" value="/tmp/jna-742789033/jna6562378143746162094.tmp"/>
+    <property name="jnidispatch.path" value="/tmp/jna-742789033/jna5416584875666718791.tmp"/>
     <property name="java.library.path" value="/usr/java/packages/lib/i386:/usr/lib/i386-linux-gnu/jni:/lib/i386-linux-gnu:/usr/lib/i386-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
     <property name="maven.conf" value="/usr/share/maven/conf"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -65,17 +65,17 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="order.TestOrder" name="test17_thePriceOfTheOrderModifiedByTheMenusThatComposeIt" time="0.005"/>
+  <testcase classname="order.TestOrder" name="test17_thePriceOfTheOrderModifiedByTheMenusThatComposeIt" time="0.006"/>
   <testcase classname="order.TestOrder" name="test11_theOrderCanBeModificatedWhenItsStateIsDelivered" time="0"/>
   <testcase classname="order.TestOrder" name="test13_thePriceOfTheOrderWithoutMenusIsZero" time="0"/>
   <testcase classname="order.TestOrder" name="test02_thePaymentMethodOfTheOrderIsPending" time="0"/>
-  <testcase classname="order.TestOrder" name="test09_theOrderCanBeModificatedWhenItsStateIsCancelled" time="0"/>
+  <testcase classname="order.TestOrder" name="test09_theOrderCanBeModificatedWhenItsStateIsCancelled" time="0.002"/>
   <testcase classname="order.TestOrder" name="test04_thePaymentMethodOfOfTheOrderIsTheOneIndicated" time="0"/>
   <testcase classname="order.TestOrder" name="test18_theStateOfTheOrderIsDelivered" time="0"/>
   <testcase classname="order.TestOrder" name="test14_thePriceOfTheOrderIsThePriceOfItsOnlyMenu" time="0"/>
   <testcase classname="order.TestOrder" name="test06_addMenuAddsMenusInTheOrdersCollection" time="0"/>
   <testcase classname="order.TestOrder" name="test15_thePriceOfTheOrderIsTheSumOfThePricesThatComposeIt" time="0"/>
-  <testcase classname="order.TestOrder" name="test05_theMenusAreTheIndicated" time="0"/>
+  <testcase classname="order.TestOrder" name="test05_theMenusAreTheIndicated" time="0.001"/>
   <testcase classname="order.TestOrder" name="test10_theOrderCanBeModificatedWhenItsStateIsOnMyWay" time="0"/>
   <testcase classname="order.TestOrder" name="test21_theStateOfTheOrderIsDeliveredCancelled" time="0"/>
   <testcase classname="order.TestOrder" name="test16_theOrderCanChangeItsPaymentMethod" time="0"/>
@@ -84,6 +84,6 @@
   <testcase classname="order.TestOrder" name="test03_theRestaurantOfTheOrderIsTheOneIndicated" time="0"/>
   <testcase classname="order.TestOrder" name="test08_theModificationOfThePaymentMenthodOfTheOrderDependOfItsState" time="0"/>
   <testcase classname="order.TestOrder" name="test20_theStateOfTheOrderIsDeliveredOnMyWay" time="0"/>
-  <testcase classname="order.TestOrder" name="test07_removeMenuRemovesMenusInTheOrdersCollection" time="0.001"/>
+  <testcase classname="order.TestOrder" name="test07_removeMenuRemovesMenusInTheOrdersCollection" time="0"/>
   <testcase classname="order.TestOrder" name="test12_theOnlyPaymentMenthodOfTheOrderThatPermitItsModificationOIsThePending" time="0"/>
 </testsuite>

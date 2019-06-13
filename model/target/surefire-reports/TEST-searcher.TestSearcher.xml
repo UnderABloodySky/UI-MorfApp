@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="32" failures="0" name="searcher.TestSearcher" time="0.013" errors="0" skipped="0">
+<testsuite tests="32" failures="0" name="searcher.TestSearcher" time="0" errors="0" skipped="0">
   <properties>
     <property name="jna.platform.library.path" value="/usr/lib/i386-linux-gnu:/lib/i386-linux-gnu:/usr/lib:/lib:/usr/lib/i386-linux-gnu/i686/sse2:/usr/lib/i386-linux-gnu/sse2:/usr/lib/i386-linux-gnu/libfakeroot"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -29,7 +29,7 @@
     <property name="os.name" value="Linux"/>
     <property name="classworlds.conf" value="/usr/share/maven/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="jnidispatch.path" value="/tmp/jna-742789033/jna6562378143746162094.tmp"/>
+    <property name="jnidispatch.path" value="/tmp/jna-742789033/jna5416584875666718791.tmp"/>
     <property name="java.library.path" value="/usr/java/packages/lib/i386:/usr/lib/i386-linux-gnu/jni:/lib/i386-linux-gnu:/usr/lib/i386-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
     <property name="maven.conf" value="/usr/share/maven/conf"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -67,13 +67,13 @@
   </properties>
   <testcase classname="searcher.TestSearcher" name="test23_theSearchByIdAndStringDontGiveTheCorrectRestaurantBecauseTheMapIsEmpty" time="0"/>
   <testcase classname="searcher.TestSearcher" name="test21_theSearchByIdAndStringDontGiveTheCorrectRestaurantBecauseTheNameDontExist" time="0"/>
-  <testcase classname="searcher.TestSearcher" name="test11_theSearchByStringDontGiveTheCorrectRestaurantBecauseTheMapIsEmpty" time="0.003"/>
+  <testcase classname="searcher.TestSearcher" name="test11_theSearchByStringDontGiveTheCorrectRestaurantBecauseTheMapIsEmpty" time="0"/>
   <testcase classname="searcher.TestSearcher" name="test16_theSearchByStringDontGiveTheCorrectProductBecauseTheNameDontExist" time="0"/>
   <testcase classname="searcher.TestSearcher" name="test25_theSearchByIdAndStringGiveTheCorrectMenuWhenSearchByCode" time="0"/>
   <testcase classname="searcher.TestSearcher" name="test12_theSearchByStringGiveTheCorrectMenuWhenSearchByName" time="0"/>
-  <testcase classname="searcher.TestSearcher" name="test22_theSearchByIdAndStringDontGiveTheCorrectRestaurantBecauseTheCodeDontExist" time="0.001"/>
-  <testcase classname="searcher.TestSearcher" name="test17_theSearchByStringDontGiveTheCorrectProductBecauseTheMapIsEmpty" time="0.001"/>
-  <testcase classname="searcher.TestSearcher" name="test27_theSearchByIdAndStringDontGiveTheCorrectMenuBecauseTheCodeDontExist" time="0.001"/>
+  <testcase classname="searcher.TestSearcher" name="test22_theSearchByIdAndStringDontGiveTheCorrectRestaurantBecauseTheCodeDontExist" time="0"/>
+  <testcase classname="searcher.TestSearcher" name="test17_theSearchByStringDontGiveTheCorrectProductBecauseTheMapIsEmpty" time="0"/>
+  <testcase classname="searcher.TestSearcher" name="test27_theSearchByIdAndStringDontGiveTheCorrectMenuBecauseTheCodeDontExist" time="0"/>
   <testcase classname="searcher.TestSearcher" name="test14_theSearchByStringDontGiveTheCorrectMenuBecauseTheMapIsEmpty" time="0"/>
   <testcase classname="searcher.TestSearcher" name="test31_theSearchByIdAndStringDontGiveTheCorrectProductBecauseTheMapIsEmpty" time="0"/>
   <testcase classname="searcher.TestSearcher" name="test08_theSearchByIdDontGiveTheCorrectProductBecauseTheCodeDontExist" time="0"/>
@@ -82,16 +82,16 @@
   <testcase classname="searcher.TestSearcher" name="test05_theSearchByIdDontGiveTheCorrectMenuBecauseTheCodeDontExist" time="0"/>
   <testcase classname="searcher.TestSearcher" name="test06_theSearchByIdGiveTheCorrectProduct" time="0"/>
   <testcase classname="searcher.TestSearcher" name="test00_theSearchByIdGiveTheCorrectRestaurant" time="0"/>
-  <testcase classname="searcher.TestSearcher" name="test18_theSearchByIdAndStringGiveTheCorrectRestaurantWhenSearchByName" time="0.001"/>
+  <testcase classname="searcher.TestSearcher" name="test18_theSearchByIdAndStringGiveTheCorrectRestaurantWhenSearchByName" time="0"/>
   <testcase classname="searcher.TestSearcher" name="test20_theSearchByIdAndStringGivePartiallyTheRestaurantsWhenSearchByCode" time="0"/>
-  <testcase classname="searcher.TestSearcher" name="test10_theSearchByStringDontGiveTheCorrectRestaurantBecauseTheNameDontExist" time="0.002"/>
-  <testcase classname="searcher.TestSearcher" name="test24_theSearchByIdAndStringGiveTheCorrectMenuWhenSearchByName" time="0.001"/>
-  <testcase classname="searcher.TestSearcher" name="test15_theSearchByStringGiveTheCorrectProductWhenSearchByName" time="0.001"/>
+  <testcase classname="searcher.TestSearcher" name="test10_theSearchByStringDontGiveTheCorrectRestaurantBecauseTheNameDontExist" time="0"/>
+  <testcase classname="searcher.TestSearcher" name="test24_theSearchByIdAndStringGiveTheCorrectMenuWhenSearchByName" time="0"/>
+  <testcase classname="searcher.TestSearcher" name="test15_theSearchByStringGiveTheCorrectProductWhenSearchByName" time="0"/>
   <testcase classname="searcher.TestSearcher" name="test28_theSearchByIdAndStringDontGiveTheCorrectMenuBecauseTheMapIsEmpty" time="0"/>
   <testcase classname="searcher.TestSearcher" name="test13_theSearchByStringDontGiveTheCorrectMenuBecauseTheNameDontExist" time="0"/>
-  <testcase classname="searcher.TestSearcher" name="test29_theSearchByIdAndStringGiveTheCorrectProductWhenSearchByName" time="0.001"/>
+  <testcase classname="searcher.TestSearcher" name="test29_theSearchByIdAndStringGiveTheCorrectProductWhenSearchByName" time="0"/>
   <testcase classname="searcher.TestSearcher" name="test07_theSearchByIdDontGiveTheCorrectProductBecauseTheMapIsEmpty" time="0"/>
-  <testcase classname="searcher.TestSearcher" name="test02_theSearchByIdDontGiveTheCorrectRestaurantBecauseTheCodeDontExist" time="0.001"/>
+  <testcase classname="searcher.TestSearcher" name="test02_theSearchByIdDontGiveTheCorrectRestaurantBecauseTheCodeDontExist" time="0"/>
   <testcase classname="searcher.TestSearcher" name="test01_theSearchByIdDontGiveTheCorrectRestaurantBecauseTheMapIsEmpty" time="0"/>
   <testcase classname="searcher.TestSearcher" name="test03_theSearchByIdGiveTheCorrectMenu" time="0"/>
   <testcase classname="searcher.TestSearcher" name="test19_theSearchByIdAndStringGiveTheCorrectRestaurantWhenSearchByCode" time="0"/>

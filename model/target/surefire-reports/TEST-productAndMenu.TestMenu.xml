@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="productAndMenu.TestMenu" time="0.001" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="productAndMenu.TestMenu" time="0.003" errors="0" skipped="0">
   <properties>
     <property name="jna.platform.library.path" value="/usr/lib/i386-linux-gnu:/lib/i386-linux-gnu:/usr/lib:/lib:/usr/lib/i386-linux-gnu/i686/sse2:/usr/lib/i386-linux-gnu/sse2:/usr/lib/i386-linux-gnu/libfakeroot"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -29,7 +29,7 @@
     <property name="os.name" value="Linux"/>
     <property name="classworlds.conf" value="/usr/share/maven/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="jnidispatch.path" value="/tmp/jna-742789033/jna6562378143746162094.tmp"/>
+    <property name="jnidispatch.path" value="/tmp/jna-742789033/jna5416584875666718791.tmp"/>
     <property name="java.library.path" value="/usr/java/packages/lib/i386:/usr/lib/i386-linux-gnu/jni:/lib/i386-linux-gnu:/usr/lib/i386-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
     <property name="maven.conf" value="/usr/share/maven/conf"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -65,9 +65,9 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="productAndMenu.TestMenu" name="removeAProductOfAMenuThatHasOnlyOneAndCheckIfSizeIsAsEspected" time="0"/>
-  <testcase classname="productAndMenu.TestMenu" name="AddTwoProductsWithDifferentPricesToAMenuAndCheckIfTheTotalValueOfMenuIsAsEspected" time="0.001"/>
-  <testcase classname="productAndMenu.TestMenu" name="addANewProductToAnEmptyListAndCheckIfSizeIsAsEspected" time="0"/>
+  <testcase classname="productAndMenu.TestMenu" name="removeAProductOfAMenuThatHasOnlyOneAndCheckIfSizeIsAsEspected" time="0.001"/>
+  <testcase classname="productAndMenu.TestMenu" name="AddTwoProductsWithDifferentPricesToAMenuAndCheckIfTheTotalValueOfMenuIsAsEspected" time="0"/>
+  <testcase classname="productAndMenu.TestMenu" name="addANewProductToAnEmptyListAndCheckIfSizeIsAsEspected" time="0.001"/>
   <testcase classname="productAndMenu.TestMenu" name="checkThatIfThereIsNoDiscountAppliedToTheMenuItStillReturnsTheTotalValueWhenAskedForCostAutocalculation" time="0"/>
-  <testcase classname="productAndMenu.TestMenu" name="CheckThatIfIHaveTwoOfTheSameProductsAndIRemoveOneOfThemTheSizeIsZero" time="0"/>
+  <testcase classname="productAndMenu.TestMenu" name="CheckThatIfIHaveTwoOfTheSameProductsAndIRemoveOneOfThemTheSizeIsZero" time="0.001"/>
 </testsuite>
