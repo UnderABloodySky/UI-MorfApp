@@ -2,13 +2,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
-
 import Restaurants from './homeComponents/Restaurants';
 import Orders from './Orders';
 import SignIn from './homeComponents/SignIn';
 import SignUp from './homeComponents/SignUp';
 import Home from './Home';
-
 
 export default class App extends React.Component {
   render() {
@@ -20,7 +18,7 @@ export default class App extends React.Component {
             <Route exact path="/users/register" component={SignUp} />
             <Route exact path="/signIn/:id" component={SignIn} />
             <Route exact path="/home" component={Home} />
-            <Route exact path="/" component={Home} />
+            <Route path="/" component={Home} />
           </Switch>
       </BrowserRouter>
     );

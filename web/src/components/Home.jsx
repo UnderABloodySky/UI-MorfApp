@@ -1,10 +1,7 @@
 import React from 'react';
-
 import Navbar from './homeComponents/Navbar';
 import Body from './homeComponents/Body';
 import Footer from './homeComponents/Footer';
-
-import { getRestaurant } from '../api/api';
 
 export default class Home extends React.Component {
   constructor(props) {

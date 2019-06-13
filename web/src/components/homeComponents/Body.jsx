@@ -5,17 +5,21 @@ import SignUp from './SignUp';
 import SignIn from './SignIn';
 
 export default class Body extends React.Component {
-  state = { renderReg: false, renderLog: false }
-    constructor(props) {
+  constructor(props) {
     super(props)  
-    }  
+    this.state = { 
+      renderReg: false,
+      renderLog: false
+    }; 
+    this.handlerReg = this.handlerReg.bind(this);
+    this.handlerLog = this.handlerLog.bind(this);
+  }  
 
 register = () => {
   this.setState({renderReg : !this.state.renderReg})
   if(this.state.renderLog){
     this.setState({renderLog : false})
   }
-
 }
 
 login = () => {
@@ -23,6 +27,16 @@ login = () => {
   if(this.state.renderReg){
     this.setState({renderReg : false})
   }
+}
+
+handlerReg() {
+    this.setState({ renderReg: false })
+}
+handlerLog() {
+    this.setState({ renderLog: false })
+}
+
+componentDidUpdate(){
 }
 
 render() {
@@ -47,12 +61,12 @@ render() {
             <div className="banner-text" >
               <h3>Comida a un click!</h3>
               <p>Promociones diarias &amp; mas</p>
-              <a href="#" className="btn btn-1 btn-1b" onClick={() => this.register()}>Registrate</a>
-              <a href="#" className="btn btn-2 btn-2b" onClick={() => this.login()}>Loguearse</a>
+              <a href="#" className="btn btn-1 btn-1b" onClick={() => this.register() }>Registrarte</a>
+              <a href="#" className="btn btn-2 btn-2b" onClick={() => this.login() }>Loguearte</a>
               { this.state.renderReg &&
-              <SignUp/>}
+              <SignUp handlerReg = {this.handlerReg} />}
               { this.state.renderLog &&
-              <SignIn/>}
+              <SignIn handlerLog = {this.handlerLog} />}
             </div>
             {/*welcome*/}
             <div className="welcome">
@@ -75,7 +89,7 @@ render() {
                     <div className="clearfix"> </div>
                 </div>
               </div>
-              <p>LA LA LA LA LA LA LA LA LA LA LA LA LA LA LA LA LA LA LA LA </p>			
+                   <p> cargar algo aca </p>			
             </div>
             {/*//welcome*/}
           </div>

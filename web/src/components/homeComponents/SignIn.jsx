@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-// import './css/SignIn.css';
 import { signIn } from '../../api/api';
 import { Redirect } from 'react-router-dom'
+// import './css/SignIn.css';
 
 export default class SignIn extends React.Component {
   constructor(props) {
@@ -62,7 +61,7 @@ export default class SignIn extends React.Component {
                 <button type="button" className="btn btn-primary btn-block" onClick={this.executeSignIn}>Ingresar</button>
               </div>
               <div className="col-12">
-                <Link to="/" className="btn btn-link" >Cancelar</Link>
+                <button type="button" id="focus" className="btn btn-link" onClick={this.props.handlerLog}>Cancelar</button>
               </div>
               <div className="col-12 empty">
                 {this.state.error && this.state.error}

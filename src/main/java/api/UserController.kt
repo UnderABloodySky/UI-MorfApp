@@ -17,7 +17,7 @@ import user.Client
 data class LittleUser(var id : String, var password : String)
 
 //Register
-data class PseudoUser(val id : String, val name : String, var password : String, var address : String, var geoLocation : Geo, val email : String)
+data class PseudoUser(val id : String, val name : String, var password : String, var address : String, var geoLocation : Geo, val email : String)ñ
 
 //De la vista
 data class DataUser(@JsonIgnore val client : Client){
