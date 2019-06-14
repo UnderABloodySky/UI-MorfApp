@@ -7,17 +7,9 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurant: {
-        code: 0,
-        name: '',
-        description: '',
-        direcction: '',
-        geoLocation: '',
-        menus: []        
-      },
       error: ''
+    }
     };
-  }
 
   render() {
     return (
