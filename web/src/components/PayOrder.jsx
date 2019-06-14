@@ -18,15 +18,15 @@ export default class PayOrder extends React.Component {
 
     toOrders = () => {
         this.setState({
-            toOrders: false,
-            payment: true
+            toOrders: true,
+            toShoppingCart: false
         })
     };
 
-    backToOrd = () => {
+    backToShoppingCart = () => {
         this.setState({
-          toOrders: true,
-          toPayment: false
+          toOrders: false,
+          toShoppingCart: true
         })
 };
     render() {

@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Redirect } from 'react-router-dom'
 
+import './css/ShoppingCart.css';
+
 export default class ShoppingCart extends React.Component {
     constructor(props) {
         super(props);
@@ -69,13 +71,14 @@ export default class ShoppingCart extends React.Component {
             return(<Redirect to={{
                         pathname: '/orders',
                         state: { id: this.state.id, password: this.state.password } }}/>)
-        }else{ if(!this.state.toOrders && this.state.toPayment){
+        }
+        if(!this.state.toOrders && this.state.toPayment){
             return(<Redirect to={{
                         pathname: '/payOrder',
-                        state: { id: this.state.id, password: this.state.password } }}/>)}
+                        state: { id: this.state.id, password: this.state.password } }}/>)
         }
         return( <div>
-                    <div>Su pedido:</div>
+                    <div className="product-price">Su pedido:</div>
                         <div>
                             <ul>
                                 {this.state.selectedMenus.map(mappingSelectedMenus)}
