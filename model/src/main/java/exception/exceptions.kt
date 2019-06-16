@@ -4,6 +4,8 @@ class EmptyOrderException(message: String) : Exception(message)
 
 class MenuNameAlreadyInUseException(message: String) : Exception(message)
 
+class ProductNameAlreadyInUseException(message: String) : Exception(message)
+
 class NoRestaurantFoundException (message: String) : Exception(message)
 
 class NoUserAuthenticateException(message: String) : Exception(message)

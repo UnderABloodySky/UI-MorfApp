@@ -120,8 +120,8 @@ fun main() {
                 post(controller::addUser)
             }
         }
-        //Ver si falta una ruta que traiga todos los restaurants
-        path("restaurants") {
+
+        path("restaurant") {
             path(":code") {
                 get(controller::getAllMenus)
             }

@@ -15,8 +15,8 @@ export default class App extends React.Component {
     return (
       <BrowserRouter>
           <Switch>
-            <Route exact path="/payOrder" component={PayOrder} />
-            <Route exact path="/shoppingCart" component={ShoppingCart} />
+            <Route exact path="/payorder" component={PayOrder} />
+            <Route exact path="/sc" component={ShoppingCart} />
             <Route exact path="/restaurants" component={Restaurants} />
             <Route exact path="/orders" component={Orders} />
             <Route exact path="/users/register" component={SignUp} />

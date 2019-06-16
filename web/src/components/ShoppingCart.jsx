@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import { getMenus } from '../api/api';
 
 import './css/ShoppingCart.css';
 
@@ -24,7 +25,7 @@ export default class ShoppingCart extends React.Component {
     toPayment = () => {
         this.setState({
             toOrders: false,
-            payment: true
+            toPayment: true
         })
     };
 
@@ -33,11 +34,24 @@ export default class ShoppingCart extends React.Component {
           toOrders: true,
           toPayment: false
         })
-};
-    
+    };
+
+    getTotalPrice() {
+        var ammount = 0;
+        this.state.availableMenus.productsOfMenu.forEach(element => {ammount += element.price});
+        return ammount;
+    }
+
+    componentDidMount(){    
+        getMenus(0)
+        .then(result => {
+            console.log(result);
+            this.setState({
+            availableMenus: result })})       
+    }    
 
     render(){
-        const mappingSelectedMenus = (menus) =><li key={menus.code_order_complete}>
+        const mappingSelectedMenus = (menus) =><li key={menus.code}>
                                                     <div className="col-md-4" >
                                                         <div className="card mt-4">
                                                         <div className="card-headercard-title text-center">
@@ -52,7 +66,7 @@ export default class ShoppingCart extends React.Component {
                                                         </div>  
                                                     </div>
                                                 </li>
-        const mappingAvailableMenus = (menus) =><li key={menus.code_order_complete}>
+        const mappingAvailableMenus = (menus) =><li key={menus.code}>
                                                     <div className="col-md-4" >
                                                         <div className="card mt-4">
                                                         <div className="card-headercard-title text-center">
@@ -60,7 +74,11 @@ export default class ShoppingCart extends React.Component {
                                                         </div>
                                                             <div className="card-body">
                                                                 <p>Menú: {menus.name}</p>
-                                                                <p>Precio: {menus.price} $</p>
+                                                                <p>Precio: 
+                                                                        {menus.productsOfMenu.reduce(
+                                                                            function(prev, cur) {return prev + cur.price; }
+                                                                            , 0)}                                                                             
+                                                                $</p>                                                                
                                                                 <button className="btn btn-danger">Agregar</button>
                                                             </div>
                                                         </div>  
@@ -74,7 +92,7 @@ export default class ShoppingCart extends React.Component {
         }
         if(!this.state.toOrders && this.state.toPayment){
             return(<Redirect to={{
-                        pathname: '/payOrder',
+                        pathname: '/payorder',
                         state: { id: this.state.id, password: this.state.password } }}/>)
         }
         return( <div>
