@@ -3,9 +3,9 @@ import React from 'react';
 import { Redirect } from 'react-router-dom'
 import { getPendingOrdersFrom } from '../api/api'
 import { getHistoricOrdersFrom } from '../api/api'
-import logo, { ReactComponent } from './logo.svg';
-import './css/Orders2.css';
-import './css/shop-homepage.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import './css/Orders.css';
 
 export default class Orders extends React.Component {
     constructor(props) {
@@ -36,14 +36,11 @@ export default class Orders extends React.Component {
 
     render() {
       const mappingOrderCode = (order) => (<li key={order.code_order_complete}>
-                                          <div className="container">
-                                            <div className="row mt-4">
-                                             <div className="col-md-3 text-center">
-                                                <img src={logo} className="App-logo" alt="logo" />
-                                                  <div className = "row"></div>
-                                                  <div className="card h-100">
+                                          <div className="col-md-4" >
+                                              <div className="card mt-4">
+                                                <div className="card-headercard-title text-center">
                                                   <h3>Código Orden: {order.code_order_complete}</h3>
-                                                  </div>
+                                                </div>
                                                   <div className="card-body">
                                                     <p><h5>Restaurant: {order.restaurantName}</h5></p>
                                                     <p><mark>{order.menus.map(itMenus => (<li key={itMenus.code}>
@@ -57,22 +54,24 @@ export default class Orders extends React.Component {
                                                       </mark>
                                                     </p>
                                                     <button className="btn btn-danger">Cancelar</button>
-                                                  </div> 
+                                                    <button className="btn btn-success ml-4"> Puntuar Pedido</button>  
+                                                    <FontAwesomeIcon
+                                                          icon={['fab', 'internet-explorer']}
+                                                          flip="both"
+                                                          size="4x"
+                                                        />
+                                                  </div>
+                                                  </div>  
                                                 </div>
-                                              </div>  
-                                            </div>
-                                          
-                                        </li>)
+                                          </li>)
       
       if (this.state.id === ''){
         return <Redirect to={'/'}/> //Caso que se entre directamente a /orders
       }
         return(
-            <div> 
-                <div className = "my-4">
+            <div>
                 <div><h1>{this.state.id} LOGUEADO </h1></div>  
                 <br></br>
-                </div>
                 <div><h3>Ordenes Pendientes</h3></div>
                   <div>
                     
