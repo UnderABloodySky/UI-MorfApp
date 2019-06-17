@@ -1,6 +1,6 @@
 # IntelliJ
 .idea/
- 
+.idea/workspace.xml
 
 # Maven
 target/
