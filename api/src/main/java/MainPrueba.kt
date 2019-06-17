@@ -97,6 +97,10 @@ fun main() {
     controller.addDataUser(jLajcha)
     controller.addDataUser(fCaramelieri)
 
+    controller.addDataRestaurant(laConga)
+    controller.addDataRestaurant(guerrin)
+    controller.addDataRestaurant(elTano)
+
     app.routes {
         path("login") {
             post(controller::login)
@@ -122,6 +126,7 @@ fun main() {
         }
 
         path("restaurant") {
+            get(controller::getAllRestaurants)
             path(":code") {
                 get(controller::getAllMenus)
             }

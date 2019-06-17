@@ -9,6 +9,17 @@ import searcher.CriteriaById
 import searcher.CriteriaByString
 
 class RestaurantController {
+  private var restaurants = mutableListOf<DataRestaurant>()
+
+    fun addDataRestaurant(resto : Restaurant){
+        var aDataResto = DataRestaurant(resto.code, resto.name, resto.direcction, resto.geoLocation)
+        restaurants.add(aDataResto)
+    }
+
+    fun getAllRestaurants(ctx : Context){
+        ctx.status(200)
+        ctx.json(restaurants)
+    }
 
     fun getAllMenus(ctx: Context) {
         val code = ctx.pathParam("code").toInt()

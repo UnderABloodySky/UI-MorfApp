@@ -13,6 +13,7 @@ import order.Order
 import org.eclipse.jetty.http.HttpStatus.CREATED_201
 import org.eclipse.jetty.http.HttpStatus.NO_CONTENT_204
 import user.Client
+import restaurant.Restaurant
 
 class SuperController{
     private var userController = UserController()
@@ -69,6 +70,14 @@ class SuperController{
 
     fun getAllMenus(ctx : Context){
         restaurantController.getAllMenus(ctx)
+    }
+
+    fun addDataRestaurant(restaurant : Restaurant){
+        restaurantController.addDataRestaurant(restaurant)
+    }
+
+    fun getAllRestaurants(ctx : Context){
+        restaurantController.getAllRestaurants(ctx)
     }
 
     fun getRestaurantsAndMenusByCriteria(ctx : Context){
