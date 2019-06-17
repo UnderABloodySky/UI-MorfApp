@@ -75,7 +75,9 @@ fun main() {
 
     val menu0 = laConga.createMenu("Menu1", "Bien barato", mutableListOf(helado), laConga, discount.NoDiscount(), true)
     val menu1 = laConga.createMenu("Menu2", "carito", productsOfLaConga, laConga, discount.NoDiscount(), true)
+    val menu2 = laConga.createMenu("Menu3", "chetito", productsOfLaConga, laConga, discount.FixedDiscount(5.0), true)
     val menu3 = guerrin.createMenu("MenuB", "chetito", productsGuerrin, guerrin, discount.FixedDiscount(5.0), true)
+    val menu4 = laConga.createMenu("Menu4", "riquito", productsOfLaConga, laConga, discount.PercentageDiscount(20.0), true)
 
     val orderP = mChaile.makeNewOrder(elTano, mutableListOf(), cash)
     orderP.addMenu(menu0)
