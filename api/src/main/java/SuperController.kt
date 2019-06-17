@@ -75,6 +75,9 @@ class SuperController{
     fun addDataRestaurant(restaurant : Restaurant){
         restaurantController.addDataRestaurant(restaurant)
     }
+    fun getRestaurant(ctx : Context){
+        restaurantController.getRestaurant(ctx)
+    }
 
     fun getAllRestaurants(ctx : Context){
         restaurantController.getAllRestaurants(ctx)

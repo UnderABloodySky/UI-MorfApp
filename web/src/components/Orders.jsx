@@ -3,7 +3,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom'
 import { getPendingOrdersFrom } from '../api/api'
 import { getHistoricOrdersFrom } from '../api/api'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import StarRatingComponent from 'react-star-rating-component';
 
 import './css/Orders.css';
 
@@ -13,12 +13,18 @@ export default class Orders extends React.Component {
         this.state = {
           id: '',
           pendingOrders: [],  
-          historicOrders: []
+          historicOrders: [],
+          rating: 1
         };
         if (this.props.location.state !== undefined){
           this.state.id = this.props.location.state.id;  //Chequeo que haya venido una props
         }
       }
+
+    
+  onStarClick(nextValue, prevValue, name) {
+    this.setState({rating: nextValue});
+  }
     priceOfOrder(order){      
       var total = 0;
       order.menus.map(element => { total = total + element.price });
@@ -55,11 +61,7 @@ export default class Orders extends React.Component {
                                                     </p>
                                                     <button className="btn btn-danger">Cancelar</button>
                                                     <button className="btn btn-success ml-4"> Puntuar Pedido</button>  
-                                                    <FontAwesomeIcon
-                                                          icon={['fab', 'internet-explorer']}
-                                                          flip="both"
-                                                          size="4x"
-                                                        />
+                                                      
                                                   </div>
                                                   </div>  
                                                 </div>

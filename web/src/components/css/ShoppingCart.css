@@ -7,7 +7,7 @@ $font-bold: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
 
 
 /* Global "table" column settings */
-.product-image { float: left; width: 20%; }
+.product-image { float: left; width: 30%; }
 .product-details { float: left; width: 37%; }
 .product-price { float: left; width: 12%; }
 .product-quantity { float: left; width: 10%; }
@@ -164,88 +164,14 @@ label {
   background-color: #494;
 }
 
-/* Make adjustments for tablet */
-@media screen and (max-width: 650px) {
-  
-  .shopping-cart {
-    margin: 0;
-    padding-top: 20px;
-    border-top: 1px solid $color-border;
-  }
-  
-  .column-labels {
-    display: none;
-  }
-  
-  .product-image {
-    float: right;
-    width: auto;
-    img {
-      margin: 0 0 10px 10px;
-    }
-  }
-  
-  .product-details {
-    float: none;
-    margin-bottom: 10px;
-    width: auto;
-  }
-  
-  .product-price {
-    clear: both;
-    width: 70px;
-  }
-  
-  .product-quantity {
-    width: 100px;
-    input {
-      margin-left: 20px;
-    }
-  }
-  
-  .product-quantity:before {
-    content: 'x';
-  }
-  
-  .product-removal {
-    width: auto;
-  }
-  
-  .product-line-price {
-    float: right;
-    width: 70px;
-  }
-  
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto;
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
 }
 
 
-/* Make more adjustments for phone */
-@media screen and (max-width: 350px) {
-  
-  .product-removal {
-    float: right;
-  }
-  
-  .product-line-price {
-    float: right;
-    clear: left;
-    width: auto;
-    margin-top: 10px;
-  }
-  
-  .product .product-line-price:before {
-    content: 'Item Total: $';
-  }
-  
-  .totals {
-    .totals-item {
-      label {
-        width: 60%;
-      }
-      
-      .totals-value {
-        width: 40%;
-      }
-    }
-  }
-}
+
