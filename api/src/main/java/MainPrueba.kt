@@ -126,7 +126,11 @@ fun main() {
                 post(controller::addUser)
             }
         }
-
+        path("findRestaurant") {
+            path(":code") {
+                get(controller::getRestaurant)
+            }
+        }
         path("restaurant") {
             get(controller::getAllRestaurants)
             path(":code") {
@@ -145,7 +149,6 @@ fun main() {
                 }
             }
         }
-
 
         path("orders_pending") {
             path(":id") {

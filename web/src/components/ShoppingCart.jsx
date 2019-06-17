@@ -154,7 +154,11 @@ export default class ShoppingCart extends React.Component {
         if(!this.state.toOrders && this.state.toPayment){
             return(<Redirect to={{
                         pathname: '/payorder',
-                        state: { id: this.state.id, password: this.state.password } }}/>)
+                        state: { id: this.state.id,
+                                 password: this.state.password,
+                                 selectedMenus: this.state.selectedMenus,
+                                 orderSubtotal: this.state.orderSubtotal,
+                                 orderTotal: this.state.orderTotal } }}/>)
         }
         return( <div>
                     <div>Su pedido: </div>

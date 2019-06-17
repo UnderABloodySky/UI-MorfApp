@@ -29,7 +29,12 @@ class RestaurantController {
                 .menus()
                 .values)
     }
-
+    fun getRestaurant(ctx: Context){
+        val code = ctx.pathParam("code").toInt()
+        ctx.json((MorfApp
+                .findRestaurant(CriteriaById(code))
+                .first() as Restaurant))
+    }
     fun getRestaurantsAndMenusByCriteria(ctx: Context) {
         val criteria = ctx.queryParam("q")
         val lat = ctx.queryParam("lat")
