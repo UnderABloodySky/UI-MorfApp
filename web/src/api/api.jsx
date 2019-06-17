@@ -12,5 +12,5 @@ export const getPendingOrdersFrom = body => request('get', '/orders_pending/' + 
 export const getHistoricOrdersFrom = body => request('get', '/order_historic/' + body);
 export const getMenus = body => request('get', '/restaurant/' + body);
 export const restaurants  = body => request('get', '/restaurant/');
-export const findRestaurant = body => request('get', '/restaurant/' + body);
+export const findRestaurant = body => request('get', '/findrestaurant/' + body);
 

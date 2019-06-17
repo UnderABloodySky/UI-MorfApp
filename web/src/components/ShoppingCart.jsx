@@ -46,10 +46,10 @@ export default class ShoppingCart extends React.Component {
         var priceWithDiscount = this.unitPrice(givenMenu);
         console.log(priceWithDiscount);
         console.log(givenMenu);
-        if(givenMenu.discount.name == "DescuentoPorMonto"){
+        if(givenMenu.discount.name === "DescuentoPorMonto"){
             priceWithDiscount = priceWithDiscount - givenMenu.discount.value;       
             }else{
-                if(givenMenu.discount.name == "DescuentoPorPorcentaje"){
+                if(givenMenu.discount.name === "DescuentoPorPorcentaje"){
                     priceWithDiscount = priceWithDiscount - (priceWithDiscount * givenMenu.discount.value / 100);
                 }   
             }                            
@@ -138,7 +138,7 @@ export default class ShoppingCart extends React.Component {
     }    
 
     componentDidMount(){    
-        getMenus(0)
+        getMenus(0) //TENGO QUE RECIBIR POR PROPS EL CODE DEL RESTAURANT
         .then(result => {
             this.setState({            
             availableMenus: result })})       
@@ -183,7 +183,6 @@ export default class ShoppingCart extends React.Component {
                     <div>Agregue productos del listado:</div>
                         <div>
                             <ul>
-                                
                                 {this.state.availableMenus.map(this.renderAvailableMenus())}
                             </ul>
                         </div>

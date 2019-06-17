@@ -126,7 +126,7 @@ fun main() {
                 post(controller::addUser)
             }
         }
-        path("findRestaurant") {
+        path("findrestaurant") {
             path(":code") {
                 get(controller::getRestaurant)
             }

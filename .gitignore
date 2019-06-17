@@ -1,8 +1,8 @@
 # IntelliJ
 .idea/
-api/.idea/
-desktop/.idea/
-model/.idea/
+/api/.idea/
+/desktop/.idea/
+/model/.idea/
 out/
 
 # Maven
