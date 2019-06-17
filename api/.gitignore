@@ -1,8 +1,6 @@
 # IntelliJ
 .idea/
-/desktop/.idea/
-/model/.idea/
-out/
+ 
 
 # Maven
 target/
