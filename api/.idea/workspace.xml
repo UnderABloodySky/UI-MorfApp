@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d82b4839-2da8-4f62-a626-07212fcfa275" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/api.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/DataRestaurant.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MainPrueba.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainPrueba.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RestaurantController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RestaurantController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SuperController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SuperController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/src/api/api.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/api/api.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/src/components/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/components/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/src/components/homeComponents/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/components/homeComponents/Navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/src/components/homeComponents/NavbarFully.jsx" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -21,21 +19,30 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SuperController.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-844">
+            <state relative-caret-position="15">
               <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/DataRestaurant.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" selection-start-line="4" selection-end-line="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/MainPrueba.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="101" column="39" selection-start-line="101" selection-start-column="39" selection-end-line="101" selection-end-column="39" />
+            <state relative-caret-position="165">
+              <caret line="115" column="32" lean-forward="true" selection-start-line="115" selection-start-column="32" selection-end-line="115" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -67,7 +74,12 @@
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
-      <expand />
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="api" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+      </expand>
       <select />
     </treeState>
   </component>
@@ -75,7 +87,7 @@
     <option name="delegateBuildToMaven" value="true" />
     <option name="jreName" value="1.8" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="695" />
     <option name="y" value="-4" />
     <option name="width" value="645" />
@@ -88,6 +100,7 @@
     </navigator>
     <panes>
       <pane id="ProjectPane" />
+      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -99,7 +112,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -209,17 +221,18 @@
       <workItem from="1560728366854" duration="515000" />
       <workItem from="1560728922858" duration="64000" />
       <workItem from="1560729278013" duration="942000" />
+      <workItem from="1560742121464" duration="6684000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10341000" />
+    <option name="totallyTimeSpent" value="17025000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1299" height="743" extended-state="6" />
+    <frame x="67" y="25" width="1299" height="743" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29768556" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30247405" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -228,7 +241,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.38599348" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.38599348" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -282,17 +295,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MainPrueba.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="115" column="32" lean-forward="true" selection-start-line="115" selection-start-column="32" selection-end-line="115" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SuperController.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-844">
+        <state relative-caret-position="15">
           <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MainPrueba.kt">
+    <entry file="file://$PROJECT_DIR$/src/main/java/DataRestaurant.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="101" column="39" selection-start-line="101" selection-start-column="39" selection-end-line="101" selection-end-column="39" />
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="5" />
         </state>
       </provider>
     </entry>
