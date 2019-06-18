@@ -1,177 +1,139 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,300,500,700);
+* { box-sizing: border-box; }
 
-/* Global settings */
-$color-border: #eee;
-$color-label: #aaa;
-$font-default: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$font-bold: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
-
-
-/* Global "table" column settings */
-.product-image { float: left; width: 30%; }
-.product-details { float: left; width: 37%; }
-.product-price { float: left; width: 12%; }
-.product-quantity { float: left; width: 10%; }
-.product-removal { float: left; width: 9%; }
-.product-line-price { float: left; width: 12%; text-align: right; }
-
-
-/* This is used as the traditional .clearfix class */
-.group:before,
-.group:after {
-    content: '';
-    display: table;
-} 
-.group:after {
-    clear: both;
-}
-.group {
-    zoom: 1;
-}
-
-
-/* Apply clearfix in a few places */
-.shopping-cart, .column-labels, .product, .totals-item {
-  @extend .group;
-}
-
-
-/* Apply dollar signs */
-.product .product-price:before, .product .product-line-price:before, .totals-value:before {
-  content: '$';
-}
-
-
-/* Body/Header stuff */
 body {
-  padding: 0px 30px 30px 20px;
-  font-family: $font-default;
-  font-weight: 100;
-}
-
-h1 {
-  font-weight: 100;
-}
-
-label {
-  color: $color-label;
-}
-
-.shopping-cart {
-  margin-top: -45px;
-}
-
-
-/* Column headers */
-.column-labels {
-  label {
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid $color-border;
-  }
+  background: #aedaa6;
+  font-family: "Raleway";
   
-  .product-image, .product-details, .product-removal {
-    text-indent: -9999px;
+  .card {
+    
+    width: 650px;
+    height: 275px;
+    position: absolute;
+    background: white;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    transition: all 0.3s;
+   
+    
+  .photo {
+      
+      padding: 30px;
+      width: 30%;
+      text-align: center;
+      float: left;
+      
+      img { 
+        max-height: 240px; 
+      }
+      
   }
-}
+        
+.description {
+       padding: 20px;
+       float: left;
+       width: 70%;
+       border-left: 2px solid #efefef;
+       
+       h1 {
+         color: #515151;
+         font-weight: 300;
+         padding-top: 15px;
+         margin: 0;
+         font-size: 30px;
+         font-weight: 300;
+       }
+     
+       h2 {
+        color: #515151;
+        margin: 0;
+        text-transform: uppercase;
+        font-weight: 500;
+       }
+      
+       h4 { 
+         margin: 0;
+         color: #727272;
+         text-transform: uppercase;
+         font-weight: 500;
+         font-size: 12px
+       }
+      
+       p { 
+         font-size: 12px; 
+         line-height: 20px;
+         color: #727272;
+         padding: 20px 0;
+         margin: 0;
+      }
+      
+       button {
 
+         outline: 0;
+         border: 0;
+         background: none;
+         border: 1px solid #d9d9d9;
+         padding: 8px 0px;
+         margin-bottom: 30px;
+         color: #515151;
+         text-transform: uppercase;
+         width: 125px;
+         font-family: inherit;
+         margin-right: 5px;
+         transition: all 0.3s ease;
+         font-weight: 500;
+         
+         &:hover {
+           
+           border: 1px solid #aedaa6;
+           color: #aedaa6;
+           cursor: pointer;
+           
+         }
 
-/* Product entries */
-.product {
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid $color-border;
-  
-  .product-image {
-    text-align: center;
-    img {
-      width: 100px;
-    }
-  }
-  
-  .product-details {
-    .product-title {
-      margin-right: 20px;
-      font-family: $font-bold;
-    }
-    .product-description {
-      margin: 5px 20px 5px 0;
-      line-height: 1.4em;
-    }
-  }
-  
-  .product-quantity {
-    input {
-      width: 40px;
+       }
       
     }
-  }
-  
-  .remove-product {
-    border: 0;
-    padding: 4px 8px;
-    background-color: #c66;
-    color: #fff;
-    font-family: $font-bold;
-    font-size: 12px;
-    border-radius: 3px;
-  }
-  
-  .remove-product:hover {
-    background-color: #a44;
-  }
-}
-
-
-/* Totals section */
-.totals {
-  .totals-item {
-    float: right;
-    clear: both;
-    width: 100%;
-    margin-bottom: 10px;
     
-    label {
-      float: left;
-      clear: both;
-      width: 79%;
-      text-align: right;
-    }
-    
-    .totals-value {
-      float: right;
-      width: 21%;
-      text-align: right;
-    }
   }
-  
-  .totals-item-total {
-    font-family: $font-bold;
-  }
-}
+}  
 
-.checkout {
+.righty {
   float: right;
-  border: 0;
-  margin-top: 20px;
-  padding: 6px 25px;
-  background-color: #6b6;
-  color: #fff;
-  font-size: 25px;
-  border-radius: 3px;
-}
-
-.checkout:hover {
-  background-color: #494;
-}
-
-
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto auto;
-  grid-gap: 10px;
-  background-color: #2196F3;
+  text-align: right;
+  width: 100%;
+  border: 0.1px solid #2196A3;
   padding: 10px;
 }
+.grid-container {
+  display: grid;
+  width: 100%;
+  text-align: center;
+  grid-template-columns: auto auto auto auto auto auto auto auto;
+  grid-gap: 10px;
+  background-color: #2196A3;
+  padding: 10px;
+}
+.grid-container2 {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  background-color: #white;
+  padding: 10px;
+}
+.grid-container3 {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 0px;
+  background-color: #white;
+  width: 300px;
+  max-width: 300px;
+  padding: 0px;
+}
+
 
 
 

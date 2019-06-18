@@ -20,10 +20,10 @@ export default class CreditCard extends React.Component {
           selectedMenus: [],
           toShoppingCart: false,
           toOrders: false,
-          number: 0,
+          number: '',
           name: '',
-          expiry: 0,
-          cvc: 0,
+          expiry: '',
+          cvc: '',
 
 
         };
@@ -61,8 +61,8 @@ renderInput(label, value, inputType, onChange) {
 
 render() {
     return (<div>
-                <div class="grid-container">
-                        <div class="item1"><Cards
+                <div className="grid-container">
+                        <div className="item1"><Cards 
                                                 number={this.state.number}
                                                 name={this.state.name}
                                                 expiry={this.state.expiry}
@@ -71,10 +71,10 @@ render() {
                                             />
                         </div>
                         
-                        <div class="item2"> {this.renderInput('Número de tarjeta:', this.state.number, 'text', this.changeNumber)}
-                                            {this.renderInput('Nombre:', this.state.name, 'text', this.changeName)}
-                                            {this.renderInput('Expiración:', this.state.expiry, 'text', this.changeExpiry)}
-                                            {this.renderInput('Código Seguridad:', this.state.cvc, 'text', this.changeCvc)}
+                        <div className="item2"> {this.renderInput('Número de tarjeta:', this.state.number, 'text', this.changeNumber)}
+                                                {this.renderInput('Nombre:', this.state.name, 'text', this.changeName)}
+                                                {this.renderInput('Expiración:', this.state.expiry, 'text', this.changeExpiry)}
+                                                {this.renderInput('Código Seguridad:', this.state.cvc, 'text', this.changeCvc)}
                         </div>
                 </div>      
             </div>

@@ -51,7 +51,7 @@ fun main() {
     val cashDebitAndCreditCard = mutableListOf(cash, debit, creditCard)
     val everything = mutableListOf(cash, debit, creditCard, mercadoPago)
 
-    val laConga = morfApp.createRestaurant("laConga", "Un antro", "Rivadavia al algo", flores, onlyCash)
+    val laConga = morfApp.createRestaurant("laConga", "Un antro", "Rivadavia al algo", flores, everything)
     val guerrin = morfApp.createRestaurant("guerrin", "Alta pizza", "Por Corrientes", capital, everything)
     val elTano = morfApp.createRestaurant("elTano", "Llenadero magico de tripas", "Por Avellaneda", mordor, cashDebitAndCreditCard)
 

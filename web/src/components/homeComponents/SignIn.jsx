@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { signIn } from '../../api/api';
 import { Redirect } from 'react-router-dom'
 // import './css/SignIn.css';

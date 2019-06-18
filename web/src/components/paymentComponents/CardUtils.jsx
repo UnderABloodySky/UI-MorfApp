@@ -39,7 +39,7 @@ export function formatCreditCardNumber(value) {
 
 export function formatCVC(value, prevValue, allValues = {}) {
   const clearValue = clearNumber(value)
-  let maxLength = 4
+  let maxLength = 3
 
   if (allValues.number) {
     const issuer = Payment.fns.cardType(allValues.number)
