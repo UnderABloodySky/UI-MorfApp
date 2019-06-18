@@ -14,6 +14,7 @@ import NavbarUs from './homeComponents/NavbarUs';
 import NavbarContact from './homeComponents/NavbarContact';
 import NavbarMenues from './homeComponents/NavbarMenues';
 import NavbarRegister from './homeComponents/NavbarRegister';
+import NavbarProducts from './homeComponents/NavbarProducts';
 export default class App extends React.Component {
   render() {
     return (
@@ -28,6 +29,7 @@ export default class App extends React.Component {
             <Route exact path="/us" component={NavbarUs} />
             <Route exact path="/all_restaurants" component={NavbarRestaurants} />
             <Route exact path="/all_menus" component={NavbarMenues} />
+            <Route exact path="/products" component={NavbarProducts} />
             <Route exact path="/contact" component={NavbarContact} />
             <Route exact path="/register" component={NavbarRegister} />
             <Route exact path="/home" component={Home} />
