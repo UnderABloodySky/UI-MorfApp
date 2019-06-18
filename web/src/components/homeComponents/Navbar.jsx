@@ -1,15 +1,13 @@
 import React from 'react';
 
 import NavBarItem from '../homeComponents/NavBarItem';
-//Nostros Restaurants Menus Contacto Registro
 
-var items = [ {"code":"0", "name":"Nosotros"},
-              {"code":"1", "name":"Restaurant"},
-              {"code":"2", "name":"Menus"},
-              {"code":"3", "name":"Contacto"},
-              {"code":"4", "name":"Registro"}
+var items = [ {"code":"0", "name":"Nosotros", "id":"/us"},
+              {"code":"1", "name":"Restaurant", "id":"/all_restaurants"},
+              {"code":"2", "name":"Menus", "id":"/all_menus"},
+              {"code":"3", "name":"Contacto", "id":"/contact"},
+              {"code":"4", "name":"Registro", "id":"/register"}
             ]
-
 
 export default class Navbar extends React.Component {
 
@@ -30,6 +28,7 @@ render() {
     {items.map(function(currentValue, index, array){
       return <NavBarItem key={currentValue.code}
                          name={currentValue.name}
+                         id={currentValue.id}
                          isFirstOne={index==0? true : false}/>;  
     })}
 
