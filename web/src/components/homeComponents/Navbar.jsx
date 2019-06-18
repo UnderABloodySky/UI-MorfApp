@@ -3,7 +3,7 @@ import React from 'react';
 import NavBarItem from '../homeComponents/NavBarItem';
 
 var items = [ {"code":"0", "name":"Nosotros", "id":"/us"},
-              {"code":"1", "name":"Restaurant", "id":"/all_restaurants"},
+              {"code":"1", "name":"Restaurants", "id":"/all_restaurants"},
               {"code":"2", "name":"Menus", "id":"/all_menus"},
               {"code":"3", "name":"Contacto", "id":"/contact"},
               {"code":"4", "name":"Registro", "id":"/register"}
