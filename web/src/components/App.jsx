@@ -9,8 +9,11 @@ import Orders from './Orders';
 import SignIn from './homeComponents/SignIn';
 import SignUp from './homeComponents/SignUp';
 import Home from './Home';
-import ViewRestaurants from './homeComponents/ViewRestaurants';
-
+import NavbarRestaurants from './homeComponents/NavbarRestaurants';
+import NavbarUs from './homeComponents/NavbarUs';
+import NavbarContact from './homeComponents/NavbarContact';
+import NavbarMenues from './homeComponents/NavbarMenues';
+import NavbarRegister from './homeComponents/NavbarRegister';
 export default class App extends React.Component {
   render() {
     return (
@@ -22,7 +25,11 @@ export default class App extends React.Component {
             <Route exact path="/orders" component={Orders} />
             <Route exact path="/users/register" component={SignUp} />
             <Route exact path="/signIn/:id" component={SignIn} />
-            <Route exact path="/asd" component={ViewRestaurants} />
+            <Route exact path="/us" component={NavbarUs} />
+            <Route exact path="/all_restaurants" component={NavbarRestaurants} />
+            <Route exact path="/all_menus" component={NavbarMenues} />
+            <Route exact path="/contact" component={NavbarContact} />
+            <Route exact path="/register" component={NavbarRegister} />
             <Route exact path="/home" component={Home} />
             <Route path="/" component={Home} />
           </Switch>

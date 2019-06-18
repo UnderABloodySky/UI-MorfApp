@@ -1,25 +1,24 @@
 import React from 'react';
 import {restaurants}  from '../../api/api';
-import { request } from 'http';
 
-export default class ViewRestaurants extends React.Component {
+export default class NavbarMenues extends React.Component {
     constructor(){
         super();
         this.state={
-            restaurantsToShow: []
+            menuesToShow: []
         }
     }
 
     componentDidMount(){
         restaurants()
         .then(result => { 
-          this.setState({restaurantsToShow: result})});
+          this.setState({menuesToShow: result})});
     }
 
     render(){
-        console.log(this.state.restaurantsToShow)
+        console.log(this.state.menuesToShow)
         return(
-            <h1>Eureka!</h1>
+            <h1>Menues!</h1>
         );
     }
 
