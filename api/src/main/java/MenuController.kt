@@ -55,6 +55,11 @@ data class Product(var code: Int,
             ctx.json(getProductById(code))
         }
 
+        fun addModelProduct(prod : productAndMenu.Product){
+            var dataProduct = Product(prod.code, prod.name, prod.description, prod.price, prod.category)
+            products.add(dataProduct)
+        }
+
         fun addProduct(ctx: Context) {
             val product = ctx.body<Product>()
             ctx.status(CREATED_201)

@@ -41,6 +41,10 @@ class SuperController{
     fun addDataMenu(menu : Menu){
         menuController.addDataMenu(menu)
     }
+    fun addModelProduct(prod : productAndMenu.Product){
+        menuController.addModelProduct(prod)
+    }
+
 
     fun getMenus(ctx : Context){
         menuController.getMenus(ctx)

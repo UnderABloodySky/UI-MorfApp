@@ -67,10 +67,10 @@ fun main() {
     val productsOfGuerrin = mutableListOf(muzza, cuatroQuesos, faina, pepsi)
     val productsGuerrin = mutableListOf(muzza, pepsi)
     val vacio = elTano.createProduct("vacio", "", 80.0, Category.PLATOPRINCIPAL)
-    val parrilada2 = elTano.createProduct("Parrillada para 2", "", 100.0, Category.POSTRE)
-    val parrilada1 = elTano.createProduct("Parrillada para 1", "", 120.0, Category.ADICIONAL)
+    val parrillada2 = elTano.createProduct("Parrillada para 2", "", 100.0, Category.POSTRE)
+    val parrillada1 = elTano.createProduct("Parrillada para 1", "", 120.0, Category.ADICIONAL)
     val chori = elTano.createProduct("choripan", "", 80.0, Category.BEBIDA)
-    val productsOfElTano = mutableListOf(vacio, parrilada1, parrilada2, chori)
+    val productsOfElTano = mutableListOf(vacio, parrillada1, parrillada2, chori)
     val productsTano = mutableListOf(vacio, chori)
 
     val menu0 = laConga.createMenu("Menu1", "Bien barato", mutableListOf(helado), laConga, discount.NoDiscount(), true)
@@ -108,6 +108,18 @@ fun main() {
     controller.addDataMenu(menu2)
     controller.addDataMenu(menu3)
     controller.addDataMenu(menu4)
+
+    controller.addModelProduct(helado)
+    controller.addModelProduct(cocaCola)
+    controller.addModelProduct(hamburguesa)
+    controller.addModelProduct(muzza)
+    controller.addModelProduct(faina)
+    controller.addModelProduct(cuatroQuesos)
+    controller.addModelProduct(pepsi)
+    controller.addModelProduct(vacio)
+    controller.addModelProduct(parrillada2)
+    controller.addModelProduct(parrillada1)
+    controller.addModelProduct(chori)
 
     app.routes {
         path("login") {
