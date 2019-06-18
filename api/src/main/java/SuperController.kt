@@ -3,7 +3,6 @@ package api
 import api.UserNameInUseException
 import applicationModel.MorfApp
 import com.fasterxml.jackson.annotation.JsonIgnore
-import controllers.UserController
 import exception.NoUserAuthenticateException
 import geoclase.Geo
 import io.javalin.BadRequestResponse
@@ -12,6 +11,7 @@ import io.javalin.NotFoundResponse
 import order.Order
 import org.eclipse.jetty.http.HttpStatus.CREATED_201
 import org.eclipse.jetty.http.HttpStatus.NO_CONTENT_204
+import productAndMenu.Menu
 import user.Client
 import restaurant.Restaurant
 
@@ -19,6 +19,8 @@ class SuperController{
     private var userController = UserController()
     private var restaurantController = RestaurantController()
     private var orderController = OrderController()
+    private var menuController = MenuControllerContext()
+
 
     fun changeUserController(controller : UserController){
         userController = controller
@@ -30,6 +32,22 @@ class SuperController{
 
     fun changeOrderController(controller : OrderController){
         orderController = controller
+    }
+
+    fun changeMenuController(controller : MenuControllerContext){
+        menuController = controller
+    }
+
+    fun addDataMenu(menu : Menu){
+        menuController.addDataMenu(menu)
+    }
+
+    fun getMenus(ctx : Context){
+        menuController.getMenus(ctx)
+    }
+
+    fun getAllProducts(ctx: Context){
+        menuController.getAll(ctx)
     }
 
     fun addDataUser(client : Client){

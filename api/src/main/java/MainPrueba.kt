@@ -77,7 +77,7 @@ fun main() {
     val menu1 = laConga.createMenu("Menu2", "carito", productsOfLaConga, laConga, discount.NoDiscount(), true)
     val menu2 = laConga.createMenu("Menu3", "chetito", productsOfLaConga, laConga, discount.FixedDiscount(5.0), true)
     val menu3 = guerrin.createMenu("MenuB", "chetito", productsGuerrin, guerrin, discount.FixedDiscount(5.0), true)
-    val menu4 = laConga.createMenu("Menu4", "riquito", productsOfLaConga, laConga, discount.PercentageDiscount(20.0), true)
+    val menu4 = elTano.createMenu("Menu4", "riquito", productsOfElTano, elTano, discount.PercentageDiscount(20.0), true)
 
     val orderP = mChaile.makeNewOrder(elTano, mutableListOf(), cash)
     orderP.addMenu(menu0)
@@ -103,6 +103,12 @@ fun main() {
     controller.addDataRestaurant(guerrin)
     controller.addDataRestaurant(elTano)
 
+    controller.addDataMenu(menu0)
+    controller.addDataMenu(menu1)
+    controller.addDataMenu(menu2)
+    controller.addDataMenu(menu3)
+    controller.addDataMenu(menu4)
+
     app.routes {
         path("login") {
             post(controller::login)
@@ -126,17 +132,28 @@ fun main() {
                 post(controller::addUser)
             }
         }
+
         path("findrestaurant") {
             path(":code") {
                 get(controller::getRestaurant)
             }
         }
+
+        path("menus"){
+            get(controller::getMenus)
+        }
+
+        path("products"){
+            get(controller::getAllProducts)
+        }
+
         path("restaurant") {
             get(controller::getAllRestaurants)
             path(":code") {
                 get(controller::getAllMenus)
             }
         }
+
         path("search") {
             get(controller::getRestaurantsAndMenusByCriteria)
         }

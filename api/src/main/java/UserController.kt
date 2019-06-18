@@ -1,4 +1,4 @@
-package controllers
+package api
 
 import api.OrderData
 import api.UserNameInUseException
