@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { findRestaurant } from '../api/api';
+import CreditCard from './paymentComponents/CreditCard';
 
 export default class PayOrder extends React.Component {
     constructor(props) {
@@ -12,7 +13,7 @@ export default class PayOrder extends React.Component {
           selectedPaymentMethod: '', 
           selectedMenus: [],
           toShoppingCart: false,
-          toOrders: false
+          toOrders: false,
         };
         this.state.id = this.props.id;
         this.state.code = this.props.code;
@@ -45,12 +46,10 @@ export default class PayOrder extends React.Component {
         return (<div>
                 <ul>                    
                     this.state.paymentMethods.map((menus) =>
-                                                    
-                        
-                                                    
-                    )  
+                    
+                    <CreditCard />}
                 </ul>    
-        </div>
+            </div>
         )
     }
 }

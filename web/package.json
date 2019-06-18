@@ -8,13 +8,18 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
+    "final-form": "^4.15.0",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "react": "^16.8.6",
+    "react-credit-card-input": "^1.1.5",
+    "react-credit-cards": "^0.7.0",
     "react-dom": "^16.8.6",
+    "react-final-form": "^6.2.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-star-rating-component": "^1.4.1",
+    "styled-components": "^4.3.1",
     "typescript": "^3.5.1"
   },
   "scripts": {
