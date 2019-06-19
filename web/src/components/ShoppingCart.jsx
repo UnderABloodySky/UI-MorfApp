@@ -105,17 +105,17 @@ export default class ShoppingCart extends React.Component {
     }
     renderSelectedMenus(){
         return((menus) => <li key={menus.menu.code}>
-                            <div className="grid-container"> 
-                                <div>{menus.menu.name}</div> 
-                                <div>{menus.ammount}</div> 
-                                <div>{this.unitPrice(menus.menu)}$</div>                                                                  
-                                <div>{this.unitPrice(menus.menu) * menus.ammount}$</div> 
-                                <div>{this.discountPrice(menus.menu) * menus.ammount}$</div>                                
-                                <div><button className="btn btn-danger" onClick={() => this.removeOne(menus)}>-</button></div> 
-                                <div><button className="btn btn-danger" onClick={() => this.addOne(menus)}>+</button></div> 
-                                <div><button className="btn btn-danger" onClick={() => this.removeMenuFromOrder(menus)}>Quitar</button></div> 
-                            </div>
-                        </li>            
+                                <div className="grid-container4">
+                                    <div>{menus.menu.name} </div>
+                                    <div>{menus.ammount} </div>
+                                    <div>{this.unitPrice(menus.menu)}$</div>
+                                    <div>{this.unitPrice(menus.menu) * menus.ammount}$</div>
+                                    <div>{this.discountPrice(menus.menu) * menus.ammount}$</div>
+                                    <div><button className="btn btn-secondary" onClick={() => this.removeOne(menus)}>-</button></div>
+                                    <div><button className="btn btn-success" onClick={() => this.addOne(menus)}>+</button></div>
+                                    <div><button className="btn btn-danger" onClick={() => this.removeMenuFromOrder(menus)}>x</button></div>
+                                </div>
+                            </li>            
                     )
     }
 
@@ -124,7 +124,7 @@ export default class ShoppingCart extends React.Component {
                 (menus) =><li key={menus.code}>
                     
                         <div className="cardif">  
-                            <div className="grid-container3">                      
+                            <div className="grid-container">                      
                                 <div className="photo">
                                     <img src={menus.menuImage}/>
                                 </div>
@@ -132,7 +132,7 @@ export default class ShoppingCart extends React.Component {
                                     <h2>{menus.name}</h2>
                                     <h4>{menus.description}</h4>
                                     <h1>{this.unitPrice(menus)}$</h1>  
-                                    <button onClick={() => this.addMenuToOrder(menus)}>Agregar</button>
+                                    <button class="btn btn-secondary" onClick={() => this.addMenuToOrder(menus)}>Agregar</button>
                                 </div> 
                             </div>
                         </div>        
@@ -165,35 +165,38 @@ export default class ShoppingCart extends React.Component {
                                  orderTotal: this.state.orderTotal } }}/>)
         }
         return( <div>
-                    <div className="card">
-                        <h2>Su pedido: </h2>
-                            <div>
-                                <ul>
-                                    <div className="grid-container">                            
-                                        <div>Menú</div>
-                                        <div>Cant.</div>     
-                                        <div>P/Uni</div>     
-                                        <div>Total</div>    
-                                        <div>P/C/Desc.</div>
-                                        <div>Restar</div>
-                                        <div>Agregar</div>
-                                        <div>Quitar</div> 
-                                    </div>                                                 
-                                        {this.state.selectedMenus.map(this.renderSelectedMenus())}
-                                                    
-                                </ul>
+                    <div className="grid-container0">
+                        <div className="card">                
+                            <h2>Agregue productos del listado:</h2>
+                            <div className="grid-container2">
+                                {this.state.availableMenus.map(this.renderAvailableMenus())}
                             </div>
-                        <div class="righty">Subtotal del Pedido: {this.state.orderSubtotal}$</div>
-                        <div class="righty"><h4>Total del Pedido: {this.state.orderTotal}$</h4></div>
-                    </div>
-                    <div className="card">                
-                        <h2>Agregue productos del listado:</h2>
-                        <div className="grid-container2">
-                            {this.state.availableMenus.map(this.renderAvailableMenus())}
+                        </div>
+                        <div className="card">
+                            <h2>Su pedido: </h2>
+                                <div>
+                                    <ul>
+                                        <div className="grid-container3">                            
+                                            <div>Menú </div>
+                                            <div>Cant.</div> 
+                                            <div>P/Uni</div>
+                                            <div>Tot.</div>
+                                            <div>C/Desc.</div>
+                                            <div>Restar</div>
+                                            <div>Sumar</div>
+                                            <div>Quitar</div>
+                                        </div>
+                                        {this.state.selectedMenus.map(this.renderSelectedMenus())}    
+                                                        
+                                    </ul>
+                                </div>
+                            <div class="righty">Subtotal del Pedido: {this.state.orderSubtotal}$</div>
+                            <div class="righty"><h4>Total del Pedido: {this.state.orderTotal}$</h4></div>
+                            <button className="btn btn-danger" onClick={this.backToOrders}>Volver a Ordenes</button>
+                            <button className="btn btn-success" onClick={this.toPayment}>Realizar el Pago</button>
                         </div>
                     </div>
-                    <button className="btn btn-danger" onClick={this.backToOrders}>Volver a Ordenes</button>
-                    <button className="btn btn-danger" onClick={this.toPayment}>Realizar el Pago</button>
+                    
                 </div>
                 
                 );
