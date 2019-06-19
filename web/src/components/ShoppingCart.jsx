@@ -24,10 +24,14 @@ export default class ShoppingCart extends React.Component {
     }
 
     toPayment = () => {
-        this.setState({
-            toOrders: false,
-            toPayment: true
-        })
+        if (this.state.selectedMenus.length > 0 && this.state.orderTotal > 0) {
+            this.setState({
+                toOrders: false,
+                toPayment: true
+            })
+        }else{    
+        alert("No ha agregado ningún menú al pedido.");
+        }
     };
 
     backToOrders = () => {
