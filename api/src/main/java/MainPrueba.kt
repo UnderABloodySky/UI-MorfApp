@@ -76,20 +76,24 @@ fun main() {
     val menu0 = laConga.createMenu("Menu1", "Bien barato", mutableListOf(helado), laConga, discount.NoDiscount(), true)
     val menu1 = laConga.createMenu("Menu2", "carito", productsOfLaConga, laConga, discount.NoDiscount(), true)
     val menu2 = laConga.createMenu("Menu3", "chetito", productsOfLaConga, laConga, discount.FixedDiscount(5.0), true)
-    val menu3 = guerrin.createMenu("MenuB", "chetito", productsGuerrin, guerrin, discount.FixedDiscount(5.0), true)
-    val menu4 = elTano.createMenu("Menu4", "riquito", productsOfElTano, elTano, discount.PercentageDiscount(20.0), true)
+    val menu3 = laConga.createMenu("Menu4", "riquito", productsOfElTano, elTano, discount.PercentageDiscount(20.0), true)
+    val menu4 = guerrin.createMenu("MenuB", "chetito", productsGuerrin, guerrin, discount.FixedDiscount(5.0), true)
+    val menu5 = elTano.createMenu("Menu4", "riquito", productsOfElTano, elTano, discount.PercentageDiscount(20.0), true)
+
+
 
     val orderP = mChaile.makeNewOrder(elTano, mutableListOf(), cash)
     orderP.addMenu(menu0)
+    orderP.addMenu(menu1)
     orderP.processOrder()
 
     val orderH0 = mChaile.makeNewOrder(guerrin, mutableListOf(), cash)
-    orderH0.addMenu(menu3)
+    orderH0.addMenu(menu4)
     orderH0.processOrder()
     orderH0.delivered()
 
     val orderH1 = mChaile.makeNewOrder(elTano, mutableListOf(), cash)
-    orderH1.addMenu(menu1)
+    orderH1.addMenu(menu5)
     orderH1.processOrder()
     orderH1.delivered()
 

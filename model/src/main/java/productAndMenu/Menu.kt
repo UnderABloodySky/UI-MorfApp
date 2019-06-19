@@ -16,6 +16,10 @@ class Menu(code: Int,
            var enabled: Boolean = true) : Searchable(code, name, description)
 
 {
+    var menuImage : String = ""
+
+    fun addImageToMenu(string: String) { this.menuImage = string}
+
     fun addProductToMenu(product: Product) { this.productsOfMenu.add(product) }
 
     fun costAutocalculation(): Double { return this.discount.processDiscount(totalPrice()) }
