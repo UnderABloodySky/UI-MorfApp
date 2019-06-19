@@ -1,16 +1,6 @@
 package api
 
-import api.UserNameInUseException
-import applicationModel.MorfApp
-import com.fasterxml.jackson.annotation.JsonIgnore
-import exception.NoUserAuthenticateException
-import geoclase.Geo
-import io.javalin.BadRequestResponse
 import io.javalin.Context
-import io.javalin.NotFoundResponse
-import order.Order
-import org.eclipse.jetty.http.HttpStatus.CREATED_201
-import org.eclipse.jetty.http.HttpStatus.NO_CONTENT_204
 import productAndMenu.Menu
 import user.Client
 import restaurant.Restaurant

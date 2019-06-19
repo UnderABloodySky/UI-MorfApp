@@ -2,9 +2,6 @@ package api
 
 
 import applicationModel.MorfApp
-import controllers.DataUser
-import controllers.LittleUser
-import exception.UserNoFoundException
 import io.javalin.Context
 import io.javalin.NotFoundResponse
 import order.DataMenuInOrder
@@ -13,9 +10,6 @@ import org.eclipse.jetty.http.HttpStatus
 import paymentMethod.*
 import productAndMenu.Menu
 import restaurant.Restaurant
-import searcher.CriteriaById
-import user.Client
-import user.User
 import java.util.*
 
 data class RateData(var rating:Int)

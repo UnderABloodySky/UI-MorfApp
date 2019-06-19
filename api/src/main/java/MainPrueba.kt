@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.exc.MismatchedInputException
 import geoclase.Geo
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
-import io.javalin.core.util.Header
 import org.eclipse.jetty.http.HttpStatus.BAD_REQUEST_400
 import paymentMethod.*
 import productAndMenu.Category

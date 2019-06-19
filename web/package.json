@@ -10,6 +10,7 @@
     "bootstrap": "^4.3.1",
     "final-form": "^4.15.0",
     "jquery": "^3.4.1",
+    "payment": "^2.3.0",
     "popper.js": "^1.15.0",
     "react": "^16.8.6",
     "react-credit-card-input": "^1.1.5",

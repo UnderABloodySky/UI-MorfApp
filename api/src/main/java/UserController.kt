@@ -1,7 +1,5 @@
 package api
 
-import api.OrderData
-import api.UserNameInUseException
 import applicationModel.MorfApp
 import com.fasterxml.jackson.annotation.JsonIgnore
 import exception.NoUserAuthenticateException
