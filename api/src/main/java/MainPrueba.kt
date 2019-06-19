@@ -114,7 +114,8 @@ fun main() {
     controller.addDataMenu(menu1)
     controller.addDataMenu(menu2)
     controller.addDataMenu(menu3)
-    controller.addDataMenu(menu4)
+    controller.addDataMenu(menu4)	
+    controller.addDataMenu(menu5)
 
     controller.addModelProduct(helado)
     controller.addModelProduct(cocaCola)

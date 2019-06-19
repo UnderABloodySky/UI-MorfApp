@@ -7,10 +7,9 @@ import org.eclipse.jetty.http.HttpStatus.*
 import productAndMenu.Category
 import productAndMenu.Menu
 
-//140948
 
 data class MenuData(val code: Int, var name : String, var description : String, var grossPrice : Double, var netPrice : Double,
-                    var listOfProducts : MutableList<Product> ,var restaurantName : String, var discount : Discount, var enabled : Boolean)
+                    var listOfProducts : MutableList<Product> ,var restaurantName : String, var discount : Discount, var enabled : Boolean, var img : String)
 
 data class Product(var code: Int,
                    var name: String,
@@ -28,7 +27,7 @@ data class Product(var code: Int,
         fun addDataMenu(menu : Menu) : MenuData{
             var dataMenu = MenuData(menu.code, menu.name, menu.description, menu.totalPrice(),
                                     menu.costAutocalculation(), this.transformsProducts(menu.productsOfMenu),
-                                    menu.restaurant.name,  menu.discount, menu.enabled)
+                                    menu.restaurant.name,  menu.discount, menu.enabled, menu.menuImage                              )
             menus.add(dataMenu)
             return dataMenu
         }
