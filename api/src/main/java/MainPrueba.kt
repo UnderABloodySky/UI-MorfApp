@@ -73,27 +73,31 @@ fun main() {
     val productsOfElTano = mutableListOf(vacio, parrillada1, parrillada2, chori)
     val productsTano = mutableListOf(vacio, chori)
 
-    val menu0 = laConga.createMenu("Menu1", "Bien barato", mutableListOf(helado), laConga, discount.NoDiscount(), true)
+    val menu0 = laConga.createMenu("Menu1", "baratito", mutableListOf(helado), laConga, discount.NoDiscount(), true)
     val menu1 = laConga.createMenu("Menu2", "carito", productsOfLaConga, laConga, discount.NoDiscount(), true)
     val menu2 = laConga.createMenu("Menu3", "chetito", productsOfLaConga, laConga, discount.FixedDiscount(5.0), true)
-    val menu3 = laConga.createMenu("Menu4", "riquito", productsOfElTano, elTano, discount.PercentageDiscount(20.0), true)
-    val menu4 = guerrin.createMenu("MenuB", "chetito", productsGuerrin, guerrin, discount.FixedDiscount(5.0), true)
+    val menu4 = laConga.createMenu("Menu4", "riquito", productsOfLaConga, laConga, discount.PercentageDiscount(20.0), true)
+    val menu3 = guerrin.createMenu("MenuB", "chetito", productsGuerrin, guerrin, discount.FixedDiscount(5.0), true)
     val menu5 = elTano.createMenu("Menu4", "riquito", productsOfElTano, elTano, discount.PercentageDiscount(20.0), true)
 
+    menu0.addImageToMenu("http://lasrecetascaseras.com/wp-content/uploads/2016/09/avena-para-adelgazar-100x100.jpg")
+    menu1.addImageToMenu("https://hips.hearstapps.com/dm.h-cdn.co/assets/16/22/980x980/square-1465096043-un-plato-para-cada-dia-de-la-semana.jpg?resize=100:*")
+    menu2.addImageToMenu("http://www.annarecetasfaciles.com/files/pollo-en-salsa-1-100x100.jpg")
+    menu3.addImageToMenu("https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AABK1dg.img?h=100&w=100&m=6&q=60&u=t&o=t&l=f&x=310&y=568")
+    menu4.addImageToMenu("https://s3-media3.fl.yelpcdn.com/bphoto/Uer9WLb4Bk0oMQm9r9tmSA/ms.jpg")
+    menu5.addImageToMenu("http://www.annarecetasfaciles.com/files/pollo-en-salsa-1-100x100.jpg")
 
-
-    val orderP = mChaile.makeNewOrder(elTano, mutableListOf(), cash)
+    val orderP = mChaile.makeNewOrder(laConga, mutableListOf(), cash)
     orderP.addMenu(menu0)
-    orderP.addMenu(menu1)
     orderP.processOrder()
 
     val orderH0 = mChaile.makeNewOrder(guerrin, mutableListOf(), cash)
-    orderH0.addMenu(menu4)
+    orderH0.addMenu(menu3)
     orderH0.processOrder()
     orderH0.delivered()
 
     val orderH1 = mChaile.makeNewOrder(elTano, mutableListOf(), cash)
-    orderH1.addMenu(menu5)
+    orderH1.addMenu(menu1)
     orderH1.processOrder()
     orderH1.delivered()
 

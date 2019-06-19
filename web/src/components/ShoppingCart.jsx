@@ -122,7 +122,7 @@ export default class ShoppingCart extends React.Component {
                         <div className="cardif">  
                             <div className="grid-container3">                      
                                 <div className="photo">
-                                    <img src="https://www.sbs.com.au/food/sites/sbs.com.au.food/files/styles/thumb_small/public/sbs_foodsafari2-tajinekokjelbana.jpg?itok=39MpkZgx&mtime=1511158871"/>
+                                    <img src={menus.menuImage}/>
                                 </div>
                                 <div className="description">
                                     <h2>{menus.name}</h2>
