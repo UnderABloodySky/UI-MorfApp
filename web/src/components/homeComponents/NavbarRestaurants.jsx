@@ -1,5 +1,6 @@
 import React from 'react';
 import {restaurants}  from '../../api/api';
+import Page from '../homeComponents/Page'
 
 export default class NavbarRestaurants extends React.Component {
     constructor(){
@@ -18,7 +19,10 @@ export default class NavbarRestaurants extends React.Component {
     render(){
         console.log(this.state.restaurantsToShow)
         return(
-            <h1>Restaurants!</h1>
+            <div>
+                <h1>Restaurants!</h1>
+                <Page />
+            </div>
         );
     }
 

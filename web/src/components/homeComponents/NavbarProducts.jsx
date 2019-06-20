@@ -1,5 +1,6 @@
 import React from 'react';
-import {restaurants}  from '../../api/api';
+import {products}  from '../../api/api';
+import Page from '../homeComponents/Page'
 
 export default class NavbarProducts extends React.Component {
     constructor(){
@@ -10,7 +11,7 @@ export default class NavbarProducts extends React.Component {
     }
 
     componentDidMount(){
-        restaurants()
+        products()
         .then(result => { 
           this.setState({productsToShow: result})});
     }
@@ -18,7 +19,10 @@ export default class NavbarProducts extends React.Component {
     render(){
         console.log(this.state.productsToShow)
         return(
-            <h1>Products!</h1>
+            <div>
+                <h1>Products!</h1>
+                <Page />
+            </div>
         );
     }
 

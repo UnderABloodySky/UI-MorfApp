@@ -1,5 +1,6 @@
 import React from 'react';
-import {restaurants}  from '../../api/api';
+import {menues}  from '../../api/api';
+import Page from '../homeComponents/Page'
 
 export default class NavbarMenues extends React.Component {
     constructor(){
@@ -10,7 +11,7 @@ export default class NavbarMenues extends React.Component {
     }
 
     componentDidMount(){
-        restaurants()
+        menues()
         .then(result => { 
           this.setState({menuesToShow: result})});
     }
@@ -18,7 +19,10 @@ export default class NavbarMenues extends React.Component {
     render(){
         console.log(this.state.menuesToShow)
         return(
-            <h1>Menues!</h1>
+            <div>
+                <h1>Menues!</h1>
+                <Page />
+            </div>            
         );
     }
 

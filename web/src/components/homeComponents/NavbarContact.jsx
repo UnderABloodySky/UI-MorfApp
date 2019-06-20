@@ -1,5 +1,6 @@
 import React from 'react';
 import {restaurants}  from '../../api/api';
+import Page from '../homeComponents/Page'
 
 export default class NavbarContact extends React.Component {
     constructor(){
@@ -18,7 +19,10 @@ export default class NavbarContact extends React.Component {
     render(){
         console.log(this.state.menuesToShow)
         return(
+        <div>
             <h1>Contact</h1>
+            <Page />
+        </div>     
         );
     }
 
