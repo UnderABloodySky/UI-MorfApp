@@ -20,7 +20,6 @@ export default class NavbarUs extends React.Component {
         console.log(this.state.menuesToShow)
         return(
             <div>
-                <h1>Us!</h1>
                 <Page />
             </div>
         );

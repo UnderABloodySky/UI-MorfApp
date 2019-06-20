@@ -7,15 +7,15 @@ export default class Page extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //child: this.props.child
+      child: this.props.child
     }
-    };
+  };
 
   render() {
     return (
       <div>    
         <Navbar />
-        <Container />
+        <Container child={this.state.child}/>
         <Footer />        
       </div>
     );

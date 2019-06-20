@@ -20,7 +20,6 @@ export default class NavbarContact extends React.Component {
         console.log(this.state.menuesToShow)
         return(
         <div>
-            <h1>Contact</h1>
             <Page />
         </div>     
         );

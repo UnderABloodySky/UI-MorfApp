@@ -20,8 +20,7 @@ export default class NavbarRestaurants extends React.Component {
         console.log(this.state.restaurantsToShow)
         return(
             <div>
-                <h1>Restaurants!</h1>
-                <Page />
+                <Page child={this.state.restaurantsToShow}/>
             </div>
         );
     }

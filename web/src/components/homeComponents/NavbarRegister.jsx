@@ -20,7 +20,6 @@ export default class NavbarRegister extends React.Component {
         console.log(this.state.menuesToShow)
         return(
             <div>
-                <h1>Register!</h1>
                 <Page />
             </div>
         );
