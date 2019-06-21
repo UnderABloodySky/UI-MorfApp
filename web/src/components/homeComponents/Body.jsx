@@ -62,10 +62,10 @@ render() {
             <div className="banner-text" >
               <h3>Comida a un click!</h3>
               <p>Promociones diarias &amp; mas</p>
-              <a href="#signUp" className="btn btn-1 btn-1b" onClick={(e) => this.register() }>Registrarte</a>
+              <a href="#3" className="btn btn-1 btn-1b" onClick={(e) => this.register() }>Registrarte</a>
               <a href="#2" className="btn btn-2 btn-2b" onClick={() => this.login() }>Loguearte</a>
               { this.state.renderReg &&
-              <SignUp handlerReg = {this.handlerReg} />}
+              <SignUp id = "3" handlerReg = {this.handlerReg} />}
               { this.state.renderLog &&
               <SignIn id="2" handlerLog = {this.handlerLog} />}
             </div>

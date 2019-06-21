@@ -60,7 +60,7 @@ export default class Orders extends React.Component {
                                                       </mark>
                                                     </p>
                                                     <button className="btn btn-danger">Cancelar</button>
-                                                    <Popup trigger={<button> Puntuar Pedido</button>} position="right center">
+                                                    <Popup trigger={<button className="btn btn-success"> Puntuar Pedido</button>} position="right center">
                                                       <StarComponent/>
                                                     </Popup>                                     
                                                    </div>
