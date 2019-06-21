@@ -10,17 +10,17 @@ export default class NavbarRestaurants extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentWillMount(){
+        console.log("Will");
         restaurants()
         .then(result => { 
-          this.setState({restaurantsToShow: result})});
+         this.setState({restaurantsToShow: result})});
     }
 
     render(){
-        console.log(this.state.restaurantsToShow)
         return(
             <div>
-                <Page child={this.state.restaurantsToShow}/>
+              <Page child={this.state.restaurantsToShow}/>
             </div>
         );
     }

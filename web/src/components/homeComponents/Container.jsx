@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Content from '../homeComponents/Content'
 import '../css/Body.css';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
@@ -8,12 +8,13 @@ import imag1 from '../images/img1.jpg';
 export default class Container extends React.Component {
   constructor(props) {
     super(props)  
-    this.state = { 
-      child: this.props.child
-    }; 
   }  
-
+  
 render() {
+  console.log("Container");
+  console.log(this.props.content);
+
+  
   return (
     <div>
         <div className="banner">
@@ -34,8 +35,10 @@ render() {
           <div className="container">
             {/*welcome*/}
             <div className="welcome">
-              <br />
-              <br />
+             <div>
+              <Content k={this.props.content}/>
+             </div>  
+
               <div className="welcome-info">
                 <div className="grid-body-container">
                     <div className="col-md-6 welcome-grids">
