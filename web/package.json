@@ -12,6 +12,7 @@
     "jquery": "^3.4.1",
     "payment": "^2.3.0",
     "popper.js": "^1.15.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-credit-card-input": "^1.1.5",
     "react-credit-cards": "^0.7.0",
