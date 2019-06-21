@@ -10,7 +10,7 @@ export default class NavbarProducts extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentWillMount(){
         products()
         .then(result => { 
           this.setState({productsToShow: result})});
@@ -20,7 +20,7 @@ export default class NavbarProducts extends React.Component {
         console.log(this.state.productsToShow)
         return(
             <div>
-                <Page />
+                <Page child={this.state.productsToShow}/>
             </div>
         );
     }

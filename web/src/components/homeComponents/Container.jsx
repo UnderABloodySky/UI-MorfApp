@@ -1,9 +1,6 @@
 import React from 'react';
-import Content from '../homeComponents/Content'
+import ContentRestaurant from '../homeComponents/ContentRestaurant'
 import '../css/Body.css';
-import SignUp from './SignUp';
-import SignIn from './SignIn';
-import imag1 from '../images/img1.jpg';
 
 export default class Container extends React.Component {
   constructor(props) {
@@ -36,7 +33,7 @@ render() {
             {/*welcome*/}
             <div className="welcome">
              <div>
-              <Content k={this.props.content}/>
+              <ContentRestaurant k={this.props.content}/>
              </div>  
 
               <div className="welcome-info">
