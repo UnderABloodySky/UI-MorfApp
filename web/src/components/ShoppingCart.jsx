@@ -9,8 +9,8 @@ export default class ShoppingCart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          id: '',
-          code: '',
+          id: 'pepe',
+          code: 0,
           availableMenus: [],  
           selectedMenus: [],
           orderSubtotal: 0,
@@ -18,8 +18,8 @@ export default class ShoppingCart extends React.Component {
           toOrders: false,
           toPayment: false
         };
-        this.state.id = this.props.id;
-        this.state.code = this.props.code;
+        //this.state.id = this.props.id;
+        //this.state.code = this.props.code;
         //this.state.availableMenus = this.props.availableMenus; // ESPERO A QUE HORA ME PASE LOS PROPS DESDE EL BOTON DEL PEDIDO
     }
 
@@ -30,7 +30,7 @@ export default class ShoppingCart extends React.Component {
                 toPayment: true
             })
         }else{    
-        alert("No ha agregado ningún menú al pedido.");
+            alert("No ha agregado ningún menú al pedido.");
         }
     };
 
@@ -160,6 +160,7 @@ export default class ShoppingCart extends React.Component {
                         pathname: '/payorder',
                         state: { id: this.state.id,
                                  password: this.state.password,
+                                 code: this.state.code,
                                  selectedMenus: this.state.selectedMenus,
                                  orderSubtotal: this.state.orderSubtotal,
                                  orderTotal: this.state.orderTotal } }}/>)
@@ -190,8 +191,8 @@ export default class ShoppingCart extends React.Component {
                                                         
                                     </ul>
                                 </div>
-                            <div class="righty">Subtotal del Pedido: {this.state.orderSubtotal}$</div>
-                            <div class="righty"><h4>Total del Pedido: {this.state.orderTotal}$</h4></div>
+                            <div className="righty">Subtotal del Pedido: {this.state.orderSubtotal}$</div>
+                            <div className="righty"><h4>Total del Pedido: {this.state.orderTotal}$</h4></div>
                             <button className="btn btn-danger" onClick={this.backToOrders}>Volver a Ordenes</button>
                             <button className="btn btn-success" onClick={this.toPayment}>Realizar el Pago</button>
                         </div>
