@@ -3,8 +3,8 @@ import React from 'react';
 import { Redirect } from 'react-router-dom'
 import { getPendingOrdersFrom } from '../api/api'
 import { getHistoricOrdersFrom } from '../api/api'
-import StarRatingComponent from 'react-star-rating-component';
-
+import StarComponent from './StarComponent'
+import Popup from "reactjs-popup";
 import './css/Orders.css';
 
 export default class Orders extends React.Component {
@@ -60,9 +60,10 @@ export default class Orders extends React.Component {
                                                       </mark>
                                                     </p>
                                                     <button className="btn btn-danger">Cancelar</button>
-                                                    <button className="btn btn-success ml-4"> Puntuar Pedido</button>  
-                                                      
-                                                  </div>
+                                                    <Popup trigger={<button className="btn btn-success"> Puntuar Pedido</button>} position="right center">
+                                                      <StarComponent/>
+                                                    </Popup>                                     
+                                                   </div>
                                                   </div>  
                                                 </div>
                                           </li>)
