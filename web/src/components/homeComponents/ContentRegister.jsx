@@ -1,19 +1,34 @@
 import React from 'react';
 
 import '../css/Body.css';
-import SignUp from './SignUp';
-import SignIn from './SignIn';
-import imag1 from '../images/img1.jpg';
 
-export default class ContentRestaurant extends React.Component {
-  constructor(props) {
-    super(props)  
-  }  
-  
-  render() {
-    return(
-      <div>
-        <h1>Register</h1>
-      </div>);
+import RegisterForm from '../homeComponents/RegisterForm'
+
+class ContentRegister extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      flag: false 
+    }
+    this.send = this.send.bind(this);
+  }
+
+  send(user) {
+    this.setState({
+      flag: true
+    })
+    console.log("flag:");
+    console.log(this.state.flag);
+  }
+
+  render(){
+    return (
+      <div>  
+          <h1> :: Registro! ::</h1>
+                <RegisterForm send={this.send}/>
+      </div>
+  );
   }
 }
+
+export default ContentRegister;
