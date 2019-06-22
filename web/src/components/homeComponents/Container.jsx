@@ -1,5 +1,10 @@
 import React from 'react';
-import ContentRestaurant from '../homeComponents/ContentRestaurant'
+import ContentRestaurant from '../homeComponents/ContentRestaurant';  
+import ContentMenu from '../homeComponents/ContentMenu'; 
+import ContentProduct from '../homeComponents/ContentProduct';
+import ContentRegister from '../homeComponents/ContentRegister';
+import ContentContact from '../homeComponents/ContentContact';
+import ContentUs from '../homeComponents/ContentUs';
 import '../css/Body.css';
 
 export default class Container extends React.Component {
@@ -10,7 +15,6 @@ export default class Container extends React.Component {
 render() {
   console.log("Container");
   console.log(this.props.content);
-
   
   return (
     <div>
@@ -32,12 +36,19 @@ render() {
           <div className="container">
             {/*welcome*/}
             <div className="welcome">
-             <div>
-              <ContentRestaurant k={this.props.content}/>
-             </div>  
-
-              <div className="welcome-info">
+            <div className="welcome-info">
                 <div className="grid-body-container">
+             
+             
+              {this.props.id === "0" && <ContentUs />}
+              {this.props.id === "1" && <ContentRestaurant k={this.props.content}/>}
+              {this.props.id === "2" && <ContentMenu k={this.props.content}/>}
+              {this.props.id === "3" && <ContentProduct k={this.props.content}/>}
+              {this.props.id === "4" && <ContentContact k={this.props.content}/>}
+              {this.props.id === "5" && <ContentRegister k={this.props.content}/>}
+                          
+             
+             
                     <div className="col-md-6 welcome-grids">
                     </div>
                     <div className="col-md-6 welcome-grids">

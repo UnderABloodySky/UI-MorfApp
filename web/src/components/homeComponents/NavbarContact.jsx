@@ -11,7 +11,7 @@ export default class NavbarContact extends React.Component {
     render(){
         return(
         <div>
-            <Page child={"h"}/>
+            <Page child={"h"} id="4"/>
         </div>     
         );
     }

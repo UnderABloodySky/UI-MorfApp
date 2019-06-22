@@ -20,7 +20,7 @@ export default class NavbarProducts extends React.Component {
         console.log(this.state.productsToShow)
         return(
             <div>
-                <Page child={this.state.productsToShow}/>
+                <Page child={this.state.productsToShow} id="3"/>
             </div>
         );
     }
