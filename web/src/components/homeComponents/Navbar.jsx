@@ -1,8 +1,6 @@
 import React from 'react';
-
+import { Redirect } from 'react-router-dom'
 import {mySearch} from '../../api/api'
-
-
 import NavBarItem from '../homeComponents/NavBarItem';
 import SearchForm from './SearchForm';
 
@@ -17,17 +15,15 @@ var items = [ {"code":"0", "name":"Nosotros", "id":"/us"},
 export default class Navbar extends React.Component {
   constructor(props){
     super(props)
-    this.state = {
-      searchs: []
-    }
     this.search = this.search.bind(this);
   }
 
   search(search){
-    
+    console.log(search)
     mySearch(search)
     .then(result => { 
-      this.setState({searchs: result})})
+               console.log(result)
+     })
     .catch(() => this.setState({ error: 'No match' }));
       
      
