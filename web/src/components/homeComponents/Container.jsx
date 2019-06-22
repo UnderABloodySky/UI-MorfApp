@@ -30,31 +30,27 @@ render() {
             </div>
           </div>
         </div>
-        {/*//banner*/}
-        {/*banner-bottom*/}
-        <div className="banner-bottom">
-          <div className="container">
+        <div className="banner-bottom container ">
+          
             {/*welcome*/}
             <div className="welcome">
-            <div className="welcome-info">
-                <div className="grid-body-container">
-             
-             
               {this.props.id === "0" && <ContentUs />}
               {this.props.id === "1" && <ContentRestaurant k={this.props.content}/>}
               {this.props.id === "2" && <ContentMenu k={this.props.content}/>}
               {this.props.id === "3" && <ContentProduct k={this.props.content}/>}
               {this.props.id === "4" && <ContentContact k={this.props.content}/>}
-              {this.props.id === "5" && <ContentRegister k={this.props.content}/>}
-                          
+              {this.props.id === "5" && <ContentRegister/>}
              
              
+             
+             
+                         <div className="welcome-info">
+                <div className="grid-body-container">
                     <div className="col-md-6 welcome-grids">
                     </div>
                     <div className="col-md-6 welcome-grids">
                     </div>   
                     <div className="clearfix"> </div>
-                </div>
               </div>
             </div>
             {/*//welcome*/}

@@ -52,7 +52,6 @@ reset(){
   render() {
       return (
         <div>
-          <h1> :: Registro! ::</h1>
           <div className="card mr-4 md-4 mt-4">
                   <form onSubmit={this.handleSubmit} className="card-body">
                       <div className="form-group">
@@ -105,7 +104,7 @@ reset(){
                           type="text"
                           name="longitud"
                           className="form-control"
-                          placeholder="latitud" 
+                          placeholder="longitud" 
                           onChange={this.handleInput}
                       />
               </div>
