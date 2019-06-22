@@ -13,6 +13,7 @@ class SuperController{
 
 
     fun changeUserController(controller : UserController){
+
         userController = controller
     }
 

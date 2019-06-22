@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom'
 import {mySearch} from '../../api/api'
+
 import NavBarItem from '../homeComponents/NavBarItem';
 import SearchForm from './SearchForm';
 
@@ -19,10 +20,9 @@ export default class Navbar extends React.Component {
   }
 
   search(search){
-    console.log(search)
     mySearch(search)
     .then(result => { 
-               console.log(result)
+       
      })
     .catch(() => this.setState({ error: 'No match' }));
       
