@@ -5,7 +5,7 @@ export default class SearchForm extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      searchinput: ''
+      q: ''
     }
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
