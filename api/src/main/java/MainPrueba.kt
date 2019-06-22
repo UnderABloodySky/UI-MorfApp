@@ -2,6 +2,7 @@ package api
 
 import applicationModel.MorfApp
 import com.fasterxml.jackson.databind.exc.MismatchedInputException
+import discount.NoDiscount
 import geoclase.Geo
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
@@ -32,6 +33,9 @@ fun main() {
     val bernal = Geo(-34.709390, -58.280507, "Bernal")
     val capital = Geo(-34.603595, -58.381717, "Obelisco")
     val mordor = Geo(-666.0, -666.0, "Remedios de Escalada")
+    var geoLocation1 = Geo(1.2, 2.2)
+    var geoLocation0 = Geo(1.2, 2.2)
+
 
     //Ubicacion restaurants
     val flores = Geo(-34.603595, -58.381717, "Flores")
@@ -53,6 +57,9 @@ fun main() {
     val laConga = morfApp.createRestaurant("laConga", "Un antro", "Rivadavia al algo", flores, everything)
     val guerrin = morfApp.createRestaurant("guerrin", "Alta pizza", "Por Corrientes", capital, everything)
     val elTano = morfApp.createRestaurant("elTano", "Llenadero magico de tripas", "Por Avellaneda", mordor, cashDebitAndCreditCard)
+    var newRestaurant = morfApp.createRestaurant("Asd", "asd", "asd", geoLocation1, mutableListOf())
+    var elClubDeLaMilanesa = morfApp.createRestaurant("El club de la milanesa", "asd", "asd", geoLocation1, mutableListOf())
+    var otroAntro = morfApp.createRestaurant("Asd", "las mejores milanesas", "asd", geoLocation1, mutableListOf())
 
     val helado = laConga.createProduct("Helado", "Hecho con leche de vacas contentas", 100.0, Category.POSTRE)
     val cocaCola = laConga.createProduct("Coca Cola", "Azucar al 200%", 80.0, Category.BEBIDA)
@@ -78,6 +85,14 @@ fun main() {
     val menu4 = laConga.createMenu("Menu4", "riquito", productsOfLaConga, laConga, discount.PercentageDiscount(20.0), true)
     val menu3 = guerrin.createMenu("MenuB", "chetito", productsGuerrin, guerrin, discount.FixedDiscount(5.0), true)
     val menu5 = elTano.createMenu("Menu4", "riquito", productsOfElTano, elTano, discount.PercentageDiscount(20.0), true)
+
+    var one = newRestaurant.createMenu("Con Milanesa", "asd", mutableListOf(), newRestaurant, NoDiscount(), true)
+    var two = newRestaurant.createMenu("asd2", "milanesa", mutableListOf(), newRestaurant, NoDiscount(), true)
+    var three = elClubDeLaMilanesa.createMenu("Con Milanesa", "asd", mutableListOf(), elClubDeLaMilanesa, NoDiscount(), true)
+    var four = elClubDeLaMilanesa.createMenu("asd", "con milanesa", mutableListOf(), elClubDeLaMilanesa, NoDiscount(), true)
+    var five = otroAntro.createMenu("asd3", "asd", mutableListOf(), otroAntro, NoDiscount(), true)
+    var six = otroAntro.createMenu("asd4", "asd", mutableListOf(), otroAntro, NoDiscount(), true)
+
 
     menu0.addImageToMenu("http://lasrecetascaseras.com/wp-content/uploads/2016/09/avena-para-adelgazar-100x100.jpg")
     menu1.addImageToMenu("https://hips.hearstapps.com/dm.h-cdn.co/assets/16/22/980x980/square-1465096043-un-plato-para-cada-dia-de-la-semana.jpg?resize=100:*")

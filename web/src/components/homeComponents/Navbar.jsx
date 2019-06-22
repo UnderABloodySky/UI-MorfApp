@@ -2,6 +2,7 @@ import React from 'react';
 
 
 import NavBarItem from '../homeComponents/NavBarItem';
+import SearchForm from './SearchForm';
 
 var items = [ {"code":"0", "name":"Nosotros", "id":"/us"},
               {"code":"1", "name":"Restaurants", "id":"/all_restaurants"},
@@ -12,6 +13,9 @@ var items = [ {"code":"0", "name":"Nosotros", "id":"/us"},
             ]
 
 export default class Navbar extends React.Component {
+  constructor(props){
+    super(props)
+  }
 
 render() {
   return (
@@ -35,10 +39,7 @@ render() {
     })}
 
     </ul>
-    <form className="form-inline my-2 my-lg-0">
-      <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-    </form>
+        <SearchForm/>
     </div>
     </nav>
     );

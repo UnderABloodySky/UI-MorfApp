@@ -24,6 +24,8 @@ class TestRestaurant {
     private var cash = Cash()
     private var listOfPaymentMethod = mutableListOf<PaymentMethod>(cash)
     private var newRestaurant = applicationModel.createRestaurant("Asd", "asd", "asd", geoLocation1, listOfPaymentMethod)
+    private var elClubDeLaMilanesa = applicationModel.createRestaurant("El club de la milanesa", "asd", "asd", geoLocation1, listOfPaymentMethod)
+    private var otroAntro = applicationModel.createRestaurant("Asd", "las mejores milanesas", "asd", geoLocation1, listOfPaymentMethod)
     private var newSupervisor = Supervisor(1, "Pepe", "SuperPepe",newRestaurant, "123454")
     private var menu = Menu(1, "SodaMenu", "with authentic sodas since 90's", mutableListOf<Product>(), newRestaurant)
     private var soda = Product(1, "Soda", "with authentic bubbles", 80.0, Category.BEBIDA)
@@ -31,6 +33,39 @@ class TestRestaurant {
     @Before
     fun addSupervisor() {
         newRestaurant.addSupervisor(newSupervisor)
+    }
+
+    @Test
+    fun testSearchOfRestaurantIsCorrect() {
+        val criteria = CriteriaByString("milanesa")
+        val res = applicationModel.findRestaurant(criteria)
+        Assert.assertEquals(2, res.size)
+        Assert.assertTrue(res.contains(elClubDeLaMilanesa))
+        Assert.assertTrue(res.contains(otroAntro))
+        Assert.assertFalse(res.contains(newRestaurant))
+
+    }
+
+    @Test
+    fun testSearchInMenusOfTheRestaurantIsCorrect() {
+        val criteria = CriteriaByString("milanesa")
+        var one = newRestaurant.createMenu("Con Milanesa", "asd", mutableListOf(), newRestaurant, NoDiscount(), true)
+        var two = newRestaurant.createMenu("asd2", "milanesa", mutableListOf(), newRestaurant, NoDiscount(), true)
+        var three = elClubDeLaMilanesa.createMenu("Con Milanesa", "asd", mutableListOf(), elClubDeLaMilanesa, NoDiscount(), true)
+        var four = elClubDeLaMilanesa.createMenu("asd", "con milanesa", mutableListOf(), elClubDeLaMilanesa, NoDiscount(), true)
+        var five = otroAntro.createMenu("asd3", "asd", mutableListOf(), otroAntro, NoDiscount(), true)
+        var six = otroAntro.createMenu("asd4", "asd", mutableListOf(), otroAntro, NoDiscount(), true)
+
+
+        val res = applicationModel.findMenu(criteria)
+        Assert.assertEquals(4, res.size)
+        Assert.assertTrue(res.contains(one))
+        Assert.assertTrue(res.contains(two))
+        Assert.assertTrue(res.contains(three))
+        Assert.assertTrue(res.contains(four))
+        Assert.assertFalse(res.contains(five))
+        Assert.assertFalse(res.contains(six))
+
     }
 
     @Test

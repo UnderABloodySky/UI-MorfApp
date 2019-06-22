@@ -81,6 +81,12 @@ object MorfApp {
             return this.searcher
                        .searchBy(criteria, searchableRestaurant)}
 
+    fun findMenu(criteria: Criteria): MutableCollection<Searchable?>{
+        var res = mutableListOf<Searchable?>()
+        restaurants.values.forEach { resto -> res.addAll(resto.findMenu(criteria)) }
+        return res
+    }
+
     fun findUser(name:String?):User? {
         val actualUser: User?
         if (name!=null && registeredUsers.contains(name)) {
