@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {mySearch} from '../../api/api'
+
 
 import NavBarItem from '../homeComponents/NavBarItem';
 import SearchForm from './SearchForm';
@@ -15,6 +17,20 @@ var items = [ {"code":"0", "name":"Nosotros", "id":"/us"},
 export default class Navbar extends React.Component {
   constructor(props){
     super(props)
+    this.state = {
+      searchs: []
+    }
+    this.search = this.search.bind(this);
+  }
+
+  search(search){
+    
+    mySearch(search)
+    .then(result => { 
+      this.setState({searchs: result})})
+    .catch(() => this.setState({ error: 'No match' }));
+      
+     
   }
 
 render() {
@@ -39,7 +55,7 @@ render() {
     })}
 
     </ul>
-        <SearchForm/>
+        <SearchForm search={this.search}/>
     </div>
     </nav>
     );

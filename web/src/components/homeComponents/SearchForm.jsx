@@ -13,8 +13,9 @@ export default class SearchForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.props.search(this.state);
     this.setState({
-        searchinput: ''
+        q: ''
     });
   }
  
@@ -34,7 +35,7 @@ render() {
                               className="form-control mr-sm-2" 
                               aria-label="Search"
                               type="text"
-                              name="searchinput"
+                              name="q"
                               onChange={this.handleInput}
                               placeholder="..." 
                           />
