@@ -4,7 +4,9 @@ import { findRestaurant } from '../api/api';
 import CreditCard from './paymentComponents/CreditCard';
 import Cash from './paymentComponents/Cash';
 import MercadoPago from './paymentComponents/MercadoPago';
+import DeliveryAddress from './paymentComponents/DeliveryAddress';
 import Select from 'react-select'
+import { Redirect } from 'react-router-dom';
 
 import './css/PayOrder.css';
 
@@ -35,6 +37,13 @@ export default class PayOrder extends React.Component {
         this.state.selectedMenus = this.props.location.state.selectedMenus;
         this.state.orderSubtotal = this.props.location.state.orderSubtotal;
         this.state.orderTotal = this.props.location.state.orderTotal;
+    }
+
+    processOrder = () => {
+        
+
+
+        this.toOrders();
     }
 
     toOrders = () => {
@@ -137,6 +146,22 @@ export default class PayOrder extends React.Component {
 
     render() {
         const { selectedOption } = this.state;  
+        
+        if(this.state.toOrders && !this.state.toShoppingCart){
+            return(<Redirect to={{
+                        pathname: '/orders',
+                        state: { id: this.state.id, password: this.state.password } }}/>)
+        }
+        if(!this.state.toOrders && this.state.toShoppingCart){
+            return(<Redirect to={{
+                        pathname: '/shoppingCart',
+                        state: { id: this.state.id,
+                                 password: this.state.password,
+                                 code: this.state.code,
+                                 selectedMenus: this.state.selectedMenus,
+                                 orderSubtotal: this.state.orderSubtotal,
+                                 orderTotal: this.state.orderTotal } }}/>)
+        }
         return (<div>
                 <div className="grid-container0">
                     <div className="card">          
@@ -168,13 +193,14 @@ export default class PayOrder extends React.Component {
                                                     
                                 </ul>
                             </div>
-                        <div class="righty">Subtotal del Pedido: {this.state.orderSubtotal}$</div>
-                        <div class="righty"><h4>Total del Pedido: {this.state.orderTotal}$</h4></div>
-                        <button className="btn btn-danger" onClick={this.backToOrders}>Volver al Carrito</button>
-                        <button className="btn btn-success" onClick={this.toPayment}>Realizar el Pago</button>
+                        <div className="righty">Subtotal del Pedido: {this.state.orderSubtotal}$</div>
+                        <div className="righty"><h4>Total del Pedido: {this.state.orderTotal}$</h4></div>
+                        <div><DeliveryAddress/></div>
+                        <button className="btn btn-danger" onClick={this.backToShoppingCart}>Volver al Carrito</button>
+                        <button className="btn btn-success" onClick={this.processOrder}>Realizar el Pago</button>
                     </div>
                 </div>
-                
+                                               
             </div>
         )
     }
