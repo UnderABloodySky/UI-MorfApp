@@ -22,11 +22,9 @@ export default class Navbar extends React.Component {
   search(search){
     mySearch(search)
     .then(result => { 
-       
+       console.log(result)
      })
     .catch(() => this.setState({ error: 'No match' }));
-      
-     
   }
 
 render() {
@@ -41,7 +39,7 @@ render() {
     <span className="navbar-toggler-icon"></span>
   </button>
   <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a clasName="navbar-brand" href="/">Home</a>
+    <a className="navbar-brand" href="/">Home</a>
     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
     {items.map(function(currentValue, index, array){
       return <NavBarItem key={currentValue.code}

@@ -72,19 +72,17 @@ render() {
             {/*welcome*/}
             <div className="welcome">
               <h3 className="title">Bienvenidxs!</h3>
-              <p><h5>Gracias por aportar tu granito de arena por mas precarizacion laboral, para que no tengas que levantar el culo del sillon si se te antojan unas papas con cheddard</h5></p>
-              <br />
-              <br />
+              <h5>Gracias por aportar tu granito de arena por mas precarizacion laboral, para que no tengas que levantar el culo del sillon si se te antojan unas papas con cheddard </h5>
               <div className="welcome-info">
                 <div className="grid-body-container">
                     <div className="col-md-6 welcome-grids">
                         <div className="welcome-img">
-                            <img src={imag1} className="img-responsive zoom-img" alt />
+                            <img src={imag1} className="img-responsive zoom-img" />
                         </div>
                     </div>
                     <div className="col-md-6 welcome-grids">
                         <div className="welcome-img">
-                            <img src={require('../images/img2.jpg')} className="img-responsive zoom-img" alt />
+                            <img src={require('../images/img2.jpg')} className="img-responsive zoom-img" />
                         </div>
                     </div>   
                     <div className="clearfix"> </div>
