@@ -21,9 +21,8 @@ export default class CreditCard extends React.Component {
                             <div className="item1"> 
                             <img src={qr1}/>
                             </div>
-                            <button className="btn btn-success" >¿Pagado?</button>
                     </div>      
                 </div>
         )
     }
-}
+} 
