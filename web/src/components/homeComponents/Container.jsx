@@ -34,7 +34,7 @@ render() {
           
             {/*welcome*/}
             <div className="welcome">
-              {this.props.id === "0" && <ContentUs />}
+              {this.props.id === "0" && <ContentUs k={this.props.content} />}
               {this.props.id === "1" && <ContentRestaurant k={this.props.content}/>}
               {this.props.id === "2" && <ContentMenu k={this.props.content}/>}
               {this.props.id === "3" && <ContentProduct k={this.props.content}/>}

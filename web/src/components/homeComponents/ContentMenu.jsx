@@ -7,8 +7,11 @@ export default class ContentMenu extends React.Component {
   }  
   
 render() {
+
   const myMenus = this.props.k.map((menu, i) => {
+
     return(
+      
       <div className="card mt-4 col-md-4" key={i}>
           <div className="card-headercard-title text-center">
             <h4>Menu: {menu.name}</h4>
@@ -20,7 +23,9 @@ render() {
             <mark>{menu.code}</mark>
           </div>  
         </div>
-      </div>
+        </div>
+   
+      
       )})
 
       return(
@@ -30,5 +35,7 @@ render() {
             }
         </div>
       )
+     
+
           }
 }
