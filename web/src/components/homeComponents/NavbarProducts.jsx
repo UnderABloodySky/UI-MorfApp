@@ -10,14 +10,13 @@ export default class NavbarProducts extends React.Component {
         }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         products()
         .then(result => { 
           this.setState({productsToShow: result})});
     }
 
     render(){
-        console.log(this.state.productsToShow)
         return(
             <div>
                 <Page child={this.state.productsToShow} id="3"/>

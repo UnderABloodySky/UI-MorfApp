@@ -16,5 +16,4 @@ export const restaurants  = body => request('get', '/restaurant/');
 export const menues  = body => request('get', '/menus');
 export const products  = body => request('get', '/products/');
 export const findRestaurant = body => request('get', '/findrestaurant/' + body);
-export const mySearch = body => request('get','/search/'+ body);
-
+export const mySearch = body => request('get','/search?q='+ body.q);

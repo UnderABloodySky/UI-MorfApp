@@ -9,8 +9,8 @@ export default class ContentContact extends React.Component {
 
   render(){
     return(
-      <div class="about-info">
-      <h3 class="title"> :: Contacto :: </h3>
+      <div className="about-info">
+      <h3 className="title"> :: Contacto :: </h3>
       </div>
     );
   }

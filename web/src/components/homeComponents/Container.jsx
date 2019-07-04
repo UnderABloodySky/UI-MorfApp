@@ -8,14 +8,9 @@ import ContentUs from '../homeComponents/ContentUs';
 import '../css/Body.css';
 
 export default class Container extends React.Component {
-  constructor(props) {
-    super(props)  
-  }  
   
 render() {
-  console.log("Container");
-  console.log(this.props.content);
-  
+ 
   return (
     <div>
         <div className="banner">
