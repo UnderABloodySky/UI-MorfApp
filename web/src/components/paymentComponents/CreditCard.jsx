@@ -62,9 +62,6 @@ renderInput(label, value, inputType, onChange) {
       </div>
     );
   }
-componentDidUpdate(){
-  console.log(this.props.paymentMethod)
-}
 
 render() {
     return (<div>

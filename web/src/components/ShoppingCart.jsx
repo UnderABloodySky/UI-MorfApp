@@ -9,7 +9,7 @@ export default class ShoppingCart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          id: 'pepe',
+          id: 'NinjaMan',
           code: 0,
           availableMenus: [],  
           selectedMenus: [],

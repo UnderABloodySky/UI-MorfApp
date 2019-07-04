@@ -10,6 +10,7 @@ export const signUp = body => request('post', '/users/register', body);
 export const signIn = body => request('post', '/login', body);
 export const getPendingOrdersFrom = body => request('get', '/orders_pending/' + body);
 export const getHistoricOrdersFrom = body => request('get', '/order_historic/' + body);
+export const deliver = body => request('post', '/deliver', body);
 export const getMenus = body => request('get', '/restaurant/' + body);
 export const restaurants  = body => request('get', '/restaurant/');
 export const menues  = body => request('get', '/menus');

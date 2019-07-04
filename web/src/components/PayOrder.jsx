@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { findRestaurant } from '../api/api';
+import { deliver } from '../api/api';
 import CreditCard from './paymentComponents/CreditCard';
 import Cash from './paymentComponents/Cash';
 import MercadoPago from './paymentComponents/MercadoPago';
@@ -39,9 +40,29 @@ export default class PayOrder extends React.Component {
         this.state.orderTotal = this.props.location.state.orderTotal;
         this.paymentHandler = this.paymentHandler.bind(this);
     }
+    executeDeliver(){
+        
+    }
+
+
 
     processOrder = () => {
-        this.toOrders();
+        var tempObj = { type: this.state.selectedPaymentMethod.typePM,
+                          user: this.state.id, //ver si es necesario pasar esto
+                          password: "dilequechupelimon", //ver si es necesario pasar esto
+                          cardNumber: this.state.selectedPaymentMethod.number,
+                          cardOwnerName: this.state.selectedPaymentMethod.name,
+                          cardExpirationDate: this.state.selectedPaymentMethod.expiry,
+                          cardCode: this.state.selectedPaymentMethod.cvc};
+        const body = {  codeOrder: 0,
+                        restaurant: this.state.code,
+                        menus: this.state.selectedMenus,
+                        clientID: this.state.id,
+                        paymentMethod: tempObj };
+        
+        deliver(body)
+            .then(() => this.toOrders())
+            .catch(() => console.log("ERROR"));
     }
 
     toOrders = () => {
