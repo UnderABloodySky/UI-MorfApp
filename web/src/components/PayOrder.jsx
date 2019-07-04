@@ -40,30 +40,34 @@ export default class PayOrder extends React.Component {
         this.state.orderTotal = this.props.location.state.orderTotal;
         this.paymentHandler = this.paymentHandler.bind(this);
     }
-    executeDeliver(){
-        
-    }
-
-
 
     processOrder = () => {
-        var tempObj = { type: this.state.selectedPaymentMethod.typePM,
-                          user: this.state.id, //ver si es necesario pasar esto
-                          password: "dilequechupelimon", //ver si es necesario pasar esto
-                          cardNumber: this.state.selectedPaymentMethod.number,
-                          cardOwnerName: this.state.selectedPaymentMethod.name,
-                          cardExpirationDate: this.state.selectedPaymentMethod.expiry,
-                          cardCode: this.state.selectedPaymentMethod.cvc};
-        const body = {  codeOrder: 0,
-                        restaurant: this.state.code,
-                        menus: this.state.selectedMenus,
+        console.log(this.state.selectedPaymentMethod);
+        var tempObj = { type: this.state.selectedPaymentMethod.value,
+                        user: "mercadoPago",                         
+                        password: "mercadoPago",
+                        cardNumber: this.state.selectedPaymentMethod.number,
+                        cardOwnerName: this.state.selectedPaymentMethod.name,
+                        cardExpirationDate: this.state.selectedPaymentMethod.expiry,
+                        cardCode: this.state.selectedPaymentMethod.cvc};
+        const body = {  restaurant: this.state.code,
+                        menus: this.makeMenus(),
                         clientID: this.state.id,
                         paymentMethod: tempObj };
         
         deliver(body)
             .then(() => this.toOrders())
             .catch(() => console.log("ERROR"));
-    }
+    };
+    
+    makeMenus(){
+        var tempObj = [];
+        for(var i = 0; i < this.state.selectedMenus.length; i++){
+            tempObj.push({ ammount : this.state.selectedMenus[i].ammount, menuId : this.state.selectedMenus[i].menu.code })
+        }
+        return tempObj;
+    };
+    
 
     toOrders = () => {
         this.setState({
