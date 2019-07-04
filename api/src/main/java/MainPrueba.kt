@@ -46,8 +46,8 @@ fun main() {
     val fCaramelieri = morfApp.createClient("OracleFanBoy", "Fede Caramelieri", "Otra Calle Falsa 4321", bernal, "plusvalia", "mailTrucho3@asd.com")
 
     val cash = Cash()
-    val debit = Debit("pepe", 12121212, 123, Date())
-    val creditCard = CreditCard("pepe", 1212121212, 123, Date())
+    val debit = Debit("pepe", "12121212", "123", "12/34")
+    val creditCard = CreditCard("pepe", "12121212", "123", "12/34")
     val mercadoPago = MercadoPago("pepe", "1233")
 
     val onlyCash = mutableListOf<PaymentMethod>(cash)

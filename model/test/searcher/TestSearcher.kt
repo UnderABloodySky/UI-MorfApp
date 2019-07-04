@@ -19,7 +19,7 @@ class TestSearcher {
     private val geoLocation = Geo(2.0, 1.0)
     private val applicationModel = MorfApp
     private val cash = Cash()
-    private val debit = Debit("", 123, 1, Date())
+    private val debit = Debit("", "1", "1", "12/32")
     private val paymentMethods = mutableListOf(cash, debit)
     private val restaurant0: Restaurant = applicationModel.createRestaurant("Bar 144234", "LLenadero magico de tripas", "Por Quilmes Oeste", geoLocation, paymentMethods)
     private val restaurant1: Restaurant = applicationModel.createRestaurant("Le Guerrin", "The best pizza of Bs. As.", "Corrientes 4321", geoLocation, paymentMethods)
