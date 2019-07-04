@@ -18,7 +18,7 @@ data class MenusAndAmount(var menuId:Int,var ammount:Int)
 data class PaymentMethodsParameters(var type:String, var user:String?,var password:String?,
                                     var cardNumber:Int?,var cardOwnerName:String?,var cardExpirationDate:Date?,var cardCode:Int?)
 
-data class OrderData(var codeOrder:Int,var restaurant:Int,var menus: MutableList<MenusAndAmount>,
+data class OrderData(var restaurant:Int,var menus: MutableList<MenusAndAmount>,
                      var clientID:String,var paymentMethod: PaymentMethodsParameters){
     var ratingData:RateData= RateData(0)
 }
@@ -116,7 +116,6 @@ class OrderController() {
 
     fun addOrder(ctx: Context) {
         val order = ctx.body<OrderData>()
-
         val client = morfApp.findClient(order.clientID)!!
         var paymentMethod = this.createPaymentMethodApropieted(order.paymentMethod)
         var restaurant:Restaurant? = morfApp.findOtherRestaurant(order.restaurant)
