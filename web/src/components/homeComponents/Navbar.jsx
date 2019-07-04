@@ -21,7 +21,6 @@ export default class Navbar extends React.Component {
   search(search){
     mySearch(search)
     .then(result => { 
-      console.log("result")
       console.log(result)
      })
     .catch(() => this.setState({ error: 'No match' }));
