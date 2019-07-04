@@ -14,6 +14,9 @@ class StarComponent extends React.Component{
     };
 onStarClick(nextValue, prevValue, name) {
         this.setState({rating: nextValue});
+
+        console.log(this.state);
+            
       }
 render(){
     const {rating} = this.state;
@@ -27,6 +30,7 @@ render(){
                 starCount = {5}
                 value = {rating}
                 onStarClick = {this.onStarClick.bind(this)}
+                
             />
             <button type="button" onClick={this.close}>Aceptar</button>
         </div>
