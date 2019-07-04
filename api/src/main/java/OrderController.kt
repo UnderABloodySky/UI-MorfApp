@@ -16,7 +16,7 @@ data class RateData(var rating:Int)
 data class Geo(var lat:Double,var long:Double)
 data class MenusAndAmount(var menuId:Int,var ammount:Int)
 data class PaymentMethodsParameters(var type:String, var user:String?,var password:String?,
-                                    var cardNumber:Int?,var cardOwnerName:String?,var cardExpirationDate:Date?,var cardCode:Int?)
+                                    var cardNumber:String?,var cardOwnerName:String?,var cardExpirationDate:String?,var cardCode:String?)
 
 data class OrderData(var restaurant:Int,var menus: MutableList<MenusAndAmount>,
                      var clientID:String,var paymentMethod: PaymentMethodsParameters){

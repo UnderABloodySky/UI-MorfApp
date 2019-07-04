@@ -4,13 +4,13 @@ import java.util.*
 open class PaymentMethod () {
 
 
-    fun creditCard(ownerName:String,number:Int,securityNumber: Int, dueDate: Date):CreditCard{
+    fun creditCard(ownerName:String,number:String,securityNumber: String, dueDate: String):CreditCard{
 
         return CreditCard(ownerName,number,securityNumber,dueDate)
     }
 
 
-    fun debitCard(ownerName:String,number:Int,securityNumber: Int, dueDate: Date):Debit{
+    fun debitCard(ownerName:String,number:String,securityNumber: String, dueDate: String):Debit{
 
         return Debit(ownerName,number,securityNumber,dueDate)
     }

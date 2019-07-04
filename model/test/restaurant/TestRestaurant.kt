@@ -124,7 +124,7 @@ class TestRestaurant {
     @Test
     fun supervisorCanAddAndPaymentMethodsInTheRestaurant() {
         val newSupervisor = newRestaurant.supervisor
-        val debit = Debit("", 1, 1, Date())
+        val debit = Debit("", "1", "1", "12/32")
         newSupervisor.addPaymentMethod(debit)
         Assert.assertTrue(newRestaurant.availablePaymentMethods.contains(cash))
         Assert.assertTrue(newRestaurant.availablePaymentMethods.contains(debit))
@@ -275,7 +275,7 @@ class TestRestaurant {
     fun restaurantCanAddANewPaymentMethod(){
         newRestaurant.removePaymentMethod(cash)
         Assert.assertTrue(newRestaurant.availablePaymentMethods.isEmpty())
-        newRestaurant.addPaymentMethod(Debit("", 123, 1, Date()))
+        newRestaurant.addPaymentMethod(Debit("", "1", "1", "12/32"))
         Assert.assertFalse(newRestaurant.availablePaymentMethods.isEmpty())
     }
 
@@ -283,7 +283,7 @@ class TestRestaurant {
     fun restaurantCanRemoveANewPaymentMethod(){
         newRestaurant.removePaymentMethod(cash)
         Assert.assertTrue(newRestaurant.availablePaymentMethods.isEmpty())
-        val debit : PaymentMethod = Debit("", 123, 1, Date())
+        val debit : PaymentMethod = Debit("", "123", "1", "12/32")
         newRestaurant.addPaymentMethod(debit)
         Assert.assertFalse(newRestaurant.availablePaymentMethods.isEmpty())
         newRestaurant.removePaymentMethod(debit)

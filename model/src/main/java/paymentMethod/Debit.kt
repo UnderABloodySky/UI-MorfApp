@@ -2,7 +2,7 @@ package paymentMethod
 
 import java.util.*
 
-class Debit (ownerName:String,number:Int,securityNumber:Int,dueDate: Date):PaymentMethod(){
+class Debit (ownerName:String,number:String,securityNumber:String,dueDate: String):PaymentMethod(){
 
     var typePM = "DebitCard"
     var ownerName= ownerName
