@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/Body.css';
+  
 
 export default class RegisterForm extends React.Component {
   constructor(props){

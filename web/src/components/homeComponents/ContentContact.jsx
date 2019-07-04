@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../css/Body.css';
-
 export default class ContentContact extends React.Component {
   constructor(props){
     super(props)

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/Body.css';
+//import '../css/Body.css';
 
 export default class SearchForm extends React.Component {
   constructor(props){
