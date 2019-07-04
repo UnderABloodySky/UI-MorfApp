@@ -11,8 +11,10 @@ export default class ContentRestaurant extends React.Component {
   }  
   
 render() {
+
   const myRestos = this.props.k.map((resto, i) => {
     return(
+    
       <div className="card mt-4 col-md-4" key={i}>
           <div className="card-headercard-title text-center">
             <h4>Restaurant: {resto.name}</h4>
@@ -26,7 +28,7 @@ render() {
           </div>  
         </div>
       </div>
-      )})
+     )})
 
       return(
         <div>

@@ -10,8 +10,7 @@ export default class NavbarRestaurants extends React.Component {
         }
     }
 
-    componentWillMount(){
-        console.log("Will");
+    componentDidMount(){
         restaurants()
         .then(result => { 
          this.setState({restaurantsToShow: result})});

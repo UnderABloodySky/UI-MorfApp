@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom'
 import {mySearch} from '../../api/api'
 
 import NavBarItem from '../homeComponents/NavBarItem';
@@ -22,7 +21,8 @@ export default class Navbar extends React.Component {
   search(search){
     mySearch(search)
     .then(result => { 
-       console.log(result)
+      console.log("result")
+      console.log(result)
      })
     .catch(() => this.setState({ error: 'No match' }));
   }
@@ -41,7 +41,7 @@ render() {
   <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
     <a className="navbar-brand" href="/">Home</a>
     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-    {items.map(function(currentValue, index, array){
+    {items.map(function(currentValue, index){
       return <NavBarItem key={currentValue.code}
                          name={currentValue.name}
                          id={currentValue.id}

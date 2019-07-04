@@ -9,7 +9,7 @@ export default class ShoppingCart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          id: 'pepe',
+          id: 'NinjaMan',
           code: 0,
           availableMenus: [],  
           selectedMenus: [],
@@ -132,7 +132,7 @@ export default class ShoppingCart extends React.Component {
                                     <h2>{menus.name}</h2>
                                     <h4>{menus.description}</h4>
                                     <h1>{this.unitPrice(menus)}$</h1>  
-                                    <button class="btn btn-secondary" onClick={() => this.addMenuToOrder(menus)}>Agregar</button>
+                                    <button className="btn btn-secondary" onClick={() => this.addMenuToOrder(menus)}>Agregar</button>
                                 </div> 
                             </div>
                         </div>        

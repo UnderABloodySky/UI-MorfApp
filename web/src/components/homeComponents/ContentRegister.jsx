@@ -21,10 +21,11 @@ class ContentRegister extends React.Component {
     console.log(this.state.flag);
   }
 
+  
   render(){
     return (
       <div>  
-          <h1> :: Registro! ::</h1>
+          <h3 className="title"> :: Registro! :: </h3>
                 <RegisterForm send={this.send}/>
       </div>
   );

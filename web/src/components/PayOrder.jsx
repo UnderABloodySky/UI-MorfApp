@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { findRestaurant } from '../api/api';
+import { deliver } from '../api/api';
 import CreditCard from './paymentComponents/CreditCard';
 import Cash from './paymentComponents/Cash';
 import MercadoPago from './paymentComponents/MercadoPago';
@@ -26,7 +27,7 @@ export default class PayOrder extends React.Component {
           renderCreditCard: false,
           renderCash: false,
           renderMP: false,
-          selectedOption: null,
+          selectedPaymentMethod: null,
 
           toShoppingCart: false,
           toOrders: false,
@@ -37,13 +38,31 @@ export default class PayOrder extends React.Component {
         this.state.selectedMenus = this.props.location.state.selectedMenus;
         this.state.orderSubtotal = this.props.location.state.orderSubtotal;
         this.state.orderTotal = this.props.location.state.orderTotal;
+        this.paymentHandler = this.paymentHandler.bind(this);
+    }
+    executeDeliver(){
+        
     }
 
+
+
     processOrder = () => {
+        var tempObj = { type: this.state.selectedPaymentMethod.typePM,
+                          user: this.state.id, //ver si es necesario pasar esto
+                          password: "dilequechupelimon", //ver si es necesario pasar esto
+                          cardNumber: this.state.selectedPaymentMethod.number,
+                          cardOwnerName: this.state.selectedPaymentMethod.name,
+                          cardExpirationDate: this.state.selectedPaymentMethod.expiry,
+                          cardCode: this.state.selectedPaymentMethod.cvc};
+        const body = {  codeOrder: 0,
+                        restaurant: this.state.code,
+                        menus: this.state.selectedMenus,
+                        clientID: this.state.id,
+                        paymentMethod: tempObj };
         
-
-
-        this.toOrders();
+        deliver(body)
+            .then(() => this.toOrders())
+            .catch(() => console.log("ERROR"));
     }
 
     toOrders = () => {
@@ -60,9 +79,15 @@ export default class PayOrder extends React.Component {
         })
     };
 
-    changePaymentMethod = selectedOption => {
-        this.setState({ selectedOption });
-        switch (selectedOption.value) {
+    paymentHandler(payment) {
+        this.setState({
+          selectedPaymentMethod: payment
+        })
+      }
+
+    changePaymentMethod = selectedPaymentMethod => {
+        this.setState({ selectedPaymentMethod });
+        switch (selectedPaymentMethod.value) {
             case 'CreditCard':
                 this.setState({
                     renderCreditCard: true,
@@ -139,22 +164,23 @@ export default class PayOrder extends React.Component {
             this.setState({    
             paymentMethods: tempObj })    
         for (var i = 0; i < Object.keys(tempObj).length; i++) {
-            var tempObj2 = { value: tempObj[i].typePM, label: tempObj[i].typePM }
+            var tempObj2 = { value: tempObj[i].typePM, label: tempObj[i].typePM, number: "", name: "", expiry: "", cvc: ""}
             this.state.selectorPM.push(tempObj2);
         }})   
     }
 
     render() {
-        const { selectedOption } = this.state;  
+        const { selectedPaymentMethod } = this.state;  
         
         if(this.state.toOrders && !this.state.toShoppingCart){
             return(<Redirect to={{
                         pathname: '/orders',
-                        state: { id: this.state.id, password: this.state.password } }}/>)
+                        state: { id: this.state.id,
+                                 password: this.state.password } }}/>)
         }
         if(!this.state.toOrders && this.state.toShoppingCart){
             return(<Redirect to={{
-                        pathname: '/shoppingCart',
+                        pathname: '/sc',
                         state: { id: this.state.id,
                                  password: this.state.password,
                                  code: this.state.code,
@@ -168,11 +194,11 @@ export default class PayOrder extends React.Component {
                         <h2>Seleccione su método de pago: </h2>     
                         <div>
                             <Select 
-                                value={selectedOption}
+                                value={selectedPaymentMethod}
                                 onChange={this.changePaymentMethod}
                                 options={this.state.selectorPM} />
                             <ul>
-                                { this.state.renderCreditCard && <CreditCard /> }
+                                { this.state.renderCreditCard && <CreditCard paymentHandler = {this.paymentHandler} paymentMethod = {this.state.selectedPaymentMethod}/> }
                                 { this.state.renderCash && <Cash /> }
                                 { this.state.renderMP && <MercadoPago /> }
                             </ul>    
@@ -199,8 +225,7 @@ export default class PayOrder extends React.Component {
                         <button className="btn btn-danger" onClick={this.backToShoppingCart}>Volver al Carrito</button>
                         <button className="btn btn-success" onClick={this.processOrder}>Realizar el Pago</button>
                     </div>
-                </div>
-                                               
+                </div>                                               
             </div>
         )
     }

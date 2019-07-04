@@ -114,8 +114,7 @@ reset(){
                           className="form-control">
                           <option>Femenino</option>
                           <option>Masculino</option>
-                          <option>No Binario</option>
-                          <option>No Binario</option>
+                         <option>No Binario</option>
                           <option>Otro</option>
                       </select>
               </div>

@@ -37,15 +37,19 @@ export default class CreditCard extends React.Component {
     }
     changeNumber(event){
         this.setState({ number: formatCreditCardNumber(event.target.value) });
+        this.props.paymentHandler({ ...this.props.paymentMethod, number: formatCreditCardNumber(event.target.value) });
       }
     changeName(event){
         this.setState({ name: event.target.value });
+        this.props.paymentHandler({ ...this.props.paymentMethod, name: event.target.value });
     }
     changeExpiry(event){
         this.setState({ expiry: formatExpirationDate(event.target.value) });
+        this.props.paymentHandler({ ...this.props.paymentMethod, expiry: formatExpirationDate(event.target.value) });
     }
     changeCvc(event){
         this.setState({ cvc: formatCVC(event.target.value) });
+        this.props.paymentHandler({ ...this.props.paymentMethod, cvc: formatCVC(event.target.value) });
     }
 
 renderInput(label, value, inputType, onChange) {

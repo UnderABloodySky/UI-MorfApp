@@ -85,7 +85,7 @@
     <orderEntry type="library" name="Maven: org.eclipse:org.eclipse.osgi:3.4.3.R34x_v20081215-1030" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse:org.eclipse.swt:3.4.2.v3452b" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.ui:org.eclipse.ui.workbench:3.4.2.M20090127-1700" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.swt.gtk:org.eclipse.swt.gtk.linux.x86_64:3.5.2.v3557f" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.swt.gtk:org.eclipse.swt.gtk.linux.x86:3.4.1.v3452b" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.11.2" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang.modules:scala-xml_2.11:1.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.uqbar-project:arena-xtend:3.6.3" level="project" />

@@ -12,12 +12,9 @@ render() {
       <div className="card mt-4 col-md-4" key={i}>
           <div className="card-headercard-title text-center">
             <h4>Producto: {prod.name}</h4>
-            <span className="badge-pill badge-danger ml-2">
-              {"open"}
-            </span>
-          <div className="card-body">
-            {"Descripción: " + prod.description}
-            <mark>{prod.code}</mark>
+            <div className="card-body">
+            {prod.description}
+            <div><mark>{prod.code}</mark></div>
           </div>  
         </div>
       </div>

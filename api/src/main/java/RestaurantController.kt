@@ -37,6 +37,7 @@ class RestaurantController {
     }
     fun getRestaurantsAndMenusByCriteria(ctx: Context) {
         val criteria = ctx.queryParam("q")
+       
         val lat = ctx.queryParam("lat")
         val long = ctx.queryParam("long")
 

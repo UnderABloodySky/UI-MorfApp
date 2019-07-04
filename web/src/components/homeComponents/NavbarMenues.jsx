@@ -10,14 +10,13 @@ export default class NavbarMenues extends React.Component {
         }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         menues()
         .then(result => { 
           this.setState({menuesToShow: result})});
     }
 
     render(){
-        console.log(this.state.menuesToShow)
         return(
             <div>
                 <Page child={this.state.menuesToShow} id="2"/>

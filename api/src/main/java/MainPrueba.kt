@@ -202,10 +202,13 @@ fun main() {
             }
         }
 
+        path("deliver"){
+            post(controller::addOrder)
+        }
+
         path("orders_pending") {
             path(":id") {
                 get(controller::pendingOrders)
-                post(controller::addOrder)
                 path(":code_order") {
 
                 }
