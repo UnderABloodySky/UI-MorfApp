@@ -16,11 +16,21 @@ export default class ShoppingCart extends React.Component {
           orderSubtotal: 0,
           orderTotal: 0,
           toOrders: false,
-          toPayment: false
+          toPayment: false,
+          fromWhichComponent: 'search'
         };
+        // ESPERO A QUE HORA ME PASE LOS PROPS DESDE EL BOTON DEL PEDIDO
+
         //this.state.id = this.props.id;
         //this.state.code = this.props.code;
-        //this.state.availableMenus = this.props.availableMenus; // ESPERO A QUE HORA ME PASE LOS PROPS DESDE EL BOTON DEL PEDIDO
+        //this.state.code = this.props.password;
+        //this.state.code = this.props.fromWhichComponent
+                
+        if (this.state.fromWhichComponent === "payment"){
+            this.state.orderSubtotal = this.props.orderSubtotal
+            this.state.orderTotal = this.props.orderTotal
+            this.state.availableMenus = this.props.availableMenus; 
+        }
     }
 
     toPayment = () => {
@@ -104,7 +114,7 @@ export default class ShoppingCart extends React.Component {
         this.setState({orderTotal : this.state.orderTotal - (givenMenu.ammount * this.discountPrice(givenMenu.menu))})
     }
     renderSelectedMenus(){
-        return((menus) => <li key={menus.menu.code}>
+        return((menus) => <li className = "li2" key={menus.menu.code}>
                                 <div className="grid-container4">
                                     <div>{menus.menu.name} </div>
                                     <div>{menus.ammount} </div>

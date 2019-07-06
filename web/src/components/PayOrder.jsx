@@ -42,7 +42,6 @@ export default class PayOrder extends React.Component {
     }
 
     processOrder = () => {
-        console.log(this.state.selectedPaymentMethod);
         var tempObj = { type: this.state.selectedPaymentMethod.value,
                         user: "mercadoPago",                         
                         password: "mercadoPago",
@@ -149,7 +148,7 @@ export default class PayOrder extends React.Component {
     }
 
     renderSelectedMenus(){
-    return((menus) => <li key={menus.menu.code}>
+    return((menus) => <li className = "li2" key={menus.menu.code}>
                             <div className="grid-container4">
                                 <div>{menus.menu.name} </div>
                                 <div>{menus.ammount} </div>
@@ -190,7 +189,8 @@ export default class PayOrder extends React.Component {
                                  code: this.state.code,
                                  selectedMenus: this.state.selectedMenus,
                                  orderSubtotal: this.state.orderSubtotal,
-                                 orderTotal: this.state.orderTotal } }}/>)
+                                 orderTotal: this.state.orderTotal,
+                                 fromWhichComponent: 'payment' } }}/>)
         }
         return (<div>
                 <div className="grid-container0">
