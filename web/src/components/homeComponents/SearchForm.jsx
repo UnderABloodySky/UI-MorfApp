@@ -1,5 +1,5 @@
 import React from 'react';
-//import '../css/Body.css';
+import { Link } from 'react-router-dom';
 
 export default class SearchForm extends React.Component {
   constructor(props){
@@ -13,15 +13,14 @@ export default class SearchForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.search(this.state);
     this.setState({
         q: ''
     });
   }
  
+  
   handleInput(e){
    const { value, name } = e.target;
-   console.log(value)
    this.setState({
         [name]: value
    })
@@ -43,7 +42,10 @@ render() {
                       </div>
               
               <button type="submit" className="btn btn-outline-success my-2 my-sm-0">
+              <Link to={{pathname: '/content',
+                     state:{q : this.state.q }}}>   
               Buscar!
+              </Link>
               </button>
             </form>
           </div>

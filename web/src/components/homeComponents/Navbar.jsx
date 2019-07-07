@@ -1,6 +1,4 @@
 import React from 'react';
-import {mySearch} from '../../api/api'
-
 import NavBarItem from '../homeComponents/NavBarItem';
 import SearchForm from './SearchForm';
 
@@ -15,20 +13,11 @@ var items = [ {"code":"0", "name":"Nosotros", "id":"/us"},
 export default class Navbar extends React.Component {
   constructor(props){
     super(props)
-    this.search = this.search.bind(this);
   }
 
-  search(search){
-    mySearch(search)
-    .then(result => { 
-      console.log(result)
-     })
-    .catch(() => this.setState({ error: 'No match' }));
-  }
 
 render() {
   return (
-
 <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
@@ -48,7 +37,7 @@ render() {
     })}
 
     </ul>
-        <SearchForm search={this.search}/>
+        <SearchForm />
     </div>
     </nav>
     );

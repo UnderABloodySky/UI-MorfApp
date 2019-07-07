@@ -10,7 +10,7 @@ export default class NavbarRegister extends React.Component {
     render(){
         return(
             <div>
-                <Page child={"#"} id="5"/>
+                <Page id="5"/>
             </div>
         );
     }

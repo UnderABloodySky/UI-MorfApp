@@ -5,6 +5,7 @@ import ContentProduct from '../homeComponents/ContentProduct';
 import ContentRegister from '../homeComponents/ContentRegister';
 import ContentContact from '../homeComponents/ContentContact';
 import ContentUs from '../homeComponents/ContentUs';
+import ContentSearchResult from './ContentSearchResult.';
 import '../css/Body.css';
 
 export default class Container extends React.Component {
@@ -35,8 +36,7 @@ render() {
               {this.props.id === "3" && <ContentProduct k={this.props.content}/>}
               {this.props.id === "4" && <ContentContact k={this.props.content}/>}
               {this.props.id === "5" && <ContentRegister/>}
-             
-             
+              {this.props.id === "6" && <ContentSearchResult k={this.props.content}/>}           
              
              
                          <div className="welcome-info">

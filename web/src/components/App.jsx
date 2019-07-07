@@ -15,6 +15,7 @@ import NavbarContact from './homeComponents/NavbarContact';
 import NavbarMenues from './homeComponents/NavbarMenues';
 import NavbarRegister from './homeComponents/NavbarRegister';
 import NavbarProducts from './homeComponents/NavbarProducts';
+import NavbarResponse from './homeComponents/NavbarResponse';
 export default class App extends React.Component {
   render() {
     return (
@@ -33,6 +34,7 @@ export default class App extends React.Component {
             <Route exact path="/contact" component={NavbarContact} />
             <Route exact path="/register" component={NavbarRegister} />
             <Route exact path="/home" component={Home} />
+            <Route path="/content" component={NavbarResponse} />
             <Route path="/" component={Home} />
           </Switch>
       </BrowserRouter>
