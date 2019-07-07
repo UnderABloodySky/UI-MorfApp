@@ -8,24 +8,26 @@ export default class NavbarResponse extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            toShow: [],
-            flag: false
+            toShow: []
+           
         }
     }
 
     componentDidMount(){
         const { q } = this.props.location.state  
-        console.log(q)
-        mySearch(q)
-        .then(result => { 
-         this.setState({toShow: result, flag: true })});
+        if (q != ''){
+            console.log(q)
+            mySearch(q)
+            .then(result => { 
+            this.setState({toShow: result})});
+        }
     }
 
 
      render(){
         return(
             <div>
-              {this.state.flag && <Page child={this.state.toShow} id="6"/>}
+              <Page child={this.state.toShow} id="6"/>
             </div>
         );
     }
