@@ -9,9 +9,15 @@ export default class SignIn extends React.Component {
     this.state = {
       id: '',
       password: '',
+      code: 0,
       error: '',
-      toOrders: false
+      toOrders: false,
+      toShoppingCart: false,
+      fromWhichComponent: ''
     };
+    this.state.fromWhichComponent = this.props.fromWhichComponent
+    this.state.code = this.props.code
+
     this.changeUsername = this.changeUsername.bind(this);
     this.changePassword = this.changePassword.bind(this);
     this.executeSignIn = this.executeSignIn.bind(this);
@@ -43,11 +49,21 @@ export default class SignIn extends React.Component {
   }
 
   render() {
-    if (this.state.toOrders){
-      return <Redirect to={{
-        pathname: '/orders',
-        state: { id: this.state.id, password: this.state.password } }}/>
+    if (this.state.fromWhichComponent == 'search'){
+      if (this.state.toOrders){
+        return <Redirect to={{
+          pathname: '/sc',
+          state: { id: this.state.id, password: this.state.password, code: this.state.code, fromWhichComponent: 'search' } }}/>
+      }
     }
+    if (this.state.fromWhichComponent == 'login'){
+      if (this.state.toOrders){
+        return <Redirect to={{
+          pathname: '/orders',
+          state: { id: this.state.id, password: this.state.password } }}/>
+      }
+    }
+    
     return (
       <div className="container" >
         <div className="row centerRow">

@@ -67,7 +67,7 @@ render() {
               { this.state.renderReg &&
               <SignUp id = "3" handlerReg = {this.handlerReg} />}
               { this.state.renderLog &&
-              <SignIn id="2" handlerLog = {this.handlerLog} />}
+              <SignIn id="2" handlerLog = {this.handlerLog} fromWhichComponent = 'login' />}
             </div>
             {/*welcome*/}
             <div className="welcome">

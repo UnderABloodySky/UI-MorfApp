@@ -9,22 +9,22 @@ export default class ShoppingCart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          id: 'NinjaMan',
-          code: 0,
+          id: '',
+          password: '',
+          code: 0,          
           availableMenus: [],  
           selectedMenus: [],
           orderSubtotal: 0,
           orderTotal: 0,
           toOrders: false,
           toPayment: false,
-          fromWhichComponent: 'search'
+          fromWhichComponent: ''
         };
-        // ESPERO A QUE HORA ME PASE LOS PROPS DESDE EL BOTON DEL PEDIDO
 
-        //this.state.id = this.props.id;
-        //this.state.code = this.props.code;
-        //this.state.code = this.props.password;
-        //this.state.code = this.props.fromWhichComponent
+        this.state.id = this.props.id;
+        this.state.code = this.props.code;
+        this.state.password = this.props.password;
+        this.state.code = this.props.fromWhichComponent
                 
         if (this.state.fromWhichComponent === "payment"){
             this.state.orderSubtotal = this.props.orderSubtotal
@@ -151,8 +151,8 @@ export default class ShoppingCart extends React.Component {
         )
     }    
 
-    componentDidMount(){    
-        getMenus(0) //TENGO QUE RECIBIR POR PROPS EL CODE DEL RESTAURANT
+    componentDidMount(){   
+        getMenus(this.state.code) 
         .then(result => {
             this.setState({            
             availableMenus: result })})       

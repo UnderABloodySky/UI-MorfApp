@@ -16,10 +16,9 @@ export default class NavbarResponse extends React.Component {
     componentDidMount(){
         const { q } = this.props.location.state  
         if (q != ''){
-            console.log(q)
             mySearch(q)
             .then(result => { 
-            this.setState({toShow: result})});
+                this.setState({toShow: result})});
         }
     }
 
