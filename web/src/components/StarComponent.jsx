@@ -32,7 +32,7 @@ render(){
                 onStarClick = {this.onStarClick.bind(this)}
                 
             />
-            <button type="button" onClick={this.close}>Aceptar</button>
+            
         </div>
 
 

@@ -30,6 +30,16 @@ class Client (code :Int,  name: String, id: String, var address: String,
         currentOrder = null;
     }
 
+    fun moveToHistoricOrder(orderId:Int){
+       var orderToAddHistoric =pendingOrders.firstOrNull {order-> order.code == orderId}
+
+        if (orderToAddHistoric!=null){
+            historicOrders.add(orderToAddHistoric)
+            pendingOrders.remove(orderToAddHistoric)
+
+        }
+
+    }
     fun addNewMenu(menu : Menu) = currentOrder?.addMenu(menu)
 
     fun updateCurrentMenu(newMenu: Menu){
@@ -51,14 +61,14 @@ class Client (code :Int,  name: String, id: String, var address: String,
         pendingOrders.remove(aOrder)
     }
 
-    fun findOrderInCollection(updatedOrder:Int):Order {
+    fun findOrderInCollection(updatedCodeOrder:Int):Order? {
 
-     return  historicOrders.firstOrNull { order -> order.code == updatedOrder }!!
+     return  historicOrders.firstOrNull { order -> order.code == updatedCodeOrder }
     }
 
     fun rateOrder(updatedOrder:Order,rate:Int){
         var order:Order
-        order  = this.findOrderInCollection(updatedOrder.code)
+        order  = this.findOrderInCollection(updatedOrder.code)!!
         order.updateRate(rate)
         }
     }

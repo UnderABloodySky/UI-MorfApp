@@ -10,6 +10,7 @@ import org.eclipse.jetty.http.HttpStatus
 import paymentMethod.*
 import productAndMenu.Menu
 import restaurant.Restaurant
+import user.Client
 import java.util.*
 
 data class RateData(var rating:Int)
@@ -84,26 +85,30 @@ class OrderController() {
         val codeUser = ctx.pathParam("id")
         val codeOrder = ctx.pathParam("code_order")!!.toInt()
 
-        var client =  morfApp.findClient(codeUser)
-
-        var orderToUpdate = client!!.findOrderInCollection(codeOrder)
-
-
-        client.rateOrder(orderToUpdate,rate.rating)
-
 
         if (this.isNotNull(codeOrder)){
-            var orderToUpdate = client!!.findOrderInCollection(codeOrder)
+
+            var client =  morfApp.findClient(codeUser)?:throw NotFoundResponse("No se encontró el usuario con id $codeUser")
+            var orderToUpdate = client.findOrderInCollection(codeOrder)?:throw NotFoundResponse("No se encontró la orden con id $codeOrder")
+            print(codeOrder)
+            client.rateOrder(orderToUpdate,rate.rating)
+
             var orderDataComplete = OrderDataComplete(orderToUpdate.code,orderToUpdate.getRestaurant().code,
-                    orderToUpdate.getRestaurant().name,
-                    orderToUpdate.getMenusAndCuantity(),orderToUpdate.getUser().id,
-                    orderToUpdate.getPaymentMethod())
+                                                        orderToUpdate.getRestaurant().name,
+                                                        orderToUpdate.getMenusAndCuantity(),
+                                                        orderToUpdate.getUser().id,
+                                                        orderToUpdate.getPaymentMethod())
             orderDataComplete.ratingData = rate
+            this.changeStatusFromPendingToHistoric(orderDataComplete, client)
+
             ctx.status(HttpStatus.CREATED_201)
             ctx.json(orderDataComplete)
         }
     }
+    fun changeStatusFromPendingToHistoric(orderDataComplete: OrderDataComplete, client: Client){
+        client.moveToHistoricOrder(orderDataComplete.code_order_complete)
 
+    }
 
     fun pendingOrders(ctx: Context) {
         val userId = ctx.pathParam("id")

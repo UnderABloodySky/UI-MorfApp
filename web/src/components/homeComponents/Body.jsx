@@ -5,6 +5,8 @@ import SignUp from './SignUp';
 import SignIn from './SignIn';
 import imag1 from '../images/img1.jpg';
 
+
+
 export default class Body extends React.Component {
   constructor(props) {
     super(props)  
@@ -59,6 +61,7 @@ render() {
         {/*banner-bottom*/}
         <div className="banner-bottom">
           <div className="container">
+          
             <div className="banner-text" >
               <h3>Comida a un click!</h3>
               <p>Promociones diarias &amp; mas</p>
