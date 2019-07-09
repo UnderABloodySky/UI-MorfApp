@@ -207,9 +207,8 @@ fun main() {
         path("orders_pending") {
             path(":id") {
                 get(controller::pendingOrders)
-                path(":code_order") {
-                    put(controller::rateAnOrder)
-                }
+                put(controller::rateAnOrder)
+
             }
         }
     }
