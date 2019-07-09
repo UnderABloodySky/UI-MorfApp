@@ -6,6 +6,8 @@ import { getHistoricOrdersFrom } from '../api/api'
 import StarComponent from './StarComponent'
 import Popup from "reactjs-popup";
 import './css/Orders.css';
+import './css/Body.css'
+//import './css/ShoppingCart.css';
 
 export default class Orders extends React.Component {
     constructor(props) {
@@ -59,11 +61,10 @@ export default class Orders extends React.Component {
                                                       <p><h4>Precio Total: {this.priceOfOrder(order)} $</h4></p>
                                                       </mark>
                                                     </p>
-                                                    <button className="btn btn-danger">Cancelar</button>
-                                                    <Popup trigger={<button className="btn btn-success"> Puntuar Pedido</button>} position="right center">
-                                                      <StarComponent/>
-                                                       {<button className ="btn btn-success"> Aceptar </button> }
-                                                    </Popup>                                     
+                                                    <StarComponent />
+                                                       {<button className ="btn btn-success" onClick={() => this.changeRate(order)}> Aceptar </button> }
+                                                        <button className="btn btn-danger">Cancelar</button>
+                                                       
                                                    </div>
                                                   </div>  
                                                 </div>
@@ -78,10 +79,11 @@ export default class Orders extends React.Component {
                 <br></br>
                 <div><h3>Ordenes Pendientes</h3></div>
                   <div>
-                    
+                  <div className="grid-container0">
                     <ul>
                       {this.state.pendingOrders.map(mappingOrderCode)}
                     </ul>
+                    </div>                    
                   </div>
                   <br></br>
                 <div><h3>Ordenes Históricas</h3></div>

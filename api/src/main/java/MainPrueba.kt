@@ -196,9 +196,7 @@ fun main() {
         path("orders_historic") {
             path(":id") {
                 get(controller::historicOrders)
-                path(":code_order") {
-                    put(controller::rateAnOrder)
-                }
+
             }
         }
 
@@ -210,7 +208,7 @@ fun main() {
             path(":id") {
                 get(controller::pendingOrders)
                 path(":code_order") {
-
+                    put(controller::rateAnOrder)
                 }
             }
         }
