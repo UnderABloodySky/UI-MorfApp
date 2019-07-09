@@ -256,6 +256,7 @@ h3.title {
 .welcome-img {
     overflow: hidden;
     border: 6px solid #FFF;
+
 }
 .welcome img {
     max-width: 100%;
@@ -263,6 +264,8 @@ h3.title {
 }
 .welcome-info {
     margin: 3em 0;
+    position: relative;
+    z-index: 0;
 }
 /*--//welcome--*/
 img.zoom-img {

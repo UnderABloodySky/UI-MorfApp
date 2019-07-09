@@ -1,8 +1,10 @@
 .containerSign{
-  padding: 0% 0%;
-  margin: -50px 0;
+  padding: 0% 200%;
+  margin: -15px -15.5%;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 0px solid #ccc;
+  position: relative;
+  z-index: 1;
   box-sizing: border-box;
   transition: 0.5s all ease;
   -webkit-transition: 0.5s all ease;
@@ -10,6 +12,7 @@
   -o-transition: 0.5s all ease;
   -ms-transition: 0.5s all ease;
   text-decoration:none;
+ 
 }
 .banner-text {
     background-color: #fff;
@@ -37,6 +40,9 @@ body {
   border: 0ch;
   box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 6px 4px 0 rgba(0, 0, 0, 0.19);
 
+}
+.col-12 {
+  padding: 3% 0%;
 }
 
 

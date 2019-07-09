@@ -18,6 +18,7 @@
     "react-credit-cards": "^0.7.0",
     "react-dom": "^16.8.6",
     "react-final-form": "^6.2.1",
+    "react-gmaps": "^1.9.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-select": "^3.0.4",

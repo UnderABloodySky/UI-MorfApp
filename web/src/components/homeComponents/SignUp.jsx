@@ -1,7 +1,15 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom'
 import { signUp } from '../../api/api';
+import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps';
 import '../css/SignIn.css';
+
+const coords = {
+  lat: 51.5258541,
+  lng: -0.08040660000006028
+};
+
+const params = {v: '3.exp', key: 'AIzaSyDJQvobjtc-Z_bZJENwtbTDj23reetxkDk'};
 
 export default class SignUp extends React.Component {
   constructor(props) {
@@ -27,6 +35,25 @@ export default class SignUp extends React.Component {
     this.executeSignUp = this.executeSignUp.bind(this);
 
   }
+
+  onMapCreated(map) {
+    map.setOptions({
+      disableDefaultUI: true
+    });
+  }
+ 
+  onDragEnd(e) {
+    console.log('onDragEnd', e);
+  }
+ 
+  onCloseClick() {
+    console.log('onCloseClick');
+  }
+ 
+  onClick(e) {
+    console.log('onClick', e);
+  }
+
   changeId(event){
     this.setState({ id: event.target.value });
   }
@@ -88,12 +115,12 @@ export default class SignUp extends React.Component {
         state: { id: this.state.id, password: this.state.password } }}/>
     }
     return (
-      <div id="signUp" className="container" >
+      <div id="signUp" className="containerSign">
         <div className="row centerRow">
           <div className="col-3" />
           <div className="col-6 card newCard">
-            <div className="card-body">
-            <div className="form-group row">
+            <div className="card-body" >
+            <div className="form-group row" >
               <label className="col-sm-3 col-form-label">{"Email"}</label>
               <div className="col-sm-9">
                 <input type='text' className="form-control" value={this.state.email} onChange={this.changeEmail} ref={(input) => { this.nameInput = input}}/>
@@ -105,6 +132,31 @@ export default class SignUp extends React.Component {
               {this.renderInput('Direccion', this.state.address, 'text', this.changeAddress)}
               {this.renderInput('Latitud', this.state.latitude, 'text', this.changeLatitude)}
               {this.renderInput('Longitud', this.state.longitude, 'text', this.changeLongitude)}
+              <Gmaps
+                width={'450px'}
+                height={'320px'}
+                lat={coords.lat}
+                lng={coords.lng}
+                zoom={12}
+                loadingMessage={'Be happy'}
+                params={params}
+                onMapCreated={this.onMapCreated}>
+                <Marker
+                  lat={coords.lat}
+                  lng={coords.lng}
+                  draggable={true}
+                  onDragEnd={this.onDragEnd} />
+                <InfoWindow
+                  lat={coords.lat}
+                  lng={coords.lng}
+                  content={'Hello, React :)'}
+                  onCloseClick={this.onCloseClick} />
+                <Circle
+                  lat={coords.lat}
+                  lng={coords.lng}
+                  radius={500}
+                  onClick={this.onClick} />
+              </Gmaps>
               
               <div className="col-12">
                 <button type="button" className="btn btn-primary btn-block" onClick={this.executeSignUp}>Registrarse</button>
