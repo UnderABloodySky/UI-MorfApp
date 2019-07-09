@@ -9,14 +9,11 @@ export default class SignIn extends React.Component {
     this.state = {
       id: '',
       password: '',
-      code: 0,
       error: '',
-      toOrders: false,
-      toShoppingCart: false,
+      toComponent: false,
       fromWhichComponent: ''
     };
     this.state.fromWhichComponent = this.props.fromWhichComponent
-    this.state.code = this.props.code
 
     this.changeUsername = this.changeUsername.bind(this);
     this.changePassword = this.changePassword.bind(this);
@@ -33,7 +30,7 @@ export default class SignIn extends React.Component {
 
   executeSignIn() {
     signIn({ id: this.state.id, password: this.state.password })
-      .then(() => this.setState({ toOrders: true }))
+      .then(() => this.setState({ toComponent: true }))
       .catch(() => this.setState({ error: 'Usuario o contraseña incorrecta' }));
   }
 
@@ -50,20 +47,20 @@ export default class SignIn extends React.Component {
 
   render() {
     if (this.state.fromWhichComponent == 'search'){
-      if (this.state.toOrders){
+      if (this.state.toComponent){
         return <Redirect to={{
           pathname: '/sc',
-          state: { id: this.state.id, password: this.state.password, code: this.state.code, fromWhichComponent: 'search' } }}/>
+          state: { id: this.state.id, password: this.state.password, code: this.props.code, fromWhichComponent: 'search' } }}/>
       }
     }
     if (this.state.fromWhichComponent == 'login'){
-      if (this.state.toOrders){
+      if (this.state.toComponent){
         return <Redirect to={{
           pathname: '/orders',
           state: { id: this.state.id, password: this.state.password } }}/>
       }
     }
-    
+
     return (
       <div className="container" >
         <div className="row centerRow">
