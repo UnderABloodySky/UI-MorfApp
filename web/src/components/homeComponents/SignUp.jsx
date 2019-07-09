@@ -5,8 +5,8 @@ import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps';
 import '../css/SignIn.css';
 
 const coords = {
-  lat: 51.5258541,
-  lng: -0.08040660000006028
+  lat: -34.605407,
+  lng: -58.373566
 };
 
 const params = {v: '3.exp', key: 'AIzaSyDJQvobjtc-Z_bZJENwtbTDj23reetxkDk'};
@@ -20,8 +20,8 @@ export default class SignUp extends React.Component {
       password: '',
       name: '',
       address: '',
-      latitude: 0.0,
-      longitude: 0.0,
+      latitude: -34.605407,
+      longitude: -58.373566,
       error: '',
       toOrders: false
     };
@@ -33,6 +33,7 @@ export default class SignUp extends React.Component {
     this.changeLatitude = this.changeLatitude.bind(this);
     this.changeLongitude = this.changeLongitude.bind(this);
     this.executeSignUp = this.executeSignUp.bind(this);
+    this.onClick = this.onClick.bind(this);
 
   }
 
@@ -42,16 +43,8 @@ export default class SignUp extends React.Component {
     });
   }
  
-  onDragEnd(e) {
-    console.log('onDragEnd', e);
-  }
- 
-  onCloseClick() {
-    console.log('onCloseClick');
-  }
- 
-  onClick(e) {
-    console.log('onClick', e);
+  onClick(event) {
+    this.setState({ latitude: event.latLng.lat(), longitude: event.latLng.lng()});
   }
 
   changeId(event){
@@ -135,27 +128,21 @@ export default class SignUp extends React.Component {
               <Gmaps
                 width={'450px'}
                 height={'320px'}
-                lat={coords.lat}
-                lng={coords.lng}
+                lat={this.state.latitude}
+                lng={this.state.longitude}
                 zoom={12}
-                loadingMessage={'Be happy'}
+                loadingMessage={'Cargando'}
                 params={params}
-                onMapCreated={this.onMapCreated}>
+                onMapCreated={this.onMapCreated}
+                onClick={this.onClick}>
                 <Marker
-                  lat={coords.lat}
-                  lng={coords.lng}
-                  draggable={true}
-                  onDragEnd={this.onDragEnd} />
+                  lat={this.state.latitude}
+                  lng={this.state.longitude}
+                  draggable={true}/>
                 <InfoWindow
-                  lat={coords.lat}
-                  lng={coords.lng}
-                  content={'Hello, React :)'}
-                  onCloseClick={this.onCloseClick} />
-                <Circle
-                  lat={coords.lat}
-                  lng={coords.lng}
-                  radius={500}
-                  onClick={this.onClick} />
+                  lat={this.state.latitude}
+                  lng={this.state.longitude}
+                  content={'Elegí del mapa tu ubicación'} />
               </Gmaps>
               
               <div className="col-12">
