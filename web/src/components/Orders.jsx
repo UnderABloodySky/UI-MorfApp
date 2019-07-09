@@ -3,6 +3,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom'
 import { getPendingOrdersFrom } from '../api/api'
 import { getHistoricOrdersFrom } from '../api/api'
+import { ratePendingOrder } from '../api/api'
 import StarComponent from './StarComponent'
 import Popup from "reactjs-popup";
 import './css/Orders.css';
@@ -26,11 +27,19 @@ export default class Orders extends React.Component {
     
   onStarClick(nextValue, prevValue, name) {
     this.setState({rating: nextValue});
+
   }
     priceOfOrder(order){      
       var total = 0;
       order.menus.map(element => { total = total + element.price });
       return total;  
+    }
+//ver como hacer que tome en el body el rate y el codigo de la orden.
+    rateOrder(order,rating){
+        order.setState.rating()
+        ratePendingOrder(this.state.id,order.id,)
+
+
     }
 
     componentDidMount(){
@@ -62,7 +71,7 @@ export default class Orders extends React.Component {
                                                       </mark>
                                                     </p>
                                                     <StarComponent />
-                                                       {<button className ="btn btn-success" onClick={() => this.changeRate(order)}> Aceptar </button> }
+                                                       {<button className ="btn btn-success" onClick={() => this.changeRate(order,rating)}> Aceptar </button> }
                                                         <button className="btn btn-danger">Cancelar</button>
                                                        
                                                    </div>

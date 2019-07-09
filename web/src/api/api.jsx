@@ -17,4 +17,5 @@ export const menues  = body => request('get', '/menus');
 export const products  = body => request('get', '/products/');
 export const findRestaurant = body => request('get', '/findrestaurant/' + body);
 export const mySearch = body => request('get','/search?q='+ body);
+export const ratePendingOrder = body=>request('put','/order_historic/{id}/{code_order}'+body)
 
