@@ -240,6 +240,7 @@ body a:hover{
     margin: 0em 0 0em 0;
 }
 h3.title {
+    padding: 15px 0; 
     font-size: 5em;
     font-family: 'OleoScript-Regular';
     line-height: 4em;
