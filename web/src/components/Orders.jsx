@@ -90,7 +90,10 @@ export default class Orders extends React.Component {
                   <div>
                   <div className="grid-container0">
                     <ul>
+                      
+                      
                       {this.state.pendingOrders.map(mappingOrderCode)}
+                      console.log(pendingOrders);
                     </ul>
                     </div>                    
                   </div>

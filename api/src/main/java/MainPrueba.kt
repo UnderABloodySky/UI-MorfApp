@@ -9,6 +9,7 @@ import io.javalin.apibuilder.ApiBuilder.*
 import org.eclipse.jetty.http.HttpStatus.BAD_REQUEST_400
 import paymentMethod.*
 import productAndMenu.Category
+import productAndMenu.Menu
 import productAndMenu.Product
 import java.util.*
 
@@ -113,7 +114,16 @@ fun main() {
     val orderH1 = mChaile.makeNewOrder(elTano, mutableListOf(), cash)
     orderH1.addMenu(menu1)
     orderH1.processOrder()
-    orderH1.delivered()
+
+    mChaile.rateOrder(orderH1,4)
+
+    var menusAdded = mutableListOf<Menu>()
+    menusAdded.add(menu0)
+    menusAdded.add(menu1)
+
+    var orderJ1 = jLajcha.makeNewOrder(guerrin, menusAdded,cash)
+    orderJ1.addMenu(menu3)
+
 
     val controller = SuperController()
     controller.addDataUser(mChaile)

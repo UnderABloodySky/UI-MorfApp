@@ -2,6 +2,7 @@ package api
 
 
 import applicationModel.MorfApp
+import com.sun.org.apache.xml.internal.serializer.utils.SystemIDResolver
 import io.javalin.Context
 import io.javalin.NotFoundResponse
 import order.DataMenuInOrder
@@ -119,6 +120,7 @@ data class OrderData(var restaurant:Int,var menus: MutableList<MenusAndAmount>,
         fun pendingOrders(ctx: Context) {
             val userId = ctx.pathParam("id")
             var client = morfApp.findClient(userId) ?: throw NotFoundResponse("No se encontró la orden con id $userId")
+            print(client.pendingOrders)
             var ordersDataComplete = this.transformOrdersToOrderData(client.pendingOrders)
             ctx.status(HttpStatus.OK_200)
             ctx.json(ordersDataComplete)
