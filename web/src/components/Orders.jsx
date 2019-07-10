@@ -35,12 +35,12 @@ export default class Orders extends React.Component {
       return total;  
     }
 //ver como hacer que tome en el body el rate y el codigo de la orden.
-    rateOrder(order,rating){
-        order.setState.rating()
-        ratePendingOrder(this.state.id,order.id,)
+   // rateOrder(order,rating){
+     //   order.setState.rating()
+       // ratePendingOrder(this.state.id,order.id,)
 
 
-    }
+    //}
 
     componentDidMount(){
        getPendingOrdersFrom(this.state.id)
@@ -62,7 +62,7 @@ export default class Orders extends React.Component {
                                                     <p><h5>Restaurant: {order.restaurantName}</h5></p>
                                                     <p><mark>{order.menus.map(itMenus => (<li key={itMenus.code}>
                                                                                                             <p><h6>Menú: {itMenus.name}</h6></p>
-                                                                                                            <p>Cantidad: {itMenus.ammountOfMenus}</p>
+                                                                                                            <p>Cantidad: {itMenus.ammountOfMens}</p>
                                                                                                             <p>Precio: {itMenus.price} $</p>
 
                                                                                          </li>))}
@@ -71,7 +71,7 @@ export default class Orders extends React.Component {
                                                       </mark>
                                                     </p>
                                                     <StarComponent />
-                                                       {<button className ="btn btn-success" onClick={() => this.changeRate(order,rating)}> Aceptar </button> }
+                                                    {<button className ="btn btn-success" > Aceptar </button> }
                                                         <button className="btn btn-danger">Cancelar</button>
                                                        
                                                    </div>
