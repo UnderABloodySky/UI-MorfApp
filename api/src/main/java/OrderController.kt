@@ -63,7 +63,7 @@ data class OrderData(var restaurant:Int,var menus: MutableList<MenusAndAmount>,
 
 
         fun historicOrders(ctx: Context) {
-            val userId = ctx.pathParam("code")
+            val userId = ctx.pathParam("id")
             var client = try {
                 morfApp.findClient(userId)
             } catch (e: Exception) {
@@ -93,7 +93,7 @@ data class OrderData(var restaurant:Int,var menus: MutableList<MenusAndAmount>,
 
                 var client = morfApp.findClient(codeUser)
                         ?: throw NotFoundResponse("No se encontró el usuario con id $codeUser")
-                var orderToUpdate = client.findOrderInCollection(orderCode)
+                var orderToUpdate = client.findPendingOrderInCollection(orderCode)
                         ?: throw NotFoundResponse("No se encontró la orden con id $orderCode")
                 print(orderCode)
                 client.rateOrder(orderToUpdate, rate)
