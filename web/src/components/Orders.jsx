@@ -35,6 +35,7 @@ export default class Orders extends React.Component {
       return total;  
     }
 //ver como hacer que tome en el body el rate y el codigo de la orden.
+// cuando se da aceptar tiene que pasar de pending a historic order .. ver 
    // rateOrder(order,rating){
      //   order.setState.rating()
        // ratePendingOrder(this.state.id,order.id,)
@@ -53,8 +54,8 @@ export default class Orders extends React.Component {
 
     render() {
       const mappingOrderCode = (order) => (<li key={order.code_order_complete}>
-                                          <div className="col-md-4" >
-                                              <div className="card mt-4">
+                                          <div className="container1" >
+                                              
                                                 <div className="card-headercard-title text-center">
                                                   <h3>Código Orden: {order.code_order_complete}</h3>
                                                 </div>
@@ -76,26 +77,28 @@ export default class Orders extends React.Component {
                                                        
                                                    </div>
                                                   </div>  
-                                                </div>
+                                                
                                           </li>)
       
       if (this.state.id === ''){
         return <Redirect to={'/'}/> //Caso que se entre directamente a /orders
       }
         return(
-            <div>
-                <div><h1>{this.state.id} LOGUEADO </h1></div>  
+            <div>  <div className="ribbon">
+                  <div><h1>{this.state.id}! Loggeado </h1></div>  
+              </div>
                 <br></br>
                 <div><h3>Ordenes Pendientes</h3></div>
                   <div>
-                  <div className="grid-container0">
-                    <ul>
-                      
+                  
+                      <ul>
+                         <div className="grid-container3">
                       
                       {this.state.pendingOrders.map(mappingOrderCode)}
                       console.log(pendingOrders);
-                    </ul>
-                    </div>                    
+                          </div>
+                       </ul>
+                        
                   </div>
                   <br></br>
                 <div><h3>Ordenes Históricas</h3></div>
