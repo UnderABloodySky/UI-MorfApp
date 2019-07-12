@@ -16,8 +16,7 @@ export default class SearchForm extends React.Component {
     this.setState({
         q: ''
     });
-  }
- 
+  } 
   
   handleInput(e){
    const { value, name } = e.target;
