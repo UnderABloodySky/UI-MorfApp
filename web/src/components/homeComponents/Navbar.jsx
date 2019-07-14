@@ -11,11 +11,7 @@ var items = [ {"code":"0", "name":"Nosotros", "id":"/us"},
             ]
 
 export default class Navbar extends React.Component {
-  constructor(props){
-    super(props)
-  }
-
-
+  
 render() {
   return (
 <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
@@ -33,7 +29,7 @@ render() {
       return <NavBarItem key={currentValue.code}
                          name={currentValue.name}
                          id={currentValue.id}
-                         isFirstOne={index==0? true : false}/>;  
+                         isFirstOne={index===0? true : false}/>;  
     })}
 
     </ul>

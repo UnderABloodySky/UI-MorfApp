@@ -1,14 +1,17 @@
 import React from 'react';
 import '../css/Body.css';
-import { thisExpression } from '@babel/types';
 import Popup from './PopUp';
 
 export default class ContentSearchResult extends React.Component {
   constructor(props) {
     super(props);
+    console.log("H");
+    console.log(this.props.k);
     this.state = {
-      showPopup: false
+      showPopup: false,
+      things: this.props.k
     }  
+    console.log(this.state.things);
   }
 closePopup(){
   this.setState({  
@@ -24,7 +27,7 @@ togglePopup() {
   
   render() {
     
-    const things = this.props.k.map((thing, i) => {
+    const things = this.state.things.map((thing, i) => {
 
       return(
         

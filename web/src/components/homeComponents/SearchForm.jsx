@@ -1,21 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
 
 export default class SearchForm extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      q: ''
+      q: '',
+      ex: '',
+      evaluate: false
     }
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+   e.preventDefault();
+    const aux = this.state.q;
+    console.log("SearchForm"); 
+    console.log(aux);
     this.setState({
-        q: ''
-    });
+        q: '',
+        ex: aux,
+        evaluate: true
+    });  
   } 
   
   handleInput(e){
@@ -26,7 +33,13 @@ export default class SearchForm extends React.Component {
 }
 
 render() {
-      return (
+  if (this.state.evaluate){
+    if (this.state.ex !== ''){
+      console.log("Voy a redireccionar a /content")
+      return <Redirect to={{pathname: '/content',
+      state:{q : this.state.ex }}}/>    }
+  }
+        return (
         <div>
             <form onSubmit={this.handleSubmit} className="form-inline my-2 my-lg-0">
                       <div className="form-group">
@@ -39,15 +52,11 @@ render() {
                               placeholder="..." 
                           />
                       </div>
-              
-              <button type="submit" className="btn btn-outline-success my-2 my-sm-0">
-              <Link to={{pathname: '/content',
-                     state:{q : this.state.q }}}>   
-              Buscar!
-              </Link>
-              </button>
+                      <button type="submit" className="btn btn-outline-dark">Buscar!</button>
             </form>
           </div>
           );
+         
+        
       }
-  }
+}
