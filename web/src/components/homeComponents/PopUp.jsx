@@ -27,6 +27,7 @@ login(){
                                 handlerLog = {this.handlerLog}
                                 fromWhichComponent = 'search'
                                 code = {this.props.code} 
+                                header = 'Logueate!'
                 />
             
             </div>  

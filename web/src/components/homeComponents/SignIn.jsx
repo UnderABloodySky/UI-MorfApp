@@ -11,13 +11,16 @@ export default class SignIn extends React.Component {
       password: '',
       error: '',
       toComponent: false,
+      header: '',
       fromWhichComponent: ''
     };
     this.state.fromWhichComponent = this.props.fromWhichComponent
+    this.state.header = this.props.header
 
     this.changeUsername = this.changeUsername.bind(this);
     this.changePassword = this.changePassword.bind(this);
     this.executeSignIn = this.executeSignIn.bind(this);
+    
   }
 
   changeUsername(event) {
@@ -67,6 +70,9 @@ export default class SignIn extends React.Component {
           <div className="col-3" />
           <div className="col-6 card newCard">
             <div className="card-body">
+              <div className="headerLoader">
+                {this.state.header}
+              </div>
               {this.renderInput('Usuario', this.state.id, 'text', this.changeUsername)}
               {this.renderInput('Contraseña', this.state.password, 'password', this.changePassword)}
               <div className="col-12">

@@ -20,11 +20,10 @@ export default class ShoppingCart extends React.Component {
           toPayment: false,
           fromWhichComponent: ''
         };
-
         this.state.id = this.props.location.state.id;
         this.state.code = this.props.location.state.code;
         this.state.password = this.props.location.state.password;
-        this.state.code = this.props.fromWhichComponent
+        this.state.fromWhichComponent = this.props.fromWhichComponent
                 
         if (this.state.fromWhichComponent === "payment"){
             this.state.orderSubtotal = this.props.orderSubtotal
@@ -151,8 +150,7 @@ export default class ShoppingCart extends React.Component {
         )
     }    
 
-    componentDidMount(){   
-        
+    componentDidMount(){           
         getMenus(this.props.location.state.code) 
         .then(result => {
             this.setState({            

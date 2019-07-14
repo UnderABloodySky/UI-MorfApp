@@ -5,7 +5,6 @@ import { deliver } from '../api/api';
 import CreditCard from './paymentComponents/CreditCard';
 import Cash from './paymentComponents/Cash';
 import MercadoPago from './paymentComponents/MercadoPago';
-import DeliveryAddress from './paymentComponents/DeliveryAddress';
 import Select from 'react-select'
 import { Redirect } from 'react-router-dom';
 
@@ -181,7 +180,6 @@ export default class PayOrder extends React.Component {
                                  password: this.state.password } }}/>)
         }
         if(!this.state.toOrders && this.state.toShoppingCart){
-            console.log(this.state.code)
             return(<Redirect to={{
                         pathname: '/sc',
                         state: { id: this.state.id,
@@ -225,9 +223,12 @@ export default class PayOrder extends React.Component {
                             </div>
                         <div className="righty">Subtotal del Pedido: {this.state.orderSubtotal}$</div>
                         <div className="righty"><h4>Total del Pedido: {this.state.orderTotal}$</h4></div>
-                        <div><DeliveryAddress/></div>
-                        <button className="btn btn-danger" onClick={this.backToShoppingCart}>Volver al Carrito</button>
-                        <button className="btn btn-success" onClick={this.processOrder}>Realizar el Pago!</button>
+                        <div className="forward">
+                            <button className="btn goForward" onClick={this.processOrder}>Realizar el Pago!</button>
+                        </div>
+                        <div className="back">
+                        <button className="btn comeBack" onClick={this.backToShoppingCart}>Volver al Carrito</button>
+                        </div>
                     </div>
                 </div>                                               
             </div>

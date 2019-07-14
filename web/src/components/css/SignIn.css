@@ -38,13 +38,22 @@ body {
 
 .newCard {
   border: 0ch;
-  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 6px 4px 0 rgba(0, 0, 0, 0.19);
 
 }
 .col-12 {
   padding: 3% 0%;
 }
 
+.headerLoader {
+  padding: 15px 25px;
+  font-family: 'OleoScript-Regular';
+  font-size: 35px;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+}
 
 .empty {
   height: 1.5rem;
