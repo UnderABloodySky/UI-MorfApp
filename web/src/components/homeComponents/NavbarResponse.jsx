@@ -27,7 +27,7 @@ export default class NavbarResponse extends React.Component {
 
      render(){
               return (
-                this.state.mustBeRender && <Page child={this.state.toShow} id="6"/> 
-              );
+                this.state.mustBeRender && <Page child={this.state.toShow} id="6"/>
+               );
     }
 }
