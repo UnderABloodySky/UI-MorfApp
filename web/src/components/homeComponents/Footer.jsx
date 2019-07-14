@@ -27,10 +27,10 @@ export default () =>  (
               <div className="col-md-3 footer-left">
                 <h4>Detalles</h4>
                 <ul>
-                  <li><a href="about.html">Quienes somos?</a></li>
-                  <li><a href="#">Registracion</a></li> {/* Falta  formulario de registracion */}
-                  <li><a href="#">Politicas de privacidad</a></li>
-                  <li><a href="contact.html">Contacto</a></li>
+                  <li><a href="/us">Quienes somos?</a></li>
+                  <li><a href="/register">Registracion</a></li> {/* Falta  formulario de registracion */}
+                  <li><a href="/us">Politicas de privacidad</a></li>
+                  <li><a href="/contact">Contacto</a></li>
                 </ul>
               </div>
               <div className="col-md-3 footer-right">
