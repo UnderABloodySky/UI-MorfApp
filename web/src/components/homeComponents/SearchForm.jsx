@@ -14,7 +14,6 @@ export default class SearchForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
     const aux = this.state.q;
     console.log("SearchForm"); 
     console.log(aux);
@@ -38,6 +37,7 @@ render() {
       console.log("Voy a redireccionar a /content")
       const aux = this.state.ex
       this.state.ex = ''
+      this.state.evaluate = false
       return <Redirect to={{pathname: '/content',
       state:{q : aux }}}/>    }
   }
