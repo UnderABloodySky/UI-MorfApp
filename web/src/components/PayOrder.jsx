@@ -161,7 +161,7 @@ export default class PayOrder extends React.Component {
     }
 
     componentDidMount(){    
-        findRestaurant(0) //TENGO QUE RECIBIR POR PROPS EL CODE DEL RESTAURANT
+        findRestaurant(this.state.code)
         .then(result => {
             var tempObj = result.availablePaymentMethods;
             this.setState({    
@@ -174,7 +174,6 @@ export default class PayOrder extends React.Component {
 
     render() {
         const { selectedPaymentMethod } = this.state;  
-        
         if(this.state.toOrders && !this.state.toShoppingCart){
             return(<Redirect to={{
                         pathname: '/orders',
@@ -182,6 +181,7 @@ export default class PayOrder extends React.Component {
                                  password: this.state.password } }}/>)
         }
         if(!this.state.toOrders && this.state.toShoppingCart){
+            console.log(this.state.code)
             return(<Redirect to={{
                         pathname: '/sc',
                         state: { id: this.state.id,
@@ -227,7 +227,7 @@ export default class PayOrder extends React.Component {
                         <div className="righty"><h4>Total del Pedido: {this.state.orderTotal}$</h4></div>
                         <div><DeliveryAddress/></div>
                         <button className="btn btn-danger" onClick={this.backToShoppingCart}>Volver al Carrito</button>
-                        <button className="btn btn-success" onClick={this.processOrder}>Realizar el Pago</button>
+                        <button className="btn btn-success" onClick={this.processOrder}>Realizar el Pago!</button>
                     </div>
                 </div>                                               
             </div>

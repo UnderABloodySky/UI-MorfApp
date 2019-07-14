@@ -49,6 +49,7 @@ body a:hover{
 .footer {
   background: #555;
   padding: 5em 0;
+  z-index: 0;
 }
 .footer h4 {
     font-size: 2.8em;

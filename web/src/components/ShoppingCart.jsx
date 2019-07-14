@@ -204,8 +204,13 @@ export default class ShoppingCart extends React.Component {
                                 </div>
                             <div className="righty">Subtotal del Pedido: {this.state.orderSubtotal}$</div>
                             <div className="righty"><h4>Total del Pedido: {this.state.orderTotal}$</h4></div>
-                            <button className="btn btn-danger" onClick={this.backToOrders}>Volver a Ordenes</button>
-                            <button className="btn btn-success" onClick={this.toPayment}>Realizar el Pago</button>
+                            <div className="forward">
+                                <button className="btn goForward" onClick={this.toPayment}>Realizar el Pago!</button>
+                            </div>
+                            <div className="back">
+                            <button className="btn comeBack" onClick={this.backToOrders}>Volver a Ordenes</button>
+                            </div>
+                            
                         </div>
                     </div>
                     

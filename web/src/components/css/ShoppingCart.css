@@ -110,6 +110,66 @@ body {
   border: 0.1px solid #9FCACC;
   padding: 10px;
 }
+.goForward{
+    display: inline-block;
+    padding: 15px 0px;
+    margin: 50px;
+    height: 200px;
+    width: 85%;
+    font-size: 60px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+.goForward:hover {
+  background-color: #3e8e41;
+  color: white;
+}
+  
+.goForward:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+  color: white;
+}
+.back{
+  margin-right: 0px;
+  padding: 50px 0px;
+
+}
+.comeBack{
+
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: rgb(151, 23, 23);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+.comeBack:hover {
+  background-color:  rgb(107, 4, 4);
+  color: white;
+}
+  
+.comeBack:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+  color: white;
+}
 
 .grid-container0 {
   display: grid;

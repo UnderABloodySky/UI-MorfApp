@@ -55,7 +55,7 @@ body a:hover{
     display: block;
     top: 0;
     border: 35px solid #CADDE1;
-    z-index: 1;
+    z-index: 0;
 }
 .ribbon::before {
   left: -75px;
