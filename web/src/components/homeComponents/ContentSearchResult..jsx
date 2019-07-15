@@ -1,18 +1,19 @@
 import React from 'react';
 import '../css/Body.css';
 import Popup from './PopUp';
+import snorlax from '../images/snorlax.png';
 
 export default class ContentSearchResult extends React.Component {
   constructor(props) {
     super(props);
-    console.log("H");
-    console.log(this.props.k);
     this.state = {
       showPopup: false,
-      things: this.props.k
-    }  
+      things:this.props.k 
+    }
     console.log(this.state.things);
   }
+
+  
 closePopup(){
   this.setState({  
     showPopup: false  
@@ -26,7 +27,18 @@ togglePopup() {
    } 
   
   render() {
-    
+    if (this.state.things.length==0){
+      return(
+        <div>
+          <br/><br/>  
+           <div className="alert alert-info" role="alert">
+            <strong>Ups!</strong> No se encontraron Resultados.
+           </div>
+           <img src={snorlax} className="img-responsive zoom-img" />
+      </div>);
+    }
+
+
     const things = this.state.things.map((thing, i) => {
 
       return(
@@ -59,7 +71,7 @@ togglePopup() {
               }
           </div>
         )
-      
+            }
 
-  }
+  
 }

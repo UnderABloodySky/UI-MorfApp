@@ -10,7 +10,6 @@ export default class NavbarResponse extends React.Component {
             toShow: [],
             mustBeRender:false
         }
-        console.log("Lluegue a NavbarResponse")
     }
 
     componentDidMount(){
@@ -18,9 +17,6 @@ export default class NavbarResponse extends React.Component {
         if (q !== ''){
             mySearch(q)
             .then(result => { 
-                console.log("DidMountNavbarResponse")
-                console.log(q)
-                console.log(result)
                 this.setState({toShow: result, mustBeRender:true})});
         }
     }

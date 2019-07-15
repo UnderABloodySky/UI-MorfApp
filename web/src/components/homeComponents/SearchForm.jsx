@@ -6,8 +6,8 @@ export default class SearchForm extends React.Component {
     super(props);
     this.state={
       q: '',
-      ex: '',
-      evaluate: false
+      evaluate: false,
+      redirect: false
     }
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,12 +15,7 @@ export default class SearchForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const aux = this.state.q;
-    console.log("SearchForm"); 
-    console.log(aux);
     this.setState({
-        q: '',
-        ex: aux,
         evaluate: true
     });  
   } 
@@ -33,11 +28,13 @@ export default class SearchForm extends React.Component {
 }
 
 render() {
-  if (this.state.evaluate && this.state.ex !== ''){
-      const aux = this.state.ex
-      this.setState({q: '', ex: '', evaluate: false})
+  if (this.state.redirect){
+    window.location.reload();
+  }
+  if (this.state.evaluate && this.state.q !== ''){
+      this.setState({q: '', redirect: true, evaluate: false});
       return <Redirect to={{pathname: '/content',
-      state:{q : aux }}}/>    
+      state:{q : this.state.q }}}/>    
   }
   return (
         <div>
