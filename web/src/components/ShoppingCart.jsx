@@ -23,12 +23,12 @@ export default class ShoppingCart extends React.Component {
         this.state.id = this.props.location.state.id;
         this.state.code = this.props.location.state.code;
         this.state.password = this.props.location.state.password;
-        this.state.fromWhichComponent = this.props.fromWhichComponent
-                
-        if (this.state.fromWhichComponent === "payment"){
-            this.state.orderSubtotal = this.props.orderSubtotal
-            this.state.orderTotal = this.props.orderTotal
-            this.state.availableMenus = this.props.availableMenus; 
+        this.state.fromWhichComponent = this.props.location.fromWhichComponent;
+
+        if (this.props.location.state.fromWhichComponent === "payment"){
+            this.state.orderSubtotal = this.props.location.state.orderSubtotal;
+            this.state.orderTotal = this.props.location.state.orderTotal;
+            this.state.selectedMenus = this.props.location.state.selectedMenus; 
         }
     }
 
