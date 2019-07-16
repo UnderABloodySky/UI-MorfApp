@@ -23,20 +23,22 @@ priceOfOrder(){
     return total;  
 }
   
-rateOrder(nextValue,codeOrder) {
+rateOrder() {
   
-    // this.setState({rating: nextValue});
-    ratePendingOrder({ code_order: this.props.code_order_complete , rating: this.state.rating})
+    ratePendingOrder({ code_order: this.props.code_order_complete ,
+                       rating: this.state.rating,
+                       id:this.props.id})
         .then(() => this.setState({ toComponent: true }))
-        .catch(() => this.setState({}));
+        .catch(() => console.log(333));
 }    
 
-onStarClick(nextValue, prevValue, name) {
+onStarClick(nextValue) {
     this.setState({rating :  nextValue});
 }
 
 render(){
-if (this.state.toComponent){
+if (this.state.toComponent ){
+    console.log(111)
     window.location.reload()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 }
 
