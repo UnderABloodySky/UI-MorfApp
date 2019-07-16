@@ -4,7 +4,8 @@ import { Redirect } from 'react-router-dom'
 import { getPendingOrdersFrom } from '../api/api'
 import { getHistoricOrdersFrom } from '../api/api'
 
-import Order from './Order.jsx'
+import HistoricOrder from './HistoricOrders.jsx'
+import PendingOrder from './PendingOrder.jsx'
 import './css/Orders.css';
 import './css/Body.css'
 
@@ -51,13 +52,23 @@ export default class Orders extends React.Component {
 
     render() {    
       
-      const mappingOrderCode = (order) => (<Order key = {order.code_order_complete}
+      const mappingOrderCode = (order) => (<PendingOrder key = {order.code_order_complete}
                                                   id = {this.state.id}
                                                   password = {this.state.password}
                                                   code_order_complete = {order.code_order_complete}
                                                   restaurantName = {order.restaurantName}
                                                   menus = {order.menus}
                                                    />)
+
+      const mappingHistoricOrderCode = (order) => (<HistoricOrder key = {order.code_order_complete}
+                                                  id = {this.state.id}
+                                                  password = {this.state.password}
+                                                  code_order_complete = {order.code_order_complete}
+                                                  restaurantName = {order.restaurantName}
+                                                  menus = {order.menus}
+                                                  />)
+
+              
                                                      
       if(this.state.toShoppingCart){
         return <Redirect to={{
@@ -86,7 +97,7 @@ export default class Orders extends React.Component {
                 <div>Ordenes Históricas</div>
                   <ul>
                     <div className="grid-container3">
-                      {this.state.historicOrders.map(mappingOrderCode)}
+                      {this.state.historicOrders.map(mappingHistoricOrderCode)}
                     </div>
                   </ul>
                   <div className="back">

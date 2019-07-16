@@ -7,7 +7,7 @@ import './css/Orders.css';
 import './css/Body.css'
 
 
-export default class  Order extends React.Component{
+export default class  PendingOrder extends React.Component{
     constructor(props){
         super(props);
         this.state = {
