@@ -26,6 +26,7 @@ togglePopup() {
   });  
    } 
   
+   /*
   render() {
     if (this.state.things.length==0){
       return(
@@ -73,5 +74,54 @@ togglePopup() {
         )
             }
 
-  
+  */
+
+  render() {
+    if (this.state.things.length==0){
+      return(
+        <div>
+          <br/><br/>  
+           <div className="alert alert-info" role="alert">
+            <strong>Ups!</strong> No se encontraron Resultados.
+           </div>
+           <img src={snorlax} className="img-responsive zoom-img" />
+      </div>);
+    }
+
+
+    const things = this.state.things.map((thing, i) => {
+
+      return(
+        <div>
+          <br/>
+          <div className="card mt-4 col-md-4" key={i}>
+            <img src="..." className="card-img-top" alt="Shummy!"/>
+            <div className="card-body">
+              <h5 className="card-title">{thing.name}</h5>
+              <p className="card-text">{thing.description}</p>
+              <br/>
+              <button type="button" className="btn btn-outline-dark" onClick={this.togglePopup.bind(this)}> Hacé tu pedido!</button>  
+                {this.state.showPopup &&
+                <Popup  
+                      closePopup={this.togglePopup.bind(this)}
+                      code = {thing.code}
+                />  
+                } 
+            </div>     
+          </div> 
+        </div>
+      
+        
+        )})
+
+        return(
+          <div>
+              {
+                things 
+              }
+          </div>
+        )
+            }
+
 }
+
