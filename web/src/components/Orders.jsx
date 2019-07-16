@@ -45,7 +45,8 @@ export default class Orders extends React.Component {
           this.setState({pendingOrders: result})});
       getHistoricOrdersFrom(this.state.id)
         .then(result => {
-          this.setState({historicOrders: result})});      
+          this.setState({historicOrders: result})});
+          console.log(this.state.historicOrders)      
     }
 
     render() {    

@@ -23,8 +23,7 @@ priceOfOrder(){
     return total;  
 }
   
-rateOrder() {
-  
+rateOrder() {  
     ratePendingOrder({ code_order: this.props.code_order_complete ,
                        rating: this.state.rating,
                        id:this.props.id})
@@ -38,7 +37,6 @@ onStarClick(nextValue) {
 
 render(){
 if (this.state.toComponent ){
-    console.log(111)
     window.location.reload()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 }
 
@@ -66,7 +64,7 @@ const x =   <li key={this.props.code_order_complete}>
                                         onStarClick = {this.onStarClick.bind(this)}
                                         />
                                     {<button className ="btn btn-success" 
-                                            onClick={this.rateOrder()}>
+                                            onClick={this.rateOrder}>
                                                 Aceptar
                                     </button> }
                             </div>

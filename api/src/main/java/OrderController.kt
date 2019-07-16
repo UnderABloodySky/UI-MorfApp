@@ -14,7 +14,7 @@ import restaurant.Restaurant
 import user.Client
 import java.util.*
 
-data class RateData(var code_order:Int,var rating:Int)
+data class RateData(var code_order:Int,var rating:Int,var id:String)
 data class Geo(var lat:Double,var long:Double)
 data class MenusAndAmount(var menuId:Int,var ammount:Int)
 data class PaymentMethodsParameters(var type:String, var user:String?,var password:String?,
@@ -160,15 +160,6 @@ data class OrderData(var restaurant:Int,var menus: MutableList<MenusAndAmount>,
 
             return newPaymentMethod
         }
-
-/*
-    fun getOrderById(code: Int): OrderData {
-        print(orders)
-        var orderCorrect = orders.find { it.codeOrder == code }
-        return orderCorrect
-                ?: throw NotFoundResponse("No se encontró la orden con id $code")
-    }
-*/
 
     }
 
