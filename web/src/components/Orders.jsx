@@ -1,9 +1,7 @@
 import React from 'react';
 
-import { Redirect } from 'react-router-dom'
 import { getPendingOrdersFrom } from '../api/api'
 import { getHistoricOrdersFrom } from '../api/api'
-import SearchForm from './homeComponents/SearchForm';
 
 import HistoricOrder from './HistoricOrders.jsx'
 import PendingOrder from './PendingOrder.jsx'
@@ -23,7 +21,7 @@ export default class Orders extends React.Component {
         this.state.id = this.props.user;  
    
     }
-    
+
     componentDidMount(){
        getPendingOrdersFrom(this.state.id)
         .then(result => { 
