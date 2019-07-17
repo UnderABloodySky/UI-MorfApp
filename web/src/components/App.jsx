@@ -5,7 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 import Restaurants from './homeComponents/Restaurants';
 import ShoppingCart from './ShoppingCart';
 import PayOrder from './PayOrder'
-import Orders from './Orders';
+//import Orders from './Orders';
+import OrderPage from './homeComponents/OrderPage';
 import SignIn from './homeComponents/SignIn';
 import SignUp from './homeComponents/SignUp';
 import Home from './Home';
@@ -24,7 +25,7 @@ export default class App extends React.Component {
             <Route exact path="/payorder" component={PayOrder} />
             <Route exact path="/sc" component={ShoppingCart} />
             <Route exact path="/restaurants" component={Restaurants} />
-            <Route exact path="/orders" component={Orders} />
+            <Route exact path="/orders" component={OrderPage} />
             <Route exact path="/users/register" component={SignUp} />
             <Route exact path="/signIn/:id" component={SignIn} />
             <Route exact path="/us" component={NavbarUs} />

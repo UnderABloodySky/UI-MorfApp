@@ -14,7 +14,7 @@ export default class Page extends React.Component {
     return (
       <div>    
         <Navbar />
-        <Container content={this.props.child} id={this.props.id}/>
+        <Container user={this.props.user} content={this.props.child} id={this.props.id}/>
         <Footer />        
       </div>
     );

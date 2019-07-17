@@ -2,6 +2,13 @@ import React from 'react';
 import '../css/Body.css';
 import Popup from './PopUp';
 import snorlax from '../images/snorlax.png';
+import img3 from '../images/img3.jpg';
+
+
+const divStyle ={
+  padding: "10px",
+  width: "100%"
+}
 
 export default class ContentSearchResult extends React.Component {
   constructor(props) {
@@ -93,13 +100,13 @@ togglePopup() {
 
       return(
         <div>
-          <br/>
           <div className="card mt-4 col-md-4" key={i}>
-            <img src="..." className="card-img-top" alt="Shummy!"/>
+          <div style={divStyle}>
+              <img src={img3} className="card-img" alt="Shummy!"/>
+          </div>
             <div className="card-body">
               <h5 className="card-title">{thing.name}</h5>
               <p className="card-text">{thing.description}</p>
-              <br/>
               <button type="button" className="btn btn-outline-dark" onClick={this.togglePopup.bind(this)}> Hacé tu pedido!</button>  
                 {this.state.showPopup &&
                 <Popup  

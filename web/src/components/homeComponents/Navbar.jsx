@@ -33,7 +33,7 @@ render() {
     })}
 
     </ul>
-        <SearchForm />
+        <SearchForm fromWhichComponent="navbar"/>
     </div>
     </nav>
     );

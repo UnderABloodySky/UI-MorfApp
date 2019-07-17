@@ -3,6 +3,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom'
 import { getPendingOrdersFrom } from '../api/api'
 import { getHistoricOrdersFrom } from '../api/api'
+import SearchForm from './homeComponents/SearchForm';
 
 import HistoricOrder from './HistoricOrders.jsx'
 import PendingOrder from './PendingOrder.jsx'
@@ -20,12 +21,15 @@ export default class Orders extends React.Component {
           rating: 1,
           toShoppingCart: false
         }; 
-        if (this.props.location.state !== undefined){
-          this.state.id = this.props.location.state.id;  //Chequeo que haya venido una props
-        }
-        if (this.props.location.state.code != undefined){
+        if (this.props !== undefined){
+          console.log(this.props.id)
+            this.state.id = this.props.user;  //Chequeo que haya venido una props
+   
+        }/*
+        if (this.props.location !== undefined){
           this.state.code = this.props.location.state.code
         } 
+        */
       }
 
     backToShoppingCart = () => {
@@ -47,7 +51,7 @@ export default class Orders extends React.Component {
       getHistoricOrdersFrom(this.state.id)
         .then(result => {
           this.setState({historicOrders: result})});
-          console.log(this.state.historicOrders)      
+        //  console.log(this.state.historicOrders)      
     }
 
     render() {    
@@ -87,7 +91,6 @@ export default class Orders extends React.Component {
               <div className="ribbon">
                   <div><h1>{this.state.id}! Logueado! </h1></div>  
               </div>
-                
                 <div>Ordenes Pendientes</div>
                   <ul>
                     <div className="grid-container3">                      
@@ -106,3 +109,10 @@ export default class Orders extends React.Component {
             </div>    
         )}
   }
+/*
+  <div className="ribbon">
+                  <div><h1>{this.state.id}! Logueado! </h1></div>  
+              </div>
+                <SearchForm fromWhichComponent="orders"/>
+                <div>Ordenes Pendientes</div>
+              */

@@ -4,16 +4,32 @@ import Page from './Page'
 import Container from './Container'
 import {mySearch} from '../../api/api'
 
-export default class NavbarResponse extends React.Component {
+/*
+if (this.state.fromWhichComponent == 'login'){
+    if (this.state.toComponent){
+      return <Redirect to={{
+        pathname: '/orders',
+        state: { id: this.state.id, password: this.state.password } }}/>
+    }
+  }
+*/
+
+export default class OrderPage extends React.Component {
     constructor(props){
         super(props);
         this.state={
             toShow: [],
-            mustBeRender:false
+        //    mustBeRender:false
         }
+     console.log(this.props.location.state.id)
     }
 
     componentDidMount(){
+      const { q } = this.props.location.state  
+    }
+
+    
+/*    componentDidMount(){
     //    var  q  = '' 
     //    if(this.props.location === undefined){
     //        q = this.props.q
@@ -29,10 +45,12 @@ export default class NavbarResponse extends React.Component {
                     this.setState({toShow: result, mustBeRender:true})});
           }
     }
-    
+  */  
      render(){
               return (
-                this.state.mustBeRender && <Page child={this.state.toShow} id="6"/>
+                  <Page child={this.state.toShow} user={this.props.location.state.id} id="7"/>
+    //            <Page child={this.state.toShow} user={this.props.location.state.id} id="7"/>
+    //             <Page child={this.state.toShow} id={this.props.location.state.id} id="6"/>
     //            this.state.mustBeRender && <Container content={this.state.toShow} id="6"/>
         
                );

@@ -6,6 +6,8 @@ import ContentRegister from '../homeComponents/ContentRegister';
 import ContentContact from '../homeComponents/ContentContact';
 import ContentUs from '../homeComponents/ContentUs';
 import ContentSearchResult from './ContentSearchResult.';
+import ContentOrder from '../homeComponents/ContentOrder';
+
 import '../css/Body.css';
 
 export default class Container extends React.Component {
@@ -37,6 +39,7 @@ render() {
               {this.props.id === "4" && <ContentContact k={this.props.content}/>}
               {this.props.id === "5" && <ContentRegister/>}
               {this.props.id === "6" && <ContentSearchResult k={this.props.content}/>}           
+              {this.props.id === "7" && <ContentOrder user={this.props.user}/>}           
              
              
                          <div className="welcome-info">
