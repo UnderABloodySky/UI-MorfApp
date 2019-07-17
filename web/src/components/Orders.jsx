@@ -18,31 +18,11 @@ export default class Orders extends React.Component {
           code: -1,
           pendingOrders: [],  
           historicOrders: [],
-          rating: 1,
           toShoppingCart: false
         }; 
-        if (this.props !== undefined){
-          console.log(this.props.id)
-            this.state.id = this.props.user;  //Chequeo que haya venido una props
+        this.state.id = this.props.user;  
    
-        }/*
-        if (this.props.location !== undefined){
-          this.state.code = this.props.location.state.code
-        } 
-        */
-      }
-
-    backToShoppingCart = () => {
-      if (this.state.code > -1){
-        this.setState({
-          toShoppingCart: true        
-        })
-      }else{
-        alert("No se puede volver al carrito, debe hacer un nuevo pedido desde la búsqueda")
-        //renderizar busqueda
-      }
-
-    };  
+    }
     
     componentDidMount(){
        getPendingOrdersFrom(this.state.id)
@@ -51,7 +31,6 @@ export default class Orders extends React.Component {
       getHistoricOrdersFrom(this.state.id)
         .then(result => {
           this.setState({historicOrders: result})});
-        //  console.log(this.state.historicOrders)      
     }
 
     render() {    
@@ -72,20 +51,6 @@ export default class Orders extends React.Component {
                                                   menus = {order.menus}
                                                   />)
 
-              
-                                                     
-      if(this.state.toShoppingCart){
-        return <Redirect to={{
-          pathname: '/sc',
-          state: { id: this.state.id,
-                   password: this.state.password,
-                   code: this.state.code,
-                   fromWhichComponent: 'search' } }}/>
-      }                                         
-      
-      if (this.state.id === ''){
-        return <Redirect to={'/'}/> //Caso que se entre directamente a /orders
-      }
         return(
             <div>  
               <div className="ribbon">
@@ -103,16 +68,6 @@ export default class Orders extends React.Component {
                       {this.state.historicOrders.map(mappingHistoricOrderCode)}
                     </div>
                   </ul>
-                  <div className="back">
-                        <button className="btn comeBack" onClick={this.backToShoppingCart}>Volver al Carrito</button>
-                  </div>
             </div>    
         )}
   }
-/*
-  <div className="ribbon">
-                  <div><h1>{this.state.id}! Logueado! </h1></div>  
-              </div>
-                <SearchForm fromWhichComponent="orders"/>
-                <div>Ordenes Pendientes</div>
-              */
