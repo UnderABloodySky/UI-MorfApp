@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import StarRatingComponent from 'react-star-rating-component'
 import { Redirect } from 'react-router-dom'
 import { ratePendingOrder } from '../api/api'
-import './css/Orders.css';
-import './css/Body.css'
+import './css/Order.css';
 
 
 export default class  PendingOrder extends React.Component{
@@ -41,20 +40,23 @@ if (this.state.toComponent ){
 }
 
 const x =   <li key={this.props.code_order_complete}>
-                    <div className="container1" >
-                        <div className="card-headercard-title text-center">
-                            Código Orden: {this.props.code_order_complete}
-                        </div>
-                            <div className="card-body">
+                <div className="container1" >
+                    <div className="card border-info mb-3 car1" >
+                        <div className="card-body text-primary">
+                            <h5 className="card-title">
                                 <p>Restaurant: {this.props.restaurantName}</p>
-                                <p><mark>
-                                    {this.props.menus.map(itMenus => (<li key={itMenus.code}>
+                            </h5>
+                            <h6>
+                                <p> Código Orden: {this.props.code_order_complete}  </p>
+                            </h6>
+                            <p><mark>
+                                    {this.props.menus.map(itMenus => (<li className = "text-info" key={itMenus.code}>
                                                                         <p>Menú: {itMenus.name}</p>
-                                                                        <p>Cantidad: {itMenus.ammountOfMens}</p>
+                                                                        <p>Cantidad: {itMenus.ammountOfMenus}</p>
                                                                         <p>Precio: {itMenus.price} $</p>
                                                                     </li>))}
                             
-                                    <p>Precio Total: {this.priceOfOrder()} $</p>
+                                    <p className = "text-info">Precio Total: {this.priceOfOrder()} $</p>
                                 </mark></p>
                                 
                                     <StarRatingComponent
@@ -68,6 +70,7 @@ const x =   <li key={this.props.code_order_complete}>
                                                 Aceptar
                                     </button> }
                             </div>
+                        </div>
                     </div>  
             </li>
 
