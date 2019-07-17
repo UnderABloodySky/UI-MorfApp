@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import StarRatingComponent from 'react-star-rating-component'
-import { Redirect } from 'react-router-dom'
 import { ratePendingOrder } from '../api/api'
 import './css/Order.css';
 

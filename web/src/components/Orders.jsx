@@ -89,15 +89,15 @@ export default class Orders extends React.Component {
         return(
             <div>  
               <div className="ribbon">
-                  <div><h1>{this.state.id}! Logueado! </h1></div>  
+                  <div><h3>{this.state.id}! Logueado! </h3></div>  
               </div>
-                <div>Ordenes Pendientes</div>
+                <div><h3>Ordenes Pendientes</h3></div>
                   <ul>
                     <div className="grid-container3">                      
                       {this.state.pendingOrders.map(mappingOrderCode)}                      
                     </div>
                   </ul>                                          
-                <div>Ordenes Históricas</div>
+                <div><h3>Ordenes Históricas</h3></div>
                   <ul>
                     <div className="grid-container3">
                       {this.state.historicOrders.map(mappingHistoricOrderCode)}
