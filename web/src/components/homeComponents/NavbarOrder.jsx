@@ -2,7 +2,7 @@ import React from 'react';
 import NavBarItem from './NavBarItem';
 import SearchFormOrder from './SearchFormOrder';
 
-var items = [ {"code":"0", "name":"N", "id":"/us"},
+var items = [ {"code":"0", "name":"Nosotros", "id":"/us"},
               {"code":"1", "name":"Restaurants", "id":"/all_restaurants"},
               {"code":"2", "name":"Menus", "id":"/all_menus"},
               {"code":"3", "name":"Productos", "id":"/products"},
@@ -16,6 +16,7 @@ export default class NavbarOrder extends React.Component {
       user:''
     }
     this.state.user =  this.props.user;
+    console.log(this.state.user);
   }
   
 render() {

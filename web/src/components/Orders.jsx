@@ -7,7 +7,7 @@ import PendingOrder from './PendingOrder.jsx'
 import './css/Orders.css';
 import'./css/Order.css';
 import jebus from './images/gif-jesucristo.gif';
-
+import snorlax_sleeping from './images/snorlax_sleeping.gif';
 
 export default class Orders extends React.Component {
     constructor(props) {
@@ -71,15 +71,20 @@ export default class Orders extends React.Component {
                     <div className="grid-container3">                      
                       {this.state.pendingOrders.map(mappingOrderCode)}
                       {this.state.pendingOrders.map(mappingOrderCode).length === 0 && 
-              <img src={jebus} className="card-img" alt="Shummy!"/>} 
+              <img src={jebus} className="card-img" alt="Ups i did it again !"/>} 
               {this.state.pendingOrders.map(mappingOrderCode).length === 0  && <div className="alert alert-info" role="alert">
-                <strong><p>No hay ninguna orden sin puntuar </p></strong></div>}                      
+                <strong><p>No hay ningún pedido sin puntuar! </p></strong></div>}                      
                     </div>
                   </ul>                                          
                 <div><h3><p><strong>Ordenes Históricas</strong></p></h3></div>
                   <ul>
                     <div className="grid-container3">
                       {this.state.historicOrders.map(mappingHistoricOrderCode)}
+                      {this.state.historicOrders.map(mappingHistoricOrderCode).length === 0 && 
+              <img src={snorlax_sleeping} className="card-img" alt="Ups i did it again !"/>} 
+              {this.state.historicOrders.map(mappingHistoricOrderCode).length === 0  && <div className="alert alert-danger" role="alert">
+            Aún no has realizado ninguna pedido!</div>}                      
+         
                     </div>
                   </ul>
             </div>    
