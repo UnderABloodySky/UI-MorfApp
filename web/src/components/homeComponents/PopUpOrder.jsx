@@ -44,6 +44,9 @@ login(){
                     <div>
                         {this.state.mustBeRender && <ContentSearchResult k={this.state.toShow}/>}
                     </div>
+                    <div className="col-12">
+                        <button type="button" id="focus" className="btn btn-link" onClick={this.handlerLog}>Cancelar</button>
+                    </div>
                 </div>  
             </div>  
         );  
