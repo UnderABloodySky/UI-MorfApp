@@ -11,7 +11,6 @@ class Popup extends React.Component {
     this.handlerLog = this.handlerLog.bind(this);
     }
 handlerLog(){
-    
     this.props.closePopup();    
 }
     

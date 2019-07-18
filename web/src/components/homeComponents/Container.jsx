@@ -13,14 +13,8 @@ import '../css/Body.css';
 export default class Container extends React.Component {
   constructor(props){
     super(props)
-    this.toOrders = this.toOrders.bind(this)
   }   
-
-toOrders(){
-  return <Redirect to={{
-    pathname: '/orders',
-    state: { id: this.props.user, q: this.props.q, password: this.state.password } }}/>
-}  
+ 
   
 render() {
  

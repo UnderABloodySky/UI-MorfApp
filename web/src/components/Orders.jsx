@@ -2,7 +2,6 @@ import React from 'react';
 
 import { getPendingOrdersFrom } from '../api/api'
 import { getHistoricOrdersFrom } from '../api/api'
-import {mySearch} from '../api/api'
 import HistoricOrder from './HistoricOrders.jsx'
 import PendingOrder from './PendingOrder.jsx'
 import './css/Orders.css';
@@ -29,7 +28,7 @@ export default class Orders extends React.Component {
       getHistoricOrdersFrom(this.state.id)
         .then(result => {
           this.setState({historicOrders: result})});
-      if(this.props.location !== undefined){
+   /*   if(this.props.location !== undefined){
           const { q } = this.props.location.state
           if (q !== ''){
                   mySearch(q)
@@ -37,7 +36,7 @@ export default class Orders extends React.Component {
                       this.setState({toShow: result, mustBeRender:true})});
                   }
      
-          }    
+          }*/    
       }
 
       
@@ -63,15 +62,15 @@ export default class Orders extends React.Component {
         return(
             <div>  
               <div className="ribbon2">
-                  <div><h3><p>{this.state.id}! Logueado!</p> </h3></div>  
+                  <div><h3><p><strong>Bienvenido  {this.state.id}!</strong></p> </h3></div>  
               </div>
-                <div><h3><p>Ordenes Pendientes</p></h3></div>
+                <div><h3><p><strong>Ordenes Pendientes</strong></p></h3></div>
                   <ul>
                     <div className="grid-container3">                      
                       {this.state.pendingOrders.map(mappingOrderCode)}                      
                     </div>
                   </ul>                                          
-                <div><h3><p>Ordenes Históricas</p></h3></div>
+                <div><h3><p><strong>Ordenes Históricas</strong></p></h3></div>
                   <ul>
                     <div className="grid-container3">
                       {this.state.historicOrders.map(mappingHistoricOrderCode)}

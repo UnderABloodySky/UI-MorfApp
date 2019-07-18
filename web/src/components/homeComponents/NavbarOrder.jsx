@@ -6,8 +6,7 @@ var items = [ {"code":"0", "name":"N", "id":"/us"},
               {"code":"1", "name":"Restaurants", "id":"/all_restaurants"},
               {"code":"2", "name":"Menus", "id":"/all_menus"},
               {"code":"3", "name":"Productos", "id":"/products"},
-              {"code":"4", "name":"Contacto", "id":"/contact"},
-              {"code":"5", "name":"Registro", "id":"/register"}
+              {"code":"4", "name":"Contacto", "id":"/contact"}
             ]
 
 export default class NavbarOrder extends React.Component {
