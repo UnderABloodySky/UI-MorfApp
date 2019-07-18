@@ -7,10 +7,20 @@ import ContentContact from '../homeComponents/ContentContact';
 import ContentUs from '../homeComponents/ContentUs';
 import ContentSearchResult from './ContentSearchResult.';
 import ContentOrder from '../homeComponents/ContentOrder';
-
+import { Redirect } from 'react-router-dom'
 import '../css/Body.css';
 
 export default class Container extends React.Component {
+  constructor(props){
+    super(props)
+    this.toOrders = this.toOrders.bind(this)
+  }   
+
+toOrders(){
+  return <Redirect to={{
+    pathname: '/orders',
+    state: { id: this.props.user, q: this.props.q, password: this.state.password } }}/>
+}  
   
 render() {
  
@@ -40,8 +50,7 @@ render() {
               {this.props.id === "5" && <ContentRegister/>}
               {this.props.id === "6" && <ContentSearchResult k={this.props.content}/>}           
               {this.props.id === "7" && <ContentOrder user={this.props.user}/>}           
-             
-             
+              
                          <div className="welcome-info">
                 <div className="grid-body-container">
                     <div className="col-md-6 welcome-grids">

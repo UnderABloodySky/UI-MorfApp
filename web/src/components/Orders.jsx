@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getPendingOrdersFrom } from '../api/api'
 import { getHistoricOrdersFrom } from '../api/api'
-
+import {mySearch} from '../api/api'
 import HistoricOrder from './HistoricOrders.jsx'
 import PendingOrder from './PendingOrder.jsx'
 import './css/Orders.css';
@@ -23,14 +23,25 @@ export default class Orders extends React.Component {
     }
 
     componentDidMount(){
-       getPendingOrdersFrom(this.state.id)
+      getPendingOrdersFrom(this.state.id)
         .then(result => { 
           this.setState({pendingOrders: result})});
       getHistoricOrdersFrom(this.state.id)
         .then(result => {
           this.setState({historicOrders: result})});
-    }
+      if(this.props.location !== undefined){
+          const { q } = this.props.location.state
+          if (q !== ''){
+                  mySearch(q)
+                  .then(result => { 
+                      this.setState({toShow: result, mustBeRender:true})});
+                  }
+     
+          }    
+      }
 
+      
+   
     render() {    
       
       const mappingOrderCode = (order) => (<PendingOrder key = {order.code_order_complete}

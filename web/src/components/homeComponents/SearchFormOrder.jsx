@@ -1,16 +1,16 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import NavbarResponseOrder from './NavbarResponseOrder';
 
-export default class SearchForm extends React.Component {
+export default class SearchFormOrder extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      q: '',
-      evaluate: false,
-      redirect: false
+      q: ''
     }
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.toOrders = this.toOrders.bind(this)
   }
 
   handleSubmit(e) {
@@ -27,15 +27,14 @@ export default class SearchForm extends React.Component {
    })
 }
 
+toOrders(){
+  if (this.state.q !== ''){  
+   window.location.reload()
+  } 
+} 
+
 render() {
-  if (this.state.redirect){
-    window.location.reload();
-  }
-  if (this.state.evaluate && this.state.q !== ''){
-      this.setState({q: '', redirect: true, evaluate: false});
-      return <Redirect to={{pathname: '/content',
-      state:{q : this.state.q }}}/>
-      }
+  console.log(this.state.q)
   return (
         <div>
             <form onSubmit={this.handleSubmit} className="form-inline my-2 my-lg-0">
@@ -49,7 +48,7 @@ render() {
                               placeholder="..." 
                           />
                       </div>
-                      <button type="submit" className="btn btn-outline-dark">Buscar!</button>
+                      <button type="submit" onClick={this.toOrders} className="btn btn-outline-dark">Buscar!</button>
             </form>
           </div>
           );

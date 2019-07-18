@@ -4,8 +4,7 @@ import { Switch, Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import Restaurants from './homeComponents/Restaurants';
 import ShoppingCart from './ShoppingCart';
-import PayOrder from './PayOrder'
-//import Orders from './Orders';
+import PayOrder from './PayOrder';
 import OrderPage from './homeComponents/OrderPage';
 import SignIn from './homeComponents/SignIn';
 import SignUp from './homeComponents/SignUp';

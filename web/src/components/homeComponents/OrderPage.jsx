@@ -10,10 +10,6 @@ export default class OrderPage extends React.Component {
         }
     }
 
-    componentDidMount(){
-      const { q } = this.props.location.state  
-    }
-  
      render(){
               return (
                   <Page child={this.state.toShow} user={this.props.location.state.id} id="7"/>
