@@ -6,7 +6,7 @@ import {mySearch} from '../api/api'
 import HistoricOrder from './HistoricOrders.jsx'
 import PendingOrder from './PendingOrder.jsx'
 import './css/Orders.css';
-import './css/Body.css'
+import'./css/Order.css';
 
 export default class Orders extends React.Component {
     constructor(props) {
@@ -62,16 +62,16 @@ export default class Orders extends React.Component {
 
         return(
             <div>  
-              <div className="ribbon">
-                  <div><h1>{this.state.id}! Logueado! </h1></div>  
+              <div className="ribbon2">
+                  <div><h3><p>{this.state.id}! Logueado!</p> </h3></div>  
               </div>
-                <div>Ordenes Pendientes</div>
+                <div><h3><p>Ordenes Pendientes</p></h3></div>
                   <ul>
                     <div className="grid-container3">                      
                       {this.state.pendingOrders.map(mappingOrderCode)}                      
                     </div>
                   </ul>                                          
-                <div>Ordenes Históricas</div>
+                <div><h3><p>Ordenes Históricas</p></h3></div>
                   <ul>
                     <div className="grid-container3">
                       {this.state.historicOrders.map(mappingHistoricOrderCode)}

@@ -1,5 +1,29 @@
-.card1 {
-    width: 18rem
+  .contenedor .box{
+    background-color: #bbb;
+    width: 250px;
+    height: 100%;
+    padding: 10px 20px;
+    box-sizing: border-box;
   }
+.ribbon1{
+   left:-200px;
+}
   
-  
+.container2{
+    flex: .5;
+    flexDirection : 'row';
+   
+    borderBottomWidth: 1;
+    max-width: 18rem;
+
+    
+  }
+  .ribbon2 {
+    width: 50%;
+    position: relative;
+    background:#CADDE1;
+    height: 70px;
+    margin: 10px auto;
+    left: 0;
+    top: 0;
+}

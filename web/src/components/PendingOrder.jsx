@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import StarRatingComponent from 'react-star-rating-component'
-import { Redirect } from 'react-router-dom'
 import { ratePendingOrder } from '../api/api'
 import './css/Order.css';
 
@@ -40,9 +38,13 @@ if (this.state.toComponent ){
 }
 
 const x =   <li key={this.props.code_order_complete}>
-                <div className="container1" >
-                    <div className="card border-info mb-3 car1" >
-                        <div className="card-body text-primary">
+        
+    <div className="container2" >
+        <div class="row">
+            
+            <div class="col-sm d-flex">
+              <div class="card card-body flex-fill">
+                    <div className="card-body text-primary">
                             <h5 className="card-title">
                                 <p>Restaurant: {this.props.restaurantName}</p>
                             </h5>
@@ -71,7 +73,9 @@ const x =   <li key={this.props.code_order_complete}>
                                     </button> }
                             </div>
                         </div>
-                    </div>  
+                    </div>
+                </div>
+               </div>      
             </li>
 
     return(
