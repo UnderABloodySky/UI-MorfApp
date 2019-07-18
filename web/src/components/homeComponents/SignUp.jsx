@@ -47,48 +47,27 @@ export default class SignUp extends React.Component {
     this.setState({ latitude: event.latLng.lat(), longitude: event.latLng.lng()});
   }
 
-  changeId(event){
-    if(event.target.value===''){
-      this.setState({error:'Se debe completar el usuario'})
-      }
-    else {
+  changeId(event){    
     this.setState({ id: event.target.value });
   }
-}
+
 
   changeEmail(event) {
-    if(event.target.value===''){
-      this.setState({error:'Se debe completar el mail'})
-      }
-    else {
     this.setState({ email: event.target.value });
   }
-}
+
 
   changePassword(event) {
-    if(event.target.value===''){
-      this.setState({error:'Se debe completar la contraseña'})
-      }
-    else {
     this.setState({ password: event.target.value });
-    }
   }
+
   changeName(event) {
-    if(event.target.value===''){
-      this.setState({error:'Se debe completar el nombre'})
-      }
-    else {
     this.setState({ name: event.target.value });
-    }
+    
   }
   changeAddress(event) {
-    console.log(event.target.value)
-    if(event.target.value===''){
-      this.setState({error:'Se debe completar la dirección de su casita'})
-      }
-    else {
     this.setState({ address: event.target.value });
-  }
+  
 }
   changeLongitude(event) {
     this.setState({ longitude: event.target.value });
@@ -97,12 +76,9 @@ export default class SignUp extends React.Component {
     this.setState({ latitude: event.target.value });
   }
   executeSignUp() {
-
-    console.log('la pass')
-    console.log(this.state.password)
     if (this.state.id===''||this.state.password===''||
         this.state.email===''||this.state.name===''||this.state.address==='')
-        {this.setState({error:'Se debe completar todos los campos'})}
+          {this.setState({error:'Se debe completar todos los campos'})}
     else{
       const body = {
         id : this.state.id,

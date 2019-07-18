@@ -24,26 +24,17 @@ export default class SignIn extends React.Component {
   }
 
   changeUsername(event) {
-    if(event.target.value===''){
-      this.setState({ error: 'Se debe completar el usuario' })
-      }
-    else{ 
-      this.setState({ id: event.target.value });}
+      this.setState({ id: event.target.value });
   }
 
   changePassword(event) {
-    if(event.target.value===''){
-      this.setState({error:'Se debe completar la contraseña'})
-      }
-    else {
-      this.setState({ password: event.target.value });}
-  }
+      this.setState({ password: event.target.value });
+    }
+  
 
   executeSignIn() {
-    console.log('la pass')
-    console.log(this.state.password)
-    if (this.state.id===null||this.state.password===null)
-    {this.setState({error:'Se debe completar usuario/ contraseña'})}
+    if (this.state.id===''||this.state.password==='')
+    {this.setState({error:'Se debe completar usuario/contraseña'})}
     else{
     signIn({ id: this.state.id, password: this.state.password })
       .then(() => this.setState({ toComponent: true }))
