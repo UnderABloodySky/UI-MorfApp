@@ -62,7 +62,7 @@ export default class SearchFormOrder extends React.Component {
       <div>
             {this.state.showPopup &&
                       <PopUpOrder  
-                      q={this.state.q} closePopup={this.togglePopup.bind(this)}/>}
+                      q={this.state.q} title={false}closePopup={this.togglePopup.bind(this)}/>}
       </div>
        </div>
           );
