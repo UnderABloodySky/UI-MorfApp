@@ -6,7 +6,7 @@ import { getHistoricOrdersFrom } from '../api/api'
 import HistoricOrder from './HistoricOrders.jsx'
 import PendingOrder from './PendingOrder.jsx'
 import './css/Orders.css';
-import './css/Body.css'
+import'./css/Order.css';
 
 export default class Orders extends React.Component {
     constructor(props) {
@@ -51,16 +51,16 @@ export default class Orders extends React.Component {
 
         return(
             <div>  
-              <div className="ribbon">
-                  <div><h3>{this.state.id}! Logueado! </h3></div>  
+              <div className="ribbon2">
+                  <div><h3><p>{this.state.id}! Logueado!</p> </h3></div>  
               </div>
-                <div><h3>Ordenes Pendientes</h3></div>
+                <div><h3><p>Ordenes Pendientes</p></h3></div>
                   <ul>
                     <div className="grid-container3">                      
                       {this.state.pendingOrders.map(mappingOrderCode)}                      
                     </div>
                   </ul>                                          
-                <div><h3>Ordenes Históricas</h3></div>
+                <div><h3><p>Ordenes Históricas</p></h3></div>
                   <ul>
                     <div className="grid-container3">
                       {this.state.historicOrders.map(mappingHistoricOrderCode)}

@@ -1,8 +1,4 @@
-body{
-  margin:0;
-  font-family: 'Roboto-Regular';
-  background-color: #fff;
-}
+
 @font-face {
     font-family: 'Roboto-Regular';
     src: url(../fonts/Roboto-Regular.ttf) format('truetype');
@@ -249,9 +245,7 @@ h3.title {
 }
 .welcome p {
     font-size: 1em;
-  margin-top:8em;
     color: #555;
-    line-height: 1.8em;
   text-align:center;
 }
 .welcome-img {

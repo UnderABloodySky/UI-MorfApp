@@ -21,8 +21,13 @@ priceOfOrder(){
 render(){
 
 const x =   <li key={this.props.code_order_complete}>
-                    <div className="container1" >
-                        <div className="card border-info mb-3 card1" >
+                    
+              <div className="container2" >
+                                
+                <div class="row">
+                                
+                        <div class="col-sm d-flex">
+                        <div class="card card-body flex-fill">
                             <div className="card-body text-primary">
                             <h5 className="card-title">
                                 <p>Restaurant: {this.props.restaurantName}</p>
@@ -35,13 +40,14 @@ const x =   <li key={this.props.code_order_complete}>
                                                                         <p>Menú: {itMenus.name}</p>
                                                                         <p>Cantidad: {itMenus.ammountOfMenus}</p>
                                                                         <p>Precio: {itMenus.price} $</p>
-                                                                    </li>))}
-                            
+                                                                    </li>))}                                                            
                                     <p className = "text-info">Precio Total: {this.priceOfOrder()} $</p>
                                 </mark></p>
                             </div>
                         </div>    
-                    </div>  
+                   </div>
+                </div>
+                </div>
             </li>
 
     return(

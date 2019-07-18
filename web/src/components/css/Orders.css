@@ -4,7 +4,8 @@
     justifyContent: 'flex-start';
     borderBottomWidth: 1;
     borderBottomColor: '#000';
-    max-width: 200px
+    max-width: 200px;
+    max-height: 50 rem
   }
 
 
@@ -17,13 +18,5 @@
   height: 40vmin;
   pointer-events: none;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
   
-}
+
