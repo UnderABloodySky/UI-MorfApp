@@ -28,6 +28,7 @@ class Restaurant(code : Int,
     var searcher: Searcher = Searcher()
     private var productFactory: ProductFactory = ProductFactory()
     var menuFactory: MenuFactory = MenuFactory()
+    var restaurantImage : String = ""
 
     fun menus(): MutableMap<Int, Menu> {
         return menus
