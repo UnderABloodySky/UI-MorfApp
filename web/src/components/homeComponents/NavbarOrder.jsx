@@ -6,7 +6,8 @@ var items = [ {"code":"0", "name":"Nosotros", "id":"/us"},
               {"code":"1", "name":"Restaurants", "id":"/all_restaurants"},
               {"code":"2", "name":"Menus", "id":"/all_menus"},
               {"code":"3", "name":"Productos", "id":"/products"},
-              {"code":"4", "name":"Contacto", "id":"/contact"}
+              {"code":"4", "name":"Contacto", "id":"/contact"},
+              {"code":"5", "name":"Pedidos", "id":"/orders"}
             ]
 
 export default class NavbarOrder extends React.Component {
@@ -16,8 +17,16 @@ export default class NavbarOrder extends React.Component {
       user:''
     }
     this.state.user =  this.props.user;
-    console.log(this.state.user);
+    this.user = this.user.bind(this)
+    console.log("Navbar Order")
+    console.log(this.state.user)
   }
+
+  user(){
+    console.log("Navbar Order")
+    console.log(this.state.user)
+    return this.state.user
+  } 
   
 render() {
   return (
@@ -36,7 +45,9 @@ render() {
       return <NavBarItem key={currentValue.code}
                          name={currentValue.name}
                          id={currentValue.id}
-                         isFirstOne={index===0? true : false}/>;  
+                         isFirstOne={index===0? true : false}
+                         //user={this.user}
+                         />;  
     })}
 
     </ul>

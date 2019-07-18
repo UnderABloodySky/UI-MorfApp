@@ -23,14 +23,12 @@ export default class SearchFormOrder extends React.Component {
   }
   
   togglePopup() {  
-    console.log("SearchForm - TogglePopup")
     this.setState({  
          showPopup: !this.state.showPopup});  
   } 
   
 
   handleSubmit(e) {
-    console.log("SearchForm - handleSubmit")
     e.preventDefault();
     this.setState({
         evaluate: true
