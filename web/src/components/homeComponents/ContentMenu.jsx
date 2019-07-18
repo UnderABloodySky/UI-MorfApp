@@ -14,6 +14,7 @@ render() {
       
       <div className="card mt-4 col-md-4" key={i}>
           <div className="card-headercard-title text-center">
+          <img src={menu.img}/>
             <h4>Menu: {menu.name}</h4>
             <span className="badge-pill badge-danger ml-2">
               {menu.enable}

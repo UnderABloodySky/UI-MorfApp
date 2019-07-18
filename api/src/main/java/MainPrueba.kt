@@ -41,7 +41,7 @@ fun main() {
     //Ubicacion restaurants
     val flores = Geo(-34.603595, -58.381717, "Flores")
 
-        val mChaile = morfApp.createClient("NinjaMan", "Matias Chaile", "Roque Saenz Peña 500", unq, "dilequechupelimon", "mailTrucho0@asd.com")
+    val mChaile = morfApp.createClient("asd", "Matias Chaile", "Roque Saenz Peña 500", unq, "asd", "mailTrucho0@asd.com")
     val mPais = morfApp.createClient("BBQMaster", "Mariano Pais", "Siempre Viva 442", bernal, "proyecto", "mailTrucho1@asd.com")
     val jLajcha = morfApp.createClient("RunForestRun", "Juliana Lajcha", "Calle Falsa 1234", capital, "1234", "mailTrucho2@asd.com")
     val fCaramelieri = morfApp.createClient("OracleFanBoy", "Fede Caramelieri", "Otra Calle Falsa 4321", bernal, "plusvalia", "mailTrucho3@asd.com")
@@ -62,11 +62,17 @@ fun main() {
     var elClubDeLaMilanesa = morfApp.createRestaurant("El club de la milanesa", "asd", "asd", geoLocation1, mutableListOf())
     var otroAntro = morfApp.createRestaurant("Asd", "las mejores milanesas", "asd", geoLocation1, mutableListOf())
 
+    laConga.restaurantImage = "/Images/img1.jpg"
+    elClubDeLaMilanesa.restaurantImage = "/Images/img2.jpg"
+    elTano.restaurantImage = "/Images/img3.jpg"
+    otroAntro.restaurantImage = "/Images/img5.jpg"
+    guerrin.restaurantImage = "/Images/img6.jpg"
+
+
     val helado = laConga.createProduct("Helado", "Hecho con leche de vacas contentas", 100.0, Category.POSTRE)
     val cocaCola = laConga.createProduct("Coca Cola", "Azucar al 200%", 80.0, Category.BEBIDA)
     val hamburguesa = laConga.createProduct("Hamburguesa", "Aprobadas por la Universidad Bovina", 120.0, Category.PLATOPRINCIPAL)
     val productsOfLaConga = mutableListOf<Product>(cocaCola, hamburguesa)
-
     val muzza = guerrin.createProduct("Pizza Muzzarella", "Hecho con leche de vacas contentas", 120.0, Category.PLATOPRINCIPAL)
     val cuatroQuesos = guerrin.createProduct("Pizza 4 quesos", "Azucar al 200%", 280.0, Category.PLATOPRINCIPAL)
     val faina = guerrin.createProduct("faina", "Garbanzo power", 120.0, Category.ADICIONAL)
@@ -79,6 +85,18 @@ fun main() {
     val chori = elTano.createProduct("choripan", "", 80.0, Category.BEBIDA)
     val productsOfElTano = mutableListOf(vacio, parrillada1, parrillada2, chori)
     val productsTano = mutableListOf(vacio, chori)
+
+    helado.productImage = "/Images/productos.jpg"
+    cocaCola.productImage = "/Images/productos.jpg"
+    hamburguesa.productImage = "/Images/productos.jpg"
+    muzza.productImage = "/Images/productos.jpg"
+    cuatroQuesos.productImage = "/Images/productos.jpg"
+    faina.productImage = "/Images/productos.jpg"
+    pepsi.productImage = "/Images/productos.jpg"
+    vacio.productImage = "/Images/productos.jpg"
+    chori.productImage = "/Images/productos.jpg"
+    parrillada1.productImage = "/Images/productos.jpg"
+    parrillada2.productImage = "/Images/productos.jpg"
 
     val menu0 = laConga.createMenu("Menu1", "baratito", mutableListOf(helado), laConga, discount.NoDiscount(), true)
     val menu1 = laConga.createMenu("Menu2", "carito", productsOfLaConga, laConga, discount.NoDiscount(), true)

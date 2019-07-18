@@ -51,7 +51,7 @@ togglePopup() {
         <div>
           <div className="card mt-4 col-md-4" key={i}>
           <div style={divStyle}>
-              <img src={img3} className="card-img" alt="Shummy!"/>
+              <img src={thing.restaurantImage} className="card-img" alt="Shummy!"/>
           </div>
             <div className="card-body">
               <h5 className="card-title">{thing.name}</h5>

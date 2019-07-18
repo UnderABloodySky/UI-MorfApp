@@ -14,6 +14,8 @@ render() {
     
       <div className="card mt-4 col-md-4" key={i}>
           <div className="card-headercard-title text-center">
+            {console.log(resto)}
+            <img src={resto.restaurantImage}/>
             <h4>Restaurant: {resto.name}</h4>
             <span className="badge-pill badge-danger ml-2">
               {"open"}

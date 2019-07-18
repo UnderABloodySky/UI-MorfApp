@@ -12,7 +12,7 @@ class RestaurantController {
   private var restaurants = mutableListOf<DataRestaurant>()
 
     fun addDataRestaurant(resto : Restaurant){
-        var aDataResto = DataRestaurant(resto.code, resto.name, resto.direcction, resto.description, resto.geoLocation)
+        var aDataResto = DataRestaurant(resto.code, resto.name, resto.direcction, resto.description, resto.geoLocation, resto.restaurantImage)
         restaurants.add(aDataResto)
     }
 
