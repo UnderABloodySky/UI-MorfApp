@@ -44,7 +44,6 @@ export default class SearchFormOrder extends React.Component {
   }
 
   render() {
-    console.log("SearchFormOrder 1")
     return (
       <div>
       <form onSubmit={this.handleSubmit} className="form-inline my-2 my-lg-0">
@@ -58,12 +57,12 @@ export default class SearchFormOrder extends React.Component {
             placeholder="..." 
             />
         </div>
-        <button onClick={this.togglePopup.bind(this)} className="btn btn-outline-dark">Buscar!</button>
+        <button type="submit" onClick={this.togglePopup.bind(this)} className="btn btn-outline-dark">Buscar!</button>
       </form>
       <div>
             {this.state.showPopup &&
                       <PopUpOrder  
-                      closePopup={this.togglePopup.bind(this)}/>}
+                      q={this.state.q} closePopup={this.togglePopup.bind(this)}/>}
       </div>
        </div>
           );

@@ -11,10 +11,8 @@ class PopUpOrder extends React.Component {
             renderLog: false,
             q: ''
         }
-        this.state.q = this.props.q
-
-  console.log("PopUpOrder 2")
-    this.handlerLog = this.handlerLog.bind(this);
+       this.state.q = this.props.q  
+       this.handlerLog = this.handlerLog.bind(this);
     }
 
 handlerLog(){
@@ -30,19 +28,21 @@ login(){
                 mySearch(this.state.q)
                 .then(result => { 
                     console.log("componentDidMount")
-                    console.log(this.state.q)
+                    console.log(this.props.q)
                     console.log(result)
                     this.setState({toShow: result, mustBeRender:true})});
                 }
     }    
     
     render() {  
+        console.log("ACA")
+        console.log(this.state.toShow)
         return (  
             
             <div className='popup'>  
                 <div className='pop-inner'>             
                     <div>
-                        <ContentSearchResult k={this.state.toShow}/>
+                        {this.state.mustBeRender && <ContentSearchResult k={this.state.toShow}/>}
                     </div>
                 </div>  
             </div>  
