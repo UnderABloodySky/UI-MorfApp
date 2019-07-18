@@ -30,7 +30,7 @@ login(){
                     console.log("componentDidMount")
                     console.log(this.props.q)
                     console.log(result)
-                    this.setState({toShow: result, mustBeRender:true})});
+                    this.setState({renderLog: result.length > 0, toShow: result, mustBeRender:true})});
                 }
     }    
     
@@ -42,7 +42,7 @@ login(){
             <div className='popup'>  
                 <div className='pop-inner'>             
                     <div>
-                        {this.state.mustBeRender && <ContentSearchResult k={this.state.toShow}/>}
+                        {this.state.renderLog > 0 && this.state.mustBeRender && <ContentSearchResult k={this.state.toShow}/>}
                     </div>
                     <div className="col-12">
                         <button type="button" id="focus" className="btn btn-link" onClick={this.handlerLog}>Cancelar</button>

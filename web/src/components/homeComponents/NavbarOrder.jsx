@@ -2,12 +2,7 @@ import React from 'react';
 import NavBarItem from './NavBarItem';
 import SearchFormOrder from './SearchFormOrder';
 
-var items = [ {"code":"0", "name":"Nosotros", "id":"/us"},
-              {"code":"1", "name":"Restaurants", "id":"/all_restaurants"},
-              {"code":"2", "name":"Menus", "id":"/all_menus"},
-              {"code":"3", "name":"Productos", "id":"/products"},
-              {"code":"4", "name":"Contacto", "id":"/contact"},
-              {"code":"5", "name":"Pedidos", "id":"/orders"}
+var items = [ {"code":"5", "name":"Pedidos", "id":"/orders"}
             ]
 
 export default class NavbarOrder extends React.Component {
@@ -39,7 +34,7 @@ render() {
     <span className="navbar-toggler-icon"></span>
   </button>
   <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a className="navbar-brand" href="/">Home</a>
+    <a className="navbar-brand" href="/"><button className="btn btn-outline-dark">Salir!</button></a>
     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
     {items.map(function(currentValue, index){
       return <NavBarItem key={currentValue.code}
