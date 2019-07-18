@@ -74,7 +74,8 @@ render() {
             </div>
             {/*welcome*/}
             <div className="welcome">
-              <h3 className="title">Bienvenidxs!</h3>
+              <br/>
+              <h3 className="title">Bienvenidos!</h3>
               <h5>Gracias por aportar tu granito de arena por mas precarizacion laboral, para que no tengas que levantar el culo del sillon si se te antojan unas papas con cheddard </h5>
               <div className="welcome-info">
                 <div className="grid-body-container">
