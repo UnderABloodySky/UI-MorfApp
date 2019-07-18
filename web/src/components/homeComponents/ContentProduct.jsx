@@ -11,10 +11,10 @@ render() {
     return(
       <div className="card mt-4 col-md-4" key={i}>
           <div className="card-headercard-title text-center">
-            <h4>Producto: {prod.name}</h4>
+            <img src={prod.productImage}/>
+            <h4>{prod.name}</h4>
             <div className="card-body">
             {prod.description}
-            <div><mark>{prod.code}</mark></div>
           </div>  
         </div>
       </div>

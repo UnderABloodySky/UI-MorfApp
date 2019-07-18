@@ -15,7 +15,8 @@ data class Product(var code: Int,
                    var name: String,
                    var description: String,
                    var price: Double,
-                   var category: Category)
+                   var category: Category,
+                   var productImage: String)
 
     class MenuControllerContext {
         private var lastId = 0;
@@ -35,7 +36,7 @@ data class Product(var code: Int,
         private fun transformsProducts(list : MutableList<productAndMenu.Product>) : MutableList<Product>{
             var res = mutableListOf<Product>()
             for (prod in list){
-                var dataProduct = Product(prod.code, prod.name, prod.description, prod.price, prod.category)
+                var dataProduct = Product(prod.code, prod.name, prod.description, prod.price, prod.category, prod.productImage)
                 res.add(dataProduct)
             }
             return res
@@ -55,7 +56,7 @@ data class Product(var code: Int,
         }
 
         fun addModelProduct(prod : productAndMenu.Product){
-            var dataProduct = Product(prod.code, prod.name, prod.description, prod.price, prod.category)
+            var dataProduct = Product(prod.code, prod.name, prod.description, prod.price, prod.category, prod.productImage)
             products.add(dataProduct)
         }
 
@@ -73,7 +74,8 @@ data class Product(var code: Int,
                                     viewProduct.name,
                                     viewProduct.description,
                                     viewProduct.price,
-                                    viewProduct.category)
+                                    viewProduct.category,
+                                    viewProduct.productImage)
 
             products.remove(oldProduct)
             products.add(newProduct)
@@ -98,7 +100,8 @@ data class Product(var code: Int,
                                     product.name,
                                     product.description,
                                     product.price,
-                                    product.category)
+                                    product.category,
+                                    product.productImage)
 
             products.add(product)
             return product
