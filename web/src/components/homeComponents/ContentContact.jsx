@@ -12,36 +12,19 @@ export default class ContentContact extends React.Component {
       <div className="contact-top">
 		    <div className="container">
 			    <div className="contact-info">
-				    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit in id malesuada lectus aenean convallis interdum gravida donec faucibus bibendum tortor vel facilisis.</p>
+				<h4>Lineas rotativas: </h4>
+				<div style={{ width: "450px" , height: "170px"}}>
+					  <p style={{textAlign: "left"}}>Teléfono: +54 011 1234-5678</p>
+					  <p style={{textAlign: "left"}}>FAX: +54 011 2345-6789</p>
+					  <p style={{textAlign: "left"}}>E-mail: <a href="mailto:info@example.com">mail@example.com</a></p>
+					  <p style={{textAlign: "left"}}> Calle Falsa 123 CP 1826 Bs.As. Argentina.</p>
+					  </div>	  
 			    </div>
-			    <div className="map">
-				    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d158858.18237072596!2d-0.10159865000003898!3d51.52864165000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1436514341845" allowfullscreen></iframe>
-			    </div>
-			    <div className="mail-grids">
-				    <div className="col-md-6 mail-grid-left">
-					    <h3 className="title"> :: Dirección :: </h3>
-					    <h5>Cras porttitor imperdiet volutpat nulla malesuada lectus eros <span>ut convallis felis consectetur ut </span></h5>
-					    <h4>Casa central: </h4>
-					  <p>Calle Falsa 1234
-						  <span>CP 1826</span>
-						  Bs. As., Argentina.
-					  </p>
-					  <h4>Lineas rotativas: </h4>
-					  <p>Telefon0: +54 011 1234-5678
-						  <span>FAX: +54 011 2345-6789</span>
-						  E-mail: <a href="mailto:info@example.com">mail@example.com</a>
-					  </p>
-				  </div>
-        </div>  
-				<div class="col-md-6 contact-form">
-					<form>
-						<input type="text" placeholder="Nombre" required=""/>
-						<input type="text" placeholder="Email" required=""/>
-						<input type="text" placeholder="Asunto" required=""/>
-						<textarea placeholder=" -- Mensaje -- " required=""></textarea>
-						<input type="submit" value="ENVIAR"/>
-					</form>
-				</div>
+			    <div className="map" style={{padding:"20px 0px"}}>
+					<h4>Ubicación:</h4>
+					<div style={{width: "50%"}}><iframe width="100%" height="400" src="https://maps.google.com/maps?width=100%&height=600&hl=es&q=corrientes%20800+(MORFAPP)&ie=UTF8&t=&z=14&iwloc=B&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div><br />
+					
+			    </div> 
 			</div>
       </div>
       </div>      
