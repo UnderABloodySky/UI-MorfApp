@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/Body.css';
+import '../css/Order.css';
 
 export default class ContentProduct extends React.Component {
   constructor(props) {
@@ -9,15 +9,21 @@ export default class ContentProduct extends React.Component {
 render() {
   const myRestos = this.props.k.map((prod, i) => {
     return(
-      <div className="card mt-4 col-md-4" key={i}>
-          <div className="card-headercard-title text-center">
-            <img src={prod.productImage}/>
-            <h4>{prod.name}</h4>
-            <div className="card-body">
-            {prod.description}
-          </div>  
+      <div className="container2" >
+        <div class="row">
+        <div class="col-sm d-flex">
+        <div className="card card-body flex-fill" key={i}>
+        <img src={prod.productImage}/>
+          <div className="card-body text-primary">
+              <h5 className="card-title"><p> {prod.name}</p></h5>
+              <h6 className= "text-info">
+              <p>{prod.description}</p>
+            </h6>  
+          </div>
         </div>
-      </div>
+        </div>
+        </div>
+      </div>  
       )})
 
       return(
