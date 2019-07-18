@@ -85,8 +85,9 @@ export default class SignIn extends React.Component {
               <div className="col-12">
                 <button type="button" id="focus" className="btn btn-link" onClick={this.props.handlerLog}>Cancelar</button>
               </div>
+              {this.state.error && <div className="alert alert-danger" role="alert"> {this.state.error}</div>}
               <div className="col-12 empty">
-                {this.state.error && this.state.error}
+              
               </div>
             </div>
           </div>

@@ -26,7 +26,8 @@ class ContentRegister extends React.Component {
     return (
       <div>  
           <h3 className="title"> :: Registro! :: </h3>
-                <RegisterForm send={this.send}/>
+                {!this.state.flag && <RegisterForm send={this.send}/>}
+                {this.state.flag && <div className="alert alert-danger" role="alert">  Su informacion esta siendo procesada! </div>}
       </div>
   );
   }
