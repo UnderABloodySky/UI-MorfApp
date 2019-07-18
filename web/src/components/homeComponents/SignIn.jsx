@@ -24,19 +24,32 @@ export default class SignIn extends React.Component {
   }
 
   changeUsername(event) {
-    this.setState({ id: event.target.value });
+    if(event.target.value===''){
+      this.setState({ error: 'Se debe completar el usuario' })
+      }
+    else{ 
+      this.setState({ id: event.target.value });}
   }
 
   changePassword(event) {
-    this.setState({ password: event.target.value });
+    if(event.target.value===''){
+      this.setState({error:'Se debe completar la contraseña'})
+      }
+    else {
+      this.setState({ password: event.target.value });}
   }
 
   executeSignIn() {
+    console.log('la pass')
+    console.log(this.state.password)
+    if (this.state.id===null||this.state.password===null)
+    {this.setState({error:'Se debe completar usuario/ contraseña'})}
+    else{
     signIn({ id: this.state.id, password: this.state.password })
       .then(() => this.setState({ toComponent: true }))
       .catch(() => this.setState({ error: 'Usuario o contraseña incorrecta' }));
   }
-
+  }
   renderInput(label, value, inputType, onChange) {
     return (
       <div className="form-group row">

@@ -48,24 +48,48 @@ export default class SignUp extends React.Component {
   }
 
   changeId(event){
+    if(event.target.value===''){
+      this.setState({error:'Se debe completar el usuario'})
+      }
+    else {
     this.setState({ id: event.target.value });
   }
+}
 
   changeEmail(event) {
+    if(event.target.value===''){
+      this.setState({error:'Se debe completar el mail'})
+      }
+    else {
     this.setState({ email: event.target.value });
   }
+}
 
   changePassword(event) {
+    if(event.target.value===''){
+      this.setState({error:'Se debe completar la contraseña'})
+      }
+    else {
     this.setState({ password: event.target.value });
+    }
   }
-
   changeName(event) {
+    if(event.target.value===''){
+      this.setState({error:'Se debe completar el nombre'})
+      }
+    else {
     this.setState({ name: event.target.value });
+    }
   }
-
   changeAddress(event) {
+    console.log(event.target.value)
+    if(event.target.value===''){
+      this.setState({error:'Se debe completar la dirección de su casita'})
+      }
+    else {
     this.setState({ address: event.target.value });
   }
+}
   changeLongitude(event) {
     this.setState({ longitude: event.target.value });
   }
@@ -73,18 +97,26 @@ export default class SignUp extends React.Component {
     this.setState({ latitude: event.target.value });
   }
   executeSignUp() {
-    const body = {
-      id : this.state.id,
-      email: this.state.email,
-      password: this.state.password,
-      name: this.state.name,
-      address: this.state.address,
-      latitude: this.state.latitude,
-      longitude: this.state.longitude
-    };
-    signUp(body)
-      .then(() => this.setState({ toOrders: true }))
-      .catch(() => this.setState({ error: 'Usuario ya utilizado' }));  
+
+    console.log('la pass')
+    console.log(this.state.password)
+    if (this.state.id===''||this.state.password===''||
+        this.state.email===''||this.state.name===''||this.state.address==='')
+        {this.setState({error:'Se debe completar todos los campos'})}
+    else{
+      const body = {
+        id : this.state.id,
+        email: this.state.email,
+        password: this.state.password,
+        name: this.state.name,
+        address: this.state.address,
+        latitude: this.state.latitude,
+        longitude: this.state.longitude
+      };
+      signUp(body)
+        .then(() => this.setState({ toOrders: true }))
+        .catch(() => this.setState({ error: 'Usuario ya utilizado' }));  
+    }
   }
 
   renderInput(label, value, inputType, onChange) {
