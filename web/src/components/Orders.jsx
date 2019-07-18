@@ -83,7 +83,7 @@ export default class Orders extends React.Component {
                       {this.state.historicOrders.map(mappingHistoricOrderCode).length === 0 && 
               <img src={snorlax_sleeping} className="card-img" alt="Ups i did it again !"/>} 
               {this.state.historicOrders.map(mappingHistoricOrderCode).length === 0  && <div className="alert alert-danger" role="alert">
-            Aún no has realizado ninguna pedido!</div>}                      
+            Aún no has recibido ningún pedido!</div>}                      
          
                     </div>
                   </ul>
